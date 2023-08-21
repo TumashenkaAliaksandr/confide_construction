@@ -89,6 +89,6 @@
 
 
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Confide Constraction.)](https://github.com/TumashenkaAliaksandr)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Confide_Constraction.)](https://github.com/TumashenkaAliaksandr)
 
 *Copyright 2023. Made with Phoenix Pegasus. All Rights Reserved. Confide Constraction*
