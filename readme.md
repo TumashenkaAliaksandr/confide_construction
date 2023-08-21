@@ -1,6 +1,6 @@
 <h1 align="center">Hi, this is the website of <a href="https://confideconstraction.com" target="_blank">Confide Constraction</a> 
 <img src="https://github.com/blackcater/blackcater/raw/main/images/Hi.gif" height="32"/></h1>
-<img src="https://media.giphy.com/media/nBWRqmv4UescfaVSTv/giphy.gif" height="220"/>
+<img src="https://media.giphy.com/media/nBWRqmv4UescfaVSTv/giphy.gif" height="250"/>
 
 *The site consists of the following pages:*
 ***
