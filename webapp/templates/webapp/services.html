@@ -9,24 +9,24 @@
 
     <title>Nirman - Construction Business HTML Template</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'webapp/images/favicon.png' %}">
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'webapp/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
 
     <!--Default CSS-->
-    <link href="css/default.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'webapp/css/default.css' %}" rel="stylesheet" type="text/css">
 
     <!--Custom CSS-->
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'webapp/css/style.css' %}" rel="stylesheet" type="text/css">
 
     <!--Plugin CSS-->
-    <link href="css/plugin.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'webapp/css/plugin.css' %}" rel="stylesheet" type="text/css">
 
     <!--Font Awesome-->
-    <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'webapp/css/font-awesome.css' %}" rel="stylesheet" type="text/css">
 
-    <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script> <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js' %}"></script> <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js' %}"></script><![endif]-->
 </head>
 
 <body class="page">
@@ -66,7 +66,7 @@
             <div class="container">
 
                 <div class="logo pull-left">
-                    <a href="index.html"><img src="images/c-logo.png" alt=""></a>
+                    <a href="index.html"><img src="{% static 'webapp/images/c-logo.png' %}" alt=""></a>
                 </div>
                 
                 <div id="navbar" class="navbar-nav-wrapper pull-right">
@@ -203,7 +203,7 @@
                                 <ul>
                                     <li>
                                         <div class="item-image-holder">
-                                            <a href="#"><img src="images/project/bw6.jpg" alt="i"></a>
+                                            <a href="#"><img src="{% static 'webapp/images/project/bw6.jpg' %}" alt="i"></a>
                                         </div>
                                         <div class="item-info-holder">
                                             <h5 class="product-title">
@@ -271,7 +271,7 @@
             <div class="row">
                 <div class="col-md-4 col-sm-6 col-xs-6">
                     <div class="box mar-bottom-30 text-center">
-                        <img src="images/blog-listing/blog_01.jpg" alt="services-1">
+                        <img src="{% static 'webapp/images/blog-listing/blog_01.jpg' %}" alt="services-1">
                         <div class="box-content">
                             <h3><a href="#">Mechanical Engineering</a></h3>
                             <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
@@ -280,7 +280,7 @@
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-6">
                     <div class="box mar-bottom-30 text-center">
-                        <img src="images/blog-listing/blog_13.jpg" alt="services-2">
+                        <img src="{% static 'webapp/images/blog-listing/blog_13.jpg' %}" alt="services-2">
                         <div class="box-content">
                             <h3><a href="#">Pharmaceutical Research</a></h3>
                             <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
@@ -289,7 +289,7 @@
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-6">
                     <div class="box mar-bottom-30 text-center">
-                        <img src="images/blog-listing/blog_10.jpg" alt="services-3">
+                        <img src="{% static 'webapp/images/blog-listing/blog_10.jpg' %}" alt="services-3">
                         <div class="box-content">
                             <h3><a href="#">Asbestos Remediation</a></h3>
                             <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
@@ -298,7 +298,7 @@
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-6">
                     <div class="box mar-bottom-30 text-center">
-                        <img src="images/blog-listing/blog_11.jpg" alt="services-4">
+                        <img src="{% static 'webapp/images/blog-listing/blog_11.jpg' %}" alt="services-4">
                         <div class="box-content">
                             <h3><a href="#">Petroleum and Gas</a></h3>
                             <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
@@ -307,7 +307,7 @@
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-6">
                     <div class="box mar-bottom-30 text-center">
-                        <img src="images/blog-listing/blog_14.jpg" alt="services-5">
+                        <img src="{% static 'webapp/images/blog-listing/blog_14.jpg' %}" alt="services-5">
                         <div class="box-content">
                             <h3><a href="#">Industrial Cleaning Services</a></h3>
                             <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
@@ -316,7 +316,7 @@
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-6">
                     <div class="box mar-bottom-30 text-center">
-                        <img src="images/blog-listing/blog_12.jpg" alt="services-6">
+                        <img src="{% static 'webapp/images/blog-listing/blog_12.jpg' %}" alt="services-6">
                         <div class="box-content">                              
                             <h3><a href="#">Painting and Protective</a></h3>
                             <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
@@ -325,7 +325,7 @@
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-6">
                     <div class="box text-center">
-                        <img src="images/blog-listing/blog_03.jpg" alt="services-1">
+                        <img src="{% static 'webapp/images/blog-listing/blog_03.jpg' %}" alt="services-1">
                         <div class="box-content">
                             <h3><a href="#">Mechanical Engineering</a></h3>
                             <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
@@ -334,7 +334,7 @@
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-6">
                     <div class="box text-center">
-                        <img src="images/blog-listing/blog_02.jpg" alt="services-2">
+                        <img src="{% static 'webapp/images/blog-listing/blog_02.jpg' %}" alt="services-2">
                         <div class="box-content">
                             <h3><a href="#">Pharmaceutical Research</a></h3>
                             <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
@@ -343,7 +343,7 @@
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-6">
                     <div class="box text-center">
-                        <img src="images/blog-listing/blog_05.jpg" alt="services-3">
+                        <img src="{% static 'webapp/images/blog-listing/blog_05.jpg' %}" alt="services-3">
                         <div class="box-content">
                             <h3><a href="#">Asbestos Remediation</a></h3>
                             <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
@@ -359,7 +359,7 @@
     <section id="mt_get_started">
         <div class="container">
             <div class="watch_inner">
-                <img src="images/watch_inner.jpg" alt="">
+                <img src="{% static 'webapp/images/watch_inner.jpg' %}" alt="">
                 <div class="watch_content">
                     <h3 class="white">We Build, Your Dream</h3>
                     <h2 class="white">Quality Comes First</h2>
@@ -405,7 +405,7 @@
                 <div class="col-md-3 col-sm-12 col-xs-12">
                     <div class="follow_us">
                         <a href="index.html">
-                            <img src="images/c-logo.png" alt="Logo">
+                            <img src="{% static 'webapp/images/c-logo.png' %}" alt="Logo">
                         </a>
                         <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
@@ -466,7 +466,7 @@
                         <h3>Latest Posts</h3>
                         <ul>
                             <li>
-                                <img src="images/blog/r-post-1.jpg" alt="image" />
+                                <img src="{% static 'webapp/images/blog/r-post-1.jpg' %}" alt="image" />
                                 <div class="post_contnt_ftr">
                                     <p>Fri, 03-07-2018 |
                                         <a href="#"><span> Comment (8)</span></a>
@@ -477,7 +477,7 @@
                                 </div>
                             </li>
                             <li>
-                                <img src="images/blog/r-post-8.jpg" alt="image" />
+                                <img src="{% static 'webapp/images/blog/r-post-8.jpg' %}" alt="image" />
                                 <div class="post_contnt_ftr">
                                     <p>Fri, 03-07-2018 |
                                         <a href="#"><span> Comment (8)</span></a>
@@ -488,7 +488,7 @@
                                 </div>
                             </li>
                             <li>
-                                <img src="images/blog/r-post-5.jpg" alt="image" />
+                                <img src="{% static 'webapp/images/blog/r-post-5.jpg' %}" alt="image" />
                                 <div class="post_contnt_ftr">
                                     <p>Fri, 03-07-2018 |
                                         <a href="#"><span> Comment (8)</span></a>
@@ -499,7 +499,7 @@
                                 </div>
                             </li>
                             <li>
-                                <img src="images/blog/r-post-7.jpg" alt="image" />
+                                <img src="{% static 'webapp/images/blog/r-post-7.jpg' %}" alt="image" />
                                 <div class="post_contnt_ftr">
                                     <p>Fri, 03-07-2018 |
                                        <a href="#"><span> Comment (8)</span></a>
@@ -546,29 +546,29 @@
     
     <!--*Scripts*-->
 
-    <!-- Latest jquery --><script src="js/jquery-3.2.1.min.js"></script>
+    <!-- Latest jquery --><script src="{% static 'webapp/js/jquery-3.2.1.min.js' %}"></script>
 
-    <!-- latest Bootstrap --><script src="js/bootstrap.min.js"></script>
+    <!-- latest Bootstrap --><script src="{% static 'webapp/js/bootstrap.min.js' %}"></script>
 
-    <!-- wow animated jquery --><script src="js/wow.min.js"></script>
+    <!-- wow animated jquery --><script src="{% static 'webapp/js/wow.min.js' %}"></script>
 
-    <!-- Navigation jquery --><script src="js/jquery.nav.js"></script>
+    <!-- Navigation jquery --><script src="{% static 'webapp/js/jquery.nav.js' %}"></script>
 
-    <!-- Slick jquery --><script src="js/slick.js"></script>
+    <!-- Slick jquery --><script src="{% static 'webapp/js/slick.js' %}"></script>
 
-    <!-- Slicknav jquery --><script src="js/slicknav.js"></script>
+    <!-- Slicknav jquery --><script src="{% static 'webapp/js/slicknav.js' %}"></script>
 
-    <!-- custom nav jquery --><script src="js/custom-nav.js"></script>
+    <!-- custom nav jquery --><script src="{% static 'webapp/js/custom-nav.js' %}"></script>
 
-    <!-- Easing Jquery --><script src="js/jquery.easing.min.js"></script>
+    <!-- Easing Jquery --><script src="{% static 'webapp/js/jquery.easing.min.js' %}"></script>
 
-    <!-- Modal Video Jquery --><script src="js/jquery-modal-video.min.js"></script>
+    <!-- Modal Video Jquery --><script src="{% static 'webapp/js/jquery-modal-video.min.js' %}"></script>
 
-    <!-- Appear Jquery --><script src="js/jquery.appear.js"></script>
+    <!-- Appear Jquery --><script src="{% static 'webapp/js/jquery.appear.js' %}"></script>
 
-    <!-- custom video Jquery --><script src="js/custom-video.js"></script>
+    <!-- custom video Jquery --><script src="{% static 'webapp/js/custom-video.js' %}"></script>
 
-    <!-- main default Jquery --><script src="js/main.js"></script>
+    <!-- main default Jquery --><script src="{% static 'webapp/js/main.js' %}"></script>
 </body>
 
 </html>

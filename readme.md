@@ -1,6 +1,6 @@
 <h1 align="center">Hi, this is the website of <a href="https://confideconstraction.com" target="_blank">Confide Constraction</a> 
 <img src="https://github.com/blackcater/blackcater/raw/main/images/Hi.gif" height="32"/></h1>
-<img src="https://media.giphy.com/media/Yj6d4OMmDV3bnYtOow/giphy.gif" height="220"/>
+<img src="https://media.giphy.com/media/nBWRqmv4UescfaVSTv/giphy.gif" height="220"/>
 
 *The site consists of the following pages:*
 ***
@@ -33,57 +33,57 @@
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![PyCharm](https://img.shields.io/badge/pycharm-143?style=for-the-badge&logo=pycharm&logoColor=black&color=black&labelColor=green)
 
-*Asgiref - это библиотека, которая предоставляет серверную асинхронность для Python, необходимую для работы Django 3.0 и выше.*
+*Asgiref is a library that provides server-side asynchrony for Python, which is required to run Django 3.0 and above.*
 
-*BeautifulSoup4 - это библиотека для парсинга HTML и XML документов, которая используется для обработки данных с других сайтов.*
+*BeautifulSoup4 is a library for parsing HTML and XML documents, which is used to process data from other sites.*
 
-*Django - это Python фреймворк для веб-разработки, который упрощает процесс создания веб-приложений. Он используется для создания основных компонентов сайта, таких как модели, представления и URL маршрутизация.*
+*Django is a Python web development framework that simplifies the process of creating web applications. It is used to create basic website components such as models, views, and URL routing.*.
 
-*Django-bootstrap4 - это библиотека, которая предоставляет интеграцию Bootstrap в Django.*
+*Django-bootstrap4 is a library that provides Bootstrap integration into Django.*
 
-*Django-crispy-forms - это библиотека для создания форм с помощью Django, которая предоставляет простой способ создания форм с использованием Bootstrap.*
+*Django-crispy-forms is a library for creating forms with Django that provides an easy way to create forms using Bootstrap.*
 
-*Flake8 - это инструмент, который используется для проверки качества кода на соответствие стандартам PEP 8.*
+*Flake8 is a tool that is used to check the quality of code for compliance with PEP 8 standards.*
 
-*Mccabe - это инструмент для анализа кода, который используется для проверки сложности кода.*
+*Mccabe is a code analysis tool that is used to check code complexity.*
 
-*News - это приложение, которое используется для отображения новостей на сайте.*
+*News is an application that is used to display news on a website.*
 
-*Pillow - это библиотека для работы с изображениями в Python, используется для обработки и загрузки изображений на сайт.*
+*Pillow is an image manipulation library in Python, used to process and upload images to a website.*
 
-*Pycodestyle - это инструмент, который используется для проверки соответствия стиля кода стандартам PEP 8.*
+*Pycodestyle is a tool that is used to check if code style conforms to PEP 8 standards.*
 
-*Pyflakes - это инструмент, который используется для проверки синтаксиса Python кода.*
+*Pyflakes is a tool that is used to check the syntax of Python code.*
 
-*Soupsieve - это библиотека для парсинга HTML и XML документов.*
+*Soupsieve is a library for parsing HTML and XML documents.*
 
-*Sqlparse - это библиотека для парсинга и форматирования SQL запросов.*
+*Sqlparse is a library for parsing and formatting SQL queries.*
 
-*Tzdata - это база данных часовых поясов, используется для правильного отображения времени на сайте.*
+*Tzdata is a database of time zones, used for correct time display on the site.*
 
 
 ***
-    1. Зарегистрируйте аккаунт на Digital Ocean.
+    1. Register an account on Digital Ocean.
 
-    2. Создайте новый droplet (виртуальную машину). Для этого нужно выбрать операционную систему, размер и местоположение сервера.
+    2. Create a new droplet (virtual machine). To do this, select the operating system, server size and location.
 
-    3. Создайте ssh-ключ на своем компьютере, если еще не создали. Это можно сделать с помощью команды ssh-keygen в терминале.
+    3. Create an ssh key on your computer, if you haven't already. This can be done using the ssh-keygen command in the terminal.
 
-    4. Добавьте свой ssh-ключ на сервер Digital Ocean. Это можно сделать во время создания droplet, либо позже в разделе "Security" на странице управления droplet.
+    4. Add your ssh key to the Digital Ocean server. You can do this while creating the droplet, or later in the "Security" section of the droplet management page.
 
-    5. Сохраните IP-адрес вашего сервера.
+    5. Save the IP address of your server.
 
-    6. Подключитесь к серверу через терминал, используя команду ssh root@IP-адрес. Замените "IP-адрес" на ранее сохраненный IP-адрес вашего сервера.
+    6. Connect to the server via terminal using the ssh root@IP-address command. Replace "IP address" with the previously saved IP address of your server.
 
-    7. Установите необходимое ПО для вашего проекта, например, nginx, Node.js, Python и т.д.
+    7. Install the necessary software for your project, such as nginx, Node.js, Python, etc.
 
-    8.Склонируйте ваш проект на сервер, используя git или scp команду.
+    8.Clone your project to the server using git or scp command.
 
-    9. Настройте ваш проект в соответствии с требованиями вашего ПО и задачей проекта.
+    9. Customize your project according to your software requirements and project task.
 
-    10. Откройте порты, которые ваш проект использует, используя команду ufw allow порт. Например, ufw allow 80 для HTTP-сервера.
+    10. Open the ports that your project uses using ufw allow port command. For example, ufw allow 80 for an HTTP server.
 
-    11. Запустите ваш проект и наслаждайтесь результатом!
+    11. Run your project and enjoy the result!
 ***
 **Note that these steps may vary depending on your project and software requirements. Always read the documentation for installing and configuring your software on the server.**
 
