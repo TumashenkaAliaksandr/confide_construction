@@ -1,9 +1,6 @@
 {% load static %}
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zxx">
-
 
 {% block head %}
 
@@ -75,28 +72,16 @@
             <div class="container">
 
                 <div class="logo pull-left">
-                    <a href="index.html"><img src="{% static 'webapp/images/c-logo.png' %}" alt=""></a>
+                    <a href="{% url 'webapp:home' %}"><img src="{% static 'webapp/images/c-logo.png' %}" alt=""></a>
                 </div>
 
                 <div id="navbar" class="navbar-nav-wrapper pull-right">
                     <ul class="nav navbar-nav navbar-right" id="responsive-menu">
                         <li  class="active">
-                            <a href="#">Home <i class="fa fa-angle-down"></i></a>
-                            <ul>
-                               <li><a href="index.html">Construction</a>
-                                   <ul>
-                                       <li><a href="index.html">Home Main</a></li>
-                                       <li><a href="index-1.html">Home Banner</a></li>
-                                       <li><a href="index-2.html">Home Video</a></li>
-                                   </ul>
-                               </li>
-                               <li><a href="worker.html">Worker</a></li>
-                               <li><a href="industry.html">Industry</a></li>
-                            </ul>
-
+                            <a href="{% url 'webapp:home' %}">Home </i></a>
                         </li>
                         <li>
-                            <a href="#">Page <i class="fa fa-angle-down"></i></a>
+                            <a href="{% url 'webapp:about' %}">Services <i class="fa fa-angle-down"></i></a>
                             <ul>
                                 <li><a href="services.html">Services</a>
                                     <ul>
@@ -133,7 +118,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="about-us.html">Company <i class="fa fa-angle-down"></i></a>
+                            <a href="{% url 'webapp:about' %}">Company <i class="fa fa-angle-down"></i></a>
                             <ul>
                                <li><a href="about-us.html">About Us</a></li>
                                <li><a href="history.html">History</a></li>
@@ -163,12 +148,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="contact-us.html">Contact Us <i class="fa fa-angle-down"></i></a>
-                            <ul>
-                                <li><a href="contact-us.html">Contact Us</a></li>
-                                <li><a href="contact-us-1.html">Contact Us 1</a></li>
-                                <li><a href="contact-us-2.html">Contact Us 2</a></li>
-                            </ul>
+                            <a href="{% url 'webapp:contacts' %}">Contact Us <i class="fa fa-angle-down"></i></a>
                         </li>
 
                         <li>
@@ -392,11 +372,11 @@
                     <div class="mt_contact_ftr">
                         <h3>Quick Links</h3>
                          <ul>
-                            <li><a href="#"><i class="fa fa-angle-right"></i>Home</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i>About</a></li>
+                            <li><a href="{% url 'webapp:home' %}"><i class="fa fa-angle-right"></i>Home</a></li>
+                            <li><a href="{% url 'webapp:about' %}"><i class="fa fa-angle-right"></i>About</a></li>
                             <li><a href="#"><i class="fa fa-angle-right"></i>Services</a></li>
                             <li><a href="#"><i class="fa fa-angle-right"></i>Pages</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i>Contact</a></li>
+                            <li><a href="{% url 'webapp:contacts' %}"><i class="fa fa-angle-right"></i>Contact</a></li>
                         </ul>
                     </div>
                 </div>
