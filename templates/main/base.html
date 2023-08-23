@@ -1,7 +1,6 @@
 {% load static %}
 
 
-
 {% block head %}
 
 <head>
@@ -78,7 +77,7 @@
                 <div id="navbar" class="navbar-nav-wrapper pull-right">
                     <ul class="nav navbar-nav navbar-right" id="responsive-menu">
                         <li  class="active">
-                            <a href="{% url 'webapp:home' %}">Home </i></a>
+                            <a href="{% url 'webapp:home' %}">Home </a>
                         </li>
                         <li>
                             <a href="{% url 'webapp:about' %}">Services <i class="fa fa-angle-down"></i></a>
@@ -148,7 +147,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="{% url 'webapp:contacts' %}">Contact Us <i class="fa fa-angle-down"></i></a>
+                            <a href="{% url 'webapp:contacts' %}">Contacts</a>
                         </li>
 
                         <li>
@@ -235,35 +234,6 @@
     </header>
     <!--* End Header*-->
 
-    <!-- Slider -->
-    <div id="home-banner" class="video-banner carousel kbrns_zoomInOut ps_easeOutQuart" data-ride="carousel" data-pause="hover" data-interval="10000" data-duration="2000">
-
-        <!-- Wrapper For Slides -->
-        <div class="carousel-inner" role="listbox">
-
-            <!-- First Slide -->
-            <div class="item active">
-                <!-- Slide Background -->
-                <div class="home-banner_vid">
-                    <video autoplay loop>
-                        <source src="{% static 'webapp/images/cc_banner3.mp4' %}" type="video/mp4">
-                    </video>
-                </div>
-                <!-- Left Slide Text Layer -->
-                <div class="caption_slide1 fadeInRight" data-animation="animated fadeInRight">
-                    <span class="white">Experts in Field</span>
-                    <h1 class="white">We Plan Your Big Dreams</h1>
-                    <p class="white mar-bottom-25">Lorem ipsum dolor sit amet, consectetur adipisicing elit, do eius mod tempor incididunt ut labore et dolore magna aliqua</p>
-                    <a href="#" class="btn mt_btn_yellow">learn more</a>
-                </div><!-- /Left Slide Text Layer -->
-            </div><!-- /item -->
-            <!-- End of Slide -->
-
-        </div><!-- End of Wrapper For Slides -->
-
-    </div> <!-- End Slider -->
-
-
 {% block content %}{% endblock %}
 
     <!--* Partner*-->
@@ -337,7 +307,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-12 col-xs-12">
                     <div class="follow_us">
-                        <a href="index.html">
+                        <a href="{% url 'webapp:home' %}">
                             <img src="{% static 'webapp/images/c-logo.png' %}" alt="Logo">
                         </a>
                         <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
