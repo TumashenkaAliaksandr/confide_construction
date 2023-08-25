@@ -2960,6 +2960,16 @@ section#mt_faq-testi .section_heading{padding: 0;}
     box-shadow: -5px 0px 3px 0px #00000028;
 }
 
+.breadcrumb-outer{
+  background: url(../images/cc_photo_contacts.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  text-align: center;
+  padding: 100px 0 100px;
+  background-attachment: fixed;
+}
+
 /* ====================== */
 /*         Contact        */
 /* ====================== */
