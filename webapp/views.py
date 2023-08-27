@@ -9,7 +9,7 @@ def index(request):
     main_serv = Services.objects.filter(is_main=True).first()
 
     context = {
-        'merch': serv,
+        'serv': serv,
         'main_serv': main_serv,
     }
     return render(request, 'webapp/index-2.html', context=context)

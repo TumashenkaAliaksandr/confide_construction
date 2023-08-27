@@ -26,12 +26,12 @@
 
             <div class="row">
                 <div class="col-md-4 col-sm-6 col-xs-6">
-                    {% for serv in main_merch %}
+                    {% for main_serv in serv %}
                     <div class="box mar-bottom-30 text-center">
-                            <img src="{{ main_merch.image.url }}" alt="services-1">
+                            <img src="{{ main_serv.image.url }}">
                             <div class="box-content">
-                                <h3><a href="#">{{ main_merch.name }}</a></h3>
-                                <p>{{ main_merch.description }}</p>
+                                <h3><a href="#">{{ main_serv.name }}</a></h3>
+                                <p>{{ main_serv.description }}</p>
                             </div>
                     </div>
                     {% endfor %}
