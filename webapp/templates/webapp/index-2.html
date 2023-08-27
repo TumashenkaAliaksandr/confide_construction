@@ -5,7 +5,7 @@
 {% block content %}
 
     {% include 'slider/slider_main.html' %}
-        
+
     <!--* Services*-->
     <section id="mt_services" class="wow slideInLeft">
         <div class="container">
@@ -15,23 +15,26 @@
                     <!-- section title -->
                     <div class="section_heading">
                         <h2 class="section_title">
-                            <span>OUR BEST SERVICES</span>
+                            <span>OUR SERVICES</span>
                         </h2>
-                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which look believable 
-                        dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which
+                            look believable
+                            dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
                     </div>
                 </div>
             </div>
-                
+
             <div class="row">
                 <div class="col-md-4 col-sm-6 col-xs-6">
+                    {% for serv in main_merch %}
                     <div class="box mar-bottom-30 text-center">
-                        <img src="{% static 'webapp/images/blog-listing/blog_01.jpg' %}" alt="services-1">
-                        <div class="box-content">
-                            <h3><a href="#">DRYWALL</a></h3>
-                            <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
-                        </div>
+                            <img src="{{ main_merch.image.url }}" alt="services-1">
+                            <div class="box-content">
+                                <h3><a href="#">{{ main_merch.name }}</a></h3>
+                                <p>{{ main_merch.description }}</p>
+                            </div>
                     </div>
+                    {% endfor %}
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-6">
                     <div class="box mar-bottom-30 text-center">
@@ -72,7 +75,7 @@
                 <div class="col-md-4 col-sm-6 col-xs-6">
                     <div class="box text-center">
                         <img src="{% static 'webapp/images/blog-listing/blog_12.jpg' %}" alt="services-6">
-                        <div class="box-content">                              
+                        <div class="box-content">
                             <h3><a href="#">ELECTRICAL WORKS</a></h3>
                             <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
                         </div>
@@ -84,7 +87,7 @@
     <!--* End Services*-->
 
     <!--* Choose Us*-->
-    <section id="choose_us" class="about_choose_us"> 
+    <section id="choose_us" class="about_choose_us">
         <div class="container">
 
             <div class="row">
@@ -94,8 +97,9 @@
                         <h2 class="section_title">
                             <span>Why Choose us?</span>
                         </h2>
-                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which look believable 
-                        dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which
+                            look believable
+                            dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
                     </div>
                 </div>
             </div>
@@ -110,7 +114,8 @@
                             <div class="choose-list mar-bottom-30">
                                 <i class="fa fa-users"></i>
                                 <h3>Team Of Professional</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure
+                                    versions.</p>
                             </div>
                         </div>
 
@@ -118,7 +123,8 @@
                             <div class="choose-list mar-bottom-30">
                                 <i class="fa fa-paint-brush"></i>
                                 <h3>Full Of Services</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure
+                                    versions.</p>
                             </div>
                         </div>
 
@@ -126,7 +132,8 @@
                             <div class="choose-list mar-bottom-30">
                                 <i class="fa fa-phone"></i>
                                 <h3>27/7 Support</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure
+                                    versions.</p>
                             </div>
                         </div>
 
@@ -134,7 +141,8 @@
                             <div class="choose-list mar-bottom-30">
                                 <i class="fa fa-cogs"></i>
                                 <h3>Unique Technology</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure
+                                    versions.</p>
                             </div>
                         </div>
 
@@ -142,7 +150,8 @@
                             <div class="choose-list">
                                 <i class="fa fa-building"></i>
                                 <h3>Attractive Building</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure
+                                    versions.</p>
                             </div>
                         </div>
 
@@ -150,7 +159,8 @@
                             <div class="choose-list">
                                 <i class="fa fa-picture-o"></i>
                                 <h3>Perfect Interior</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure
+                                    versions.</p>
                             </div>
                         </div>
                     </div>
@@ -163,7 +173,7 @@
     <!--* Fun And Facts*-->
     <section id="mt_fun">
         <div class="container wow slideInDown">
-            
+
             <div class="row">
                 <div class="col-md-3 col-sm-12">
                     <div class="fun-content">
@@ -196,7 +206,7 @@
                                 <p class="fun-facts_title mar-bottom-30"> Comments </p>
                                 <p class="fun-facts_figure timer" data-to="950" data-speed="3000"></p>
                             </div>
-                        </div>      
+                        </div>
                     </div>
                 </div>
             </div>
@@ -215,71 +225,77 @@
                         <h2 class="section_title">
                             <span>Fascinating projects</span>
                         </h2>
-                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which look believable 
-                        dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which
+                            look believable
+                            dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
                     </div>
                 </div>
             </div>
             <div class="project_list">
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <div class="project-image">
-                        <a href="{% static 'webapp/images/project/bw6.jpg' %}" data-toggle="lightbox" data-footer="A custom footer text" data-gallery="example-gallery">
-                          <img src="{% static 'webapp/images/project/bw6.jpg' %}" class="img-fluid">
-                          <div class="project-overlay text-center">
-                            <h3 class="text-center white">Civil Engineering</h3>
-                            <p class="white">Bubba likes to appear out of thin air.</p>
-                          </div>
-                        </a>
-                      </div>
+                        <div class="project-image">
+                            <a href="{% static 'webapp/images/project/bw6.jpg' %}" data-toggle="lightbox"
+                               data-footer="A custom footer text" data-gallery="example-gallery">
+                                <img src="{% static 'webapp/images/project/bw6.jpg' %}" class="img-fluid">
+                                <div class="project-overlay text-center">
+                                    <h3 class="text-center white">Civil Engineering</h3>
+                                    <p class="white">Bubba likes to appear out of thin air.</p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
 
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <div class="project-image">
-                        <a href="{% static 'webapp/images/project/bw8.jpg' %}" data-toggle="lightbox" data-footer="A custom footer text" data-gallery="example-gallery">
-                          <img src="{% static 'webapp/images/project/bw8.jpg' %}" class="img-fluid">
-                          <div class="project-overlay text-center">
-                            <h3 class="text-center white">Plumbing</h3>
-                            <p class="white">Bubba likes to appear out of thin air.</p>
-                          </div>
-                        </a>
-                      </div>
+                        <div class="project-image">
+                            <a href="{% static 'webapp/images/project/bw8.jpg' %}" data-toggle="lightbox"
+                               data-footer="A custom footer text" data-gallery="example-gallery">
+                                <img src="{% static 'webapp/images/project/bw8.jpg' %}" class="img-fluid">
+                                <div class="project-overlay text-center">
+                                    <h3 class="text-center white">Plumbing</h3>
+                                    <p class="white">Bubba likes to appear out of thin air.</p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
 
                     <div class="col-md-4 col-sm-4 col-xs-12">
-                      <div class="project-image">
-                        <a href="{% static 'webapp/images/project/bw11.jpg' %}" data-toggle="lightbox" data-footer="A custom footer text" data-gallery="example-gallery">
-                          <img src="{% static 'webapp/images/project/bw11.jpg' %}" class="img-fluid">
-                          <div class="project-overlay text-center">
-                            <h3 class="text-center white">Pharmaceutical</h3>
-                            <p class="white">Bubba likes to appear out of thin air.</p>
-                          </div>
-                        </a>
-                      </div>
+                        <div class="project-image">
+                            <a href="{% static 'webapp/images/project/bw11.jpg' %}" data-toggle="lightbox"
+                               data-footer="A custom footer text" data-gallery="example-gallery">
+                                <img src="{% static 'webapp/images/project/bw11.jpg' %}" class="img-fluid">
+                                <div class="project-overlay text-center">
+                                    <h3 class="text-center white">Pharmaceutical</h3>
+                                    <p class="white">Bubba likes to appear out of thin air.</p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
 
                     <div class="col-md-4 col-sm-4 col-xs-12">
-                      <div class="project-image">
-                        <a href="{% static 'webapp/images/project/bw12.jpg' %}" data-toggle="lightbox" data-footer="A custom footer text" data-gallery="example-gallery">
-                          <img src="{% static 'webapp/images/project/bw12.jpg' %}" class="img-fluid">
-                          <div class="project-overlay text-center">
-                            <h3 class="text-center white">Remediation</h3>
-                            <p class="white">Bubba likes to appear out of thin air.</p>
-                          </div>
-                        </a>
-                      </div>
+                        <div class="project-image">
+                            <a href="{% static 'webapp/images/project/bw12.jpg' %}" data-toggle="lightbox"
+                               data-footer="A custom footer text" data-gallery="example-gallery">
+                                <img src="{% static 'webapp/images/project/bw12.jpg' %}" class="img-fluid">
+                                <div class="project-overlay text-center">
+                                    <h3 class="text-center white">Remediation</h3>
+                                    <p class="white">Bubba likes to appear out of thin air.</p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
 
                     <div class="col-md-4 col-sm-4 col-xs-12">
-                      <div class="project-image">
-                        <a href="{% static 'webapp/images/project/bw5.jpg' %}" data-toggle="lightbox" data-footer="A custom footer text" data-gallery="example-gallery">
-                          <img src="{% static 'webapp/images/project/bw5.jpg' %}" class="img-fluid">
-                          <div class="project-overlay text-center">
-                            <h3 class="text-center white">Cleaning</h3>
-                            <p class="white">Bubba likes to appear out of thin air.</p>
-                          </div>
-                        </a>
-                      </div>
+                        <div class="project-image">
+                            <a href="{% static 'webapp/images/project/bw5.jpg' %}" data-toggle="lightbox"
+                               data-footer="A custom footer text" data-gallery="example-gallery">
+                                <img src="{% static 'webapp/images/project/bw5.jpg' %}" class="img-fluid">
+                                <div class="project-overlay text-center">
+                                    <h3 class="text-center white">Cleaning</h3>
+                                    <p class="white">Bubba likes to appear out of thin air.</p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -295,11 +311,14 @@
                 <div class="watch_content">
                     <h3 class="white">We Build, Your Dream</h3>
                     <h2 class="white">Quality Comes First</h2>
-                    <p>To develop a financial strategy for your future, it's important for your financial professional to see a complete, 360-degree view of your financial picture, including how your retirement assets are intadfegrated and work with one another.</p>
+                    <p>To develop a financial strategy for your future, it's important for your financial professional
+                        to see a complete, 360-degree view of your financial picture, including how your retirement
+                        assets are intadfegrated and work with one another.</p>
                     <a href="#" class="btn mt_btn_yellow mar-top-30">View Work Process</a>
                 </div>
                 <div class="pulses">
-                    <button type="button" class="play-btn js-video-button" data-video-id='152879427' data-channel="vimeo"><i class="fa fa-play"></i></button>
+                    <button type="button" class="play-btn js-video-button" data-video-id='152879427'
+                            data-channel="vimeo"><i class="fa fa-play"></i></button>
                 </div>
             </div>
         </div>
@@ -316,8 +335,9 @@
                         <h2 class="section_title">
                             <span>Our Expert Team Members</span>
                         </h2>
-                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which look believable 
-                        dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which
+                            look believable
+                            dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
                     </div>
                 </div>
                 <div class="col-md-8 col-sm-12">
@@ -332,12 +352,12 @@
                                     <span>Camical officer</span>
                                 </div>
                                 <div class="team-overlay">
-                                     <ul class="socialicons">
-                                          <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                          <li><a href="#"><i class="fa fa-google"></i></a></li>
-                                          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <ul class="socialicons">
+                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -353,12 +373,12 @@
                                     <span>Interior Designer</span>
                                 </div>
                                 <div class="team-overlay">
-                                     <ul class="socialicons">
-                                          <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                          <li><a href="#"><i class="fa fa-google"></i></a></li>
-                                          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <ul class="socialicons">
+                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -374,12 +394,12 @@
                                     <span>Building Worker</span>
                                 </div>
                                 <div class="team-overlay">
-                                     <ul class="socialicons">
-                                          <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                          <li><a href="#"><i class="fa fa-google"></i></a></li>
-                                          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <ul class="socialicons">
+                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -395,16 +415,16 @@
                                     <span>Building Worker</span>
                                 </div>
                                 <div class="team-overlay">
-                                     <ul class="socialicons">
-                                          <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                          <li><a href="#"><i class="fa fa-google"></i></a></li>
-                                          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <ul class="socialicons">
+                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
-                        </div>  
+                        </div>
                     </div>
                 </div>
             </div>
@@ -415,7 +435,7 @@
     <!--* Testimonial*-->
     <section id="mt_faq-testi">
         <div class="container wow slideInDown">
-            
+
             <div class="row">
                 <div class="col-sm-6 col-xs-12">
                     <!-- section title -->
@@ -423,8 +443,9 @@
                         <h2 class="section_title">
                             <span>Frequemtly Asked Question</span>
                         </h2>
-                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which look believable 
-                        dolor sit.</p>
+                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which
+                            look believable
+                            dolor sit.</p>
                     </div>
 
                     <div class="accrodion-grp faq-accrodion" data-grp-name="faq-accrodion">
@@ -434,7 +455,9 @@
                             </div>
                             <div class="accrodion-content" style="display: block;">
                                 <div class="inner">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, inventore cumque veniam, praesentium velit incidunt rem quas a, quos eos ipsum, reprehenderit voluptatem.</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, inventore cumque
+                                        veniam, praesentium velit incidunt rem quas a, quos eos ipsum, reprehenderit
+                                        voluptatem.</p>
                                 </div><!-- /.inner -->
                             </div>
                         </div>
@@ -444,7 +467,9 @@
                             </div>
                             <div class="accrodion-content" style="display: none;">
                                 <div class="inner">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, inventore cumque veniam, praesentium velit incidunt rem quas a, quos eos ipsum, reprehenderit voluptatem.</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, inventore cumque
+                                        veniam, praesentium velit incidunt rem quas a, quos eos ipsum, reprehenderit
+                                        voluptatem.</p>
                                 </div><!-- /.inner -->
                             </div>
                         </div>
@@ -454,7 +479,9 @@
                             </div>
                             <div class="accrodion-content" style="display: none;">
                                 <div class="inner">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, inventore cumque veniam, praesentium velit incidunt rem quas a, quos eos ipsum, reprehenderit voluptatem.</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, inventore cumque
+                                        veniam, praesentium velit incidunt rem quas a, quos eos ipsum, reprehenderit
+                                        voluptatem.</p>
                                 </div><!-- /.inner -->
                             </div>
                         </div>
@@ -464,20 +491,24 @@
 
                 <div class="col-sm-6 col-xs-12">
                     <div class="mt_testimonial">
-                            <!-- section title -->
+                        <!-- section title -->
                         <div class="section_heading">
                             <h2 class="section_title">
                                 <span>What Say Our Client</span>
                             </h2>
-                            <p class="heading_txt">There are variations available majoritaey suffered alteration words which look believable 
-                            dolor sit.</p>
+                            <p class="heading_txt">There are variations available majoritaey suffered alteration words
+                                which look believable
+                                dolor sit.</p>
                         </div>
 
                         <div class="row slider-testi">
                             <div class="col-xs-12">
                                 <div class="testimonial_main">
-                                    <p class="mar-bottom-30">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
-                                    <div class="client-pic"><img src="{% static 'webapp/images/team/member-1.jpg' %}" alt=""></div>
+                                    <p class="mar-bottom-30">It is a long established fact that a reader will be
+                                        distracted by the readable content of a page when looking at its layout. The
+                                        point of using Lorem Ipsum is that it has a more-or-less normal.</p>
+                                    <div class="client-pic"><img src="{% static 'webapp/images/team/member-1.jpg' %}"
+                                                                 alt=""></div>
                                     <h4>
                                         <a href="#">Christopher Daniel</a>
                                         <span>MD of Nicolos</span>
@@ -487,8 +518,11 @@
 
                             <div class="col-xs-12">
                                 <div class="testimonial_main">
-                                    <p class="mar-bottom-30">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
-                                    <div class="client-pic"><img src="{% static 'webapp/images/team/member-2.jpg' %}" alt=""></div>
+                                    <p class="mar-bottom-30">It is a long established fact that a reader will be
+                                        distracted by the readable content of a page when looking at its layout. The
+                                        point of using Lorem Ipsum is that it has a more-or-less normal.</p>
+                                    <div class="client-pic"><img src="{% static 'webapp/images/team/member-2.jpg' %}"
+                                                                 alt=""></div>
                                     <h4>
                                         <a href="#">John Wakson</a>
                                         <span>CEO Of Micro group</span>
@@ -498,8 +532,11 @@
 
                             <div class="col-xs-12">
                                 <div class="testimonial_main">
-                                    <p class="mar-bottom-30">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
-                                    <div class="client-pic"><img src="{% static 'webapp/images/team/member-3.jpg' %}" alt=""></div>
+                                    <p class="mar-bottom-30">It is a long established fact that a reader will be
+                                        distracted by the readable content of a page when looking at its layout. The
+                                        point of using Lorem Ipsum is that it has a more-or-less normal.</p>
+                                    <div class="client-pic"><img src="{% static 'webapp/images/team/member-3.jpg' %}"
+                                                                 alt=""></div>
                                     <h4>
                                         <a href="#">Tim Loran</a>
                                         <span>CEO Of Tim Lake</span>
@@ -508,8 +545,11 @@
                             </div>
                             <div class="col-xs-12">
                                 <div class="testimonial_main">
-                                    <p class="mar-bottom-30">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
-                                    <div class="client-pic"><img src="{% static 'webapp/images/team/member-2.jpg' %}" alt=""></div>
+                                    <p class="mar-bottom-30">It is a long established fact that a reader will be
+                                        distracted by the readable content of a page when looking at its layout. The
+                                        point of using Lorem Ipsum is that it has a more-or-less normal.</p>
+                                    <div class="client-pic"><img src="{% static 'webapp/images/team/member-2.jpg' %}"
+                                                                 alt=""></div>
                                     <h4>
                                         <a href="#">John Wakson</a>
                                         <span>CEO Of Micro group</span>
@@ -535,8 +575,9 @@
                         <h2 class="section_title">
                             <span>Latest Blog</span>
                         </h2>
-                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which look believable 
-                        dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which
+                            look believable
+                            dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
                     </div>
                 </div>
             </div>
@@ -547,20 +588,23 @@
                             <div class="blog-post-image">
                                 <div class="blog_cat">Innovation</div>
                                 <div class="img">
-                                    <img src="{% static 'webapp/images/blog-listing/blog_08.jpg' %}" alt="image" />
+                                    <img src="{% static 'webapp/images/blog-listing/blog_08.jpg' %}" alt="image"/>
                                 </div>
                             </div>
                             <div class="post-detail_container">
                                 <div class="post-content">
-                                    <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i class="fa fa-calendar"></i> Mon, 03-09-2019</a></p>
+                                    <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i
+                                            class="fa fa-calendar"></i> Mon, 03-09-2019</a></p>
                                     <h3 class="post-title text-uppercase">
                                         <a href="blog-details.html">Established fact </a>
                                     </h3>
-                                    <p class="post-excerpt"> Sed ut perspiciatis unde omnis iste natus erro sit voluiptatem accusantium doloremque ips totam quae ab illo inventore. </p>
+                                    <p class="post-excerpt"> Sed ut perspiciatis unde omnis iste natus erro sit
+                                        voluiptatem accusantium doloremque ips totam quae ab illo inventore. </p>
                                 </div>
                                 <div class="post-author">
                                     <span class="pull-left author-list">
-                                        <img src="{% static 'webapp/images/team/member-1.jpg' %}" alt="author"> <a href="#">Jack Nelson</a>
+                                        <img src="{% static 'webapp/images/team/member-1.jpg' %}" alt="author"> <a
+                                            href="#">Jack Nelson</a>
                                     </span>
                                     <span class="pull-right comments-list pad-top-5">
                                         <i class="fa fa-comment"></i> <a href="#">Comments(5)</a>
@@ -575,20 +619,23 @@
                             <div class="blog-post-image">
                                 <div class="blog_cat">Structure</div>
                                 <div class="img">
-                                    <img src="{% static 'webapp/images/blog-listing/blog_09.jpg' %}" alt="image" />
+                                    <img src="{% static 'webapp/images/blog-listing/blog_09.jpg' %}" alt="image"/>
                                 </div>
                             </div>
                             <div class="post-detail_container">
                                 <div class="post-content">
-                                    <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i class="fa fa-calendar"></i> Mon, 03-09-2019</a></p>
+                                    <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i
+                                            class="fa fa-calendar"></i> Mon, 03-09-2019</a></p>
                                     <h3 class="post-title text-uppercase">
                                         <a href="blog-details.html">Established fact </a>
                                     </h3>
-                                    <p class="post-excerpt"> Sed ut perspiciatis unde omnis iste natus erro sit voluiptatem accusantium doloremque ips totam quae ab illo inventore. </p>
+                                    <p class="post-excerpt"> Sed ut perspiciatis unde omnis iste natus erro sit
+                                        voluiptatem accusantium doloremque ips totam quae ab illo inventore. </p>
                                 </div>
                                 <div class="post-author">
                                     <span class="pull-left author-list">
-                                        <img src="{% static 'webapp/images/team/member-1.jpg' %}" alt="author"> <a href="#">Jack Nelson</a>
+                                        <img src="{% static 'webapp/images/team/member-1.jpg' %}" alt="author"> <a
+                                            href="#">Jack Nelson</a>
                                     </span>
                                     <span class="pull-right comments-list pad-top-5">
                                         <i class="fa fa-comment"></i> <a href="#">Comments(5)</a>
@@ -603,20 +650,23 @@
                             <div class="blog-post-image">
                                 <div class="blog_cat">Design</div>
                                 <div class="img">
-                                    <img src="{% static 'webapp/images/blog-listing/blog_10.jpg' %}" alt="image" />
+                                    <img src="{% static 'webapp/images/blog-listing/blog_10.jpg' %}" alt="image"/>
                                 </div>
                             </div>
                             <div class="post-detail_container">
                                 <div class="post-content">
-                                    <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i class="fa fa-calendar"></i> Mon, 03-09-2019</a></p>
+                                    <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i
+                                            class="fa fa-calendar"></i> Mon, 03-09-2019</a></p>
                                     <h3 class="post-title text-uppercase">
                                         <a href="blog-details.html">Established fact </a>
                                     </h3>
-                                    <p class="post-excerpt"> Sed ut perspiciatis unde omnis iste natus erro sit voluiptatem accusantium doloremque ips totam quae ab illo inventore. </p>
+                                    <p class="post-excerpt"> Sed ut perspiciatis unde omnis iste natus erro sit
+                                        voluiptatem accusantium doloremque ips totam quae ab illo inventore. </p>
                                 </div>
                                 <div class="post-author">
                                     <span class="pull-left author-list">
-                                        <img src="{% static 'webapp/images/team/member-1.jpg' %}" alt="author"> <a href="#">Jack Nelson</a>
+                                        <img src="{% static 'webapp/images/team/member-1.jpg' %}" alt="author"> <a
+                                            href="#">Jack Nelson</a>
                                     </span>
                                     <span class="pull-right comments-list pad-top-5">
                                         <i class="fa fa-comment"></i> <a href="#">Comments(5)</a>
@@ -626,8 +676,8 @@
                         </div>
                     </div>
 
-                </div>    
-            </div> 
+                </div>
+            </div>
         </div>
     </section>
     <!--* End Blog*-->

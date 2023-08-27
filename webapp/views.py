@@ -1,8 +1,18 @@
 from django.shortcuts import render
+from webapp.models import *
+
 
 
 def index(request):
-    return render(request, 'webapp/index-2.html')
+    """Main, about constr"""
+    serv = Services.objects.all()
+    main_serv = Services.objects.filter(is_main=True).first()
+
+    context = {
+        'merch': serv,
+        'main_serv': main_serv,
+    }
+    return render(request, 'webapp/index-2.html', context=context)
 
 
 def about(request):
