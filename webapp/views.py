@@ -16,7 +16,14 @@ def index(request):
 
 def services(request):
     """Services Constract"""
-    return render(request, 'webapp/services.html')
+    serv = Services.objects.all()
+    main_serv = Services.objects.filter(is_main=True).first()
+
+    context = {
+        'serv': serv,
+        'main_serv': main_serv,
+    }
+    return render(request, 'webapp/services.html', context=context)
 
 def shop(request):
     """Shop Constract"""
@@ -27,3 +34,14 @@ def about(request):
 
 def contacts(request):
     return render(request, 'webapp/contact-us-1.html')
+
+def recommended(request):
+    """Main, recommended constr"""
+    company = Services.objects.all()
+    main_company = Services.objects.filter(is_main=True).first()
+
+    context = {
+        'company': company,
+        'main_company': main_company,
+    }
+    return render(request, 'webapp/index-2.html', context=context)

@@ -15,3 +15,15 @@ class Services(models.Model):
     class Meta:
         verbose_name = "Services"
         verbose_name_plural = "Services"
+
+
+class Recommended(models.Model):
+    """Recommended model"""
+
+    image = models.ImageField(upload_to='recommended', verbose_name='photo')
+    is_main = models.BooleanField(default=False)
+    link = models.URLField()  # Поле для хранения ссылки
+
+    class Meta:
+        verbose_name = "recommended"
+        verbose_name_plural = "recommended"
