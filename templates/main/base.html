@@ -243,28 +243,15 @@
                     </div>
                 </div>
             </div>
-
             <div class="row slider-partner">
-                <div class="col-sm-2">
-                    <img src="{% static 'webapp/images/partner/p-1.png' %}" alt="partner">
-                </div>
-                <div class="col-sm-2">
-                    <img src="{% static 'webapp/images/partner/p-2.png' %}" alt="partner">
-                </div>
-                <div class="col-sm-2">
-                    <img src="{% static 'webapp/images/partner/p-3.png' %}" alt="partner">
-                </div>
-                <div class="col-sm-2">
-                    <img src="{% static 'webapp/images/partner/p-4.png' %}" alt="partner">
-                </div>
-                <div class="col-sm-2">
-                    <img src="{% static 'webapp/images/partner/p-5.png' %}" alt="partner">
-                </div>
-                <div class="col-sm-2">
-                    <img src="{% static 'webapp/images/partner/p-6.png' %}" alt="partner">
-                </div>
+                {% for main_company in company %}
+                    <div class="col-sm-2">
+                        {% if main_company.is_main %}
+                            <img src="{{ main_company.image.url }}">
+                        {% endif %}
+                    </div>
+                {% endfor %}
             </div>
-
         </div>
     </section>
     <!--* End partner*-->

@@ -19,10 +19,13 @@ class Services(models.Model):
 
 class Recommended(models.Model):
     """Recommended model"""
-
+    name = models.CharField(max_length=100, verbose_name='name')
     image = models.ImageField(upload_to='recommended', verbose_name='photo')
     is_main = models.BooleanField(default=False)
     link = models.URLField()  # Поле для хранения ссылки
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = "recommended"

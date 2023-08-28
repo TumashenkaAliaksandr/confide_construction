@@ -11,6 +11,7 @@ urlpatterns = [
     path('', index, name='home'),
     path('services/', services, name='services'),
     path('shop/', shop, name='shop'),
+    path('recommended/', recommended, name='recommended'),
     path('about/', about, name='about'),
     path('contacts/', contacts, name='contacts'),
     ]

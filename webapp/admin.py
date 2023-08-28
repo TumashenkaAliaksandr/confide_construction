@@ -7,6 +7,6 @@ class ServicesAdmin(admin.ModelAdmin):
 
 
 @admin.register(Recommended)
-class ServicesAdmin(admin.ModelAdmin):
-    list_display = ('is_main', 'image')  # Определите поля, которые вы хотите отображать в списке объектов в админке
+class RecommendedAdmin(admin.ModelAdmin):
+    list_display = ('name', 'is_main', 'image')  # Определите поля, которые вы хотите отображать в списке объектов в админке
 
