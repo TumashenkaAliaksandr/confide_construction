@@ -4,7 +4,7 @@ from webapp.models import *
 
 
 def index(request):
-    """Main, about constr"""
+    """Main, index constr"""
     serv = Services.objects.all()
     main_serv = Services.objects.filter(is_main=True).first()
 
@@ -13,6 +13,10 @@ def index(request):
         'main_serv': main_serv,
     }
     return render(request, 'webapp/index-2.html', context=context)
+
+def services(request):
+    """Services Constract"""
+    return render(request, 'webapp/services.html')
 
 
 def about(request):
