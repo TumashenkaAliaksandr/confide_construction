@@ -10,6 +10,7 @@ app_name = 'webapp'
 urlpatterns = [
     path('', index, name='home'),
     path('services/', services, name='services'),
+    path('shop/', shop, name='shop'),
     path('about/', about, name='about'),
     path('contacts/', contacts, name='contacts'),
     ]

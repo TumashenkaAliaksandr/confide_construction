@@ -18,6 +18,9 @@ def services(request):
     """Services Constract"""
     return render(request, 'webapp/services.html')
 
+def shop(request):
+    """Shop Constract"""
+    return render(request, 'webapp/shop.html')
 
 def about(request):
     return render(request, 'webapp/about-us.html')
