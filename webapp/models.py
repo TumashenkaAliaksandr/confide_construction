@@ -7,6 +7,7 @@ class Services(models.Model):
     description = models.TextField(verbose_name='description')
     image = models.ImageField(upload_to='services', verbose_name='photo')
     is_main = models.BooleanField(default=False)
+    link = models.URLField()  # Поле для хранения ссылки
 
     def __str__(self):
         return self.name

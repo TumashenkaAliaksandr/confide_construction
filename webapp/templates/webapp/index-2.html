@@ -9,7 +9,6 @@
     <!--* Services*-->
     <section id="mt_services" class="wow slideInLeft">
         <div class="container">
-
             <div class="row">
                 <div class="col-xs-12">
                     <!-- section title -->
@@ -23,65 +22,23 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
-                <div class="col-md-4 col-sm-6 col-xs-6">
-                    {% for main_serv in serv %}
-                    <div class="box mar-bottom-30 text-center">
+                {% for main_serv in serv %}
+                    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <div class="box mar-bottom-30 text-center">
                             <img src="{{ main_serv.image.url }}">
                             <div class="box-content">
-                                <h3><a href="#">{{ main_serv.name }}</a></h3>
-                                <p>{{ main_serv.description }}</p>
+                                <h3><a href="{{ main_serv.link }}">{{ main_serv.name }}</a></h3>
                             </div>
-                    </div>
-                    {% endfor %}
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-6">
-                    <div class="box mar-bottom-30 text-center">
-                        <img src="{% static 'webapp/images/blog-listing/blog_13.jpg' %}" alt="services-2">
-                        <div class="box-content">
-                            <h3><a href="#">HANDYMAN</a></h3>
-                            <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-6">
-                    <div class="box mar-bottom-30 text-center">
-                        <img src="{% static 'webapp/images/blog-listing/blog_10.jpg' %}" alt="services-3">
-                        <div class="box-content">
-                            <h3><a href="#">WALLPAPERING</a></h3>
-                            <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
+                    {% if forloop.counter|divisibleby:3 %} {# Закрываем текущий ряд после каждой третьей модели #}
                         </div>
-                    </div>
+                        <div class="row">
+                    {% endif %}
+                {% endfor %}
                 </div>
-                <div class="col-md-4 col-sm-6 col-xs-6">
-                    <div class="box text-center">
-                        <img src="{% static 'webapp/images/blog-listing/blog_11.jpg' %}" alt="services-4">
-                        <div class="box-content">
-                            <h3><a href="#">SOUNDPROOFING</a></h3>
-                            <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-6">
-                    <div class="box text-center">
-                        <img src="{% static 'webapp/images/blog-listing/blog_14.jpg' %}" alt="services-5">
-                        <div class="box-content">
-                            <h3><a href="#">PAINTING</a></h3>
-                            <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-6">
-                    <div class="box text-center">
-                        <img src="{% static 'webapp/images/blog-listing/blog_12.jpg' %}" alt="services-6">
-                        <div class="box-content">
-                            <h3><a href="#">ELECTRICAL WORKS</a></h3>
-                            <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </section>
     <!--* End Services*-->
