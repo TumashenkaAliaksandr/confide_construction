@@ -80,7 +80,7 @@
                         <li {% if request.resolver_match.url_name == 'services' %}class="active"{% endif %}><a href="{% url 'webapp:services' %}">Services<i class="fa fa-angle-down"></i></a>
                             <ul>
                                     <ul>
-                                       <li><a href="services.html">Services 1</a></li>
+                                       <li><a href="{% url 'webapp:backsplash' %}">Backsplash</a></li>
                                        <li><a href="services-1.html">Services 2</a></li>
                                        <li><a href="services-detail.html">Services Detail</a></li>
                                     </ul>

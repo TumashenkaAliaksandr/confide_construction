@@ -38,3 +38,8 @@ def recommended(request):
         'main_company': main_company,
     }
     return render(request, 'webapp/index-2.html', context=context)
+
+
+def backsplash(request):
+    """Backsplash Constract"""
+    return render(request, 'webapp/services/backsplash.html')
