@@ -43,3 +43,7 @@ def recommended(request):
 def backsplash(request):
     """Backsplash Constract"""
     return render(request, 'webapp/services/backsplash.html')
+
+def drywall(request):
+    """Drywall Constract"""
+    return render(request, 'webapp/services/drywall.html')

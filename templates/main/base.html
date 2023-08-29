@@ -77,24 +77,12 @@
                 <div id="navbar" class="navbar-nav-wrapper pull-right">
                     <ul class="nav navbar-nav navbar-right" id="responsive-menu">
                         <li {% if request.resolver_match.url_name == 'home' %}class="active"{% endif %}><a href="{% url 'webapp:home' %}">Home</a></li>
-                        <li {% if request.resolver_match.url_name == 'services' %}class="active"{% endif %}><a href="{% url 'webapp:services' %}">Services<i class="fa fa-angle-down"></i></a>
+                        <li {% if request.resolver_match.url_name == 'services' %}class="active"{% endif %}><a href="{% url 'webapp:services' %}">Services <i class="fa fa-angle-down"></i></a>
                             <ul>
-                                    <ul>
-                                       <li><a href="{% url 'webapp:backsplash' %}">Backsplash</a></li>
-                                       <li><a href="services-1.html">Services 2</a></li>
-                                       <li><a href="services-detail.html">Services Detail</a></li>
-                                    </ul>
                                 </li>
-                                <li><a href="project.html">Project</a>
-                                    <ul>
-                                       <li><a href="project.html">Project 1</a></li>
-                                       <li><a href="project-1.html">Project 2</a></li>
-                                       <li><a href="project-detail.html">Project Detail</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="faq.html">Faq page</a></li>
-                                <li>
-                                    <a href="error.html">Error 404</a>
+                                <li><a href="{% url 'webapp:backsplash' %}">Backsplash</a></li>
+                                <li><a href="{% url 'webapp:drywall' %}">Drywall</a></li>
+                                <li><a href="error.html">Error 404</a>
                                     <ul>
                                        <li><a href="error.html">Style 1</a></li>
                                        <li><a href="error-1.html">Style 2</a></li>
@@ -113,7 +101,7 @@
                             </ul>
                         </li>
                         <li {% if request.resolver_match.url_name == 'about' %}class="active"{% endif %}>
-                            <a href="{% url 'webapp:about' %}">Company<i class="fa fa-angle-down"></i></a>
+                            <a href="{% url 'webapp:about' %}">Company <i class="fa fa-angle-down"></i></a>
                             <ul>
                                <li><a href="about-us.html">About Us</a></li>
                                <li><a href="history.html">History</a></li>
@@ -121,7 +109,7 @@
                                <li><a href="career.html">Career</a></li>
                             </ul>
                         </li>
-                        <li {% if request.resolver_match.url_name == 'shop' %}class="active"{% endif %}><a href="{% url 'webapp:shop' %}">Shop<i class="fa fa-angle-down"></i></a>
+                        <li {% if request.resolver_match.url_name == 'shop' %}class="active"{% endif %}><a href="{% url 'webapp:shop' %}">Shop <i class="fa fa-angle-down"></i></a>
                             <ul>
                                 <li><a href="shop.html">Shop List</a></li>
                                 <li><a href="store-detail.html">Shop Single</a></li>
