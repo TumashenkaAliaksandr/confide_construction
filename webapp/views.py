@@ -47,3 +47,7 @@ def backsplash(request):
 def drywall(request):
     """Drywall Constract"""
     return render(request, 'webapp/services/drywall.html')
+
+def electricalworks(request):
+    """Electricalworks Constract"""
+    return render(request, 'webapp/services/electricalworks.html')
