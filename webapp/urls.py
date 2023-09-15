@@ -12,6 +12,7 @@ urlpatterns = [
     path('services/', services, name='services'),
     path('backsplash/', backsplash, name='backsplash'),
     path('drywall/', drywall, name='drywall'),
+    path('handyman/', handyman, name='handyman'),
     path('electricalworks/', electricalworks, name='electricalworks'),
     path('shop/', shop, name='shop'),
     path('recommended/', recommended, name='recommended'),

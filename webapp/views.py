@@ -51,3 +51,7 @@ def drywall(request):
 def electricalworks(request):
     """Electricalworks Constract"""
     return render(request, 'webapp/services/electricalworks.html')
+
+def handyman(request):
+    """Handyman Constract"""
+    return render(request, 'webapp/services/handyman.html')

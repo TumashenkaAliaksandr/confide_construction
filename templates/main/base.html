@@ -77,12 +77,13 @@
                 <div id="navbar" class="navbar-nav-wrapper pull-right">
                     <ul class="nav navbar-nav navbar-right" id="responsive-menu">
                         <li {% if request.resolver_match.url_name == 'home' %}class="active"{% endif %}><a href="{% url 'webapp:home' %}">Home</a></li>
-                        <li {% if request.resolver_match.url_name == 'services' %}class="active"{% endif %}><a href="{% url 'webapp:services' %}">Services <i class="fa fa-angle-down"></i></a>
+                        <li {% if request.resolver_match.url_name == 'services' or request.resolver_match.url_name == 'backsplash' or request.resolver_match.url_name == 'drywall' or request.resolver_match.url_name == 'handyman' or request.resolver_match.url_name == 'electricalworks' %}class="active"{% endif %}><a href="{% url 'webapp:services' %}">Services <i class="fa fa-angle-down"></i></a>
                             <ul>
                                 </li>
-                                <li><a href="{% url 'webapp:backsplash' %}">Backsplash</a></li>
-                                <li><a href="{% url 'webapp:drywall' %}">Drywall</a></li>
-                                <li><a href="{% url 'webapp:electricalworks' %}">Electricalworks</a>
+                                <li {% if request.resolver_match.url_name == 'backsplash' or request.resolver_match.url_name == 'backsplash' %}class="active"{% endif %}><a href="{% url 'webapp:backsplash' %}">Backsplash</a></li>
+                                <li {% if request.resolver_match.url_name == 'drywall' or request.resolver_match.url_name == 'drywall' %}class="active"{% endif %}><a href="{% url 'webapp:drywall'  %}">Drywall</a></li>
+                                <li {% if request.resolver_match.url_name == 'electricalworks' or request.resolver_match.url_name == 'electricalworks' %}class="active"{% endif %}><a href="{% url 'webapp:electricalworks' %}">Electricalworks</a>
+                                <li {% if request.resolver_match.url_name == 'handyman' or request.resolver_match.url_name == 'handyman' %}class="active"{% endif %}><a href="{% url 'webapp:handyman' %}">Handyman</a>
                                     <ul>
                                        <li><a href="error.html">Style 1</a></li>
                                        <li><a href="error-1.html">Style 2</a></li>

@@ -1,10 +1,153 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'main/base.html' %}
+{% load static %}
 
-</body>
-</html>
+
+{% block content %}
+
+
+    <!-- pagebanner -->
+    <section id="pagebanner">
+        <div class="page-title">
+            <h2 class="white text-center">Handyman</h2>
+        </div>
+    </section>
+    <!-- End Pagebanner -->
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb-main">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="{% url 'webapp:home' %}"><i class="fa fa-home"></i></a></li>
+                <li><a href="{% url 'webapp:services' %}">Services</a></li>
+                <li class="active">Drywall</li>
+            </ul>
+        </div>
+    </div><!-- End breadcrumb -->
+
+    <!--* Services*-->
+    <section id="mt_services" class="services_one">
+        <div class="container">
+
+            <div class="services-detail mar-bottom-80">
+                <div class="row">
+                    <div class="col-md-8 col-sm-12">
+                        <span class="page-title mar-bottom-15">Home Expansion</span>
+                        <h2 class="mar-bottom-15">We individually assess each <br> plan and offer optimal solutions</h2>
+                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden.<br><br>
+                        All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="slider-services">
+                            <div><img src="{% static 'webapp/images/project/bw5.jpg' %}" alt="services-img"></div>
+                            <div><img src="{% static 'webapp/images/project/bw6.jpg' %}" alt="services-img"></div>
+                            <div><img src="{% static 'webapp/images/project/bw7.jpg' %}" alt="services-img"></div>
+                            <div><img src="{% static 'webapp/images/project/bw8.jpg' %}" alt="services-img"></div>
+                            <div><img src="{% static 'webapp/images/project/bw9.jpg' %}" alt="services-img"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            <div class="services-detail mar-bottom-80">
+                <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <div class="box">
+                        <div class="box-content">
+                            <h3 class="mar-bottom-20">Audit</h3>
+                            <img src="{% static 'webapp/images/blog-listing/blog_09.jpg' %}" alt="services-1">
+                            <p class="mar-top-20">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br><br>
+                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="box">
+                        <div class="box-content">
+                            <h3 class="mar-bottom-20">Strategy</h3>
+                            <img src="{% static 'webapp/images/blog-listing/blog_10.jpg' %}" alt="services-2">
+                            <p class="mar-top-20">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br><br>
+                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="box">
+                        <div class="box-content">
+                            <h3 class="mar-bottom-20">Sustainability</h3>
+                            <img src="{% static 'webapp/images/blog-listing/blog_11.jpg' %}" alt="services-3">
+                            <p class="mar-top-20">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br><br>
+                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="services-detail">
+                <div class="services-faq">
+                    <!-- section title -->
+                    <div class="section_heading">
+                        <h2 class="section_title">
+                            <span>Frequemtly Asked Question</span>
+                        </h2>
+                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which look believable 
+                        dolor sit.</p>
+                    </div>
+                    <div class="accrodion-grp faq-accrodion" data-grp-name="faq-accrodion">
+                        <div class="accrodion active">
+                            <div class="accrodion-title">
+                                <h4>Lorem ipsum dolor sit amet</h4>
+                            </div>
+                            <div class="accrodion-content" style="display: block;">
+                                <div class="inner">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, inventore cumque veniam, praesentium velit incidunt rem quas a, quos eos ipsum, reprehenderit voluptatem.</p>
+                                </div><!-- /.inner -->
+                            </div>
+                        </div>
+                        <div class="accrodion ">
+                            <div class="accrodion-title">
+                                <h4>Dolor sit amet, consectetuer adipiscing elit</h4>
+                            </div>
+                            <div class="accrodion-content" style="display: none;">
+                                <div class="inner">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, inventore cumque veniam, praesentium velit incidunt rem quas a, quos eos ipsum, reprehenderit voluptatem.</p>
+                                </div><!-- /.inner -->
+                            </div>
+                        </div>
+                        <div class="accrodion">
+                            <div class="accrodion-title">
+                                <h4>Sed diam nonummy nibh euismod</h4>
+                            </div>
+                            <div class="accrodion-content" style="display: none;">
+                                <div class="inner">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, inventore cumque veniam, praesentium velit incidunt rem quas a, quos eos ipsum, reprehenderit voluptatem.</p>
+                                </div><!-- /.inner -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--* End Services*-->
+
+    <!--=* Get Started Section*=-->
+    <section id="mt_get_started">
+        <div class="container">
+            <div class="watch_inner">
+                <img src="{% static 'webapp/images/watch_inner.jpg' %}" alt="">
+                <div class="watch_content">
+                    <h3 class="white">We Build, Your Dream</h3>
+                    <h2 class="white">Quality Comes First</h2>
+                    <p>To develop a financial strategy for your future, it's important for your financial professional to see a complete, 360-degree view of your financial picture, including how your retirement assets are intadfegrated and work with one another.</p>
+                    <a href="#" class="btn mt_btn_yellow mar-top-30">View Work Process</a>
+                </div>
+                <div class="pulses">
+                    <button type="button" class="play-btn js-video-button" data-video-id='152879427' data-channel="vimeo"><i class="fa fa-play"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--* End Get Started Section*-->
+
+
+{% endblock %}
