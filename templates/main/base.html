@@ -71,7 +71,7 @@
             <div class="container">
 
                 <div class="logo pull-left">
-                    <a href="{% url 'webapp:home' %}"><img src="{% static 'webapp/images/cc_logo_yb.png' %}" alt=""></a>
+                    <a href="{% url 'webapp:home' %}"><img src="{% static 'webapp/images/cc_favicon8.png' %}" alt=""></a>
                 </div>
 
                 <div id="navbar" class="navbar-nav-wrapper pull-right">
@@ -87,15 +87,7 @@
                                 <li {% if request.resolver_match.url_name == 'wallpaper' %}class="active"{% endif %}><a href="{% url 'webapp:wallpaper' %}">Wallpaper</a></li>
                             </ul>
                         </li>
-                        <li {% if request.resolver_match.url_name == 'about' %}class="active"{% endif %}>
-                            <a href="{% url 'webapp:about' %}">Company <i class="fa fa-angle-down"></i></a>
-                            <ul>
-                               <li><a href="about-us.html">About Us</a></li>
-                               <li><a href="history.html">History</a></li>
-                               <li><a href="partner.html">Partner</a></li>
-                               <li><a href="career.html">Career</a></li>
-                            </ul>
-                        </li>
+                        <li {% if request.resolver_match.url_name == 'about' %}class="active"{% endif %}><a href="{% url 'webapp:about' %}">Company</a></li>
                         <li {% if request.resolver_match.url_name == 'shop' %}class="active"{% endif %}><a href="{% url 'webapp:shop' %}">Shop <i class="fa fa-angle-down"></i></a>
                             <ul>
                                 <li><a href="shop.html">Shop List</a></li>
