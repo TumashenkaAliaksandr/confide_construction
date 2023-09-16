@@ -1,32 +1,6 @@
 from django.shortcuts import render
 from webapp.models import *
 
-
-def main_menu(request):
-    active_menu_item = None  # По умолчанию нет активного элемента меню
-
-    # Определите текущий URL и присвойте соответствующий элемент меню
-    current_url_name = request.resolver_match.url_name
-    if current_url_name in ['backsplash', 'drywall', 'handyman', 'electricalworks']:
-        active_menu_item = 'services'
-
-    # Определите элементы меню и передайте их в шаблон
-    menu_items = [
-        ('home', 'Home'),
-        ('services', 'Services'),
-        ('backsplash', 'Backsplash'),
-        ('drywall', 'Drywall'),
-        ('electricalworks', 'Electricalworks'),
-        ('handyman', 'Handyman'),
-        ('contacts', 'Contacts'),
-        # Добавьте другие элементы меню, если необходимо
-    ]
-
-    return render(request, 'main/base.html', {'active_menu_item': active_menu_item})
-
-
-
-
 def index(request):
     """Main, index constr"""
     serv = Services.objects.all()
@@ -79,3 +53,7 @@ def electricalworks(request):
 def handyman(request):
     """Handyman Constract"""
     return render(request, 'webapp/services/handyman.html')
+
+def wallpaper(request):
+    """Wallpaper Constract"""
+    return render(request, 'webapp/services/wallpaper.html')
