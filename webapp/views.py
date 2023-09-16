@@ -57,3 +57,7 @@ def handyman(request):
 def wallpaper(request):
     """Wallpaper Constract"""
     return render(request, 'webapp/services/wallpaper.html')
+
+def soundproofing(request):
+    """Soundproofing Constract"""
+    return render(request, 'webapp/services/soundproofing.html')

@@ -84,6 +84,7 @@
                                 <li {% if request.resolver_match.url_name == 'electricalworks' or request.resolver_match.url_name == 'electricalworks' %}class="active"{% endif %}><a href="{% url 'webapp:electricalworks' %}">Electricalworks</a>
                                 <li {% if request.resolver_match.url_name == 'handyman' or request.resolver_match.url_name == 'handyman' %}class="active"{% endif %}><a href="{% url 'webapp:handyman' %}">Handyman</a></li>
                                 <li {% if request.resolver_match.url_name == 'wallpaper' or request.resolver_match.url_name == 'wallpaper' %}class="active"{% endif %}><a href="{% url 'webapp:wallpaper' %}">Wallpaper</a></li>
+                                <li {% if request.resolver_match.url_name == 'soundproofing' or request.resolver_match.url_name == 'soundproofing' %}class="active"{% endif %}><a href="{% url 'webapp:soundproofing' %}">Soundproofing</a></li>
                             </ul>
                         </li>
                         <li {% if request.resolver_match.url_name == 'about' %}class="active"{% endif %}>
