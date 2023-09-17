@@ -98,15 +98,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#">Blog <i class="fa fa-angle-down"></i></a>
-                            <ul>
-                                <li><a href="blog-leftsidebar.html">Blog left Sidebar</a></li>
-                                <li><a href="blog-rightsidebar.html">Blog Right Sidebar</a></li>
-                                <li><a href="blog-fullwidth.html">Blog Fullwidth</a></li>
-                                <li><a href="blog-listing.html">Blog List</a></li>
-                                <li><a href="blog-grid.html">Blog Grid</a></li>
-                                <li><a href="blog-details.html">Blog Detail</a></li>
-                            </ul>
+                            <li {% if request.resolver_match.url_name == 'blog' %}class="active"{% endif %}><a href="{% url 'blog:blog' %}">Blog</a></li>
                         </li>
                         <li {% if request.resolver_match.url_name == 'contacts' %}class="active"{% endif %}><a href="{% url 'webapp:contacts' %}">Contacts</a></li>
                         <li>

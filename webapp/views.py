@@ -1,4 +1,5 @@
 from django.shortcuts import render
+
 from webapp.models import *
 
 def index(request):
@@ -61,3 +62,5 @@ def wallpaper(request):
 def soundproofing(request):
     """Soundproofing Constract"""
     return render(request, 'webapp/services/soundproofing.html')
+
+
