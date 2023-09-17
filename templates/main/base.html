@@ -98,7 +98,7 @@
                             </ul>
                         </li>
                         <li>
-                            <li {% if request.resolver_match.url_name == 'blog' %}class="active"{% endif %}><a href="{% url 'blog:blog' %}">Blog</a></li>
+                            <li {% if request.resolver_match.url_name in "['blog', 'single']" %}class="active"{% endif %}><a href="{% url 'blog:blog' %}">Blog</a></li>
                         </li>
                         <li {% if request.resolver_match.url_name == 'contacts' %}class="active"{% endif %}><a href="{% url 'webapp:contacts' %}">Contacts</a></li>
                         <li>
