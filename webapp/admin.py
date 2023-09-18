@@ -10,3 +10,8 @@ class ServicesAdmin(admin.ModelAdmin):
 class RecommendedAdmin(admin.ModelAdmin):
     list_display = ('name', 'is_main', 'image')  # Определите поля, которые вы хотите отображать в списке объектов в админке
 
+
+@admin.register(News)
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'description', 'location', 'photo', 'pub_date')
+
