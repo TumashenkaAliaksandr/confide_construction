@@ -259,6 +259,37 @@
     </section>
     <!--* End Portfolio*-->
 
+
+    <!--* Partner*-->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- section title -->
+                <div class="section_heading">
+                    <h2 class="section_title">
+                        <span>Super Partner</span>
+                    </h2>
+                    <p class="heading_txt">There are variations available majoritaey suffered alteration words which look
+                        believable dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                </div>
+                {% for main_company in company %}
+                <div class="col-sm-2">
+                    <img src="{{ main_company.image.url }}">
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="row slider-partner">
+            {% for main_company in main_company %}
+                <div class="col-sm-2">
+                    <img src="{{ main_company.image.url }}">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!--* End partner*-->
+
+
     <!--=* Get Started Section*=-->
     <section id="mt_get_started">
         <div class="container">
@@ -280,6 +311,7 @@
         </div>
     </section>
     <!--* End Get Started Section*-->
+
 
     <!--*Team*-->
     <section id="const-team">
@@ -387,6 +419,7 @@
         </div>
     </section>
     <!--* End Team*-->
+
 
     <!--* Testimonial*-->
     <section id="mt_faq-testi">
@@ -520,6 +553,7 @@
         </div>
     </section>
     <!--* EndTestimonial*-->
+
 
     <!--* Blog*-->
     <section id="mt_blog" class="light-bg">

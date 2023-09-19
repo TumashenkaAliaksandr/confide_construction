@@ -187,33 +187,6 @@
 
 {% block content %}{% endblock %}
 
-    <!--* Partner*-->
-    <section id="mt_partner">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
-                    <!-- section title -->
-                    <div class="section_heading">
-                        <h2 class="section_title">
-                            <span>Super Partner</span>
-                        </h2>
-                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which look believable
-                        dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row slider-partner">
-                {% for main_company in company %}
-                    <div class="col-sm-2">
-                        {% if main_company.is_main %}
-                            <img src="{{ main_company.image.url }}">
-                        {% endif %}
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-    <!--* End partner*-->
 
     <!--*Newsletter*-->
     <div id="newsletter">

@@ -29,8 +29,8 @@ class Recommended(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = "recommended"
-        verbose_name_plural = "recommended"
+        verbose_name = "Recommended"
+        verbose_name_plural = "Recommended"
 
 
 class News(models.Model):
