@@ -22,93 +22,39 @@
         </div>
     </div><!-- End breadcrumb -->
 
-    <!--* Services*-->
-    <section id="mt_services" class="services_one">
-        <div class="container">
 
+        <!--* Services*-->
+    <section id="mt_services" class="wow slideInLeft">
+        <div class="container">
             <div class="row">
-                <div class="col-md-4 col-sm-6 col-xs-6">
-                    <div class="box mar-bottom-30 text-center">
-                        <img src="{% static 'webapp/images/blog-listing/blog_01.jpg' %}" alt="services-1">
-                        <div class="box-content">
-                            <h3><a href="#">Mechanical Engineering</a></h3>
-                            <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-6">
-                    <div class="box mar-bottom-30 text-center">
-                        <img src="{% static 'webapp/images/blog-listing/blog_13.jpg' %}" alt="services-2">
-                        <div class="box-content">
-                            <h3><a href="#">Pharmaceutical Research</a></h3>
-                            <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-6">
-                    <div class="box mar-bottom-30 text-center">
-                        <img src="{% static 'webapp/images/blog-listing/blog_10.jpg' %}" alt="services-3">
-                        <div class="box-content">
-                            <h3><a href="#">Asbestos Remediation</a></h3>
-                            <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-6">
-                    <div class="box mar-bottom-30 text-center">
-                        <img src="{% static 'webapp/images/blog-listing/blog_11.jpg' %}" alt="services-4">
-                        <div class="box-content">
-                            <h3><a href="#">Petroleum and Gas</a></h3>
-                            <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-6">
-                    <div class="box mar-bottom-30 text-center">
-                        <img src="{% static 'webapp/images/blog-listing/blog_14.jpg' %}" alt="services-5">
-                        <div class="box-content">
-                            <h3><a href="#">Industrial Cleaning Services</a></h3>
-                            <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-6">
-                    <div class="box mar-bottom-30 text-center">
-                        <img src="{% static 'webapp/images/blog-listing/blog_12.jpg' %}" alt="services-6">
-                        <div class="box-content">                              
-                            <h3><a href="#">Painting and Protective</a></h3>
-                            <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-6">
-                    <div class="box text-center">
-                        <img src="{% static 'webapp/images/blog-listing/blog_03.jpg' %}" alt="services-1">
-                        <div class="box-content">
-                            <h3><a href="#">Mechanical Engineering</a></h3>
-                            <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-6">
-                    <div class="box text-center">
-                        <img src="{% static 'webapp/images/blog-listing/blog_02.jpg' %}" alt="services-2">
-                        <div class="box-content">
-                            <h3><a href="#">Pharmaceutical Research</a></h3>
-                            <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-6">
-                    <div class="box text-center">
-                        <img src="{% static 'webapp/images/blog-listing/blog_05.jpg' %}" alt="services-3">
-                        <div class="box-content">
-                            <h3><a href="#">Asbestos Remediation</a></h3>
-                            <p>Excepteur sint occaecat cupi datat non proi dent, sunt in culpa qui off icia..</p>
-                        </div>
+                <div class="col-xs-12">
+                    <!-- section title -->
+                    <div class="section_heading">
+                        <h2 class="section_title">
+                            <span>OUR SERVICES</span>
+                        </h2>
+                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which
+                            look believable
+                            dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                {% for main_ser in serv_serv %}
+                    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <div class="box mar-bottom-30 text-center">
+                            <img src="{{ main_ser.image.url }}">
+                            <div class="box-content">
+                                <h3><a href="{{ main_ser.link }}">{{ main_ser.name }}</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:3 %} {# Закрываем текущий ряд после каждой третьей модели #}
+                        </div>
+                        <div class="row">
+                    {% endif %}
+                {% endfor %}
+                </div>
         </div>
     </section>
     <!--* End Services*-->

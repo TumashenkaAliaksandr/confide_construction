@@ -15,7 +15,14 @@ def index(request):
 
 def services(request):
     """Services Constract"""
-    return render(request, 'webapp/services.html')
+    serv_serv = Services.objects.all()
+    main_ser = Services.objects.filter(is_main=True).first()
+
+    context = {
+        'serv_serv': serv_serv,
+        'main_ser': main_ser,
+    }
+    return render(request, 'webapp/services.html', context=context)
 
 def shop(request):
     """Shop Constract"""
