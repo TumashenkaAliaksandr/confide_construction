@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+ {% extends 'main/base.html' %}
+{% load static %}
 
-</body>
-</html>
+
+{% block content %}
+
+
+    <!--* Partner*-->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- section title -->
+                <div class="section_heading">
+                    <h2 class="section_title">
+                        <span>Super Partner</span>
+                    </h2>
+                    <p class="heading_txt">There are variations available majoritaey suffered alteration words which look
+                        believable dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                </div>
+                {% for main_company in company %}
+                <div class="col-sm-2">
+                    <img src="{{ main_company.image.url }}">
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!--* End partner*-->
+
+{% endblock %}
