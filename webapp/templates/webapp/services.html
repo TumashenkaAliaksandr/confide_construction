@@ -4,14 +4,13 @@
 
 {% block content %}
 
-    <!-- pagebanner -->
-    <section id="pagebanner">
-        <div class="page-title">
-            <h2 class="white text-center">Services</h2>
-        </div>
-    </section>
-    <!-- End Pagebanner -->
-
+<!-- pagebanner -->
+<section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'webapp/images/cc_serv_tools.jpg' %}{% endif %}')">
+    <div class="page-title">
+        <h2 class="white text-center">Services</h2>
+    </div>
+</section>
+<!-- End Pagebanner -->
     <!-- breadcrumb -->
     <div class="breadcrumb-main">
         <div class="container">
