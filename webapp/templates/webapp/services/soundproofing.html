@@ -6,7 +6,7 @@
 
 
     <!-- pagebanner -->
-    <section id="pagebanner">
+    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'webapp/images/cc_soundproofing.jpg' %}{% endif %}');">
         <div class="page-title">
             <h2 class="white text-center">Soundproofing</h2>
         </div>
