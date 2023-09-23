@@ -79,3 +79,8 @@ def wallpaper(request):
 def soundproofing(request):
     """Soundproofing Constract"""
     return render(request, 'webapp/services/soundproofing.html')
+
+
+def furniture(request):
+    """Furniture Assembly Constract"""
+    return render(request, 'webapp/services/furniture_assembly.html')

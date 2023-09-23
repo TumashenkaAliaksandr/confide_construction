@@ -13,6 +13,7 @@ urlpatterns = [
     path('backsplash/', backsplash, name='backsplash'),
     path('drywall/', drywall, name='drywall'),
     path('handyman/', handyman, name='handyman'),
+    path('furniture-assembly/', furniture, name='furniture-assembly'),
     path('wallpaper/', wallpaper, name='wallpaper'),
     path('soundproofing/', soundproofing, name='soundproofing'),
     path('electricalworks/', electricalworks, name='electricalworks'),
