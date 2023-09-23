@@ -220,9 +220,14 @@
                 <div class="col-md-3 col-sm-12 col-xs-12">
                     <div class="follow_us">
                         <a href="{% url 'webapp:home' %}">
-                            <img src="{% static 'webapp/images/cc_logo_1.png' %}" alt="Logo">
+                            <img src="{% static 'webapp/images/cc_logo_m1.png' %}" alt="Logo">
                         </a>
-                        <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p> Areas served:</p>
+                            <p>FAIRFAX COUNTY, FAIRFAX STATION, ALEXANDRIA,
+                            ARLINGTON, FALLS CHURCH, VIENNA, GREAT FALLS,
+                            SPRINGFIELD, SEVEN CORNERS, HERNDON, MC LEAN,
+                            OAKTON, MERRIFIELD, RESTON, BURKE, CHANTILLY,
+                            POTOMAC, HERNDON, RESTON, CENTERVILLE, WASHINGTON DC.</p>
 
                         <h4>Follow Us on</h4>
                         <ul class="social_icons">
@@ -247,18 +252,6 @@
                                     <i class="fa fa-linkedin"></i>
                                 </a>
                             </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-2 col-sm-6 col-xs-12">
-                    <div class="mt_contact_ftr">
-                        <h3>Quick Links</h3>
-                         <ul>
-                            <li><a href="{% url 'webapp:home' %}"><i class="fa fa-angle-right"></i>Home</a></li>
-                            <li><a href="{% url 'webapp:about' %}"><i class="fa fa-angle-right"></i>About</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i>Services</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i>Pages</a></li>
-                            <li><a href="{% url 'webapp:contacts' %}"><i class="fa fa-angle-right"></i>Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -324,6 +317,17 @@
                                     </h4>
                                 </div>
                             </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-6 col-xs-12">
+                    <div class="mt_contact_ftr">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="{% url 'webapp:home' %}"><i class="fa fa-angle-right"></i>Home</a></li>
+                            <li><a href="{% url 'webapp:about' %}"><i class="fa fa-angle-right"></i>About</a></li>
+                            <li><a href="{% url 'webapp:services' %}"><i class="fa fa-angle-right"></i>Services</a></li>
+                            <li><a href="{% url 'webapp:contacts' %}"><i class="fa fa-angle-right"></i>Contact</a></li>
                         </ul>
                     </div>
                 </div>
