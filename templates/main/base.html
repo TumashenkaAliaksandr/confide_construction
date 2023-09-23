@@ -345,10 +345,10 @@
                     <div class="col-sm-6">
                         <div class="made_txt">
                            <ul class="pull-right">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">News</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="{% url 'webapp:about' %}">About Us</a></li>
+                                <li><a href="{% url 'webapp:services' %}">Services</a></li>
+                                <li><a href="{% url 'blog:blog' %}">News</a></li>
+                                <li><a href="{% url 'webapp:contacts' %}">Contact</a></li>
                             </ul>
                         </div>
                     </div>
