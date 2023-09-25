@@ -17,6 +17,7 @@ urlpatterns = [
     path('wallpaper/', wallpaper, name='wallpaper'),
     path('soundproofing/', soundproofing, name='soundproofing'),
     path('electricalworks/', electricalworks, name='electricalworks'),
+    path('projects/', project, name='projects'),
     path('shop/', shop, name='shop'),
     path('recommended/', recommended, name='recommended'),
     path('about/', about, name='about'),

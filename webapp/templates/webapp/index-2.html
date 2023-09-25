@@ -179,14 +179,30 @@
                         <h2 class="section_title">
                             <span>Fascinating projects</span>
                         </h2>
-                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which
-                            look believable
-                            dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                        <p class="heading_txt">Discover our array of projects that exemplify our dedication to quality and innovation.</p>
                     </div>
                 </div>
             </div>
+
             <div class="project_list">
                 <div class="row">
+                    {% for project in project_constract %}
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="project-image">
+                                <a href="{{ project.image.url }}"
+                                   data-toggle="lightbox"
+                                   data-footer="{{ project.description }}" data-gallery="example-gallery">
+                                    <img src="{{ project.image.url }}"
+                                         class="img-fluid">
+                                    <div class="project-overlay text-center">
+                                        <h3 class="text-center white">{{ project.title }}</h3>
+                                        <p class="white">{{ project.description }}</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="project-image">
                             <a href="{% static 'webapp/images/project/bw6.jpg' %}" data-toggle="lightbox"
@@ -213,18 +229,6 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-sm-4 col-xs-12">
-                        <div class="project-image">
-                            <a href="{% static 'webapp/images/project/bw11.jpg' %}" data-toggle="lightbox"
-                               data-footer="A custom footer text" data-gallery="example-gallery">
-                                <img src="{% static 'webapp/images/project/bw11.jpg' %}" class="img-fluid">
-                                <div class="project-overlay text-center">
-                                    <h3 class="text-center white">Pharmaceutical</h3>
-                                    <p class="white">Bubba likes to appear out of thin air.</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
 
                     <div class="col-md-4 col-sm-4 col-xs-12">
                         <div class="project-image">

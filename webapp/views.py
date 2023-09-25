@@ -7,11 +7,8 @@ def index(request):
     serv = Services.objects.all()
     main_serv = Services.objects.filter(is_main=True).first()
 
-    context = {
-        'serv': serv,
-        'main_serv': main_serv,
-    }
-    return render(request, 'webapp/index-2.html', context=context)
+    context = locals()
+    return render(request, 'webapp/index-2.html', context)
 
 
 def services(request):
@@ -84,3 +81,12 @@ def soundproofing(request):
 def furniture(request):
     """Furniture Assembly Constract"""
     return render(request, 'webapp/services/furniture_assembly.html')
+
+
+def project(request):
+    """Projects for index Constract"""
+    project_constract = Project.objects.all()
+    main_project = Project.objects.filter(is_main=True).first()
+
+    context = locals()
+    return render(request, 'webapp/index-2.html', context)

@@ -13,7 +13,7 @@ class RecommendedAdmin(admin.ModelAdmin):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'photo', 'pub_date')
+    list_display = ('title', 'description', 'image', 'pub_date')
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
