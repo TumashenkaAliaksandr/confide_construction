@@ -15,12 +15,10 @@ def services(request):
     """Services Constract"""
     serv_serv = Services.objects.all()
     main_ser = Services.objects.filter(is_main=True).first()
+    sl_serv = Services.objects.all()
 
-    context = {
-        'serv_serv': serv_serv,
-        'main_ser': main_ser,
-    }
-    return render(request, 'webapp/services.html', context=context)
+    context = locals()
+    return render(request, 'webapp/services.html', context)
 
 
 def recommended(request):

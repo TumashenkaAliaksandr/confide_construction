@@ -54,10 +54,11 @@ class News(models.Model):
 
 class Project(models.Model):
     """Model for projects"""
-    title = models.CharField(max_length=200, verbose_name='title')
+    title = models.CharField(max_length=100, verbose_name='name')
     description = models.TextField(verbose_name='descriptions')
     image = models.ImageField(upload_to='projects', verbose_name='photo')
-    pub_date = models.DateTimeField(auto_now_add=True, verbose_name='data')
+    is_main = models.BooleanField(default=False)
+    link_project = models.URLField(default='True')  # Поле для хранения ссылки
 
     def __str__(self):
         return self.title

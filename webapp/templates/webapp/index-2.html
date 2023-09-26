@@ -186,14 +186,12 @@
 
             <div class="project_list">
                 <div class="row">
-                    {% for project in project_constract %}
+                    {% for project in main_project %}
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="project-image">
-                                <a href="{{ project.image.url }}"
-                                   data-toggle="lightbox"
+                                <a href="{{ project.image.url }}" data-toggle="lightbox"
                                    data-footer="{{ project.description }}" data-gallery="example-gallery">
-                                    <img src="{{ project.image.url }}"
-                                         class="img-fluid">
+                                    <img src="{{ project.image.url }}"class="img-fluid">
                                     <div class="project-overlay text-center">
                                         <h3 class="text-center white">{{ project.title }}</h3>
                                         <p class="white">{{ project.description }}</p>
@@ -205,7 +203,7 @@
 
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="project-image">
-                            <a href="{% static 'webapp/images/project/bw6.jpg' %}" data-toggle="lightbox"
+                            <a href="{{ main_project.image }}" data-toggle="lightbox"
                                data-footer="A custom footer text" data-gallery="example-gallery">
                                 <img src="{% static 'webapp/images/project/bw6.jpg' %}" class="img-fluid">
                                 <div class="project-overlay text-center">
