@@ -1037,34 +1037,6 @@ section#mt_services.services_two .services_listing .section_heading{
 
 .services-faq{padding: 0 15%;}
 
-/* Стили для контейнера слайдера */
-.slider {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Центрируем изображения по горизонтали */
-  justify-content: center; /* Центрируем изображения по вертикали */
-  text-align: center; /* Выравниваем текст по центру */
-}
-
-/* Стили для изображений в слайдере */
-.slider img {
-  max-width: 100%; /* Изображения масштабируются по ширине контейнера */
-  height: auto; /* Автоматическая высота для сохранения пропорций */
-  margin: 0 auto; /* Центрируем изображения по горизонтали */
-  display: block; /* Убираем лишние пробелы между изображениями */
-}
-
-.slider-container {
-    display: flex; /* Сделать контейнер flex-контейнером */
-    flex-direction: row; /* Слайды будут располагаться горизонтально */
-    overflow: hidden; /* Скрыть возможное переполнение контейнера */
-}
-
-.slider-item {
-    flex: 0 0 auto; /* Сделать слайды фиксированной ширины */
-    margin-right: 10px; /* Расстояние между слайдами (при необходимости) */
-}
-
 
 @media (max-width: 1100px) and (min-width: 991px){
   #mt_services .box h3{font-size: 18px;}

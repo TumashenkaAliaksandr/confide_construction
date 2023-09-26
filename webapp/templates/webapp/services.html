@@ -26,30 +26,27 @@
 
 
     <!--* Slider Services*-->
-        <section id="mt_services" class="services_one">
+    <section id="mt_services" class="services_one">
         <div class="container">
             <div class="services-detail mar-bottom-80">
                 <div class="row">
-                    {% for slider in sl_serv %}
                     <div class="col-md-8 col-sm-12">
                         <span class="page-title mar-bottom-15">Home Expansion</span>
-                        <h2 class="mar-bottom-15">We individually assess each <br> plan and offer optimal solutions</h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden.<br><br>
-                        All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
+                        <h2 class="box mar-bottom-15">We individually assess each <br> plan and offer optimal solutions</h2>
+                        <p><br><br></p>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="slider-services">
-                            <div><img src="{{ slider.image.url }}" alt="services-img"></div>
-                            <div><img src="{% static 'webapp/images/project/bw6.jpg' %}" alt="services-img"></div>
-                            <div><img src="{% static 'webapp/images/project/bw7.jpg' %}" alt="services-img"></div>
-                            <div><img src="{% static 'webapp/images/project/bw8.jpg' %}" alt="services-img"></div>
-                            <div><img src="{% static 'webapp/images/project/bw9.jpg' %}" alt="services-img"></div>
+                            {% for slider in sl_serv %}
+                                <div><img src="{{ slider.image.url }}" alt="services-img"></div>
+                            {% endfor %}
                         </div>
                     </div>
-                    {% endfor %}
                 </div>
             </div>
+        </div>
     </section>
+
     <!--* End Slider Services*-->
 
 

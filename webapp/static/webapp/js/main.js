@@ -357,14 +357,25 @@ $('.slider-blog').slick({
 
 /*======== Slick Slider =========*/
 
+// $('.slider-services').slick({
+//   infinite: true,
+//   autoplay: true,
+//   arrows: true,
+//   dots: false,
+//   slidesToShow: 1,
+//   slidesToScroll: 1
+// });
+
 $('.slider-services').slick({
-  infinite: true,
+  infinite: true, // Отключаем бесконечное клонирование
   autoplay: true,
+  autoplaySpeed: 2000,
   arrows: true,
   dots: false,
   slidesToShow: 1,
-  slidesToScroll: 1
-}); 
+  slidesToScroll: 1,
+  // ...другие настройки...
+});
 
 
 $('.slider-project').slick({
