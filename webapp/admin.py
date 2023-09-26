@@ -7,6 +7,11 @@ class ServicesAdmin(admin.ModelAdmin):
     list_display = ('name', 'is_main', 'image', 'description')
 
 
+@admin.register(ServicesSlider)
+class ServicesSliderAdmin(admin.ModelAdmin):
+    list_display = ('image',)
+
+
 @admin.register(Recommended)
 class RecommendedAdmin(admin.ModelAdmin):
     list_display = ('name', 'is_main', 'image')

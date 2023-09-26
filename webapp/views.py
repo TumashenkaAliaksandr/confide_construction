@@ -11,6 +11,14 @@ def index(request):
     return render(request, 'webapp/index-2.html', context)
 
 
+def slider_services(request):
+    """Main, index constr"""
+    serv_slider = ServicesSlider.objects.all()
+
+    context = locals()
+    return render(request, 'webapp/services.html', context)
+
+
 def services(request):
     """Services Constract"""
     serv_serv = Services.objects.all()

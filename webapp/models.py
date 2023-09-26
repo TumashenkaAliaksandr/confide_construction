@@ -18,6 +18,18 @@ class Services(models.Model):
         verbose_name_plural = "Services"
 
 
+class ServicesSlider(models.Model):
+    """Services slides model"""
+    image = models.ImageField(upload_to='services', verbose_name='photo')
+
+    def __str__(self):
+        return self.image
+
+    class Meta:
+        verbose_name = "Services_Slider"
+        verbose_name_plural = "Services_Slider"
+
+
 class Recommended(models.Model):
     """Recommended model"""
     name = models.CharField(max_length=100, verbose_name='name')
