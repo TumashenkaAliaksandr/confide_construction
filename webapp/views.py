@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from webapp.models import *
+from webapp.models import Services, ServicesSlider, Recommended, Project
 
 
 def index(request):
@@ -15,7 +15,7 @@ def slider_services(request):
     """Main, index constr"""
     serv_slider = ServicesSlider.objects.all()
 
-    context = locals()
+    context = {'serv_slider': serv_slider}
     return render(request, 'webapp/services.html', context)
 
 
