@@ -11,11 +11,14 @@ def index(request):
     return render(request, 'webapp/index-2.html', context)
 
 
-def slider_services(request):
-    """Main, index constr"""
-    serv_slider = ServicesSlider.objects.all()
 
-    context = {'serv_slider': serv_slider}
+def services_slider(request):
+    """Main, index constr"""
+    servis_slider = ServicesSlider.objects.all()
+
+    context = {
+        'servis_slider': servis_slider,
+    }
     return render(request, 'webapp/services.html', context)
 
 
@@ -87,6 +90,11 @@ def soundproofing(request):
 def furniture(request):
     """Furniture Assembly Constract"""
     return render(request, 'webapp/services/furniture_assembly.html')
+
+
+def painting(request):
+    """ Painting Constract"""
+    return render(request, 'webapp/services/painting.html')
 
 
 def project(request):

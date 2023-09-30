@@ -20,10 +20,11 @@ class Services(models.Model):
 
 class ServicesSlider(models.Model):
     """Services slides model"""
-    image = models.ImageField(upload_to='services-slider/', verbose_name='photo')
+    name = models.CharField(max_length=100, verbose_name='name', null=False)
+    image = models.ImageField(upload_to='services_slider', verbose_name='photo')
 
     def __str__(self):
-        return self.image.name
+        return self.name
 
     class Meta:
         verbose_name = "Services-Slider"

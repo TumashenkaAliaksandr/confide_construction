@@ -1,0 +1,12 @@
+{% load static %}
+
+
+<div class="col-md-4 col-sm-12">
+    <div class="slider-services">
+        {% for slider in  %}
+            <div><img src="{{ slider.image.url }}" alt="services-img"></div>
+        {% endfor %}
+    </div>
+</div>
+
+

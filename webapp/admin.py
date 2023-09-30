@@ -9,7 +9,7 @@ class ServicesAdmin(admin.ModelAdmin):
 
 @admin.register(ServicesSlider)
 class ServicesSliderAdmin(admin.ModelAdmin):
-    list_display = ('image',)
+    list_display = ('name', 'image')
 
 
 @admin.register(Recommended)
