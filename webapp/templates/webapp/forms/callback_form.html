@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+        <!-- pagebanner -->
+    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'webapp/images/cc_contact_center.jpg' %}{% endif %}'); background-size: cover;">
+        <div class="page-title">
+            <h2 class="white text-center">Request for callback</h2>
+        </div>
+    </section>
+    <!-- End Pagebanner -->
+
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb-main">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="{% url 'webapp:home' %}"><i class="fa fa-home"></i></a></li>
+                <li class="active">Callback</li>
+            </ul>
+        </div>
+    </div>
+    <!-- End breadcrumb -->
+
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required><br><br>
+
+        <input type="submit" value="Отправить">
+    </form>
+
+{% endblock %}

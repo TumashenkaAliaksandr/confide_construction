@@ -24,6 +24,7 @@ urlpatterns = [
     path('recommended/', recommended, name='recommended'),
     path('about/', about, name='about'),
     path('contacts/', contacts, name='contacts'),
+    path('callback/', callback_view, name='callback'),
     ]
 
 if settings.DEBUG:

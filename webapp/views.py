@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from webapp.models import Services, ServicesSlider, Recommended, Project
+from django.http import HttpResponseRedirect
 
 
 def index(request):
@@ -104,3 +105,20 @@ def project(request):
 
     context = locals()
     return render(request, 'webapp/index-2.html', context)
+
+
+def callback_view(request):
+    if request.method == 'POST':
+        # Если форма отправлена, обработайте данные
+        name = request.POST['name']
+        phone = request.POST['phone']
+
+        # Сохраните данные в базе данных или выполните другие необходимые действия
+        # Пример: callback = Callback(name=name, phone=phone)
+        #         callback.save()
+
+        # Перенаправьте пользователя на страницу "спасибо"
+        return HttpResponseRedirect('/thank-you/')
+
+    # Если метод GET, просто отобразите шаблон
+    return render(request, 'webapp/forms/callback_form.html')
