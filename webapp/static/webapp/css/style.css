@@ -1001,6 +1001,50 @@ section#mt_services.services_two .services_listing .section_heading{
   text-align: left;
 }
 
+/* styles for form-callback */
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.form-container h1 {
+    text-align: center;
+}
+
+.form-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-input[type="submit"] {
+    background-color: #ffac15;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.form-input[type="submit"]:hover {
+    background-color: #ffac00;
+}
+
+
+
 /*innerpages*/
 
 .services-detail span.page-title{

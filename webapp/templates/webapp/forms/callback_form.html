@@ -25,15 +25,18 @@
     <!-- End breadcrumb -->
 
 
-    <form method="post">
-        {% csrf_token %}
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
+    <div class="form-container" style="margin-top: 25px; margin-bottom: 25px;">
+        <form method="post">
+            {% csrf_token %}
+            <label for="name" class="form-label">Your Name:</label>
+            <input type="text" id="name" name="name" class="form-input" required>
 
-        <label for="phone">Phone:</label>
-        <input type="tel" id="phone" name="phone" required><br><br>
+            <label for="phone" class="form-label">Phone:</label>
+            <input type="tel" id="phone" name="phone" class="form-input" required>
 
-        <input type="submit" value="Отправить">
-    </form>
+            <input type="submit" value="Send" class="form-input">
+        </form>
+    </div>
+
 
 {% endblock %}
