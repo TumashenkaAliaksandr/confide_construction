@@ -122,12 +122,10 @@ def callback_view(request):
             callback.save()
 
             # Отправка данных на почту
-            subject = 'Callback Request'
             message = f'Name: {name}\nPhone: {phone}'
-            from_email = 'tumashenkaaliaksandr@gmail.com'  # Замените на вашу электронную почту
             recipient_list = ['tumashenkaaliaksandr@gmail.com']  # Электронная почта получателя
 
-            send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+            send_mail('Callback Request', message, 'your_email@gmail.com', recipient_list, fail_silently=False)
 
             # Перенаправление пользователя на страницу "спасибо"
             return redirect('webapp:home')
@@ -136,4 +134,36 @@ def callback_view(request):
         form = CallbackForm()
 
     return render(request, 'webapp/forms/callback_form.html', {'form': form})
+
+
+
+# def callback_view(request):
+#     if request.method == 'POST':
+#         form = CallbackForm(request.POST)
+#         if form.is_valid():
+#             name = form.cleaned_data['name']
+#             phone = form.cleaned_data['phone']
+#
+#             # Создаем объект Callback и сохраняем его в базе данных
+#             callback = Callback(name=name, phone=phone)
+#             callback.save()
+#
+#             # Отправка данных на почту
+#             subject = 'Callback Request'
+#             message = f'Name: {name}\nPhone: {phone}'
+#             from_email = 'tumashenkaaliaksandr@gmail.com'  # Замените на вашу электронную почту
+#             recipient_list = ['tumashenkaaliaksandr@gmail.com']  # Электронная почта получателя
+#
+#             try:
+#                 send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+#                 response_data = {'status': 'success'}
+#             except Exception as e:
+#                 response_data = {'status': 'error'}
+#
+#             return JsonResponse(response_data)
+#
+#     else:
+#         form = CallbackForm()
+#
+#     return render(request, 'webapp/forms/callback_form.html', {'form': form})
 
