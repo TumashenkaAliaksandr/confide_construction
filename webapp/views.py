@@ -1,6 +1,9 @@
 from django.shortcuts import render
-from webapp.models import Services, ServicesSlider, Recommended, Project
+from webapp.models import Services, ServicesSlider, Recommended, Project, Callback
 from django.http import HttpResponseRedirect
+from django.core.mail import send_mail
+from django.shortcuts import redirect
+from .forms import CallbackForm
 
 
 def index(request):
@@ -109,16 +112,28 @@ def project(request):
 
 def callback_view(request):
     if request.method == 'POST':
-        # Если форма отправлена, обработайте данные
-        name = request.POST['name']
-        phone = request.POST['phone']
+        form = CallbackForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            phone = form.cleaned_data['phone']
 
-        # Сохраните данные в базе данных или выполните другие необходимые действия
-        # Пример: callback = Callback(name=name, phone=phone)
-        #         callback.save()
+            # Создаем объект Callback и сохраняем его в базе данных
+            callback = Callback(name=name, phone=phone)
+            callback.save()
 
-        # Перенаправьте пользователя на страницу "спасибо"
-        return HttpResponseRedirect('/thank-you/')
+            # Отправка данных на почту
+            subject = 'Callback Request'
+            message = f'Name: {name}\nPhone: {phone}'
+            from_email = 'tumashenkaaliaksandr@gmail.com'  # Замените на вашу электронную почту
+            recipient_list = ['tumashenkaaliaksandr@gmail.com']  # Электронная почта получателя
 
-    # Если метод GET, просто отобразите шаблон
-    return render(request, 'webapp/forms/callback_form.html')
+            send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+
+            # Перенаправление пользователя на страницу "спасибо"
+            return redirect('webapp:home')
+
+    else:
+        form = CallbackForm()
+
+    return render(request, 'webapp/forms/callback_form.html', {'form': form})
+
