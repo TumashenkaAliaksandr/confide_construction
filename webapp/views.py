@@ -45,7 +45,7 @@ def recommended(request):
         'company': company,
         'main_company': main_company,
     }
-    return render(request, 'webapp/contact-us-1.html', context=context)
+    return render(request, 'main/base.html', context=context)
 
 
 def shop(request):

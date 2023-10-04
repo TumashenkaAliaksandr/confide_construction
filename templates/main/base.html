@@ -232,8 +232,9 @@
             </div>
 
             <div class="row slider-partner">
+                {% for recomended in company %}
                 <div class="col-sm-2">
-                    <img src="{% static 'webapp/images/partner/p-1.png' %}" alt="partner">
+                    <img src="{{ recomended.image.url }}" alt="partner">
                 </div>
                 <div class="col-sm-2">
                     <img src="{% static 'webapp/images/partner/p-2.png' %}" alt="partner">
@@ -250,6 +251,7 @@
                 <div class="col-sm-2">
                     <img src="{% static 'webapp/images/partner/p-6.png' %}" alt="partner">
                 </div>
+                {% endfor %}
             </div>
 
         </div>
