@@ -24,15 +24,14 @@
     </div>
     <!-- End breadcrumb -->
 
-
     <div class="form-container" style="margin-top: 25px; margin-bottom: 25px;">
         <form method="post">
             {% csrf_token %}
             <label for="name" class="form-label">Your Name:</label>
-            <input type="text" id="name" name="name" class="form-input" required>
+            <input type="text" id="name" name="name" class="form-input" required><br><br>
 
             <label for="phone" class="form-label">Phone:</label>
-            <input type="tel" id="phone" name="phone" class="form-input" required>
+            <input type="tel" id="phone" name="phone" class="form-input" required><br><br>
 
             <input type="submit" value="Send" class="form-input">
         </form>
