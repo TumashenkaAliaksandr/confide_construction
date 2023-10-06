@@ -1,9 +1,13 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+
 from webapp.models import Services, ServicesSlider, Recommended, Project, Callback
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from django.shortcuts import redirect
-from .forms import CallbackForm
+from .forms import CallbackForm, PaymentForm
+from django.http import JsonResponse
+import stripe
 
 
 def index(request):
@@ -51,6 +55,48 @@ def recommended(request):
 def shop(request):
     """Shop Constract"""
     return render(request, 'webapp/shop.html')
+
+@csrf_exempt
+def process_payment(request):
+    if request.method == 'POST':
+        form = PaymentForm(request.POST)
+        if form.is_valid():
+            # Получите данные из формы
+            order = form.cleaned_data['order']
+            payment_amount = form.cleaned_data['payment_amount']
+            payment_method = form.cleaned_data['payment_method']
+            expiration_date_month = form.cleaned_data['expiration_date_month']
+            expiration_date_year = form.cleaned_data['expiration_date_year']
+
+            # Создайте Stripe токен (необходимо подключить Stripe.js для этого)
+            try:
+                token = stripe.Token.create(
+                    card={
+                        "number": form.cleaned_data['card_number'],
+                        "exp_month": expiration_date_month,
+                        "exp_year": expiration_date_year,
+                        "cvc": form.cleaned_data['cvv'],
+                    },
+                )
+
+                # Создайте платеж в Stripe
+                charge = stripe.Charge.create(
+                    amount=int(payment_amount * 100),  # Сумма в центах
+                    currency='usd',
+                    source=token.id,
+                    description=f'Payment for Order #{order}',
+                )
+
+                # Обработка успешного платежа
+                return JsonResponse({'success': True, 'message': 'Payment successful. Your order has been confirmed.'})
+            except stripe.error.StripeError as e:
+                # Обработка ошибок Stripe
+                return JsonResponse({'success': False, 'message': f'Payment failed: {str(e)}'})
+
+    else:
+        form = PaymentForm()
+
+    return render(request, 'webapp/index.html', {'form': form})
 
 
 def about(request):

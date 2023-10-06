@@ -25,6 +25,7 @@ urlpatterns = [
     path('about/', about, name='about'),
     path('contacts/', contacts, name='contacts'),
     path('callback/', callback_view, name='callback'),
+    path('process_payment/', process_payment, name='process_payment'),
     ]
 
 if settings.DEBUG:
