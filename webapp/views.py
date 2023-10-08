@@ -96,7 +96,7 @@ def process_payment(request):
     else:
         form = PaymentForm()
 
-    return render(request, 'webapp/index.html', {'form': form})
+    return render(request, 'webapp/cart.html', {'form': form})
 
 
 def about(request):

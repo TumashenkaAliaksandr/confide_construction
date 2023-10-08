@@ -5,9 +5,9 @@
 {% block content %}
 
     <!-- pagebanner -->
-    <section id="pagebanner" class="pagebanner">
+    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'webapp/images/cc_brcump_card1.png' %}{% endif %}'); background-size: cover;">
         <div class="page-title">
-            <h2 class="white text-center">Cart</h2>
+            <h2 class="white text-center"></h2>
         </div>
     </section>
     <!-- End Pagebanner -->
@@ -17,17 +17,24 @@
         <div class="container">
             <ul class="breadcrumb">
                 <li><a href="index.html"><i class="fa fa-home"></i></a></li>
-                <li><a href="index.html">Shop</a></li>
+                <li><a href="{% url 'webapp:shop' %}">Shop</a></li>
                 <li class="active">My Cart</li>
             </ul>
         </div>
     </div>
     <!-- End breadcrumb -->
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://bootstraptema.ru/snippets/form/2017/styles.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://bootstraptema.ru/snippets/form/2017/jquery.payform.min.js"></script>
+    <script src="https://bootstraptema.ru/snippets/form/2017/script.js"></script>
 
-    <div class="container" >
+
+    <div class="container">
         <div class="row">
-            <div class="creditCardForm">
+            <div class="creditCardForm" style="margin-top: 25px; margin-bottom: 25px;">
                 <div class="heading">
                     <h1>Credit Card Form Validation</h1>
                 </div>
