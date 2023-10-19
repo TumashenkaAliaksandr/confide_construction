@@ -39,9 +39,11 @@
                     </div>
 
                     <div class="col-md-6 col-sm-12">
+                        {% for main_ser in assessment %}
                         <div class="about-img">
-                            <img src="{% static 'webapp/images/project/bw12.jpg' %}">
+                            <img src="{{ main_ser.image.url }}">
                         </div>
+                        {% endfor %}
                     </div>
 
                 </div>

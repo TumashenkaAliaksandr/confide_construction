@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-from webapp.models import Services, ServicesSlider, Recommended, Project, Callback
+from webapp.models import *
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from django.shortcuts import redirect
@@ -30,18 +30,6 @@ def services(request):
 
     context = locals()
     return render(request, 'webapp/services.html', context)
-
-
-# def recommended(request):
-#     """Main, recommended constr"""
-#     company = Recommended.objects.all()
-#     main_company = Recommended.objects.filter(is_main=True).first()
-#
-#     context = {
-#         'company': company,
-#         'main_company': main_company,
-#     }
-#     return render(request, 'main/base.html', context=context)
 
 
 def shop(request):
@@ -92,7 +80,12 @@ def process_payment(request):
 
 
 def about(request):
-    return render(request, 'webapp/about-us.html')
+    assessment = Assessment.objects.all()
+
+    context = {
+        'assessment': assessment,
+    }
+    return render(request, 'webapp/about-us.html', context=context)
 
 
 def contacts(request):
