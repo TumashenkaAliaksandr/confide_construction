@@ -81,9 +81,11 @@ def process_payment(request):
 
 def about(request):
     assessment = Assessment.objects.all()
+    partner = Recommended.objects.all()
 
     context = {
         'assessment': assessment,
+        'partner': partner,
     }
     return render(request, 'webapp/about-us.html', context=context)
 

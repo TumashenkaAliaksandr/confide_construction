@@ -34,7 +34,7 @@
                             <span class="mar-bottom-15">About Company</span>
                             <h2 class="mar-bottom-30">We individually assess each <br> plan and offer optimal solutions</h2>
                             <p class="mar-bottom-40">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrudexe rc itation ullamco laboris nisi ut aliquip ex ea com modo consequat. Duis aute irure.</p>
-                            <a href="#" class="btn mt_btn_yellow">Our Services</a>
+                            <a href="{% url 'webapp:services' %}" class="btn mt_btn_yellow">Our Services</a>
                         </div>
                     </div>
 
@@ -466,6 +466,33 @@
         </div>
     </section>
     <!--* EndTestimonial*-->
+
+    <!--* Partner*-->
+    <section id="mt_partner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- section title -->
+                    <div class="section_heading">
+                        <h2 class="section_title">
+                            <span>Our Partner</span>
+                        </h2>
+                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which
+                            look believable
+                            dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row slider-partner">
+                {% for recomended in partner %}
+                    <div class="col-sm-2">
+                        <img src="{{ recomended.image.url }}" alt="partner">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!--* End partner*-->
 
 
 {% endblock %}
