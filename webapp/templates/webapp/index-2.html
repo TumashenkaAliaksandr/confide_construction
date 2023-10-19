@@ -186,20 +186,20 @@
 
             <div class="project_list">
                 <div class="row">
-                    {% for project in main_project %}
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                            <div class="project-image">
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="project-image">
+                            {% for project in project_constract %}
                                 <a href="{{ project.image.url }}" data-toggle="lightbox"
                                    data-footer="{{ project.description }}" data-gallery="example-gallery">
-                                    <img src="{{ project.image.url }}"class="img-fluid">
+                                    <img src="{{ project.image.url }}" class="img-fluid">
                                     <div class="project-overlay text-center">
                                         <h3 class="text-center white">{{ project.title }}</h3>
                                         <p class="white">{{ project.description }}</p>
                                     </div>
                                 </a>
-                            </div>
+                            {% endfor %}
                         </div>
-                    {% endfor %}
+                    </div>
 
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="project-image">
@@ -641,5 +641,33 @@
         </div>
     </section>
     <!--* End Blog*-->
+
+    <!--* Partner*-->
+    <section id="mt_partner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- section title -->
+                    <div class="section_heading">
+                        <h2 class="section_title">
+                            <span>Our Partner</span>
+                        </h2>
+                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which
+                            look believable
+                            dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row slider-partner">
+                {% for recomended in company %}
+                    <div class="col-sm-2">
+                        <img src="{{ recomended.image.url }}" alt="partner">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!--* End partner*-->
 
 {% endblock %}

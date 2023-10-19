@@ -13,6 +13,8 @@ import stripe
 def index(request):
     """Main, index constr"""
     serv = Services.objects.all()
+    company = Recommended.objects.all()
+    project_constract = Project.objects.all()
     main_serv = Services.objects.filter(is_main=True).first()
 
     context = locals()
@@ -30,16 +32,16 @@ def services(request):
     return render(request, 'webapp/services.html', context)
 
 
-def recommended(request):
-    """Main, recommended constr"""
-    company = Recommended.objects.all()
-    main_company = Recommended.objects.filter(is_main=True).first()
-
-    context = {
-        'company': company,
-        'main_company': main_company,
-    }
-    return render(request, 'main/base.html', context=context)
+# def recommended(request):
+#     """Main, recommended constr"""
+#     company = Recommended.objects.all()
+#     main_company = Recommended.objects.filter(is_main=True).first()
+#
+#     context = {
+#         'company': company,
+#         'main_company': main_company,
+#     }
+#     return render(request, 'main/base.html', context=context)
 
 
 def shop(request):
@@ -135,15 +137,6 @@ def furniture(request):
 def painting(request):
     """ Painting Constract"""
     return render(request, 'webapp/services/painting.html')
-
-
-def project(request):
-    """Projects for index Constract"""
-    project_constract = Project.objects.all()
-    main_project = Project.objects.filter(is_main=True).first()
-
-    context = locals()
-    return render(request, 'webapp/index-2.html', context)
 
 
 def callback_view(request):
