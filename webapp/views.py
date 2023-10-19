@@ -19,20 +19,10 @@ def index(request):
     return render(request, 'webapp/index-2.html', context)
 
 
-
-def services_slider(request):
-    """Main, index constr"""
-    servis_slider = ServicesSlider.objects.all()
-
-    context = {
-        'servis_slider': servis_slider,
-    }
-    return render(request, 'webapp/services.html', context)
-
-
 def services(request):
     """Services Constract"""
     serv_serv = Services.objects.all()
+    servis_slider = ServicesSlider.objects.all()
     main_ser = Services.objects.filter(is_main=True).first()
     sl_serv = Services.objects.all()
 

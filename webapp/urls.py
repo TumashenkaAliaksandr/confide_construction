@@ -10,7 +10,6 @@ app_name = 'webapp'
 urlpatterns = [
     path('', index, name='home'),
     path('services/', services, name='services'),
-    path('services_slider/', services_slider, name='services_slider'),
     path('backsplash/', backsplash, name='backsplash'),
     path('drywall/', drywall, name='drywall'),
     path('handyman/', handyman, name='handyman'),

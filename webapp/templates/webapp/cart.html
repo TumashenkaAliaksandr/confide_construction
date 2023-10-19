@@ -16,7 +16,7 @@
     <div class="breadcrumb-main">
         <div class="container">
             <ul class="breadcrumb">
-                <li><a href="index.html"><i class="fa fa-home"></i></a></li>
+                <li><a href="{% url 'webapp:home' %}"><i class="fa fa-home"></i></a></li>
                 <li><a href="{% url 'webapp:shop' %}">Shop</a></li>
                 <li class="active">My Cart</li>
             </ul>
@@ -36,7 +36,7 @@
         <div class="row">
             <div class="creditCardForm" style="margin-top: 25px; margin-bottom: 25px;">
                 <div class="heading">
-                    <h1>Credit Card Form Validation</h1>
+                    <h1>Please enter your card details</h1>
                 </div>
                 <div class="payment">
                     <form method="post" action="{% url 'webapp:process_payment' %}">
