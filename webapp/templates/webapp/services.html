@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="row">
-                {% for main_ser in serv_serv %}
+                {% for main_ser in serv_serv|slice:":8" %}
                     <div class="col-md-3 col-sm-6 col-xs-6">
                         <div class="box mar-bottom-30 text-center">
                             <img src="{{ main_ser.image.url }}" class="img-fixed-size">
@@ -48,12 +48,12 @@
                             </div>
                         </div>
                     </div>
-                    {% if forloop.counter|divisibleby:4 %} {# Закрываем текущий ряд после каждой третьей модели #}
+                    {% if forloop.counter|divisibleby:4 %} {# Закрываем текущий ряд после каждой четвертой модели #}
                         </div>
                         <div class="row">
                     {% endif %}
                 {% endfor %}
-            </div>
+                </div>
         </div>
     </section>
     <!--* End Services*-->

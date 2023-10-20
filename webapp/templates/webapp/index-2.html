@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="row">
-                {% for main_serv in serv %}
+                {% for main_serv in serv|slice:":8" %}
                     <div class="col-md-3 col-sm-6 col-xs-6">
                         <div class="box mar-bottom-30 text-center">
                             <img src="{{ main_serv.image.url }}" class="img-fixed-size">
