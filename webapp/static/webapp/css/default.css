@@ -490,7 +490,7 @@ section{padding:75px 0 80px; position: relative; overflow: hidden;}
 /*button*/
 
 .mt_btn_yellow,
-input[type="submit"]{
+input[type="submit"] {
   padding: 10px 20px;
   background: #ffac00;
   font-size: 15px;
@@ -499,8 +499,10 @@ input[type="submit"]{
   color: #ffffff;
   text-decoration: none;
   border: 2px solid #ffac00;
-   transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  margin: 13px 0; /* Добавьте здесь нужное значение отступа, например, 10px сверху и снизу, и 0 по бокам */
 }
+
 
 .mt_btn_yellow:hover,
 .mt_btn_yellow:focus,

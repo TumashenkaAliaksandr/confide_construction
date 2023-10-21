@@ -7,7 +7,7 @@
         <!-- pagebanner -->
     <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'webapp/images/cc_contact_center.jpg' %}{% endif %}'); background-size: cover;">
         <div class="page-title">
-            <h2 class="white text-center">Request for callback</h2>
+            <h2 class="white text-center">Registrations</h2>
         </div>
     </section>
     <!-- End Pagebanner -->
@@ -27,13 +27,25 @@
     <div class="form-container" style="margin-top: 25px; margin-bottom: 25px;">
         <form method="post">
             {% csrf_token %}
-            <label for="name" class="form-label">Your Name:</label>
-            <input type="text" id="name" name="name" class="form-input" required><br><br>
+            {{ form.first_name.label_tag }} {{ form.first_name }}
+            {{ form.last_name.label_tag }} {{ form.last_name }}
+            {{ form.phone.label_tag }} {{ form.phone }}
+            {{ form.email.label_tag }} {{ form.email }}
+            {{ form.password.label_tag }} {{ form.password }}
+            {{ form.password2.label_tag }} {{ form.password2 }}
+            <input type="submit" value="Register">
 
-            <label for="phone" class="form-label">Phone:</label>
-            <input type="tel" id="phone" name="phone" class="form-input" required><br><br>
 
-            <input type="submit" value="Send" class="form-input">
+
+
+{#            {% csrf_token %}#}
+{#            <label for="name" class="form-label">Your Name:</label>#}
+{#            <input type="text" id="name" name="name" class="form-input" required><br><br>#}
+{##}
+{#            <label for="phone" class="form-label">Phone:</label>#}
+{#            <input type="tel" id="phone" name="phone" class="form-input" required><br><br>#}
+{##}
+{#            <input type="submit" value="Send" class="form-input">#}
         </form>
     </div>
 

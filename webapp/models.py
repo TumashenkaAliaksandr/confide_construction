@@ -159,3 +159,19 @@ class Transaction(models.Model):
 
     def __str__(self):
         return f"Transaction #{self.pk} for Payment #{self.payment.pk}"
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=15)
+    email = models.EmailField()
+    password = models.CharField(max_length=128)  # Храните пароли в зашифрованном виде
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
+    class Meta:
+        verbose_name = "User Profile"
+        verbose_name_plural = "User Profiles"

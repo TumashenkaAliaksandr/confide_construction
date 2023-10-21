@@ -54,13 +54,15 @@
                     </div>
 
                     <div class="top-bar-right pull-right">
-                        <ul>
-                          <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                          <li><a href="#"><i class="fa fa-google"></i></a></li>
-                          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        </ul>
+                       <div style="position: absolute; top: 11px; right: 62px;">
+                           <ul>
+                               <li><a href="{% url 'webapp:register' %}" class="fa fa-pencil" style="color: white;">
+                                   Login</a></li>
+                               <li><a href="{% url 'webapp:register' %}" class="fa fa-user" style="color: white;">
+                                   Register</a></li>
+                           </ul>
+                       </div>
+
                     </div>
                 </div>
             </div>
@@ -115,11 +117,6 @@
                                         </form>
                                     </div><!-- .searchform -->
                                 </div><!-- .search-box-wrap -->
-                            </div>
-                        </li>
-                        <li>
-                            <div class="get-quote">
-                                <a href="{% url 'webapp:callback' %}" class="btn mt_btn_yellow">Callback</a>
                             </div>
                         </li>
                     </ul>

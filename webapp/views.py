@@ -5,9 +5,11 @@ from webapp.models import *
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from django.shortcuts import redirect
-from .forms import CallbackForm, PaymentForm
+from .forms import CallbackForm, PaymentForm, RegistrationForm
 from django.http import JsonResponse
 import stripe
+from django.contrib.auth import login
+from django.shortcuts import render, redirect
 
 
 def index(request):
@@ -157,7 +159,7 @@ def callback_view(request):
     else:
         form = CallbackForm()
 
-    return render(request, 'webapp/forms/callback_form.html', {'form': form})
+    return render(request, 'webapp/forms/register_form.html', {'form': form})
 
 
 
@@ -189,5 +191,19 @@ def callback_view(request):
 #     else:
 #         form = CallbackForm()
 #
-#     return render(request, 'webapp/forms/callback_form.html', {'form': form})
+#     return render(request, 'webapp/forms/register_form.html', {'form': form})
 
+def registration(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = User.objects.create_user(username=form.cleaned_data['email'], password=form.cleaned_data['password'])
+            user.save()
+            user_profile = form.save(commit=False)
+            user_profile.user = user
+            user_profile.save()
+            login(request, user)
+            return redirect('home')  # Замените 'home' на URL вашей главной страницы
+    else:
+        form = RegistrationForm()
+    return render(request, 'webapp/forms/register_form.html', {'form': form})
