@@ -107,7 +107,11 @@ def drywall(request):
 
 def disposal(request):
     """Disposal Constract"""
-    return render(request, 'webapp/services/disposal.html')
+    disp_obj = DisposalService.objects.all()
+
+    context = locals()
+
+    return render(request, 'webapp/services/disposal.html', context)
 
 
 def electricalworks(request):

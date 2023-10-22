@@ -175,3 +175,25 @@ class UserProfile(models.Model):
     class Meta:
         verbose_name = "User Profile"
         verbose_name_plural = "User Profiles"
+
+
+class DisposalService(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Name')
+    description = models.TextField(verbose_name='Description')
+    advantages = models.TextField(verbose_name='Benefits')
+    material = models.CharField(max_length=100, verbose_name='Material')
+    photo = models.ImageField(upload_to='disposal_photos/', verbose_name='Photo')
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Price', default=0.00)
+    discount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Discount', default=0.00)
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        # Расчет скидки в 10% от цены
+        self.discount = self.price * 0.10
+        super(DisposalService, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "Disposal"
+        verbose_name_plural = "Disposal"

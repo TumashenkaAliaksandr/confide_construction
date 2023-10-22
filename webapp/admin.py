@@ -6,6 +6,10 @@ from .models import *
 class ServicesAdmin(admin.ModelAdmin):
     list_display = ('name', 'is_main', 'image', 'description')
 
+@admin.register(DisposalService)
+class DisposalServiceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'advantages', 'material', 'photo', 'price', 'discount')
+
 
 @admin.register(ServicesSlider)
 class ServicesSliderAdmin(admin.ModelAdmin):
