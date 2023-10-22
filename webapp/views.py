@@ -105,6 +105,10 @@ def drywall(request):
     """Drywall Constract"""
     return render(request, 'webapp/services/drywall.html')
 
+def disposal(request):
+    """Disposal Constract"""
+    return render(request, 'webapp/services/disposal.html')
+
 
 def electricalworks(request):
     """Electricalworks Constract"""
