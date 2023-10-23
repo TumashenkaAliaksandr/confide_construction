@@ -3469,6 +3469,26 @@ h3.product_title{margin: 15px 0; }
 
 /*store detail*/
 
+
+/*my new changes for slick slider*/
+.slick-slide.slick-current.slick-center {
+  width: 152px;
+  height: auto;
+}
+
+.slick-slide.slick-current.slick-active {
+  width: 555px;
+  position: relative;
+  left: 0px;
+  top: 0px;
+  z-index: 999;
+  opacity: 1;
+  height: auto;
+
+}
+/*END my new changes for slick slider*/
+
+
 .store-detail{padding: 75px 0 0px;}
 
 .store-detail .slider.slider-thumbs{margin-top: 2px;}

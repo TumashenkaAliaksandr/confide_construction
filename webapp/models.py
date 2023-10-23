@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
@@ -182,17 +183,22 @@ class DisposalService(models.Model):
     description = models.TextField(verbose_name='Description')
     advantages = models.TextField(verbose_name='Benefits')
     material = models.CharField(max_length=100, verbose_name='Material')
-    photo = models.ImageField(upload_to='disposal_photos/', verbose_name='Photo')
+    photo = models.ImageField(upload_to='disposal_photos/', verbose_name='Photo', default=0)
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Price', default=0.00)
     discount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Discount', default=0.00)
 
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-        # Расчет скидки в 10% от цены
-        self.discount = self.price * 0.10
-        super(DisposalService, self).save(*args, **kwargs)
+    def save_model(self, request, obj, form, change):
+        # Если цена была изменена, пересчитываем скидку
+        if 'price' in form.changed_data:
+            price = form.cleaned_data['price']
+            discount = price - Decimal('90.00')  # Вычитаем Decimal объект
+
+            obj.discount = discount
+
+        super().save_model(request, obj, form, change)
 
     class Meta:
         verbose_name = "Disposal"

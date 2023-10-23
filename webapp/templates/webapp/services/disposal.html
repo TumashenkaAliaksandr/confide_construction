@@ -30,48 +30,25 @@
         <div class="container">
             <div class="single-product-content">
                 <div class="row">
+                 {% for main_photo in disp_obj %}
                     <div class="col-sm-6">
-                        {% for main_photo in disp_obj %}
                         <div class="thumbnail-images">
                             <div class="slider slider-store">
                                 <div>
                                    <img src="{{ main_photo.photo.url }}" alt="1">
                                 </div>
-                                <div>
-                                    <img src="{% static 'webapp/images/project/bw7.jpg' %}" alt="1">
-                                </div>
-                                <div>
-                                    <img src="{% static 'webapp/images/project/bw8.jpg' %}" alt="1">
-                                </div>
-                                <div>
-                                    <img src="{% static 'webapp/images/project/bw9.jpg' %}" alt="1">
-                                </div>
-                                <div>
-                                    <img src="{% static 'webapp/images/project/bw10.jpg' %}" alt="1">
-                                </div>
                             </div>
                             <div class="slider slider-thumbs">
                                 <div>
-                                   <img src="{% static 'webapp/images/project/bw6.jpg' %}" alt="1">
-                                </div>
-                                <div>
-                                    <img src="{% static 'webapp/images/project/bw7.jpg' %}" alt="1">
-                                </div>
-                                <div>
-                                    <img src="{% static 'webapp/images/project/bw8.jpg' %}" alt="1">
-                                </div>
-                                <div>
-                                    <img src="{% static 'webapp/images/project/bw9.jpg' %}" alt="1">
-                                </div>
-                                <div>
-                                    <img src="{% static 'webapp/images/project/bw10.jpg' %}" alt="1">
+                                   <img src="{{ main_photo.photo.url }}" alt="1">
                                 </div>
                             </div>
                         </div>
-                        {% endfor %}
                     </div>
+                    {% endfor %}
+
+                    {% for main_disposal in disp_obj %}
                     <div class="col-sm-6">
-                        {% for main_disposal in disp_obj %}
                         <div class="single-product-summary">
                             <div class="entry-summary">
                                 <h2 class="single-product-title">{{ main_disposal.name }}</h2>
@@ -92,23 +69,19 @@
                                         <br> Nec sagittis sem nibh idi elit. vulputate cursus a sit amet mauri s. Morbi accumsan ipsum velit adipiscing elit.</p>
                                 </div>
 
-                                <form class="cart mar-top-30" action="" method="post">
-
-                                    <div class="quantity-buttons">
-                                        <label class="screen-reader-text">Quantity</label>
-                                        <input type="number" class="quantity-input" name="quantity" min="1" max="100" placeholder="No.">
-                                    </div>
-
-                                    <button type="submit" name="add-to-cart" value="1605" class="mt_btn_yellow">Add to cart</button>
-
+                                <form class="cart mar-top-30" action="{% url 'webapp:process_payment' %}" method="post">
+                                    <button type="submit" name="add-to-cart" value="1605" class="mt_btn_yellow">Add to
+                                        cart
+                                    </button>
                                 </form>
+
 
                                 <div class="product_meta mar-top-30">
 
                                     <span class="sku_wrapper">SKU: <span class="sku">125</span></span>
 
                                     <span class="posted_in">
-                                        Category: <a href="#" rel="tag">Wall Decoration</a>
+                                        Category: <a href="{% url 'webapp:process_payment' %}" rel="tag">Wall Decoration</a>
                                     </span>
 
                                     <span class="tagged_as">Tags:
@@ -119,8 +92,8 @@
                                 </div>
                             </div>
                         </div>
-                        {% endfor %}
                     </div>
+                    {% endfor %}
                 </div>
 
             </div>

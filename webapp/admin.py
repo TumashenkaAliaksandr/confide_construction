@@ -1,14 +1,20 @@
 from django.contrib import admin
 from .models import *
-
+from decimal import Decimal
 
 @admin.register(Services)
 class ServicesAdmin(admin.ModelAdmin):
     list_display = ('name', 'is_main', 'image', 'description')
 
-@admin.register(DisposalService)
 class DisposalServiceAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'advantages', 'material', 'photo', 'price', 'discount')
+    list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'photo')
+
+    def photo(self, obj):
+        return ", ".join([str(photo) for photo in obj.photos.all()])
+
+    photo.short_description = 'Photo'
+
+admin.site.register(DisposalService, DisposalServiceAdmin)
 
 
 @admin.register(ServicesSlider)
