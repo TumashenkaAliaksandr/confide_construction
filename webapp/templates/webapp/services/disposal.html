@@ -70,6 +70,11 @@
                                 </div>
 
                                 <form class="cart mar-top-30" action="{% url 'webapp:process_payment' %}" method="post">
+                                    <div class="quantity-buttons">
+                                        <label class="screen-reader-text">Quantity</label>
+                                        <input type="number" class="quantity-input" name="quantity" min="1" max="100" placeholder="No.">
+                                    </div>
+
                                     <button type="submit" name="add-to-cart" value="1605" class="mt_btn_yellow">Add to
                                         cart
                                     </button>
