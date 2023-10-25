@@ -149,281 +149,48 @@
                     <!-- section title -->
                     <div class="section_heading">
                         <h2 class="section_title">
-                            <span>Services</span>
+                            <span>Our Services</span>
                         </h2>
-                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which look believable
-                        dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                        <p class="heading_txt">We offer a range of services in the field of repair and construction.</p>
                     </div>
                 </div>
             </div>
 
             <div class="row slider-shop">
+                {% for main_sl_cart_prod in main_serv %}
                 <div class="col-md-3 col-xs-12">
                     <div class="rt-product-wrapper">
                         <div class="product-thumbnail-wrapper">
                                 <div class="product-image">
-                                    <img src="{% static 'webapp/images/product/prd-1.jpg' %}" class="" alt="product-list">
+                                    <img src="{{ main_sl_cart_prod.image.url }}" class="img-fixed-size" alt="product-list">
                                 </div>
                             <div class="product-label"><span class="onsale">Sale</span></div>
                         </div>
                         <div class="rt-product-meta-wrapper">
                             <h3 class="product_title">
-                                <a href="store-detail.html">Building Dozer</a>
+                                <a href="store-detail.html">{{ main_sl_cart_prod.name }}</a>
                             </h3>
                             <div class="rt-cartprice-wrapper">
                                 <span class="price mar-bottom-20">
-                                    <del>
-                                        <span class="rt-price-amount">
-                                            <span >$</span>370.00
-                                        </span>
-                                    </del>
+{#                                    <del>#}
+{#                                        <span class="rt-price-amount">#}
+{#                                            <span >$</span>#}
+{#                                        </span>#}
+{#                                    </del>#}
                                     <ins>
                                         <span class="rrt-price-amount">
-                                            <span>$</span>320.00
+                                            <span>$</span>{{ main_sl_cart_prod.price }}
                                         </span>
                                     </ins>
                                 </span>
                                 <div class="button">
-                                    <a href="store-detail.html" class="mt_btn_yellow">Add to cart</a>
+                                    <a href="{% url 'webapp:process_payment' %}" class="mt_btn_yellow">Add to cart</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-3 col-xs-12">
-                    <div class="rt-product-wrapper">
-                        <div class="product-thumbnail-wrapper">
-                                <div class="product-image">
-                                    <img src="{% static 'webapp/images/product/prd-2.jpg' %}" class="" alt="product-list">
-                                </div>
-                            <div class="product-label"><span class="onsale pull-left">Sale</span></div>
-                            <div class="product-label"><span class="hot pull-right">Hot</span></div>
-                        </div>
-                        <div class="rt-product-meta-wrapper">
-
-                            <h3 class="product_title">
-                                <a href="store-detail.html">Bricks</a>
-                            </h3>
-                            <div class="rt-cartprice-wrapper">
-                                <span class="price mar-bottom-20">
-                                    <del>
-                                        <span class="rt-price-amount">
-                                            <span >$</span>370.00
-                                        </span>
-                                    </del>
-                                    <ins>
-                                        <span class="rrt-price-amount">
-                                            <span>$</span>320.00
-                                        </span>
-                                    </ins>
-                                </span>
-                                <div class="button">
-                                    <a href="store-detail.html" class="mt_btn_yellow">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-xs-12">
-                    <div class="rt-product-wrapper">
-                        <div class="product-thumbnail-wrapper">
-                                <div class="product-image">
-                                    <img src="{% static 'webapp/images/product/prd-3.jpg' %}" class="" alt="product-list">
-                                </div>
-                            <div class="product-label"><span class="onsale">Sale</span></div>
-                        </div>
-                        <div class="rt-product-meta-wrapper">
-                            <h3 class="product_title">
-                                <a href="store-detail.html">Still Cutter</a>
-                            </h3>
-                            <div class="rt-cartprice-wrapper">
-                                <span class="price mar-bottom-20">
-                                    <del>
-                                        <span class="rt-price-amount">
-                                            <span >$</span>370.00
-                                        </span>
-                                    </del>
-                                    <ins>
-                                        <span class="rrt-price-amount">
-                                            <span>$</span>320.00
-                                        </span>
-                                    </ins>
-                                </span>
-                                <div class="button">
-                                    <a href="store-detail.html" class="mt_btn_yellow">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-xs-12">
-                    <div class="rt-product-wrapper">
-                        <div class="product-thumbnail-wrapper">
-                                <div class="product-image">
-                                    <img src="{% static 'webapp/images/product/prd-4.jpg' %}" class="" alt="product-list">
-                                </div>
-                            <div class="product-label"><span class="onsale">Sale</span></div>
-                        </div>
-                        <div class="rt-product-meta-wrapper">
-                            <h3 class="product_title">
-                                <a href="store-detail.html">Elements Carrier</a>
-                            </h3>
-                            <div class="rt-cartprice-wrapper">
-                                <span class="price mar-bottom-20">
-                                    <del>
-                                        <span class="rt-price-amount">
-                                            <span >$</span>370.00
-                                        </span>
-                                    </del>
-                                    <ins>
-                                        <span class="rrt-price-amount">
-                                            <span>$</span>320.00
-                                        </span>
-                                    </ins>
-                                </span>
-                                <div class="button">
-                                    <a href="store-detail.html" class="mt_btn_yellow">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-xs-12">
-                    <div class="rt-product-wrapper">
-                        <div class="product-thumbnail-wrapper">
-                                <div class="product-image">
-                                    <img src="{% static 'webapp/images/product/prd-5.jpg' %}" class="" alt="product-list">
-                                </div>
-                            <div class="product-label"><span class="onsale">Sale</span></div>
-                        </div>
-                        <div class="rt-product-meta-wrapper">
-                            <h3 class="product_title">
-                                <a href="store-detail.html">Pipeline Elements</a>
-                            </h3>
-                            <div class="rt-cartprice-wrapper">
-                                <span class="price mar-bottom-20">
-                                    <del>
-                                        <span class="rt-price-amount">
-                                            <span >$</span>370.00
-                                        </span>
-                                    </del>
-                                    <ins>
-                                        <span class="rrt-price-amount">
-                                            <span>$</span>320.00
-                                        </span>
-                                    </ins>
-                                </span>
-                                <div class="button">
-                                    <a href="store-detail.html" class="mt_btn_yellow">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-xs-12">
-                    <div class="rt-product-wrapper">
-                        <div class="product-thumbnail-wrapper">
-                                <div class="product-image">
-                                    <img src="{% static 'webapp/images/product/prd-6.jpg' %}" class="" alt="product-list">
-                                </div>
-                            <div class="product-label"><span class="onsale">Sale</span></div>
-                        </div>
-                        <div class="rt-product-meta-wrapper">
-                            <h3 class="product_title">
-                                <a href="store-detail.html">Bull Dozer</a>
-                            </h3>
-                            <div class="rt-cartprice-wrapper">
-                                <span class="price mar-bottom-20">
-                                    <del>
-                                        <span class="rt-price-amount">
-                                            <span >$</span>370.00
-                                        </span>
-                                    </del>
-                                    <ins>
-                                        <span class="rrt-price-amount">
-                                            <span>$</span>320.00
-                                        </span>
-                                    </ins>
-                                </span>
-                                <div class="button">
-                                    <a href="store-detail.html" class="mt_btn_yellow">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-xs-12">
-                    <div class="rt-product-wrapper">
-                        <div class="product-thumbnail-wrapper">
-                                <div class="product-image">
-                                    <img src="{% static 'webapp/images/product/prd-7.jpg' %}" class="" alt="product-list">
-                                </div>
-                            <div class="product-label"><span class="onsale pull-left">Sale</span></div>
-                            <div class="product-label"><span class="hot pull-right">Hot</span></div>
-                        </div>
-                        <div class="rt-product-meta-wrapper">
-                            <h3 class="product_title">
-                                <a href="store-detail.html">Concrete Vibrator</a>
-                            </h3>
-                            <div class="rt-cartprice-wrapper">
-                                <span class="price mar-bottom-20">
-                                    <del>
-                                        <span class="rt-price-amount">
-                                            <span >$</span>370.00
-                                        </span>
-                                    </del>
-                                    <ins>
-                                        <span class="rrt-price-amount">
-                                            <span>$</span>320.00
-                                        </span>
-                                    </ins>
-                                </span>
-                                <div class="button">
-                                    <a href="store-detail.html" class="mt_btn_yellow">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-xs-12">
-                    <div class="rt-product-wrapper">
-                        <div class="product-thumbnail-wrapper">
-                                <div class="product-image">
-                                    <img src="{% static 'webapp/images/product/prd-8.jpg' %}" class="" alt="product-list">
-                                </div>
-                            <div class="product-label"><span class="onsale">Sale</span></div>
-                        </div>
-                        <div class="rt-product-meta-wrapper">
-                            <h3 class="product_title">
-                                <a href="store-detail.html">Surveying Element</a>
-                            </h3>
-                            <div class="rt-cartprice-wrapper">
-                                <span class="price mar-bottom-20">
-                                    <del>
-                                        <span class="rt-price-amount">
-                                            <span >$</span>370.00
-                                        </span>
-                                    </del>
-                                    <ins>
-                                        <span class="rrt-price-amount">
-                                            <span>$</span>320.00
-                                        </span>
-                                    </ins>
-                                </span>
-                                <div class="button">
-                                    <a href="store-detail.html" class="mt_btn_yellow">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>

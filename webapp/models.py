@@ -11,6 +11,7 @@ class Services(models.Model):
     image = models.ImageField(upload_to='services', verbose_name='photo')
     is_main = models.BooleanField(default=False)
     link = models.URLField()  # Поле для хранения ссылки
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Price', default=0.00)
 
     def __str__(self):
         return self.name

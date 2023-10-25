@@ -108,6 +108,7 @@ def drywall(request):
 def disposal(request):
     """Disposal Constract"""
     disp_obj = DisposalService.objects.all()
+    main_serv = Services.objects.all()
 
     context = locals()
 
