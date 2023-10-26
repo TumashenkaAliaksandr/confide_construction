@@ -124,49 +124,29 @@
     </section>
     <!--* End choose us*-->
 
-    <!--* Fun And Facts*-->
-    <section id="mt_fun">
-        <div class="container wow slideInDown">
-
-            <div class="row">
-                <div class="col-md-3 col-sm-12">
-                    <div class="fun-content">
-                        <span class="mar-bottom-15">EXPERTS IN FIELD</span>
-                        <h2 class="mar-bottom-0">Design Startup Movement</h2>
+    <!--* Slider Services*-->
+    <section id="mt_services" class="services_one">
+        <div class="container">
+            <div class="services-detail mar-bottom-80">
+                <div class="row">
+                    <div class="col-md-8 col-sm-12">
+                        <span class="page-title mar-bottom-15">Confide Construction</span>
+                        <h2 class="mar-bottom-15">We individually assess each <br> plan and offer optimal solutions</h2>
+                        <p class="mar-bottom-15">Each project undergoes a meticulous assessment,
+                            <br>enabling us to deliver the most efficient and effective solutions tailored to your specific requirements.</p>
                     </div>
-                </div>
-                <div class="col-md-9 col-sm-12">
-                    <div class="row facts_row">
-                        <div class="col-md-3 col-sm-3 col-xs-6 facts_col">
-                            <div class="fun-facts_wrapper text-center">
-                                <p class="fun-facts_title mar-bottom-30"> Years of Experience </p>
-                                <p class="fun-facts_figure timer" data-to="15" data-speed="3000"></p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-6 facts_col">
-                            <div class="fun-facts_wrapper text-center">
-                                <p class="fun-facts_title mar-bottom-30"> Happy Clients </p>
-                                <p class="fun-facts_figure timer" data-to="520" data-speed="3000"></p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-6 facts_col">
-                            <div class="fun-facts_wrapper text-center">
-                                <p class="fun-facts_title mar-bottom-30"> Projects Completed </p>
-                                <p class="fun-facts_figure timer" data-to="850" data-speed="3000"></p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-6 facts_col">
-                            <div class="fun-facts_wrapper text-center">
-                                <p class="fun-facts_title mar-bottom-30"> Comments </p>
-                                <p class="fun-facts_figure timer" data-to="950" data-speed="3000"></p>
-                            </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="slider-services">
+                            {% for slider in servis_slider %}
+                                <div><img src="{{ slider.image.url }}" class="img-fixed-size-two" alt="{{ main_slider.name }}"><h3>{{ slider.name }}</h3></div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!--* End Fun And Facts*-->
+    <!--* End Slider Services*-->
 
     <!--* Portfolio*-->
     <section id="mt_project" class="">
@@ -622,7 +602,7 @@
             <div class="row slider-partner">
                 {% for recomended in company %}
                     <div class="col-sm-2">
-                        <img src="{{ recomended.image.url }}" alt="partner">
+                        <img src="{{ recomended.image.url }}" class="img-fixed-size-three" alt="partner">
                     </div>
                 {% endfor %}
             </div>
