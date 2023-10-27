@@ -127,12 +127,21 @@ def handyman(request):
 
 def wallpaper(request):
     """Wallpaper Constract"""
-    return render(request, 'webapp/services/wallpaper.html')
+    disp_obj = DisposalService.objects.all()
+    main_serv = Services.objects.all()
+
+    context = locals()
+
+    return render(request, 'webapp/services/wallpaper.html', context=context)
 
 
 def soundproofing(request):
     """Soundproofing Constract"""
-    return render(request, 'webapp/services/soundproofing.html')
+    disp_obj = DisposalService.objects.all()
+    main_serv = Services.objects.all()
+
+    context = locals()
+    return render(request, 'webapp/services/soundproofing.html', context)
 
 
 def furniture(request):
