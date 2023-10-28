@@ -103,7 +103,11 @@ def backsplash(request):
 
 def drywall(request):
     """Drywall Constract"""
-    return render(request, 'webapp/services/drywall.html')
+    disp_obj = DisposalService.objects.all()
+    main_serv = Services.objects.all()
+
+    context = locals()
+    return render(request, 'webapp/services/drywall.html', context)
 
 def disposal(request):
     """Disposal Constract"""
