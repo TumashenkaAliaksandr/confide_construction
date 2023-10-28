@@ -151,7 +151,11 @@ def furniture(request):
 
 def painting(request):
     """ Painting Constract"""
-    return render(request, 'webapp/services/painting.html')
+    disp_obj = DisposalService.objects.all()
+    main_serv = Services.objects.all()
+
+    context = locals()
+    return render(request, 'webapp/services/painting.html', context)
 
 
 def callback_view(request):
