@@ -25,6 +25,7 @@ urlpatterns = [
     path('callback/', callback_view, name='callback'),
     path('register/', registration, name='register'),
     path('process_payment/', process_payment, name='process_payment'),
+    path('error/', error, name='error'),
     ]
 
 if settings.DEBUG:

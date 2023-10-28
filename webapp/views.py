@@ -233,3 +233,7 @@ def registration(request):
     else:
         form = RegistrationForm()
     return render(request, 'webapp/forms/register_form.html', {'form': form})
+
+def error(request):
+    """Error page Constract """
+    return render(request, 'webapp/error.html')
