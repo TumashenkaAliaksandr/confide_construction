@@ -94,10 +94,9 @@
                             </ul>
                         </li>
                         <li {% if request.resolver_match.url_name == 'about' %}class="active"{% endif %}><a href="{% url 'webapp:about' %}">Company</a></li>
-                        <li {% if request.resolver_match.url_name == 'shop' %}class="active"{% endif %}><a href="{% url 'webapp:shop' %}">Shop <i class="fa fa-angle-down"></i></a>
+                        <li {% if request.resolver_match.url_name in "['events', 'shop']" %}class="active"{% endif %}><a href="{% url 'webapp:shop' %}">Shop <i class="fa fa-angle-down"></i></a>
                             <ul>
-                                <li><a href="shop.html">Shop List</a></li>
-                                <li><a href="store-detail.html">Shop Single</a></li>
+                                <li {% if request.resolver_match.url_name == 'events' %}class="active"{% endif %}><a href="{% url 'webapp:events' %}">Events</a></li>
                                 <li><a href="login.html">My Account</a></li>
                                 <li><a href="{% url 'webapp:process_payment' %}">Cart</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>

@@ -26,6 +26,7 @@ urlpatterns = [
     path('register/', registration, name='register'),
     path('process_payment/', process_payment, name='process_payment'),
     path('error/', error, name='error'),
+    path('events/', events, name='events'),
     ]
 
 if settings.DEBUG:
