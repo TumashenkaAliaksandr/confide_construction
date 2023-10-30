@@ -4,6 +4,7 @@
 
 {% block content %}
 
+
     {% include 'slider/slider_main.html' %}
 
     <!--* Services*-->
@@ -40,8 +41,9 @@
     </section>
     <!--* End Services*-->
 
+
     <!--* Choose Us*-->
-    <section id="choose_us" class="about_choose_us">
+    <section id="choose_us" class="choose_us">
         <div class="container">
 
             <div class="row">
@@ -49,27 +51,25 @@
                     <!-- section title -->
                     <div class="section_heading">
                         <h2 class="section_title">
-                            <span>Why Choose us?</span>
+                            <span>Our Special Services</span>
                         </h2>
-                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which
-                            look believable
-                            dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which look believable.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="row ">
+            <div class="row">
                 <div class="col-md-5 col-sm-12 col-xs-12 mission-image">
-                    <img src="{% static 'webapp/images/pic1.png' %}" alt="mission-image">
+                    <div class="choose-image"><img src="{% static 'webapp/images/pic1.png' %}" alt="mission-image"></div>
                 </div>
-                <div class="col-md-7 col-sm-12 col-xs-12 mission-list">
+                <div class="col-md-7 col-sm-12 col-xs-12  wow slideInRight mission-list">
+
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="choose-list mar-bottom-30">
                                 <i class="fa fa-users"></i>
                                 <h3>Team Of Professional</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure
-                                    versions.</p>
+                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
                             </div>
                         </div>
 
@@ -77,8 +77,7 @@
                             <div class="choose-list mar-bottom-30">
                                 <i class="fa fa-paint-brush"></i>
                                 <h3>Full Of Services</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure
-                                    versions.</p>
+                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
                             </div>
                         </div>
 
@@ -86,8 +85,7 @@
                             <div class="choose-list mar-bottom-30">
                                 <i class="fa fa-phone"></i>
                                 <h3>27/7 Support</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure
-                                    versions.</p>
+                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
                             </div>
                         </div>
 
@@ -95,8 +93,7 @@
                             <div class="choose-list mar-bottom-30">
                                 <i class="fa fa-cogs"></i>
                                 <h3>Unique Technology</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure
-                                    versions.</p>
+                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
                             </div>
                         </div>
 
@@ -104,8 +101,7 @@
                             <div class="choose-list">
                                 <i class="fa fa-building"></i>
                                 <h3>Attractive Building</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure
-                                    versions.</p>
+                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
                             </div>
                         </div>
 
@@ -113,8 +109,7 @@
                             <div class="choose-list">
                                 <i class="fa fa-picture-o"></i>
                                 <h3>Perfect Interior</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure
-                                    versions.</p>
+                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
                             </div>
                         </div>
                     </div>
@@ -123,104 +118,6 @@
         </div>
     </section>
     <!--* End choose us*-->
-
-    <!--* Slider Services*-->
-    <section id="mt_services" class="services_one">
-        <div class="container">
-            <div class="services-detail mar-bottom-80">
-                <div class="row">
-                    <div class="col-md-8 col-sm-12">
-                        <span class="page-title mar-bottom-15">Confide Construction</span>
-                        <h2 class="mar-bottom-15">We individually assess each <br> plan and offer optimal solutions</h2>
-                        <p class="mar-bottom-15">Each project undergoes a meticulous assessment,
-                            <br>enabling us to deliver the most efficient and effective solutions tailored to your specific requirements.</p>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                        <div class="slider-services">
-                            {% for slider in servis_slider %}
-                                <div><img src="{{ slider.image.url }}" class="img-fixed-size-two" alt="{{ main_slider.name }}"><h3>{{ slider.name }}</h3></div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--* End Slider Services*-->
-
-    <!--* Portfolio*-->
-    <section id="mt_project" class="">
-        <div class="container wow slideInDown">
-
-            <div class="row">
-                <div class="col-xs-12">
-                    <!-- section title -->
-                    <div class="section_heading">
-                        <h2 class="section_title">
-                            <span>Fascinating projects</span>
-                        </h2>
-                        <p class="heading_txt">Discover our array of projects that exemplify our dedication to quality and innovation.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project_list">
-                <div class="row">
-                    {% for project in project_constract %}
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                            <div class="project-image">
-                                <a href="{{ project.image.url }}" data-toggle="lightbox"
-                                   data-footer="{{ project.description }}" data-gallery="example-gallery">
-                                    <img src="{{ project.image.url }}" class="img-fluid">
-                                    <div class="project-overlay text-center">
-                                        <h3 class="text-center white">{{ project.title }}</h3>
-                                        <p class="white">{{ project.description }}</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="project-image">
-                                <a href="{{ project.image.url }}" data-toggle="lightbox"
-                                   data-footer="{{ project.description }}" data-gallery="example-gallery">
-                                    <img src="{{ project.image.url }}" class="img-fluid">
-                                    <div class="project-overlay text-center">
-                                        <h3 class="text-center white">{{ project.title }}</h3>
-                                        <p class="white">{{ project.description }}</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--* End Portfolio*-->
-
-
-    <!--=* Get Started Section*=-->
-    <section id="mt_get_started">
-        <div class="container">
-            <div class="watch_inner">
-                <img src="{% static 'webapp/images/watch_inner.jpg' %}" alt="">
-                <div class="watch_content">
-                    <h3 class="white">We Build, Your Dream</h3>
-                    <h2 class="white">Quality Comes First</h2>
-                    <p>To develop a financial strategy for your future, it's important for your financial professional
-                        to see a complete, 360-degree view of your financial picture, including how your retirement
-                        assets are intadfegrated and work with one another.</p>
-                    <a href="#" class="btn mt_btn_yellow mar-top-30">View Work Process</a>
-                </div>
-                <div class="pulses">
-                    <button type="button" class="play-btn js-video-button" data-video-id='152879427'
-                            data-channel="vimeo"><i class="fa fa-play"></i></button>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--* End Get Started Section*-->
 
 
     <!--*Team*-->
@@ -331,138 +228,27 @@
     <!--* End Team*-->
 
 
-    <!--* Testimonial*-->
-    <section id="mt_faq-testi">
-        <div class="container wow slideInDown">
-
-            <div class="row">
-                <div class="col-sm-6 col-xs-12">
-                    <!-- section title -->
-                    <div class="section_heading">
-                        <h2 class="section_title">
-                            <span>Frequemtly Asked Question</span>
-                        </h2>
-                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which
-                            look believable
-                            dolor sit.</p>
-                    </div>
-
-                    <div class="accrodion-grp faq-accrodion" data-grp-name="faq-accrodion">
-                        <div class="accrodion active">
-                            <div class="accrodion-title">
-                                <h4>Lorem ipsum dolor sit amet</h4>
-                            </div>
-                            <div class="accrodion-content" style="display: block;">
-                                <div class="inner">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, inventore cumque
-                                        veniam, praesentium velit incidunt rem quas a, quos eos ipsum, reprehenderit
-                                        voluptatem.</p>
-                                </div><!-- /.inner -->
-                            </div>
-                        </div>
-                        <div class="accrodion ">
-                            <div class="accrodion-title">
-                                <h4>Dolor sit amet, consectetuer adipiscing elit</h4>
-                            </div>
-                            <div class="accrodion-content" style="display: none;">
-                                <div class="inner">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, inventore cumque
-                                        veniam, praesentium velit incidunt rem quas a, quos eos ipsum, reprehenderit
-                                        voluptatem.</p>
-                                </div><!-- /.inner -->
-                            </div>
-                        </div>
-                        <div class="accrodion">
-                            <div class="accrodion-title">
-                                <h4>Sed diam nonummy nibh euismod</h4>
-                            </div>
-                            <div class="accrodion-content" style="display: none;">
-                                <div class="inner">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, inventore cumque
-                                        veniam, praesentium velit incidunt rem quas a, quos eos ipsum, reprehenderit
-                                        voluptatem.</p>
-                                </div><!-- /.inner -->
-                            </div>
-                        </div>
-                    </div>
-
+    <!--=* Get Started Section*=-->
+    <section id="mt_get_started">
+        <div class="container">
+            <div class="watch_inner">
+                <img src="{% static 'webapp/images/watch_inner.jpg' %}" alt="">
+                <div class="watch_content">
+                    <h3 class="white">We Build, Your Dream</h3>
+                    <h2 class="white">Quality Comes First</h2>
+                    <p>To develop a financial strategy for your future, it's important for your financial professional
+                        to see a complete, 360-degree view of your financial picture, including how your retirement
+                        assets are intadfegrated and work with one another.</p>
+                    <a href="#" class="btn mt_btn_yellow mar-top-30">View Work Process</a>
                 </div>
-
-                <div class="col-sm-6 col-xs-12">
-                    <div class="mt_testimonial">
-                        <!-- section title -->
-                        <div class="section_heading">
-                            <h2 class="section_title">
-                                <span>What Say Our Client</span>
-                            </h2>
-                            <p class="heading_txt">There are variations available majoritaey suffered alteration words
-                                which look believable
-                                dolor sit.</p>
-                        </div>
-
-                        <div class="row slider-testi">
-                            <div class="col-xs-12">
-                                <div class="testimonial_main">
-                                    <p class="mar-bottom-30">It is a long established fact that a reader will be
-                                        distracted by the readable content of a page when looking at its layout. The
-                                        point of using Lorem Ipsum is that it has a more-or-less normal.</p>
-                                    <div class="client-pic"><img src="{% static 'webapp/images/team/member-1.jpg' %}"
-                                                                 alt=""></div>
-                                    <h4>
-                                        <a href="#">Christopher Daniel</a>
-                                        <span>MD of Nicolos</span>
-                                    </h4>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12">
-                                <div class="testimonial_main">
-                                    <p class="mar-bottom-30">It is a long established fact that a reader will be
-                                        distracted by the readable content of a page when looking at its layout. The
-                                        point of using Lorem Ipsum is that it has a more-or-less normal.</p>
-                                    <div class="client-pic"><img src="{% static 'webapp/images/team/member-2.jpg' %}"
-                                                                 alt=""></div>
-                                    <h4>
-                                        <a href="#">John Wakson</a>
-                                        <span>CEO Of Micro group</span>
-                                    </h4>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12">
-                                <div class="testimonial_main">
-                                    <p class="mar-bottom-30">It is a long established fact that a reader will be
-                                        distracted by the readable content of a page when looking at its layout. The
-                                        point of using Lorem Ipsum is that it has a more-or-less normal.</p>
-                                    <div class="client-pic"><img src="{% static 'webapp/images/team/member-3.jpg' %}"
-                                                                 alt=""></div>
-                                    <h4>
-                                        <a href="#">Tim Loran</a>
-                                        <span>CEO Of Tim Lake</span>
-                                    </h4>
-                                </div>
-                            </div>
-                            <div class="col-xs-12">
-                                <div class="testimonial_main">
-                                    <p class="mar-bottom-30">It is a long established fact that a reader will be
-                                        distracted by the readable content of a page when looking at its layout. The
-                                        point of using Lorem Ipsum is that it has a more-or-less normal.</p>
-                                    <div class="client-pic"><img src="{% static 'webapp/images/team/member-2.jpg' %}"
-                                                                 alt=""></div>
-                                    <h4>
-                                        <a href="#">John Wakson</a>
-                                        <span>CEO Of Micro group</span>
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="pulses">
+                    <button type="button" class="play-btn js-video-button" data-video-id='152879427'
+                            data-channel="vimeo"><i class="fa fa-play"></i></button>
                 </div>
             </div>
-
         </div>
     </section>
-    <!--* EndTestimonial*-->
+    <!--* End Get Started Section*-->
 
 
     <!--* Blog*-->
@@ -582,6 +368,7 @@
     </section>
     <!--* End Blog*-->
 
+
     <!--* Partner*-->
     <section id="mt_partner">
         <div class="container">
@@ -609,5 +396,6 @@
         </div>
     </section>
     <!--* End partner*-->
+
 
 {% endblock %}
