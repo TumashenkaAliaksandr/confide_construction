@@ -241,3 +241,7 @@ def error(request):
 def events(request):
     """Events page Constract """
     return render(request, 'webapp/event.html')
+
+def checkout(request):
+    """Checkout page Constract """
+    return render(request, 'webapp/checkout.html')
