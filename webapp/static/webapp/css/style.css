@@ -932,10 +932,30 @@ section#choose_us.about_choose_us {
 }
 
 
-/*.heading_txt {*/
-/*    margin-top: 10px;*/
-/*    height: 5%;*/
-/*}*/
+/* CSS для объектов в одной строке */
+.slider-team1 {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto; /* В случае переполнения, добавлять полосу прокрутки */
+}
+
+.item1 {
+    flex: 0 0 auto; /* Отключаем увеличение ширины элемента */
+    margin-right: 20px; /* Регулируйте отступ между элементами по вашему усмотрению */
+}
+
+/* Добавьте media query для мобильных устройств, если необходимо */
+@media (max-width: 768px) {
+    .slider-team1 {
+        flex-wrap: wrap;
+    }
+
+    .item1 {
+        margin-right: 0;
+        margin-bottom: 20px; /* Добавьте отступ снизу между элементами для мобильных устройств */
+    }
+}
+
 
 section#mt_services{padding:90px 0 90px;} /* отступы по блокам*/
 

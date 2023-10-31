@@ -369,10 +369,10 @@
 
 
     <!--* Partner*-->
-    <section id="mt_partner">
-        <div class="container">
+    <section id="const-team">
+        <div class="container wow slideInDown">
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-md-4 col-sm-12">
                     <!-- section title -->
                     <div class="section_heading">
                         <h2 class="section_title">
@@ -380,17 +380,38 @@
                         </h2>
                     </div>
                 </div>
-            </div>
-            <div class="row slider-partner">
-                {% for recomended in partner %}
-                    <div class="col-sm-2">
-                        <img src="{{ recomended.image.url }}" class="img-fixed-size-two" alt="partner">
+                <div class="col-md-8 col-sm-12">
+                    <div class="row slider-team1">
+                        {% for recomended in partner %}
+                            <div class="col-md-4 item1">
+                                <div class="team_member">
+
+                                    <figure class="effect-julia">
+                                        <img src="{{ recomended.image.url }}" alt="team">
+                                    </figure>
+                                    <div class="member_name">
+                                        <h4 class="white">Monica Wagase</h4>
+                                        <span>Camical officer</span>
+                                    </div>
+                                    <div class="team-overlay">
+                                        <ul class="socialicons">
+                                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-google"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
+                </div>
             </div>
         </div>
     </section>
     <!--* End partner*-->
+
 
 
 {% endblock %}
