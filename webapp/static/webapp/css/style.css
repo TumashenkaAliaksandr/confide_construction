@@ -928,10 +928,20 @@ section#choose_us.about_choose_us {
 }
 
 .img-fixed-size-four {
-    width: auto;
-    height: auto;
-    max-width: 60px; /* Максимальная ширина */
-    max-height: 100px; /* Максимальная высота */
+    /*width: 103px; !* Ширина контейнера 55px *!*/
+    height: 155px; /* Высота контейнера 55px */
+    margin-right: 2px; /* Отступ справа между объектами (измените значение по вашему усмотрению) */
+}
+
+.img-fixed-size-four img {
+    width: 100%; /* Ширина изображения 100% от контейнера */
+    height: 100%; /* Высота изображения 100% от контейнера */
+    object-fit: contain; /* Сохраняет пропорции изображения и помещает его внутри контейнера без обрезания */
+}
+
+.my_row {
+  margin-right: 0px;
+  margin-left: 0px;
 }
 
 
@@ -945,7 +955,7 @@ section#choose_us.about_choose_us {
 .slider-team1 {
     display: flex;
     flex-wrap: nowrap;
-    overflow: auto; /* В случае переполнения, добавлять полосу прокрутки */
+    /*overflow: auto; !* В случае переполнения, добавлять полосу прокрутки *!*/
 }
 
 .item1 {
@@ -1460,6 +1470,14 @@ section#const-team .team_member{
   overflow: hidden;
   position: relative;
   background:#fbfbfb;
+  transition: all ease-in-out 0.5s;
+}
+
+section#const-team1 .team_member1{
+  /*box-shadow: 0 0 5px #ccc;*/
+  overflow: hidden;
+  position: relative;
+  /*background:#fbfbfb;*/
   transition: all ease-in-out 0.5s;
 }
 
