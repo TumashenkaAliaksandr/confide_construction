@@ -376,19 +376,15 @@
                     <!-- section title -->
                     <div class="section_heading">
                         <h2 class="section_title">
-                            <span>Our Partner</span>
+                            <span>We are recommended by</span>
                         </h2>
-                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which
-                            look believable
-                            dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
                     </div>
                 </div>
             </div>
-
             <div class="row slider-partner">
-                {% for recomended in company %}
+                {% for recomended in partner %}
                     <div class="col-sm-2">
-                        <img src="{{ recomended.image.url }}" class="img-fixed-size-three" alt="partner">
+                        <img src="{{ recomended.image.url }}" class="img-fixed-size-two" alt="partner">
                     </div>
                 {% endfor %}
             </div>

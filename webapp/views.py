@@ -1,10 +1,6 @@
-from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-
 from webapp.models import *
-from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
-from django.shortcuts import redirect
 from .forms import CallbackForm, PaymentForm, RegistrationForm
 from django.http import JsonResponse
 import stripe
@@ -15,7 +11,7 @@ from django.shortcuts import render, redirect
 def index(request):
     """Main, index constr"""
     serv = Services.objects.all()
-    company = Recommended.objects.all()
+    partner = Recommended.objects.all()
     project_constract = Project.objects.all()
     main_serv = Services.objects.filter(is_main=True).first()
 
@@ -84,10 +80,12 @@ def process_payment(request):
 def about(request):
     assessment = Assessment.objects.all()
     partner = Recommended.objects.all()
+    servis_sliders = ServicesSlider.objects.all()
 
     context = {
         'assessment': assessment,
         'partner': partner,
+        'servis_sliders': servis_sliders,
     }
     return render(request, 'webapp/about-us.html', context=context)
 

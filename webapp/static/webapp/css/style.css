@@ -757,6 +757,7 @@ span.about-no {
     font-size: 36px;
 }
 
+
 #mt_about .about_services h3{display: block;}
 
  #mt_about .about_services p{margin-top: 30px;}
@@ -931,7 +932,19 @@ section#choose_us.about_choose_us {
 }
 
 
-section#mt_services{padding:40px 0 35px;}
+/*.heading_txt {*/
+/*    margin-top: 10px;*/
+/*    height: 5%;*/
+/*}*/
+
+section#mt_services{padding:90px 0 90px;} /* отступы по блокам*/
+
+/* Отступы для мобильных устройств (ширина экрана менее 768px) */
+@media (max-width: 768px) {
+    section#mt_services {
+        padding: 40px 0; /* Измените на нужные вам значения для мобильных устройств */
+    }
+}
 
 .box {
   padding:0;
