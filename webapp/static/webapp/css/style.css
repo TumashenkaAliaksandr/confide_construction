@@ -927,6 +927,15 @@ section#choose_us.about_choose_us {
     object-fit: cover; /* Этот свойство сохраняет соотношение сторон и обрезает изображение по нужным размерам */
 }
 
+.img-fixed-size-four {
+    width: auto;
+    height: auto;
+    max-width: 60px; /* Максимальная ширина */
+    max-height: 100px; /* Максимальная высота */
+}
+
+
+
 .worker section#choose_us {
   background: #ffac00;   /* желтый бэк для блока с мужиком и трактарком) */
 }
