@@ -46,26 +46,25 @@
                     </div>
                     {% endfor %}
 
-                    {% for main_disposal in disp_obj %}
+                    {% for main_drywall in disp_obj %}
                     <div class="col-sm-6">
                         <div class="single-product-summary">
                             <div class="entry-summary">
-                                <h2 class="single-product-title">{{ main_disposal.name }}</h2>
+                                <h2 class="single-product-title">{{ main_drywall.name }}</h2>
                                 <div class="rt-product-meta-wrapper">
                                     <span class="price">
                                         <del>
                                             <span class="rt-price-amount">
-                                                <span>$</span>{{ main_disposal.price }}</span>
+                                                <span>$</span>{{ main_drywall.price }}</span>
                                         </del>
                                         <ins>
                                             <span class="rt-price-amount">
-                                                <span>$</span>{{ main_disposal.discount }}</span>
+                                                <span>$</span>{{ main_drywall.discount }}</span>
                                         </ins>
                                     </span>
                                 </div>
                                 <div class="product-details_short-description mar-top-30">
-                                    <p>Our sink clog removal services are designed to provide swift and efficient solutions for unclogging sinks in both kitchens and bathrooms. A clogged sink can disrupt your daily routine and lead to inconvenience, but our expert team is here to help.<br>
-                                        <br> Nec sagittis sem nibh idi elit. vulputate cursus a sit amet mauri s. Morbi accumsan ipsum velit adipiscing elit.</p>
+                                    <p>{{ main_drywall.description }}</p>
                                 </div>
 
                                 <form class="cart mar-top-30" action="{% url 'webapp:process_payment' %}" method="post">

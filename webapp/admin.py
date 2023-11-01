@@ -17,6 +17,16 @@ class DisposalServiceAdmin(admin.ModelAdmin):
 admin.site.register(DisposalService, DisposalServiceAdmin)
 
 
+class DrywallAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'photo')
+
+    def photo(self, obj):
+        return ", ".join([str(photo) for photo in obj.photos.all()])
+
+    photo.short_description = 'Photo'
+
+admin.site.register(Drywall, DrywallAdmin)
+
 @admin.register(ServicesSlider)
 class ServicesSliderAdmin(admin.ModelAdmin):
     list_display = ('name', 'image')

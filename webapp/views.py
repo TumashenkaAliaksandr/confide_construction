@@ -101,7 +101,7 @@ def backsplash(request):
 
 def drywall(request):
     """Drywall Constract"""
-    disp_obj = DisposalService.objects.all()
+    disp_obj = Drywall.objects.all()
     main_serv = Services.objects.all()
 
     context = locals()
