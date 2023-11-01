@@ -70,6 +70,7 @@
                                 </div>
 
                                 <form class="cart mar-top-30" action="{% url 'webapp:process_payment' %}" method="post">
+                                    {% csrf_token %}
                                     <div class="quantity-buttons">
                                         <label class="screen-reader-text">Quantity</label>
                                         <input type="number" class="quantity-input" name="quantity" min="1" max="100" placeholder="No.">
@@ -84,7 +85,6 @@
                     </div>
                     {% endfor %}
                 </div>
-
             </div>
         </div>
     </section>

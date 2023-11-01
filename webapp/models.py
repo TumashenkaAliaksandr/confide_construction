@@ -106,15 +106,23 @@ class Callback(models.Model):
         return self.name
 
 
+from django.db import models
+
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)  # Ссылка на пользователя, если есть
     order_number = models.CharField(max_length=20, unique=True)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
-    # Добавьте другие поля заказа, если необходимо
+    order_month = models.IntegerField(default=1)  # Поле для хранения месяца
+
+    def save(self, *args, **kwargs):
+        # Извлекаем месяц из created_at и сохраняем его в order_month
+        self.order_month = self.created_at.month
+        super(Order, self).save(*args, **kwargs)
 
     def __str__(self):
         return f"Order #{self.order_number}"
+
 
 class Payment(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
