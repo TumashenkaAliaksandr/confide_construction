@@ -56,7 +56,7 @@
                     <div class="top-bar-right pull-right">
                        <div style="position: absolute; top: 11px; right: 62px;">
                            <ul>
-                               <li><a href="{% url 'webapp:register' %}" class="fa fa-pencil" style="color: white;">
+                               <li><a href="{% url 'webapp:login' %}" class="fa fa-pencil" style="color: white;">
                                    Login</a></li>
                                <li><a href="{% url 'webapp:register' %}" class="fa fa-user" style="color: white;">
                                    Register</a></li>
@@ -97,7 +97,7 @@
                         <li {% if request.resolver_match.url_name in "['events', 'shop', 'checkout']" %}class="active"{% endif %}><a href="{% url 'webapp:shop' %}">Shop <i class="fa fa-angle-down"></i></a>
                             <ul>
                                 <li {% if request.resolver_match.url_name == 'events' %}class="active"{% endif %}><a href="{% url 'webapp:events' %}">Events</a></li>
-                                <li><a href="login.html">My Account</a></li>
+                                <li><a href="{% url 'webapp:login' %}">My Account</a></li>
                                 <li><a href="{% url 'webapp:process_payment' %}">Cart</a></li>
                                 <li {% if request.resolver_match.url_name == 'checkout' %}class="active"{% endif %}><a href="{% url 'webapp:checkout' %}">Checkout</a></li>
                             </ul>

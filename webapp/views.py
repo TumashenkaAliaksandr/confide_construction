@@ -94,6 +94,10 @@ def contacts(request):
     return render(request, 'webapp/contact-us-1.html')
 
 
+def login(request):
+    return render(request, 'webapp/login.html')
+
+
 
 def backsplash(request):
     """Backsplash Constract"""

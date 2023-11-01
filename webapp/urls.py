@@ -28,6 +28,7 @@ urlpatterns = [
     path('error/', error, name='error'),
     path('events/', events, name='events'),
     path('checkout/', checkout, name='checkout'),
+    path('login/', login, name='login'),
 
     ]
 
