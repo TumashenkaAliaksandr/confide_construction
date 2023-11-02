@@ -39,11 +39,13 @@
                     </div>
                 </div>
 
+
                 <div class="col-sm-6 col-xs-12">
-                    <!-- Contact Us Map -->   
-                    <div class="map mar-bottom-30">
-                        <div id="map" style="height: 300px; width: 100%;"></div>
-                    </div>
+                    <!-- Contact Us Map -->
+                    <iframe width="100%" height="400" frameborder="0" style="border: 2px solid #000; box-shadow: 0 0 10px rgba(241, 241, 241, 1)"
+                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA8R7_Rhd8xtER8nCzfy_XvV3nhT0Gj8OA    &amp;q=Alexandria, Arlington+VA"
+                            allowfullscreen="">
+                    </iframe>
                 </div>
                 <div class="col-sm-6 col-xs-12">
                     <div class="contact-inner">
@@ -51,14 +53,15 @@
                             <form id="contact_form">
                                 <div class="form-group">
                                     <input type="text" name="name" id="name" placeholder="Your name" required>
-                                </div> 
-                                
-                                <div class="form-group">   
+                                </div>
+
+                                <div class="form-group">
                                     <input type="email" name="email" id="email" placeholder="Your email" required>
                                 </div>
 
                                 <div class="form-group">
-                                    <textarea cols="30" rows="5" name="message" id="message" placeholder="Your message" required></textarea>
+                                    <textarea cols="30" rows="5" name="message" id="message" placeholder="Your message"
+                                              required></textarea>
                                 </div>
                                 <button class="mt_btn_yellow" id="submit-btn">SEND MESSAGE
                                     <span class="mt_load">
@@ -67,36 +70,13 @@
                                 </button>
                                 <div id="msg"></div>
                             </form>
-                        </div>   
-                    </div> 
+                        </div>
+                    </div>
                 </div>
             </div>
-               
+
         </div>
     </section>
     <!--* End Contact*-->
-
-{##}
-{#    <!--* Partner*-->#}
-{#    <div class="container">#}
-{#        <div class="row">#}
-{#            <div class="col-xs-12">#}
-{#                <!-- section title -->#}
-{#                <div class="section_heading">#}
-{#                    <h2 class="section_title">#}
-{#                        <span>Super Partner</span>#}
-{#                    </h2>#}
-{#                    <p class="heading_txt">There are variations available majoritaey suffered alteration words which look#}
-{#                        believable dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>#}
-{#                </div>#}
-{#                {% for company in main_company %}#}
-{#                <div class="col-sm-2">#}
-{#                    <img src="{{ company.name }}">#}
-{#                </div>#}
-{#            {% endfor %}#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#    <!--* End partner*-->#}
 
 {% endblock %}
