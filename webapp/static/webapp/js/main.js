@@ -164,7 +164,7 @@ jQuery(window).on('load', function() {
         event.preventDefault();
         $.ajax({
             dataType: 'JSON',
-            url: 'sendmail.php',
+            url: '{% url "contacts" %}',
             type: 'POST',
             data: $('#contact_form').serialize(),
             beforeSend: function (xhr) {
@@ -173,7 +173,7 @@ jQuery(window).on('load', function() {
             success: function (response) {
                 if (response) {
                     console.log(response);
-                    if (response['signal'] == 'ok') {
+                    if (response && response['signal'] && response['signal'] === 'ok') {
                         toastr.success(response['msg']);
                         $('#msg').hide();
                         $('input, textarea').val(function () {

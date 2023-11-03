@@ -29,6 +29,7 @@ urlpatterns = [
     path('events/', events, name='events'),
     path('checkout/', checkout, name='checkout'),
     path('login/', login, name='login'),
+    # path('send_email/', send_email, name='send_email'),
 
     ]
 

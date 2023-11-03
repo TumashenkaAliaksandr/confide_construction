@@ -1,8 +1,8 @@
 from django.views.decorators.csrf import csrf_exempt
 from webapp.models import *
 from django.core.mail import send_mail
-from .forms import CallbackForm, PaymentForm, RegistrationForm
-from django.http import JsonResponse
+from .forms import CallbackForm, PaymentForm, RegistrationForm, ContactForm
+from django.http import JsonResponse, HttpResponse
 import stripe
 from django.contrib.auth import login
 from django.shortcuts import render, redirect
@@ -90,8 +90,47 @@ def about(request):
     return render(request, 'webapp/about-us.html', context=context)
 
 
+# @csrf_exempt
+# def send_email(request):
+#     if request.method == 'POST':
+#         name = request.POST.get('name')
+#         email = request.POST.get('email')
+#         message = request.POST.get('message')
+#
+#         try:
+#             send_mail('Subject', message, email, ['tumashenkaaliaksandr@gmail.com'], fail_silently=False)
+#             response_data = {'signal': 'ok', 'msg': 'Message sent successfully.'}
+#             return JsonResponse(response_data)
+#         except Exception as e:
+#             response_data = {'signal': 'error', 'msg': str(e)}
+#             return JsonResponse(response_data)
+#     else:
+#         return HttpResponse(status=400)  # Return a Bad Request response if the request is not a POST request
+
+
 def contacts(request):
-    return render(request, 'webapp/contact-us-1.html')
+    context = {}
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+
+            # Здесь отправляем письмо
+            send_mail(
+                subject='New Contact Form Submission',
+                message=message,
+                from_email=email,
+                recipient_list=['tumashenkaaliaksandr@gmail.com'],  # Замените на ваш адрес получателя
+                fail_silently=False,
+            )
+
+            context = {'success': 1}
+    else:
+        form = ContactForm()
+    context['form'] = form
+    return render(request, 'webapp/contact-us-1.html', context=context)
 
 
 def login(request):

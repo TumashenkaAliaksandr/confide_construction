@@ -32,47 +32,56 @@
                     <div class="contact-info text-center">
                         <ul>
                             <li><i class="fa fa-map-marker"></i> WASHINGTON DC.</li>
-                            <li><i class="fa fa-phone"></i> +1 (703) 3445671</li>
-                            <li><i class="fa fa-envelope"></i> confideco@gmail.com</li>
-                            <li><i class="fa fa-globe"></i> www.dchomefix.com</li>
+                            <li><i class="fa fa-phone"></i> <a href="tel:+17033445671">+1 (703) 344-5671</a></li>
+                            <li><i class="fa fa-envelope"></i> <a
+                                    href="mailto:confideco@gmail.com">confideco@gmail.com</a></li>
+                            <li><i class="fa fa-globe"></i> <a href="http://www.dchomefix.com" target="_blank">www.dchomefix.com</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
 
-
                 <div class="col-sm-6 col-xs-12">
                     <!-- Contact Us Map -->
-                    <iframe width="100%" height="400" frameborder="0" style="border: 2px solid #000; box-shadow: 0 0 10px rgba(241, 241, 241, 1)"
+                    <iframe width="100%" height="400" frameborder="0" style="border: 2px solid  #ffac00; box-shadow: 0 0 10px rgba(255, 172, 0, 1)"
                             src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA8R7_Rhd8xtER8nCzfy_XvV3nhT0Gj8OA    &amp;q=Alexandria, Arlington+VA"
                             allowfullscreen="">
                     </iframe>
                 </div>
+
                 <div class="col-sm-6 col-xs-12">
                     <div class="contact-inner">
                         <div class="contact_form">
-                            <form id="contact_form">
+                            <form id="contact_form" data-url="{% url 'webapp:contacts' %}">
+                                {% csrf_token %}
+                                {% if success %}
+                                <div class="alert alert-damage">
+                                    <strong> Thank you so much</strong>
+                                </div>
+                                {% endif %}
                                 <div class="form-group">
-                                    <input type="text" name="name" id="name" placeholder="Your name" required>
+                                    {{ form.name }}
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="email" name="email" id="email" placeholder="Your email" required>
+                                    {{ form.email }}
                                 </div>
 
                                 <div class="form-group">
-                                    <textarea cols="30" rows="5" name="message" id="message" placeholder="Your message"
-                                              required></textarea>
+                                    {{ form.message }}
                                 </div>
-                                <button class="mt_btn_yellow" id="submit-btn">SEND MESSAGE
+                                <button class="mt_btn_yellow" id="submit-btn" type="submit">SEND MESSAGE
+                                    {# Добавляем type="submit" #}
                                     <span class="mt_load">
-                                        <span></span>
-                                    </span>
+                        <span></span>
+                    </span>
                                 </button>
                                 <div id="msg"></div>
                             </form>
                         </div>
                     </div>
                 </div>
+
             </div>
 
         </div>
