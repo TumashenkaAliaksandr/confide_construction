@@ -1592,6 +1592,10 @@ section#const-team .slick-prev:before, section#const-team .slick-next:before{
     background-color: beige;
 }
 
+.light-bg {
+    background-color: beige;
+}
+
 #mt_fun .fun-content span{
   display: block;
     font-size: 16px;
