@@ -933,11 +933,36 @@ section#choose_us.about_choose_us {
     margin-right: 2px; /* Отступ справа между объектами (измените значение по вашему усмотрению) */
 }
 
+.img-fixed-size-five {
+    width: 200px; /* Установите желаемую ширину */
+    height: 170px; /* Установите желаемую высоту */
+    object-fit: cover; /* Этот свойство сохраняет соотношение сторон и обрезает изображение по нужным размерам */
+}
+
+.img-fixed-size-six {
+    width: 100%; /* Установите желаемую ширину */
+    height: 160px; /* Установите желаемую высоту */
+    object-fit: cover; /* Этот свойство сохраняет соотношение сторон и обрезает изображение по нужным размерам */
+}
+
+.img-fixed-size-seven {
+    width: 100%; /* Установите желаемую ширину */
+    height: 250px; /* Установите желаемую высоту */
+    object-fit: cover; /* Этот свойство сохраняет соотношение сторон и обрезает изображение по нужным размерам */
+}
+
 .img-fixed-size-four img {
     width: 100%; /* Ширина изображения 100% от контейнера */
     height: 100%; /* Высота изображения 100% от контейнера */
     object-fit: contain; /* Сохраняет пропорции изображения и помещает его внутри контейнера без обрезания */
 }
+
+.review-text-container {
+    max-height: 100px; /* Замените 100px на желаемую высоту */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 .my_row {
   margin-right: 0px;
@@ -1698,7 +1723,7 @@ section#choose_us{
 /*      FAQ & Testimonials      */
 /* ====================== */
 section#mt_faq-testi{
-  padding:80px 0 80px;
+  padding:80px 0 0px;
 }
 
 section#mt_faq-testi .section_heading{padding: 0;}

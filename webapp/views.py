@@ -1,3 +1,4 @@
+from django.contrib.auth.views import LoginView
 from django.views.decorators.csrf import csrf_exempt
 from webapp.models import *
 from django.core.mail import send_mail
@@ -275,8 +276,9 @@ def registration(request):
     return render(request, 'webapp/forms/register_form.html', {'form': form})
 
 
-def login(request):
-    return render(request, 'webapp/login.html')
+class CReateloginView(LoginView):
+    template_name = 'webapp/login.html'
+    redirect_authenticated_user = True
 
 
 def logout(request):
