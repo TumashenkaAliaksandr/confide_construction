@@ -1562,7 +1562,7 @@ section#const-team .slick-prev:before, section#const-team .slick-next:before{
 /* ============================= */
 
 #mt_fun {
-  padding:80px 0 0;
+  padding:80px 0 100px;
 }
 
 #mt_fun .fun-content span{
@@ -1697,7 +1697,7 @@ section#choose_us{
 /*      FAQ & Testimonials      */
 /* ====================== */
 section#mt_faq-testi{
-  padding:0;
+  padding:80px 0 80px;
 }
 
 section#mt_faq-testi .section_heading{padding: 0;}
