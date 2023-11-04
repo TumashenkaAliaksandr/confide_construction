@@ -11,6 +11,7 @@ from django.shortcuts import render, redirect
 def index(request):
     """Main, index constr"""
     serv = Services.objects.all()
+    people = Review.objects.all()
     partner = Recommended.objects.all()
     project_constract = Project.objects.all()
     main_serv = Services.objects.filter(is_main=True).first()
@@ -132,9 +133,6 @@ def contacts(request):
     context['form'] = form
     return render(request, 'webapp/contact-us-1.html', context=context)
 
-
-def login(request):
-    return render(request, 'webapp/login.html')
 
 
 
@@ -275,6 +273,18 @@ def registration(request):
     else:
         form = RegistrationForm()
     return render(request, 'webapp/forms/register_form.html', {'form': form})
+
+
+def login(request):
+    return render(request, 'webapp/login.html')
+
+
+def logout(request):
+    return render(request, 'webapp/logout.html')
+
+def registerdone(request):
+    return render(request, 'webapp/register_done.html')
+
 
 def error(request):
     """Error page Constract """

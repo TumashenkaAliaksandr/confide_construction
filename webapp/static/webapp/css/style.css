@@ -1757,6 +1757,18 @@ section#mt_faq-testi .section_heading{padding: 0;}
 }
 
 .mt_testimonial .slick-slider{margin: 0 -15px;}
+/*мои правки*/
+.smaller-font {
+    font-size: 11px; /* Размер шрифта в пикселях */
+}
+
+.testimonial-main-container {/*мои правки*/
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+/*конец мои правки*/
+
 
 .mt_testimonial .testimonial_main{
   border-bottom:1px dashed #f1f1f1;

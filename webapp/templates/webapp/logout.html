@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <!-- pagebanner -->
+    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'webapp/images/cc_key.jpg' %}{% endif %}'); background-size: cover;">
+        <div class="page-title">
+            <h2 class="white text-center">Logout</h2>
+        </div>
+    </section>
+    <!-- End Pagebanner -->
+
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb-main">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="{% url 'webapp:home' %}"><i class="fa fa-home"></i></a></li>
+                <li class="active">Logout</li>
+            </ul>
+        </div>
+    </div>
+    <!-- End breadcrumb -->
+
+{% endblock %}

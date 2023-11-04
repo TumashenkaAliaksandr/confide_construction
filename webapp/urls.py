@@ -29,6 +29,8 @@ urlpatterns = [
     path('events/', events, name='events'),
     path('checkout/', checkout, name='checkout'),
     path('login/', login, name='login'),
+    path('logout/', logout, name='logout'),
+    path('register_done/', registerdone, name='register_done'),
     # path('send_email/', send_email, name='send_email'),
 
     ]

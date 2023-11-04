@@ -245,7 +245,6 @@ from django.db import models
 
 class Review(models.Model):
     author = models.CharField(max_length=100)  # Имя автора отзыва
-    email = models.EmailField()  # Электронная почта автора (может быть пустой)
     text = models.TextField()  # Текст отзыва
     created_at = models.DateTimeField(auto_now_add=True)  # Дата и время создания отзыва
     rating = models.PositiveIntegerField(default=5)  # Рейтинг отзыва (например, от 1 до 5)

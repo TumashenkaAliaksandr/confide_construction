@@ -183,50 +183,23 @@
 
             <div class="mt_testimonial">
                 <div class="row slider-testi1">
-                    <div class="col-xs-12">
-                        <div class="testimonial_main">
-                            <p class="mar-bottom-30">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
-                            <div class="client-pic"><img src="{% static 'webapp/images/team/member-1.jpg' %}" alt=""></div>
-                            <h4>
-                                <a href="#">Christopher Daniel</a>
-                                <span>MD of Nicolos</span>
-                            </h4>
+                    {% for main_review in people %}
+                        <div class="col-xs-12">
+                            <div class="testimonial-main-container">
+                                <div class="testimonial_main">
+                                    <p class="mar-bottom-30 smaller-font">{{ main_review.text }}</p>
+                                    <div class="client-pic"><img src="{{ main_review.photo.url }}" alt=""></div>
+                                    <h4>
+                                        <a href="#">{{ main_review.author }}</a>
+                                        <span>MD of Nicolos</span>
+                                    </h4>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-xs-12">
-                        <div class="testimonial_main">
-                            <p class="mar-bottom-30">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
-                            <div class="client-pic"><img src="{% static 'webapp/images/team/member-2.jpg' %}" alt=""></div>
-                            <h4>
-                                <a href="#">John Wakson</a>
-                                <span>CEO Of Micro group</span>
-                            </h4>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12">
-                        <div class="testimonial_main">
-                            <p class="mar-bottom-30">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
-                            <div class="client-pic"><img src="{% static 'webapp/images/team/member-3.jpg' %}" alt=""></div>
-                            <h4>
-                                <a href="#">Tim Loran</a>
-                                <span>CEO Of Tim Lake</span>
-                            </h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-12">
-                        <div class="testimonial_main">
-                            <p class="mar-bottom-30">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
-                            <div class="client-pic"><img src="{% static 'webapp/images/team/member-2.jpg' %}" alt=""></div>
-                            <h4>
-                                <a href="#">John Wakson</a>
-                                <span>CEO Of Micro group</span>
-                            </h4>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
+
 
         </div>
     </section>
