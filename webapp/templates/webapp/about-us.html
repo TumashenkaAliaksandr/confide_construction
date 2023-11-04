@@ -53,7 +53,7 @@
     <!--*EndAbout*-->
 
     <!--* Choose Us*-->
-    <section id="choose_us" class="about_choose_us">
+    <section id="choose_us" class="choose_us">
         <div class="container">
 
             <div class="row">
@@ -61,25 +61,25 @@
                     <!-- section title -->
                     <div class="section_heading">
                         <h2 class="section_title">
-                            <span>Why Choose us?</span>
+                            <span>Our Special Services</span>
                         </h2>
-                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which look believable
-                        dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                        <p class="heading_txt">The Confide.Co company was founded in 2008.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="row ">
+            <div class="row">
                 <div class="col-md-5 col-sm-12 col-xs-12 mission-image">
-                    <img src="{% static 'webapp/images/pic1.png' %}" alt="mission-image">
+                    <div class="choose-image"><img src="{% static 'webapp/images/pic1.png' %}" alt="mission-image"></div>
                 </div>
-                <div class="col-md-7 col-sm-12 col-xs-12 mission-list">
+                <div class="col-md-7 col-sm-12 col-xs-12  wow slideInRight mission-list">
+
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="choose-list mar-bottom-30">
                                 <i class="fa fa-users"></i>
                                 <h3>Team Of Professional</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                                <p>More than 10 years we do minor and major repairs of any kinds of premises.</p>
                             </div>
                         </div>
 
@@ -87,15 +87,15 @@
                             <div class="choose-list mar-bottom-30">
                                 <i class="fa fa-paint-brush"></i>
                                 <h3>Full Of Services</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                                <p>We reliable partner providing top-notch services to meet all your needs.</p>
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="choose-list mar-bottom-30">
                                 <i class="fa fa-phone"></i>
-                                <h3>27/7 Support</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                                <h3>Support</h3>
+                                <p>Our support team is your partner, ready to assist and guide you towards success.</p>
                             </div>
                         </div>
 
@@ -103,7 +103,7 @@
                             <div class="choose-list mar-bottom-30">
                                 <i class="fa fa-cogs"></i>
                                 <h3>Unique Technology</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                                <p>We utilize only the most cutting-edge technologies to deliver our services</p>
                             </div>
                         </div>
 
@@ -111,7 +111,7 @@
                             <div class="choose-list">
                                 <i class="fa fa-building"></i>
                                 <h3>Attractive Building</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                                <p>Experience innovation and quality like never before with Confide.Co, where form meets function in perfect harmony.</p>
                             </div>
                         </div>
 
@@ -119,7 +119,7 @@
                             <div class="choose-list">
                                 <i class="fa fa-picture-o"></i>
                                 <h3>Perfect Interior</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
+                                <p>We turn your spaces into captivating masterpieces, creating a perfect blend of aesthetics and functionality.</p>
                             </div>
                         </div>
                     </div>
@@ -162,10 +162,10 @@
 
 
     <!--* Partner*-->
-    <section id="mt_partner">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
+    <section id="const-team">
+        <div class="container wow slideInRight">
+            <div class="my_row">
+                <div class="col-md-4 col-sm-14">
                     <!-- section title -->
                     <div class="section_heading">
                         <h2 class="section_title">
@@ -173,13 +173,19 @@
                         </h2>
                     </div>
                 </div>
-            </div>
-            <div class="row slider-partner">
-                {% for recomended in partner %}
-                    <div class="col-sm-2">
-                        <img src="{{ recomended.image.url }}" class="img-fixed-size-two" alt="partner">
+                <div class="col-md-8 col-sm-10">
+                    <div class="row slider-team1">
+                        {% for recomended in partner %}
+                            <div class="col-md-4 item1">
+                                <div class="team_member1">
+                                    <a href="{{ recomended.link }}">
+                                        <img src="{{ recomended.image.url }}" class="img-fixed-size-four" alt="team">
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
+                </div>
             </div>
         </div>
     </section>
