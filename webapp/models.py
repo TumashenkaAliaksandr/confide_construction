@@ -239,3 +239,21 @@ class Drywall(models.Model):
     class Meta:
         verbose_name = "Drywall"
         verbose_name_plural = "Drywall"
+
+
+from django.db import models
+
+class Review(models.Model):
+    author = models.CharField(max_length=100)  # Имя автора отзыва
+    email = models.EmailField()  # Электронная почта автора (может быть пустой)
+    text = models.TextField()  # Текст отзыва
+    created_at = models.DateTimeField(auto_now_add=True)  # Дата и время создания отзыва
+    rating = models.PositiveIntegerField(default=5)  # Рейтинг отзыва (например, от 1 до 5)
+    approved = models.BooleanField(default=False)  # Поле для отметки одобрения отзыва администратором
+    photo = models.ImageField(upload_to='review_photos/', null=True, blank=True)  # Фотография, прикрепленная к отзыву
+
+    def __str__(self):
+        return self.author  # Возвращает имя автора в административной панели Django
+
+    class Meta:
+        ordering = ['-created_at']  # Отсортировать отзывы по дате создания (сначала новые)

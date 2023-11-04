@@ -55,3 +55,11 @@ class NewsAdmin(admin.ModelAdmin):
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'first_name', 'last_name', 'phone', 'email', 'password')
+
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('author', 'created_at', 'rating', 'approved')
+    list_filter = ('approved',)
+    search_fields = ('author', 'email', 'text')
+    list_editable = ('approved',)

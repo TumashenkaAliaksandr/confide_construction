@@ -976,7 +976,7 @@ section#choose_us.about_choose_us {
 }
 
 
-section#mt_services{padding:90px 0 90px;} /* отступы по блокам*/
+section#mt_services{padding:90px 0 90px; background-color: beige;} /* отступы по блокам и цвет*/
 
 /* Отступы для мобильных устройств (ширина экрана менее 768px) */
 @media (max-width: 768px) {
@@ -1563,6 +1563,7 @@ section#const-team .slick-prev:before, section#const-team .slick-next:before{
 
 #mt_fun {
   padding:80px 0 100px;
+    background-color: beige;
 }
 
 #mt_fun .fun-content span{
@@ -1587,7 +1588,7 @@ section#const-team .slick-prev:before, section#const-team .slick-next:before{
 #mt_fun .fun-facts_figure {
   font-weight: 600;
   font-size:60px;
-  color: #e5e5e5;
+  color: #8d8d8d;
 }
 
 #mt_fun .fun-facts_title {
@@ -1811,7 +1812,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
 }
 
 .mt_testimonial .slick-next{
-  left: 90px;
+  left: 100%;
 }
 
 .mt_testimonial .slick-prev:hover, .mt_testimonial .slick-next:hover, 
