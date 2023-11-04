@@ -54,15 +54,24 @@
                     </div>
 
                     <div class="top-bar-right pull-right">
-                       <div style="position: absolute; top: 11px; right: 62px;">
-                           <ul>
-                               <li><a href="{% url 'webapp:login' %}" class="fa fa-pencil" style="color: white;">
-                                   Login</a></li>
-                               <li><a href="{% url 'webapp:register' %}" class="fa fa-user" style="color: white;">
-                                   Register</a></li>
-                           </ul>
-                       </div>
+                        <div style="position: absolute; top: 11px; right: 62px;">
 
+                            <ul>
+                                {% if user.is_authenticated %}
+                                    <li style="color: gold">{{ user.username }}</li>
+                                    <li {% if request.resolver_match.url_name == 'logout' %}class="active"{% endif %}><a
+                                            href="{% url 'webapp:logout' %}" class="nav-link">Logout</a></li>
+                                {% else %}
+                                    <li {% if request.resolver_match.url_name == 'login' %}class="active"{% endif %}><a
+                                            href="{% url 'webapp:login' %}" data-toggle="modal"><i
+                                            class="fa fa-user" aria-hidden="true"></i> Login</a></li>
+                                    <li {% if request.resolver_match.url_name == 'register' or request.resolver_match.url_name == 'register_done' %}class="active"{% endif %}>
+                                        <a href="{% url 'webapp:register' %}"><i class="fa fa-pen"
+                                                                                 aria-hidden="true"></i>
+                                            Register</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

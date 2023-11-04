@@ -276,7 +276,7 @@ def registration(request):
     return render(request, 'webapp/forms/register_form.html', {'form': form})
 
 
-class CReateloginView(LoginView):
+class CRloginView(LoginView):
     template_name = 'webapp/login.html'
     redirect_authenticated_user = True
 
