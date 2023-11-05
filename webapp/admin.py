@@ -27,6 +27,18 @@ class DrywallAdmin(admin.ModelAdmin):
 
 admin.site.register(Drywall, DrywallAdmin)
 
+
+class SoundproofingServiceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'photo')
+
+    def photo(self, obj):
+        return ", ".join([str(photo) for photo in obj.photos.all()])
+
+    photo.short_description = 'Photo'
+
+admin.site.register(Soundproofing, SoundproofingServiceAdmin)
+
+
 @admin.register(ServicesSlider)
 class ServicesSliderAdmin(admin.ModelAdmin):
     list_display = ('name', 'image')

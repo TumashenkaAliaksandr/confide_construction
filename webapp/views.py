@@ -186,7 +186,7 @@ def wallpaper(request):
 
 def soundproofing(request):
     """Soundproofing Constract"""
-    disp_obj = DisposalService.objects.all()
+    disp_obj = Soundproofing.objects.all()
     main_serv = Services.objects.all()
 
     context = locals()
