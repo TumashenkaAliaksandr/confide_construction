@@ -1005,11 +1005,19 @@ section#choose_us.about_choose_us {
 
 
 section#mt_services{padding:90px 0 90px; background-color: beige;} /* отступы по блокам и цвет*/
+section#mt_services_two {
+    padding: 10px 0 90px;
+    background: linear-gradient(rgba(252, 246, 246, 0.7), rgba(110, 110, 110, 0.7)), url('../images/cc_backsplash.jpg') center/cover;
+}
+
+
+
+/* отступы по блокам и цвет*/
 
 /* Отступы для мобильных устройств (ширина экрана менее 768px) */
 @media (max-width: 768px) {
     section#mt_services {
-        padding: 40px 0; /* Измените на нужные вам значения для мобильных устройств */
+        padding: 40px 0; background-color: beige;/* Измените на нужные вам значения для мобильных устройств */
     }
 }
 
@@ -1792,7 +1800,8 @@ section#mt_faq-testi .section_heading{padding: 0;}
 .mt_testimonial .slick-slider{margin: 0 30px 15px;}
 /*мои правки*/
 .smaller-font {
-    font-size: 11px; /* Размер шрифта в пикселях */
+    font-size: 20px; /* Размер шрифта в пикселях */
+    color: #444444;
 }
 
 .testimonial-main-container {/*мои правки*/
@@ -2171,7 +2180,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
 /* ====================== */
 
 #mt_footer {
-    background: #000 url(../images/footer-bg.jpg) no-repeat;
+    background: #000 url(../images/cc_company.jpg) no-repeat;
     background-size: 100%;
     padding-top: 80px;
     position: relative;
@@ -3628,7 +3637,7 @@ h3.product_title{margin: 15px 0; }
 .slick-slide.slick-current.slick-active {
   width: 555px;
   position: relative;
-  left: 50px;
+
   top: 0px;
   z-index: 999;
   opacity: 1;

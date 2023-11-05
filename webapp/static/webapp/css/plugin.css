@@ -1779,7 +1779,7 @@
 .slider-section .slick-prev:before, .slider-section .slick-next:before{font-size: 36px;}
 
 .slick-prev {
-    left:70px;
+    left:15px;  /*правки слайдера*/
     right: auto;
 }
 
