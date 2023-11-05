@@ -1718,7 +1718,7 @@
     margin-top: -20px;
     padding: 0;
     cursor: pointer;
-    color: transparent;
+    color:  yellowgreen;
     border: none;
     outline: none;
     background: transparent;
@@ -1730,7 +1730,7 @@
 .slick-prev:focus,
 .slick-next:hover,
 .slick-next:focus {
-    color: transparent;
+    color: yellowgreen;
     outline: none;
     background: transparent
 }
@@ -1779,7 +1779,8 @@
 .slider-section .slick-prev:before, .slider-section .slick-next:before{font-size: 36px;}
 
 .slick-prev {
-    left:15px;
+    left:70px;
+    right: auto;
 }
 
 [dir='rtl'] .slick-prev {

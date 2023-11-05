@@ -917,7 +917,7 @@ section#choose_us.about_choose_us {
 }
 
 .img-fixed-size-two {
-    width: 263px; /* Установите желаемую ширину */
+    width: 100%; /* Установите желаемую ширину */
     height: 220px; /* Установите желаемую высоту */
     object-fit: cover; /* Этот свойство сохраняет соотношение сторон и обрезает изображение по нужным размерам */
 }
@@ -1865,9 +1865,10 @@ section#mt_faq-testi .section_heading{padding: 0;}
   border: 2px solid #ffac00;
   overflow: hidden;
   display: inline-block;
-  position: absolute;
-  left: auto;
+  position: relative;
+  margin-bottom: 10px; /* Добавьте отступ снизу по вашему выбору */
 }
+
 
 .mt_testimonial .slick-dots{bottom: -30px;}
 
