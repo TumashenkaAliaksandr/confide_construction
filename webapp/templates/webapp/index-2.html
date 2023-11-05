@@ -175,30 +175,23 @@
                         <h2 class="section_title">
                             <span>What Say Our Client</span>
                         </h2>
-                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which look believable
-                        dolor sit.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="mt_testimonial img-fixed-size-seven">
+            <div class="mt_testimonial">
                 <div class="row slider-testi1">
                     {% for main_review in people %}
-                        <div class="col-xs-12">
-                            <div class="testimonial-main-container">
-                                <div class="testimonial_main img-fixed-size-six">
-                                    <div class="review-text-container">
-                                        <p class="mar-bottom-30 smaller-font">{{ main_review.text }}</p>
-                                    </div>
-                                    <div class="client-pic"><img src="{{ main_review.photo.url }}"
-                                                                 class="img-fixed-size-five" alt=""></div>
-                                    <h4>
-                                        <a href="#">{{ main_review.author }}</a>
-                                        <span>MD of Nicolos</span>
-                                    </h4>
-                                </div>
-                            </div>
+                    <div class="col-xs-12">
+                        <div class="testimonial_main">
+                            <p class="mar-bottom-30">{{ main_review.text }}</p>
+                            <div class="client-pic"><img src="{{ main_review.photo.url }}" alt=""></div>
+                            <h4>
+                                <a href="#">{{ main_review.author }}</a>
+                                <span>MD of Nicolos</span>
+                            </h4>
                         </div>
+                    </div>
                     {% endfor %}
                 </div>
             </div>

@@ -944,6 +944,7 @@ section#choose_us.about_choose_us {
     width: 100%; /* Установите желаемую ширину */
     height: 160px; /* Установите желаемую высоту */
     object-fit: cover; /* Этот свойство сохраняет соотношение сторон и обрезает изображение по нужным размерам */
+    left: 50px;
 }
 
 .img-fixed-size-seven {
@@ -962,6 +963,7 @@ section#choose_us.about_choose_us {
     max-height: 100px; /* Замените 100px на желаемую высоту */
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-bottom: 20px;
 }
 
 
@@ -1583,6 +1585,7 @@ section#const-team .slick-prev:before, section#const-team .slick-next:before{
   .page section#const-team .col-md-3.col-sm-6.col-xs-12.item{margin-bottom: 30px;}
 }
 
+
 /* ============================= */
 /*          Fun And Fact         */
 /* ============================= */
@@ -1739,7 +1742,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
 .accrodion-grp .accrodion .accrodion-title {
   border: 1px solid #DEE0E1;
   background: #FFFFFF;
-  padding: 14.5px 25px;
+  padding: 15px 25px;
   cursor: pointer;
   -webkit-transition: all .4s ease;
   transition: all .4s ease;
@@ -1786,7 +1789,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
   color: #fff;
 }
 
-.mt_testimonial .slick-slider{margin: 0 -15px;}
+.mt_testimonial .slick-slider{margin: 0 30px 15px;}
 /*мои правки*/
 .smaller-font {
     font-size: 11px; /* Размер шрифта в пикселях */
@@ -1803,11 +1806,33 @@ section#mt_faq-testi .section_heading{padding: 0;}
 .mt_testimonial .testimonial_main{
   border-bottom:1px dashed #f1f1f1;
   background: #fff;
-  padding:0px 30px 10px;
+  padding:10px 30px 10px;
   position: relative;
 }
 
-.mt_testimonial .testimonial_main p{position: relative; padding-left: 50px;}
+/*.mt_testimonial .testimonial_main p{position: relative; padding-left: 50px;}*/
+/*.mt_testimonial .testimonial_main p {*/
+/*  position: relative;*/
+/*  padding-left: 0px;*/
+/*  max-width: 300px; !* Задайте желаемую ширину в пикселях *!*/
+/*  max-height: 200px; !* Задайте желаемую высоту в пикселях *!*/
+/*  overflow: hidden;*/
+/*  text-overflow: ellipsis;*/
+/*  white-space: nowrap;*/
+/*}*/
+
+.mt_testimonial .testimonial-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.mt_testimonial .testimonial_main {
+  flex: 0 0 calc(33.33% - 20px); /* 33.33% - задает ширину для 3-х блоков в строке */
+  margin-bottom: 20px; /* Определяет расстояние между блоками */
+}
+
+
 
 .mt_testimonial .testimonial_main p:before {
     content: "\f10d";
@@ -1823,8 +1848,9 @@ section#mt_faq-testi .section_heading{padding: 0;}
 .mt_testimonial .testimonial_main h4 {
     display: inline-block;
     vertical-align: super;
-    padding-left: 10px;
+    padding-left: 100px;
 }
+
 
 .mt_testimonial .testimonial_main h4 span{font-size: 14px; display: block; font-style: italic; font-weight: 300;}
 
@@ -1832,25 +1858,28 @@ section#mt_faq-testi .section_heading{padding: 0;}
   color: #ffac00;
 }
 
-.client-pic{
+.client-pic {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  border:2px solid #ffac00;
-  overflow: hidden; 
+  border: 2px solid #ffac00;
+  overflow: hidden;
   display: inline-block;
+  position: absolute;
+  left: auto;
 }
 
 .mt_testimonial .slick-dots{bottom: -30px;}
 
 .mt_testimonial .slick-prev, .mt_testimonial .slick-next {
-    left: 40px;
-    bottom: -60px;
+    left: 0px;
+    bottom: 50%;
     top: inherit;
     background: #ccc;
     border-radius: 5px;
     line-height: 2;
     transition: all ease-in-out 0.5s;
+    height: 50px;
 }
 
 .mt_testimonial .slick-next{
@@ -3598,7 +3627,7 @@ h3.product_title{margin: 15px 0; }
 .slick-slide.slick-current.slick-active {
   width: 555px;
   position: relative;
-  left: 0px;
+  left: 50px;
   top: 0px;
   z-index: 999;
   opacity: 1;
