@@ -1007,7 +1007,8 @@ section#choose_us.about_choose_us {
 section#mt_services{padding:90px 0 90px; background-color: beige;} /* отступы по блокам и цвет*/
 section#mt_services_two {
     padding: 10px 0 90px;
-    background: linear-gradient(rgba(252, 246, 246, 0.7), rgba(110, 110, 110, 0.7)), url('../images/cc_backsplash.jpg') center/cover;
+    background: linear-gradient(rgba(252, 246, 246, 0.7), rgba(110, 110, 110, 0.7)), url('../images/cc_space.jpg') center/cover;
+    background-attachment: fixed;
 }
 
 

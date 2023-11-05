@@ -35,7 +35,10 @@ def services(request):
 
 def shop(request):
     """Shop Constract"""
-    return render(request, 'webapp/shop.html')
+    services_shop = Services.objects.all()
+
+    context = locals()
+    return render(request, 'webapp/shop.html', context=context)
 
 @csrf_exempt
 def process_payment(request):
