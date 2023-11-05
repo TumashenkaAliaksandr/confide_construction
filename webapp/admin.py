@@ -66,6 +66,4 @@ class ReviewAdmin(admin.ModelAdmin):
 
 @admin.register(Quality)
 class QualityAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description')
-    list_filter = ('name',)
-    search_fields = ('name', 'description')
+    list_display = ('name', 'description', 'icon')

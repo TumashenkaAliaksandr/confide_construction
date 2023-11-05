@@ -261,6 +261,11 @@ class Review(models.Model):
 class Quality(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
+    icon = models.CharField(max_length=50, default='fa fa-trophy')
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "Quality"
+        verbose_name_plural = "Quality"
