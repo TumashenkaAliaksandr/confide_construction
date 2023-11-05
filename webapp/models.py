@@ -256,3 +256,11 @@ class Review(models.Model):
 
     class Meta:
         ordering = ['-created_at']  # Отсортировать отзывы по дате создания (сначала новые)
+
+
+class Quality(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name

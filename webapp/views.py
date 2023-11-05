@@ -24,6 +24,7 @@ def index(request):
 def services(request):
     """Services Constract"""
     serv_serv = Services.objects.all()
+    qual = Quality.objects.all()
     servis_slider = ServicesSlider.objects.all()
     main_ser = Services.objects.filter(is_main=True).first()
     sl_serv = Services.objects.all()

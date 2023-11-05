@@ -63,3 +63,9 @@ class ReviewAdmin(admin.ModelAdmin):
     list_filter = ('approved',)
     search_fields = ('author', 'email', 'text')
     list_editable = ('approved',)
+
+@admin.register(Quality)
+class QualityAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description')
+    list_filter = ('name',)
+    search_fields = ('name', 'description')

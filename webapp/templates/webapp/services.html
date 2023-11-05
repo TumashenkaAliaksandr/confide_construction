@@ -74,61 +74,17 @@
                             <p class="heading_txt smaller-font">Our company specializing in remodeling and renovation, we are your trusted choice for all your home improvement needs.</p>
                         </div>
                     </div>
-
+                    {% for main_quality in qual %}
                     <div class="col-md-4 col-sm-6 col-xs-6">
                         <div class="box mar-bottom-30 text-center">
                             <div class="box-content">
                                 <div class="icon mar-bottom-20"><i class="fa fa-trophy"></i></div>
-                                <h3 class="text-uppercase"><a href="#">Best Quality</a></h3>
-                                <p class="smaller-font">High-quality and reliable service.</p>
+                                <h3 class="text-uppercase"><a href="#">{{ main_quality.name }}</a></h3>
+                                <p class="smaller-font">{{ main_quality.description }}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-6 col-xs-6">
-                        <div class="box mar-bottom-30 text-center">
-                            <div class="box-content">
-                                <div class="icon mar-bottom-20"><i class="fa fa-pencil"></i></div>
-                                <h3 class="text-uppercase"><a href="#">Integrity</a></h3>
-                                <p>Honesty and strong principles.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-6">
-                        <div class="box mar-bottom-30 text-center">
-                            <div class="box-content">
-                                <div class="icon mar-bottom-20"><i class="fa fa-flag-checkered"></i></div>
-                                <h3 class="text-uppercase"><a href="#">Strategy</a></h3>
-                                <p>Effective planning and execution.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-6">
-                        <div class="box text-center">
-                            <div class="box-content">
-                                <div class="icon mar-bottom-20"><i class="fa fa-hand-rock-o"></i></div>
-                                <h3 class="text-uppercase"><a href="#">SAFETY</a></h3>
-                                <p>Ensuring well-being and security.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-6">
-                        <div class="box text-center">
-                            <div class="box-content">
-                                <div class="icon mar-bottom-20"><i class="fa fa-users"></i></div>
-                                <h3 class="text-uppercase"><a href="#">COMMUNITY</a></h3>
-                                <p>Strong community engagement focus.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-6">
-                        <div class="box text-center">
-                            <div class="box-content">
-                                <div class="icon mar-bottom-20"><i class="fa fa-graduation-cap"></i></div>
-                                <h3 class="text-uppercase"><a href="#">RESPONSIBILITY</a></h3>
-                                <p>Dedicated to social responsibility.</p>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
