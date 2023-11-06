@@ -143,12 +143,16 @@ def contacts(request):
 
 def backsplash(request):
     """Backsplash Constract"""
-    return render(request, 'webapp/services/backsplash.html')
+    back_sp = Backsplash.objects.all()
+    main_serv = Services.objects.all()
+
+    context = locals()
+    return render(request, 'webapp/services/backsplash.html', context=context)
 
 
 def drywall(request):
     """Drywall Constract"""
-    disp_obj = Drywall.objects.all()
+    dry_obj = Drywall.objects.all()
     main_serv = Services.objects.all()
 
     context = locals()

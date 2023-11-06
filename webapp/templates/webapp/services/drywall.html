@@ -29,7 +29,7 @@
         <div class="container">
             <div class="single-product-content">
                 <div class="row">
-                 {% for main_photo in disp_obj %}
+                 {% for main_photo in dry_obj %}
                     <div class="col-sm-6">
                         <div class="thumbnail-images">
                             <div class="slider slider-store">
@@ -46,7 +46,7 @@
                     </div>
                     {% endfor %}
 
-                    {% for main_drywall in disp_obj %}
+                    {% for main_drywall in dry_obj %}
                     <div class="col-sm-6">
                         <div class="single-product-summary">
                             <div class="entry-summary">
@@ -109,7 +109,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 ">
-                    {% for main_info in disp_obj %}
+                    {% for main_info in dry_obj %}
                     <div id="store-tab-main" class="">
                         <ul class="nav nav-tabs">
                             <li class="active"><a  href="#1" data-toggle="tab">Description</a></li>

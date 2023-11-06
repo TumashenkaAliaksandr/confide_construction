@@ -39,6 +39,17 @@ class SoundproofingServiceAdmin(admin.ModelAdmin):
 admin.site.register(Soundproofing, SoundproofingServiceAdmin)
 
 
+class BacksplashServiceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'photo')
+
+    def photo(self, obj):
+        return ", ".join([str(photo) for photo in obj.photos.all()])
+
+    photo.short_description = 'Photo'
+
+admin.site.register(Backsplash, BacksplashServiceAdmin)
+
+
 @admin.register(ServicesSlider)
 class ServicesSliderAdmin(admin.ModelAdmin):
     list_display = ('name', 'image')
