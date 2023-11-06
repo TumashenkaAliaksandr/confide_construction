@@ -30,21 +30,21 @@
 
             <div class="services-detail mar-bottom-80">
                 <div class="row">
+                    {% for main_electr in electr_obj %}
                     <div class="col-md-8 col-sm-12">
-                        <span class="page-title mar-bottom-15">Home Expansion</span>
+                        <span class="page-title mar-bottom-15">Confide Construction</span>
                         <h2 class="mar-bottom-15">We individually assess each <br> plan and offer optimal solutions</h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden.<br><br>
-                        All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
+                        <p>{{ main_electr.description }}<br><br>
+                        {{ main_electr.advantages }}</p>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="slider-services">
-                            <div><img src="{% static 'webapp/images/project/bw5.jpg' %}" alt="services-img"></div>
-                            <div><img src="{% static 'webapp/images/project/bw6.jpg' %}" alt="services-img"></div>
-                            <div><img src="{% static 'webapp/images/project/bw7.jpg' %}" alt="services-img"></div>
-                            <div><img src="{% static 'webapp/images/project/bw8.jpg' %}" alt="services-img"></div>
-                            <div><img src="{% static 'webapp/images/project/bw9.jpg' %}" alt="services-img"></div>
+                            {% for photo in main_electr.photos.all %}
+                            <div><img src="{{ photo.photo.url }}" class="img-fixed-size-eight" alt="services-img"></div>
+                            {% endfor %}
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
                 

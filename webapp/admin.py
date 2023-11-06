@@ -28,7 +28,7 @@ class DrywallAdmin(admin.ModelAdmin):
 admin.site.register(Drywall, DrywallAdmin)
 
 
-class SoundproofingServiceAdmin(admin.ModelAdmin):
+class SoundproofingAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'photo')
 
     def photo(self, obj):
@@ -36,10 +36,10 @@ class SoundproofingServiceAdmin(admin.ModelAdmin):
 
     photo.short_description = 'Photo'
 
-admin.site.register(Soundproofing, SoundproofingServiceAdmin)
+admin.site.register(Soundproofing, SoundproofingAdmin)
 
 
-class BacksplashServiceAdmin(admin.ModelAdmin):
+class BacksplashAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'photo')
 
     def photo(self, obj):
@@ -47,8 +47,25 @@ class BacksplashServiceAdmin(admin.ModelAdmin):
 
     photo.short_description = 'Photo'
 
-admin.site.register(Backsplash, BacksplashServiceAdmin)
+admin.site.register(Backsplash, BacksplashAdmin)
 
+
+class ElectricalPhotoInline(admin.TabularInline):
+    model = Electrical.photos.through
+    extra = 6  # Это позволит добавить 6 фотографий
+
+class ElectricalAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'display_photos')
+
+    def display_photos(self, obj):
+        return ", ".join([str(photo.photo) for photo in obj.photos.all()])
+
+    display_photos.short_description = 'Photos'
+
+    inlines = [ElectricalPhotoInline]
+
+admin.site.register(Electrical, ElectricalAdmin)
+admin.site.register(ElectricalPhoto)
 
 @admin.register(ServicesSlider)
 class ServicesSliderAdmin(admin.ModelAdmin):

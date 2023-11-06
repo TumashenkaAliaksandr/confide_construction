@@ -170,7 +170,10 @@ def disposal(request):
 
 def electricalworks(request):
     """Electricalworks Constract"""
-    return render(request, 'webapp/services/electricalworks.html')
+    electr_obj = Electrical.objects.all()
+
+    context = {'electr_obj': electr_obj}
+    return render(request, 'webapp/services/electricalworks.html', context=context)
 
 
 def handyman(request):
