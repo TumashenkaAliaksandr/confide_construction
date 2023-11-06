@@ -50,35 +50,17 @@
                 
             <div class="services-detail mar-bottom-80">
                 <div class="row">
+                    {% for main_el_serv in electr_serv %}
                 <div class="col-md-4 col-sm-12">
                     <div class="box">
                         <div class="box-content">
-                            <h3 class="mar-bottom-20">Recessed Lighting</h3>
-                            <img src="{% static 'webapp/images/сс_soffit2.jpeg' %}" class="img-fixed-size-seven" alt="services-1">
-                            <p class="mar-top-20">Subtle and Functional Illuminatio</p>
+                            <h3 class="mar-bottom-20">{{ main_el_serv.name }}</h3>
+                            <img src="{{ main_el_serv.photo.url }}" class="img-fixed-size-seven" alt="services-1">
+                            <p class="mar-top-20">{{ main_el_serv.description }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="box">
-                        <div class="box-content">
-                            <h3 class="mar-bottom-20">Strategy</h3>
-                            <img src="{% static 'webapp/images/blog-listing/blog_10.jpg' %}" alt="services-2">
-                            <p class="mar-top-20">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br><br>
-                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="box">
-                        <div class="box-content">
-                            <h3 class="mar-bottom-20">Sustainability</h3>
-                            <img src="{% static 'webapp/images/blog-listing/blog_11.jpg' %}" alt="services-3">
-                            <p class="mar-top-20">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br><br>
-                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-                        </div>
-                    </div>
-                </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

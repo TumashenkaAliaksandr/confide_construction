@@ -329,6 +329,20 @@ class ElectricalPhoto(models.Model):
         verbose_name_plural = "Photos for Electrical"
 
 
+class ElectricalService(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Name')
+    description = models.TextField(verbose_name='Description')
+    photo = models.ImageField(upload_to='electricalservice_photos/', verbose_name='Photo')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "ElectricalService"
+        verbose_name_plural = "ElectricalService"
+
+
+
 
 class Review(models.Model):
     author = models.CharField(max_length=100)  # Имя автора отзыва

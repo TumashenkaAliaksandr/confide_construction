@@ -164,15 +164,15 @@ def disposal(request):
     main_serv = Services.objects.all()
 
     context = locals()
-
     return render(request, 'webapp/services/disposal.html', context)
 
 
 def electricalworks(request):
     """Electricalworks Constract"""
     electr_obj = Electrical.objects.all()
+    electr_serv = ElectricalService.objects.all()
 
-    context = {'electr_obj': electr_obj}
+    context = locals()
     return render(request, 'webapp/services/electricalworks.html', context=context)
 
 

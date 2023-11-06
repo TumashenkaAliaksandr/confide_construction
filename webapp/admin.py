@@ -67,6 +67,12 @@ class ElectricalAdmin(admin.ModelAdmin):
 admin.site.register(Electrical, ElectricalAdmin)
 admin.site.register(ElectricalPhoto)
 
+class ElectricalServiceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'photo')
+
+admin.site.register(ElectricalService, ElectricalServiceAdmin)
+
+
 @admin.register(ServicesSlider)
 class ServicesSliderAdmin(admin.ModelAdmin):
     list_display = ('name', 'image')
