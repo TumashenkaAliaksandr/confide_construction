@@ -39,8 +39,8 @@
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="slider-services">
-                            {% for photo in main_electr.photos.all %}
-                            <div><img src="{{ photo.photo.url }}" class="img-fixed-size-eight" alt="services-img"></div>
+                            {% for all_photo in main_electr.photos.all %}
+                            <div><img src="{{ all_photo.photo.url }}" class="img-fixed-size-eight" alt="services-img"></div>
                             {% endfor %}
                         </div>
                     </div>
@@ -53,10 +53,9 @@
                 <div class="col-md-4 col-sm-12">
                     <div class="box">
                         <div class="box-content">
-                            <h3 class="mar-bottom-20">Audit</h3>
-                            <img src="{% static 'webapp/images/blog-listing/blog_09.jpg' %}" alt="services-1">
-                            <p class="mar-top-20">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br><br>
-                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                            <h3 class="mar-bottom-20">Recessed Lighting</h3>
+                            <img src="{% static 'webapp/images/сс_soffit2.jpeg' %}" class="img-fixed-size-seven" alt="services-1">
+                            <p class="mar-top-20">Subtle and Functional Illuminatio</p>
                         </div>
                     </div>
                 </div>
