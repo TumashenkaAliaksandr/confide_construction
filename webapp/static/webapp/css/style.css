@@ -1017,6 +1017,12 @@ section#mt_services_two {
     background-attachment: fixed;
 }
 
+section#mt_services_three {
+    padding: 50px 0 90px;
+    background: linear-gradient(rgba(245, 245, 220, 1), rgba(110, 110, 110, 0.7)), url('../images/cc_home_repa.jpg') center/cover;
+    background-attachment: fixed;
+}
+
 
 
 /* отступы по блокам и цвет*/
@@ -1105,10 +1111,13 @@ section#mt_services.services_two .section_heading{
 section#mt_services.services_two .services_listing .section_heading{
   padding-right: 30%;
 }
+.transparent-background {
+    background-color: rgba(255, 255, 255, 0.5);
+}
 
 .services-chain .box{
   padding:0;
-  background: #fff;
+  /*background: #fff;*/
   box-shadow:none;
   border-left: 3px solid #ffac00;
   text-align: left;
