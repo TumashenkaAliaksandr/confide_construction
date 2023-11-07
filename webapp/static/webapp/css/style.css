@@ -2131,14 +2131,14 @@ section#mt_faq-testi .section_heading{padding: 0;}
   }
 
 #newsletter:before {
-  background: #ffac00;
+  background: #d8d8d8;
   content: '';
   height: 100%;
   width: 55%;
   position: absolute;
   top: 0;
   left: 0;
-  border-right: 5px solid #ca8903;
+  border-right: 5px solid #ffac00;
 }
 
 #newsletter .mailpoet_form {
@@ -2159,7 +2159,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
 
 #newsletter input[type="submit"] {
     border: none;
-    background: #ffac00;
+    background: #4ce62c;
     position: absolute;
     top: 0;
     right: 0;
