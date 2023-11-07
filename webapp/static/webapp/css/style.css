@@ -1617,7 +1617,7 @@ section#const-team .slick-prev:before, section#const-team .slick-next:before{
 /* ============================= */
 
 #mt_fun {
-  padding:80px 0 100px;
+  padding:50px 0 50px;
     background-color: beige;
 }
 
@@ -1900,14 +1900,14 @@ section#mt_faq-testi .section_heading{padding: 0;}
 .mt_testimonial .slick-dots{bottom: -30px;}
 
 .mt_testimonial .slick-prev, .mt_testimonial .slick-next {
-    left: 0px;
+    left: -25px;
     bottom: 50%;
     top: inherit;
     background: #ccc;
     border-radius: 5px;
     line-height: 2;
     transition: all ease-in-out 0.5s;
-    height: 50px;
+    /*height: 50px;*/
 }
 
 .mt_testimonial .slick-next{
@@ -2207,7 +2207,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
 #mt_footer:before {
     content: '';
     position: absolute;
-    background: #000000d6;
+    background: #2e2e2ed6;
     height: 100%;
     width: 100%;
     top: 0;
