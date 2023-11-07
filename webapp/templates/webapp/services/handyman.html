@@ -23,146 +23,43 @@
         </div>
     </div><!-- End breadcrumb -->
 
-    <!--* Choose Us*-->
-    <section id="choose_us" class="about_choose_us">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-xs-12">
-                    <!-- section title -->
-                    <div class="section_heading">
-                        <h2 class="section_title">
-                            <span>Why Choose us?</span>
-                        </h2>
-                        <p class="heading_txt">There are variations available majoritaey suffered alteration words which
-                            look believable
-                            dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row ">
-                <div class="col-md-5 col-sm-12 col-xs-12 mission-image">
-                    <img src="{% static 'webapp/images/cc_handyman_icon_home.png' %}" alt="mission-image">
-                </div>
-                <div class="col-md-7 col-sm-12 col-xs-12 mission-list">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="choose-list mar-bottom-30">
-                                <i class="fa fa-users"></i>
-                                <h3>Team Of Professional</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure
-                                    versions.</p>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="choose-list mar-bottom-30">
-                                <i class="fa fa-paint-brush"></i>
-                                <h3>Full Of Services</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure
-                                    versions.</p>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="choose-list mar-bottom-30">
-                                <i class="fa fa-phone"></i>
-                                <h3>27/7 Support</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure
-                                    versions.</p>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="choose-list mar-bottom-30">
-                                <i class="fa fa-cogs"></i>
-                                <h3>Unique Technology</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure
-                                    versions.</p>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="choose-list">
-                                <i class="fa fa-building"></i>
-                                <h3>Attractive Building</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure
-                                    versions.</p>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="choose-list">
-                                <i class="fa fa-picture-o"></i>
-                                <h3>Perfect Interior</h3>
-                                <p>Dolor sit amet consectetuer adipiscing elit suspendisse justdo structure
-                                    versions.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--* End choose us*-->
-
     <!--* Services*-->
     <section id="mt_services" class="services_one">
         <div class="container">
 
             <div class="services-detail mar-bottom-80">
                 <div class="row">
+                    {% for main_handyman in handyman_obj %}
                     <div class="col-md-8 col-sm-12">
-                        <span class="page-title mar-bottom-15">Home Expansion</span>
+                        <span class="page-title mar-bottom-15">Confide Construction</span>
                         <h2 class="mar-bottom-15">We individually assess each <br> plan and offer optimal solutions</h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden.<br><br>
-                        All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
+                        <p>{{ main_handyman.description }}<br><br>
+                        {{ main_handyman.advantages }}</p>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="slider-services">
-                            <div><img src="{% static 'webapp/images/project/bw5.jpg' %}" alt="services-img"></div>
-                            <div><img src="{% static 'webapp/images/project/bw6.jpg' %}" alt="services-img"></div>
-                            <div><img src="{% static 'webapp/images/project/bw7.jpg' %}" alt="services-img"></div>
-                            <div><img src="{% static 'webapp/images/project/bw8.jpg' %}" alt="services-img"></div>
-                            <div><img src="{% static 'webapp/images/project/bw9.jpg' %}" alt="services-img"></div>
+                            {% for all_photo in main_handyman.photos.all %}
+                            <div><img src="{{ all_photo.photo.url }}" class="img-fixed-size-eight" alt="services-img"></div>
+                            {% endfor %}
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
-                
+
             <div class="services-detail mar-bottom-80">
                 <div class="row">
+                    {% for main_el_handy in handy_serv %}
                 <div class="col-md-4 col-sm-12">
                     <div class="box">
                         <div class="box-content">
-                            <h3 class="mar-bottom-20">Audit</h3>
-                            <img src="{% static 'webapp/images/blog-listing/blog_09.jpg' %}" alt="services-1">
-                            <p class="mar-top-20">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br><br>
-                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                            <h3 class="mar-bottom-20">{{ main_el_handy.name }}</h3>
+                            <img src="{{ main_el_handy.photo.url }}" class="img-fixed-size-seven" alt="services-1">
+                            <p class="mar-top-20">{{ main_el_handy.description }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="box">
-                        <div class="box-content">
-                            <h3 class="mar-bottom-20">Strategy</h3>
-                            <img src="{% static 'webapp/images/blog-listing/blog_10.jpg' %}" alt="services-2">
-                            <p class="mar-top-20">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br><br>
-                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="box">
-                        <div class="box-content">
-                            <h3 class="mar-bottom-20">Sustainability</h3>
-                            <img src="{% static 'webapp/images/blog-listing/blog_11.jpg' %}" alt="services-3">
-                            <p class="mar-top-20">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br><br>
-                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-                        </div>
-                    </div>
-                </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

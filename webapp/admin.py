@@ -73,6 +73,28 @@ class ElectricalServiceAdmin(admin.ModelAdmin):
 admin.site.register(ElectricalService, ElectricalServiceAdmin)
 
 
+class HandymanPhotoInline(admin.TabularInline):
+    model = Handyman.photos.through
+    extra = 6  # Это позволит добавить 6 фотографий
+
+class HandymanAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'display_photos')
+
+    def display_photos(self, obj):
+        return ", ".join([str(photo.photo) for photo in obj.photos.all()])
+
+    display_photos.short_description = 'Photos'
+
+    inlines = [HandymanPhotoInline]
+
+admin.site.register(Handyman, HandymanAdmin)
+admin.site.register(HandymanPhoto)
+
+class HandymanServiceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'photo')
+
+admin.site.register(HandymanService, HandymanServiceAdmin)
+
 @admin.register(ServicesSlider)
 class ServicesSliderAdmin(admin.ModelAdmin):
     list_display = ('name', 'image')

@@ -178,7 +178,11 @@ def electricalworks(request):
 
 def handyman(request):
     """Handyman Constract"""
-    return render(request, 'webapp/services/handyman.html')
+    handyman_obj = Handyman.objects.all()
+    handy_serv = HandymanService.objects.all()
+
+    context = locals()
+    return render(request, 'webapp/services/handyman.html', context=context)
 
 
 def wallpaper(request):

@@ -342,6 +342,51 @@ class ElectricalService(models.Model):
         verbose_name_plural = "ElectricalService"
 
 
+class Handyman(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Name')
+    description = models.TextField(verbose_name='Description')
+    advantages = models.TextField(verbose_name='Benefits')
+    material = models.CharField(max_length=350, verbose_name='Material')
+    photo = models.ImageField(upload_to='handyman_photos/', verbose_name='Photo', default=0)
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Price', default=0.00)
+    discount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Discount', default=0.00)
+
+    # Создание поля photos для связи с моделью HandymanPhoto.
+    # Множество фотографий может быть связано с одним элементом Handyman.
+    photos = models.ManyToManyField('HandymanPhoto', related_name='handyman', blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Handyman"
+        verbose_name_plural = "Handyman"
+
+
+# Определение модели HandymanPhoto, которая представляет фотографии для электрооборудования.
+class HandymanPhoto(models.Model):
+    # Поле для загрузки фотографий, указан путь для сохранения в папке soundproofing_photos.
+    photo = models.ImageField(upload_to='handyman_photos/', verbose_name='Photo', default=0)
+
+    def __str__(self):
+        return str(self.photo)
+
+    class Meta:
+        verbose_name = "Photo for Handyman"
+        verbose_name_plural = "Photos for Handyman"
+
+
+class HandymanService(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Name')
+    description = models.TextField(verbose_name='Description')
+    photo = models.ImageField(upload_to='handymanservice_photos/', verbose_name='Photo')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "HandymanService"
+        verbose_name_plural = "HandymanService"
 
 
 class Review(models.Model):
