@@ -30,16 +30,16 @@
 
             <div class="services-detail mar-bottom-80">
                 <div class="row">
-                    {% for main_electr in electr_obj %}
+                    {% for main_paint in painting_obj %}
                     <div class="col-md-8 col-sm-12">
                         <span class="page-title mar-bottom-15">Confide Construction</span>
                         <h2 class="mar-bottom-15">We individually assess each <br> plan and offer optimal solutions</h2>
-                        <p>{{ main_electr.description }}<br><br>
-                        {{ main_electr.material }}</p>
+                        <p>{{ main_paint.description }}<br><br>
+                        {{ main_paint.material }}</p>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="slider-services">
-                            {% for all_photo in main_electr.photos.all %}
+                            {% for all_photo in main_paint.photos.all %}
                             <div><img src="{{ all_photo.photo.url }}" class="img-fixed-size-eight" alt="services-img"></div>
                             {% endfor %}
                         </div>
@@ -78,13 +78,13 @@
 
             <div class="services-detail mar-bottom-80">
                 <div class="row">
-                    {% for main_el_serv in electr_serv %}
+                    {% for main_paint_serv in paint_serv %}
                 <div class="col-md-4 col-sm-12">
                     <div class="box">
                         <div class="box-content">
-                            <h3 class="mar-bottom-20">{{ main_el_serv.name }}</h3>
-                            <img src="{{ main_el_serv.photo.url }}" class="img-fixed-size-seven" alt="services-1">
-                            <p class="mar-top-20">{{ main_el_serv.description }}</p>
+                            <h3 class="mar-bottom-20">{{ main_paint_serv.name }}</h3>
+                            <img src="{{ main_paint_serv.photo.url }}" class="img-fixed-size-seven" alt="services-1">
+                            <p class="mar-top-20">{{ main_paint_serv.description }}</p>
                         </div>
                     </div>
                 </div>

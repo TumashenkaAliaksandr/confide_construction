@@ -213,7 +213,8 @@ def furniture(request):
 
 def painting(request):
     """ Painting Constract"""
-    disp_obj = DisposalService.objects.all()
+    painting_obj = Painting.objects.all()
+    paint_serv = PaintingService.objects.all()
     main_serv = Services.objects.all()
 
     context = locals()
