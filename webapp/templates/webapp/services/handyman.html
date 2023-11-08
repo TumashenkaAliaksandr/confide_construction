@@ -54,17 +54,19 @@
                         <div class="col-sm-6 col-xs-12">
                             <div class="news-content">
                                 <h3>Order Free Consultation</h3>
-                                <p class="white"><b>You can book a free consultation for any service with us</b></p>
+                                <p class="beige"><b>CALL US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE YOUR LIFESTYLE DREAMS.</b></p>
                             </div>
                         </div>
                         <div class="col-sm-6 col-xs-12">
                             <div class="mailpoet_form">
                                 <form target="_self" method="post" action="" novalidate="">
-                                    <input type="email" class="mailpoet_text" name="" title="Email"
-                                           placeholder="Please specify a valid email address.">
-
-                                    <div class="button"><input type="submit" class="mailpoet_submit" value="Free Quote">
-                                    </div>
+                                    <input type="text" name="name" placeholder="Your Name">
+                                    <input type="email" class="mailpoet_text" name="email" title="Email"
+                                           placeholder="Please specify your email address.">
+                                    <input type="text" name="description" placeholder="Description Service">
+                                <div class="button">
+                                    <input type="submit" class="mailpoet_submit" value="Free Quote">
+                                </div>
                                 </form>
                             </div>
                         </div>
@@ -91,5 +93,62 @@
         </div>
     </section>
     <!--* End Services*-->
+
+    <!-- store -->
+    <section id="our_store" class="our_store related_store">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- section title -->
+                    <div class="section_heading">
+                        <h2 class="section_title">
+                            <span>Our Services</span>
+                        </h2>
+                        <p class="heading_txt">We offer a range of services in the field of repair and construction.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row slider-shop">
+                {% for main_sl_cart_prod in main_serv %}
+                    <div class="col-md-3 col-xs-12">
+                        <div class="rt-product-wrapper">
+                            <div class="product-thumbnail-wrapper">
+                                <div class="product-image">
+                                    <img src="{{ main_sl_cart_prod.image.url }}" class="img-fixed-size"
+                                         alt="product-list">
+                                </div>
+                                <div class="product-label"><span class="onsale">Sale</span></div>
+                            </div>
+                            <div class="rt-product-meta-wrapper">
+                                <h3 class="product_title">
+                                    <a href="store-detail.html">{{ main_sl_cart_prod.name }}</a>
+                                </h3>
+                                <div class="rt-cartprice-wrapper">
+                                <span class="price mar-bottom-20">
+{#                                    <del>#}
+{#                                        <span class="rt-price-amount">#}
+{#                                            <span >$</span>#}
+{#                                        </span>#}
+{#                                    </del>#}
+                                    <ins>
+                                        <span class="rrt-price-amount">
+                                            <span>$</span>{{ main_sl_cart_prod.price }}
+                                        </span>
+                                    </ins>
+                                </span>
+                                    <div class="button">
+                                        <a href="{% url 'webapp:process_payment' %}" class="mt_btn_yellow">Add to
+                                            cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- End store -->
 
 {% endblock %}

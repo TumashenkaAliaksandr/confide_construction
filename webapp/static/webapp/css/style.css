@@ -1093,7 +1093,7 @@ section#mt_services_three {
 /*services style 1*/
 
 section#mt_services.services_one{
-  padding: 75px 0 35px;
+  padding: 75px 0 15px;
 }
 
 @media(max-width: 735px){
@@ -2124,8 +2124,8 @@ section#mt_faq-testi .section_heading{padding: 0;}
 /*         Newsletter         */
 /* ====================== */
 
-#newsletter{ 
-    padding: 30px 0;
+#newsletter{
+    padding: 25px 0 25px;
     background: #f1f1f1;
     position: relative;
   }
@@ -2138,7 +2138,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
   position: absolute;
   top: 0;
   left: 0;
-  border-right: 5px solid #ffac00;
+  border-right: 5px solid #4ce62c;
 }
 
 #newsletter .mailpoet_form {
@@ -2161,7 +2161,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
     border: none;
     background: #4ce62c;
     position: absolute;
-    top: 0;
+    top: 80px;
     right: 0;
     color: #fff;
     margin: 0;
@@ -2174,7 +2174,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
 
   #newsletter:before{width: 100%;}
 
-  #newsletter input[type="submit"]{color: #ffac00; background: #333;}
+  #newsletter input[type="submit"]{color: #5b5b5b; background: #ffac00;}
 
 }
 
@@ -3733,7 +3733,7 @@ input.quantity-input {
 
 .single-product-summary .product_meta a:hover{color:#eb262a;}
 
-.our_store.related_store{padding-top: 0;}
+.our_store.related_store{padding-top: 35px;}
 
 #store-tab-main .nav-tabs {
     border-color:#f1f1f1;

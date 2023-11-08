@@ -171,6 +171,7 @@ def electricalworks(request):
     """Electricalworks Constract"""
     electr_obj = Electrical.objects.all()
     electr_serv = ElectricalService.objects.all()
+    main_serv = Services.objects.all()
 
     context = locals()
     return render(request, 'webapp/services/electricalworks.html', context=context)
@@ -180,6 +181,7 @@ def handyman(request):
     """Handyman Constract"""
     handyman_obj = Handyman.objects.all()
     handy_serv = HandymanService.objects.all()
+    main_serv = Services.objects.all()
 
     context = locals()
     return render(request, 'webapp/services/handyman.html', context=context)
