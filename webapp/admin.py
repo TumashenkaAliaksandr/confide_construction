@@ -118,6 +118,30 @@ class PaintingServiceAdmin(admin.ModelAdmin):
 
 admin.site.register(PaintingService, PaintingServiceAdmin)
 
+
+class FurniturePhotoInline(admin.TabularInline):
+    model = Furniture.photos.through
+    extra = 6  # Это позволит добавить 6 фотографий
+
+class FurnitureAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'display_photos')
+
+    def display_photos(self, obj):
+        return ", ".join([str(photo.photo) for photo in obj.photos.all()])
+
+    display_photos.short_description = 'Photos'
+
+    inlines = [FurniturePhotoInline]
+
+admin.site.register(Furniture, FurnitureAdmin)
+admin.site.register(FurniturePhoto)
+
+class FurnitureServiceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'photo')
+
+admin.site.register(FurnitureService, FurnitureServiceAdmin)
+
+
 @admin.register(ServicesSlider)
 class ServicesSliderAdmin(admin.ModelAdmin):
     list_display = ('name', 'image')

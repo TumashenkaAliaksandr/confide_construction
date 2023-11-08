@@ -30,80 +30,127 @@
 
             <div class="services-detail mar-bottom-80">
                 <div class="row">
+                    {% for main_furniture in furniture_obj %}
                     <div class="col-md-8 col-sm-12">
-                        <span class="page-title mar-bottom-15">Home Expansion</span>
+                        <span class="page-title mar-bottom-15">Confide Construction</span>
                         <h2 class="mar-bottom-15">We individually assess each <br> plan and offer optimal solutions</h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden.<br><br>
-                        All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
+                        <p>{{ main_furniture.description }}<br><br>
+                        {{ main_furniture.material }}</p>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="slider-services">
-                            <div><img src="{% static 'webapp/images/project/bw5.jpg' %}" alt="services-img"></div>
-                            <div><img src="{% static 'webapp/images/project/bw6.jpg' %}" alt="services-img"></div>
-                            <div><img src="{% static 'webapp/images/project/bw7.jpg' %}" alt="services-img"></div>
-                            <div><img src="{% static 'webapp/images/project/bw8.jpg' %}" alt="services-img"></div>
-                            <div><img src="{% static 'webapp/images/project/bw9.jpg' %}" alt="services-img"></div>
+                            {% for all_photo in main_furniture.photos.all %}
+                            <div><img src="{{ all_photo.photo.url }}" class="img-fixed-size-eight" alt="services-img"></div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!--*Newsletter*-->
+            <div id="newsletter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="news-content">
+                                <h3>Order Free Consultation</h3>
+                                <p class="beige"><b>CALL US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE YOUR LIFESTYLE DREAMS.</b></p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="mailpoet_form">
+                                <form target="_self" method="post" action="" novalidate="">
+                                    <input type="text" name="name" placeholder="Your Name">
+                                    <input type="email" class="mailpoet_text" name="email" title="Email"
+                                           placeholder="Please specify your email address.">
+                                    <input type="text" name="description" placeholder="Description Service">
+                                <div class="button">
+                                    <input type="submit" class="mailpoet_submit" value="Free Quote">
+                                </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-                
+            <!--*End Newsletter*-->
+
             <div class="services-detail mar-bottom-80">
                 <div class="row">
+                    {% for main_furniture_serv in furnitur_serv %}
                 <div class="col-md-4 col-sm-12">
                     <div class="box">
                         <div class="box-content">
-                            <h3 class="mar-bottom-20">Audit</h3>
-                            <img src="{% static 'webapp/images/blog-listing/blog_09.jpg' %}" alt="services-1">
-                            <p class="mar-top-20">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br><br>
-                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                            <h3 class="mar-bottom-20">{{ main_furniture_serv.name }}</h3>
+                            <img src="{{ main_furniture_serv.photo.url }}" class="img-fixed-size-seven" alt="services-1">
+                            <p class="mar-top-20">{{ main_furniture_serv.description }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="box">
-                        <div class="box-content">
-                            <h3 class="mar-bottom-20">Strategy</h3>
-                            <img src="{% static 'webapp/images/blog-listing/blog_10.jpg' %}" alt="services-2">
-                            <p class="mar-top-20">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br><br>
-                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="box">
-                        <div class="box-content">
-                            <h3 class="mar-bottom-20">Sustainability</h3>
-                            <img src="{% static 'webapp/images/blog-listing/blog_11.jpg' %}" alt="services-3">
-                            <p class="mar-top-20">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br><br>
-                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-                        </div>
-                    </div>
-                </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </section>
     <!--* End Services*-->
 
-    <!--=* Get Started Section*=-->
-    <section id="mt_get_started">
+    <!-- store -->
+    <section id="our_store" class="our_store related_store">
         <div class="container">
-            <div class="watch_inner">
-                <img src="{% static 'webapp/images/watch_inner.jpg' %}" alt="">
-                <div class="watch_content">
-                    <h3 class="white">We Build, Your Dream</h3>
-                    <h2 class="white">Quality Comes First</h2>
-                    <p>To develop a financial strategy for your future, it's important for your financial professional to see a complete, 360-degree view of your financial picture, including how your retirement assets are intadfegrated and work with one another.</p>
-                    <a href="#" class="btn mt_btn_yellow mar-top-30">View Work Process</a>
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- section title -->
+                    <div class="section_heading">
+                        <h2 class="section_title">
+                            <span>Our Services</span>
+                        </h2>
+                        <p class="heading_txt">We offer a range of services in the field of repair and construction.</p>
+                    </div>
                 </div>
-                <div class="pulses">
-                    <button type="button" class="play-btn js-video-button" data-video-id='152879427' data-channel="vimeo"><i class="fa fa-play"></i></button>
-                </div>
+            </div>
+
+            <div class="row slider-shop">
+                {% for main_sl_cart_prod in main_serv %}
+                    <div class="col-md-3 col-xs-12">
+                        <div class="rt-product-wrapper">
+                            <div class="product-thumbnail-wrapper">
+                                <div class="product-image">
+                                    <img src="{{ main_sl_cart_prod.image.url }}" class="img-fixed-size"
+                                         alt="product-list">
+                                </div>
+                                <div class="product-label"><span class="onsale">Sale</span></div>
+                            </div>
+                            <div class="rt-product-meta-wrapper">
+                                <h3 class="product_title">
+                                    <a href="store-detail.html">{{ main_sl_cart_prod.name }}</a>
+                                </h3>
+                                <div class="rt-cartprice-wrapper">
+                                <span class="price mar-bottom-20">
+{#                                    <del>#}
+{#                                        <span class="rt-price-amount">#}
+{#                                            <span >$</span>#}
+{#                                        </span>#}
+{#                                    </del>#}
+                                    <ins>
+                                        <span class="rrt-price-amount">
+                                            <span>$</span>{{ main_sl_cart_prod.price }}
+                                        </span>
+                                    </ins>
+                                </span>
+                                    <div class="button">
+                                        <a href="{% url 'webapp:process_payment' %}" class="mt_btn_yellow">Add to
+                                            cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </section>
-    <!--* End Get Started Section*-->
+    <!-- End store -->
 
 
 {% endblock %}

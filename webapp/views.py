@@ -208,7 +208,13 @@ def soundproofing(request):
 
 def furniture(request):
     """Furniture Assembly Constract"""
-    return render(request, 'webapp/services/furniture_assembly.html')
+    furniture_obj = Furniture.objects.all()
+    furnitur_serv = FurnitureService.objects.all()
+    main_serv = Services.objects.all()
+
+    context = locals()
+
+    return render(request, 'webapp/services/furniture_assembly.html', context=context)
 
 
 def painting(request):

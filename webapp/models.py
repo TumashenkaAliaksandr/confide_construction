@@ -436,6 +436,54 @@ class PaintingService(models.Model):
         verbose_name_plural = "PaintingService"
 
 
+class Furniture(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Name')
+    description = models.TextField(verbose_name='Description')
+    advantages = models.TextField(verbose_name='Benefits')
+    material = models.CharField(max_length=350, verbose_name='Material')
+    photo = models.ImageField(upload_to='furniture_photos/', verbose_name='Photo', default=0)
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Price', default=0.00)
+    discount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Discount', default=0.00)
+
+    # Создание поля photos для связи с моделью ElectricalPhoto.
+    # Множество фотографий может быть связано с одним элементом Electrical.
+    photos = models.ManyToManyField('FurniturePhoto', related_name='furniture', blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Furniture"
+        verbose_name_plural = "Furniture"
+
+
+# Определение модели ElectricalPhoto, которая представляет фотографии для электрооборудования.
+class FurniturePhoto(models.Model):
+    # Поле для загрузки фотографий, указан путь для сохранения в папке soundproofing_photos.
+    photo = models.ImageField(upload_to='furniture_photos/', verbose_name='Photo', default=0)
+
+    def __str__(self):
+        return str(self.photo)
+
+    class Meta:
+        verbose_name = "Photo for Furniture"
+        verbose_name_plural = "Photos for Furniture"
+
+
+class FurnitureService(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Name')
+    description = models.TextField(verbose_name='Description')
+    photo = models.ImageField(upload_to='furnitureservice_photos/', verbose_name='Photo')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "FurnitureService"
+        verbose_name_plural = "FurnitureService"
+
+
+
 
 class Review(models.Model):
     author = models.CharField(max_length=100)  # Имя автора отзыва
