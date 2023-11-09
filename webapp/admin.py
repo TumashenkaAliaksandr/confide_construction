@@ -28,17 +28,6 @@ class DrywallAdmin(admin.ModelAdmin):
 admin.site.register(Drywall, DrywallAdmin)
 
 
-class SoundproofingAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'photo')
-
-    def photo(self, obj):
-        return ", ".join([str(photo) for photo in obj.photos.all()])
-
-    photo.short_description = 'Photo'
-
-admin.site.register(Soundproofing, SoundproofingAdmin)
-
-
 class BacksplashAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'photo')
 
@@ -140,6 +129,31 @@ class FurnitureServiceAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'photo')
 
 admin.site.register(FurnitureService, FurnitureServiceAdmin)
+
+
+
+class SoundproofingPhotoInline(admin.TabularInline):
+    model = Soundproofing.photos.through
+    extra = 6  # Это позволит добавить 6 фотографий
+
+class SoundproofingAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'display_photos')
+
+    def display_photos(self, obj):
+        return ", ".join([str(photo.photo) for photo in obj.photos.all()])
+
+    display_photos.short_description = 'Photos'
+
+    inlines = [SoundproofingPhotoInline]
+
+admin.site.register(Soundproofing, SoundproofingAdmin)
+admin.site.register(SoundproofingPhoto)
+
+class SoundproofingServiceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'photo')
+
+admin.site.register(SoundproofingService, SoundproofingServiceAdmin)
+
 
 
 @admin.register(ServicesSlider)
