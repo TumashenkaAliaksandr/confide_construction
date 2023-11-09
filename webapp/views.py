@@ -189,7 +189,9 @@ def handyman(request):
 
 def wallpaper(request):
     """Wallpaper Constract"""
-    disp_obj = DisposalService.objects.all()
+
+    wallpap_obj = Wallpaper.objects.all()
+    wallpap_serv = WallpaperService.objects.all()
     main_serv = Services.objects.all()
 
     context = locals()
