@@ -289,6 +289,55 @@ class SoundproofingService(models.Model):
         verbose_name_plural = "SoundproofingService"
 
 
+
+class Wallpaper(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Name')
+    description = models.TextField(verbose_name='Description')
+    advantages = models.TextField(verbose_name='Benefits')
+    material = models.CharField(max_length=350, verbose_name='Material')
+    photo = models.ImageField(upload_to='wallpaper_photos/', verbose_name='Photo', default=0)
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Price', default=0.00)
+    discount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Discount', default=0.00)
+
+    # Создание поля photos для связи с моделью SoundproofingPhoto.
+    # Множество фотографий может быть связано с одним элементом Soundproofing.
+    photos = models.ManyToManyField('WallpaperPhoto', related_name='wallpaper', blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Wallpaper"
+        verbose_name_plural = "Wallpaper"
+
+
+# Определение модели SoundproofingPhoto, которая представляет фотографии для электрооборудования.
+class WallpaperPhoto(models.Model):
+    # Поле для загрузки фотографий, указан путь для сохранения в папке soundproofing_photos.
+    photo = models.ImageField(upload_to='wallpaper_photos/', verbose_name='Photo', default=0)
+
+    def __str__(self):
+        return str(self.photo)
+
+    class Meta:
+        verbose_name = "Photo for Wallpaper"
+        verbose_name_plural = "Photos for Wallpaper"
+
+
+class WallpaperService(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Name')
+    description = models.TextField(verbose_name='Description')
+    photo = models.ImageField(upload_to='wallpaperservice_photos/', verbose_name='Photo')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "WallpaperService"
+        verbose_name_plural = "WallpaperService"
+
+
+
 class Backsplash(models.Model):
     name = models.CharField(max_length=100, verbose_name='Name')
     description = models.TextField(verbose_name='Description')
