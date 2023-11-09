@@ -199,7 +199,8 @@ def wallpaper(request):
 
 def soundproofing(request):
     """Soundproofing Constract"""
-    disp_obj = Soundproofing.objects.all()
+    soundproof_obj = Soundproofing.objects.all()
+    soundproof_serv = SoundproofingService.objects.all()
     main_serv = Services.objects.all()
 
     context = locals()

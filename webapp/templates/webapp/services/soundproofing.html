@@ -112,16 +112,16 @@
 
             <div class="services-detail mar-bottom-80">
                 <div class="row">
-                    {% for main_furniture in furniture_obj %}
+                    {% for main_soundproof in soundproof_obj %}
                     <div class="col-md-8 col-sm-12">
                         <span class="page-title mar-bottom-15">Confide Construction</span>
                         <h2 class="mar-bottom-15">We individually assess each <br> plan and offer optimal solutions</h2>
-                        <p>{{ main_furniture.description }}<br><br>
-                        {{ main_furniture.material }}</p>
+                        <p>{{ main_soundproof.description }}<br><br>
+                        {{ main_soundproof.material }}</p>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="slider-services">
-                            {% for all_photo in main_furniture.photos.all %}
+                            {% for all_photo in main_soundproof.photos.all %}
                             <div><img src="{{ all_photo.photo.url }}" class="img-fixed-size-eight" alt="services-img"></div>
                             {% endfor %}
                         </div>
@@ -160,13 +160,13 @@
 
             <div class="services-detail mar-bottom-80">
                 <div class="row">
-                    {% for main_furniture_serv in furnitur_serv %}
+                    {% for main_soundpr_serv in soundproof_serv %}
                 <div class="col-md-4 col-sm-12">
                     <div class="box">
                         <div class="box-content">
-                            <h3 class="mar-bottom-20">{{ main_furniture_serv.name }}</h3>
-                            <img src="{{ main_furniture_serv.photo.url }}" class="img-fixed-size-seven" alt="services-1">
-                            <p class="mar-top-20">{{ main_furniture_serv.description }}</p>
+                            <h3 class="mar-bottom-20">{{ main_soundpr_serv.name }}</h3>
+                            <img src="{{ main_soundpr_serv.photo.url }}" class="img-fixed-size-seven" alt="services-1">
+                            <p class="mar-top-20">{{ main_soundpr_serv.description }}</p>
                         </div>
                     </div>
                 </div>
