@@ -85,6 +85,29 @@ class HandymanServiceAdmin(admin.ModelAdmin):
 admin.site.register(HandymanService, HandymanServiceAdmin)
 
 
+class WallpaperPhotoInline(admin.TabularInline):
+    model = Wallpaper.photos.through
+    extra = 6  # Это позволит добавить 6 фотографий
+
+class WallpaperAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'display_photos')
+
+    def display_photos(self, obj):
+        return ", ".join([str(photo.photo) for photo in obj.photos.all()])
+
+    display_photos.short_description = 'Photos'
+
+    inlines = [WallpaperPhotoInline]
+
+admin.site.register(Wallpaper, WallpaperAdmin)
+admin.site.register(WallpaperPhoto)
+
+class WallpaperServiceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'photo')
+
+admin.site.register(WallpaperService, WallpaperServiceAdmin)
+
+
 class PaintingPhotoInline(admin.TabularInline):
     model = Painting.photos.through
     extra = 6  # Это позволит добавить 6 фотографий
