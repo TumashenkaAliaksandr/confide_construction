@@ -316,9 +316,6 @@ def error(request):
     """Error page Constract """
     return render(request, 'webapp/error.html')
 
-def events(request):
-    """Events page Constract """
-    return render(request, 'webapp/event.html')
 
 def checkout(request):
     """Checkout page Constract """

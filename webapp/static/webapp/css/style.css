@@ -1513,7 +1513,7 @@ section#mt_project .project-button a:hover{
 /*          Team          */
 /* ====================== */
   
-section#const-team{padding: 70px 0 70px;}
+section#const-team{padding: 50px 0 40px;}
 
 section#const-team .section_heading {
     padding-right: 0;
@@ -1617,7 +1617,7 @@ section#const-team .slick-prev:before, section#const-team .slick-next:before{
 /* ============================= */
 
 #mt_fun {
-  padding:50px 0 50px;
+  padding:45px 0 45px;
     background-color: beige;
 }
 
