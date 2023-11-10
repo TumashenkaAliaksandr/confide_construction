@@ -24,120 +24,80 @@
         </div>
     </div><!-- End breadcrumb -->
 
-    <!--store detail -->
-    <section id="store-detail" class="store-detail">
+    <!--* Services*-->
+    <section id="mt_services" class="services_one">
         <div class="container">
-            <div class="single-product-content">
+
+            <div class="services-detail mar-bottom-80">
                 <div class="row">
-                 {% for main_photo in dry_obj %}
-                    <div class="col-sm-6">
-                        <div class="thumbnail-images">
-                            <div class="slider slider-store">
-                                <div>
-                                   <img src="{{ main_photo.photo.url }}" alt="1">
-                                </div>
-                            </div>
-                            <div class="slider slider-thumbs">
-                                <div>
-                                   <img src="{{ main_photo.photo.url }}" alt="1">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-
                     {% for main_drywall in dry_obj %}
-                    <div class="col-sm-6">
-                        <div class="single-product-summary">
-                            <div class="entry-summary">
-                                <h2 class="single-product-title">{{ main_drywall.name }}</h2>
-                                <div class="rt-product-meta-wrapper">
-                                    <span class="price">
-                                        <del>
-                                            <span class="rt-price-amount">
-                                                <span>$</span>{{ main_drywall.price }}</span>
-                                        </del>
-                                        <ins>
-                                            <span class="rt-price-amount">
-                                                <span>$</span>{{ main_drywall.discount }}</span>
-                                        </ins>
-                                    </span>
-                                </div>
-                                <div class="product-details_short-description mar-top-30">
-                                    <p>{{ main_drywall.description }}</p>
-                                </div>
+                        <div class="col-md-8 col-sm-12">
+                            <span class="page-title mar-bottom-15">Confide Construction</span>
+                            <h2 class="mar-bottom-15">We individually assess each <br> plan and offer optimal solutions
+                            </h2>
+                            <p>{{ main_drywall.description }}<br><br>
+                                {{ main_drywall.material }}</p>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="slider-services">
+                                {% for all_photo in main_drywall.photos.all %}
+                                    <div><img src="{{ all_photo.photo.url }}" class="img-fixed-size-eight"
+                                              alt="services-img"></div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
 
-                                <form class="cart mar-top-30" action="{% url 'webapp:process_payment' %}" method="post">
-                                    <div class="quantity-buttons">
-                                        <label class="screen-reader-text">Quantity</label>
-                                        <input type="number" class="quantity-input" name="quantity" min="1" max="100" placeholder="No.">
+            <!--*Newsletter*-->
+            <div id="newsletter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="news-content">
+                                <h3>Order Free Consultation</h3>
+                                <p class="beige"><b>CALL US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE
+                                    YOUR LIFESTYLE DREAMS.</b></p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="mailpoet_form">
+                                <form target="_self" method="post" action="" novalidate="">
+                                    <input type="text" name="name" placeholder="Your Name">
+                                    <input type="email" class="mailpoet_text" name="email" title="Email"
+                                           placeholder="Please specify your email address.">
+                                    <input type="text" name="description" placeholder="Description Service">
+                                    <div class="button">
+                                        <input type="submit" class="mailpoet_submit" value="Free Quote">
                                     </div>
-
-                                    <button type="submit" name="add-to-cart" value="1605" class="mt_btn_yellow">Add to
-                                        cart
-                                    </button>
                                 </form>
-
-
-{#                                <div class="product_meta mar-top-30">#}
-{##}
-{#                                    <span class="sku_wrapper">SKU: <span class="sku">125</span></span>#}
-{##}
-{#                                    <span class="posted_in">#}
-{#                                        Category: <a href="{% url 'webapp:process_payment' %}" rel="tag">Wall Decoration</a>#}
-{#                                    </span>#}
-{##}
-{#                                    <span class="tagged_as">Tags:#}
-{#                                        <a href="#" rel="tag">Color</a>,#}
-{#                                        <a href="#" rel="tag">Design</a>#}
-{#                                    </span>#}
-{##}
-{#                                </div>#}
                             </div>
                         </div>
                     </div>
-                    {% endfor %}
                 </div>
-
             </div>
-        </div>
-    </section>
-    <!--/End store detail -->
+            <!--*End Newsletter*-->
 
-    <!-- store tab -->
-    <section id="store-tabs" class="store-tabs">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 ">
-                    {% for main_info in dry_obj %}
-                    <div id="store-tab-main" class="">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a  href="#1" data-toggle="tab">Description</a></li>
-                            <li><a href="#2" data-toggle="tab">Advantages Information</a></li>
-                            <li><a href="#3" data-toggle="tab">Material</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="1">
-                                <p>{{ main_info.description }}</p>
-                            </div>
-
-                            <div class="tab-pane" id="2">
-                              <p>{{ main_info.advantages }}</p>
-                            </div>
-
-                            <div class="tab-pane" id="3">
-                              <p>{{ main_info.material }}</p>
+            <div class="services-detail mar-bottom-80">
+                <div class="row">
+                    {% for main_drywall_serv in dry_ser %}
+                        <div class="col-md-4 col-sm-12">
+                            <div class="box">
+                                <div class="box-content">
+                                    <h3 class="mar-bottom-20">{{ main_drywall_serv.name }}</h3>
+                                    <img src="{{ main_drywall_serv.photo.url }}" class="img-fixed-size-seven"
+                                         alt="services-1">
+                                    <p class="mar-top-20">{{ main_drywall_serv.description }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     {% endfor %}
-
                 </div>
             </div>
         </div>
     </section>
-    <!-- End store tab -->
+    <!--* End Services*-->
 
     <!-- store -->
     <section id="our_store" class="our_store related_store">
