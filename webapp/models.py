@@ -214,31 +214,52 @@ class DisposalService(models.Model):
         verbose_name_plural = "Disposal"
 
 
+
 class Drywall(models.Model):
     name = models.CharField(max_length=100, verbose_name='Name')
     description = models.TextField(verbose_name='Description')
     advantages = models.TextField(verbose_name='Benefits')
-    material = models.CharField(max_length=100, verbose_name='Material')
+    material = models.CharField(max_length=350, verbose_name='Material')
     photo = models.ImageField(upload_to='drywall_photos/', verbose_name='Photo', default=0)
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Price', default=0.00)
     discount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Discount', default=0.00)
 
+    # Создание поля photos для связи с моделью DrywallPhoto.
+    # Множество фотографий может быть связано с одним элементом Drywall.
+    photos = models.ManyToManyField('DrywallPhoto', related_name='soundproofing', blank=True)
+
     def __str__(self):
         return self.name
-
-    def save_model(self, request, obj, form, change):
-        # Если цена была изменена, пересчитываем скидку
-        if 'price' in form.changed_data:
-            price = form.cleaned_data['price']
-            discount = price - Decimal('90.00')  # Вычитаем Decimal объект
-
-            obj.discount = discount
-
-        super().save_model(request, obj, form, change)
 
     class Meta:
         verbose_name = "Drywall"
         verbose_name_plural = "Drywall"
+
+
+# Определение модели DrywallPhoto, которая представляет фотографии для электрооборудования.
+class DrywallPhoto(models.Model):
+    # Поле для загрузки фотографий, указан путь для сохранения в папке Drywall_photos.
+    photo = models.ImageField(upload_to='drywall_photos/', verbose_name='Photo', default=0)
+
+    def __str__(self):
+        return str(self.photo)
+
+    class Meta:
+        verbose_name = "Photo for Drywall"
+        verbose_name_plural = "Photos for Drywall"
+
+
+class DrywallService(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Name')
+    description = models.TextField(verbose_name='Description')
+    photo = models.ImageField(upload_to='drywallservice_photos/', verbose_name='Photo')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "DrywallService"
+        verbose_name_plural = "DrywallService"
 
 
 
