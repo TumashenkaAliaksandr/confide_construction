@@ -6,26 +6,29 @@ from decimal import Decimal
 class ServicesAdmin(admin.ModelAdmin):
     list_display = ('name', 'is_main', 'image', 'description')
 
-class DisposalServiceAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'photo')
 
-    def photo(self, obj):
-        return ", ".join([str(photo) for photo in obj.photos.all()])
-
-    photo.short_description = 'Photo'
-
-admin.site.register(DisposalService, DisposalServiceAdmin)
-
+class DrywallPhotoInline(admin.TabularInline):
+    model = Drywall.photos.through
+    extra = 6  # Это позволит добавить 6 фотографий
 
 class DrywallAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'photo')
+    list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'display_photos')
 
-    def photo(self, obj):
-        return ", ".join([str(photo) for photo in obj.photos.all()])
+    def display_photos(self, obj):
+        return ", ".join([str(photo.photo) for photo in obj.photos.all()])
 
-    photo.short_description = 'Photo'
+    display_photos.short_description = 'Photos'
+
+    inlines = [DrywallPhotoInline]
 
 admin.site.register(Drywall, DrywallAdmin)
+admin.site.register(DrywallPhoto)
+
+
+class DrywallServiceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'photo')
+
+admin.site.register(DrywallService, DrywallServiceAdmin)
 
 
 class BacksplashAdmin(admin.ModelAdmin):
@@ -106,6 +109,31 @@ class WallpaperServiceAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'photo')
 
 admin.site.register(WallpaperService, WallpaperServiceAdmin)
+
+
+
+class DisposalPhotoInline(admin.TabularInline):
+    model = Disposal.photos.through
+    extra = 6  # Это позволит добавить 6 фотографий
+
+class DisposalAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'display_photos')
+
+    def display_photos(self, obj):
+        return ", ".join([str(photo.photo) for photo in obj.photos.all()])
+
+    display_photos.short_description = 'Photos'
+
+    inlines = [DisposalPhotoInline]
+
+admin.site.register(Disposal, DisposalAdmin)
+admin.site.register(DisposalPhoto)
+
+class DisposalServiceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'photo')
+
+admin.site.register(DisposalService, DisposalServiceAdmin)
+
 
 
 class PaintingPhotoInline(admin.TabularInline):
