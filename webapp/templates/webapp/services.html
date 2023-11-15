@@ -116,24 +116,34 @@
     </section>
     <!--* End Slider Services*-->
 
-    <!--=* Get Started Section*=-->
-    <section id="mt_get_started">
+    <!--*Newsletter*-->
+    <div id="newsletter">
         <div class="container">
-            <div class="watch_inner">
-                <img src="{% static 'webapp/images/watch_inner.jpg' %}" alt="">
-                <div class="watch_content">
-                    <h3 class="white">We Build, Your Dream</h3>
-                    <h2 class="white">Quality Comes First</h2>
-                    <p>To develop a financial strategy for your future, it's important for your financial professional to see a complete, 360-degree view of your financial picture, including how your retirement assets are intadfegrated and work with one another.</p>
-                    <a href="#" class="btn mt_btn_yellow mar-top-30">View Work Process</a>
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="news-content">
+                        <h3>ORDER FREE CONSULTATION</h3>
+                        <p class="beige"><b>CALL US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE YOUR
+                            LIFESTYLE DREAMS.</b></p>
+                    </div>
                 </div>
-                <div class="pulses">
-                    <button type="button" class="play-btn js-video-button" data-video-id='152879427' data-channel="vimeo"><i class="fa fa-play"></i></button>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="mailpoet_form">
+                        <form target="_self" method="post" action="" novalidate="">
+                            <input type="text" name="name" placeholder="Your Name">
+                            <input type="email" class="mailpoet_text" name="email" title="Email"
+                                   placeholder="Please specify your email address.">
+                            <input type="text" name="description" placeholder="Description Service">
+                            <div class="button">
+                                <input type="submit" class="mailpoet_submit" value="Free Quote">
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!--* End Get Started Section*-->
+    </div>
+    <!--*End Newsletter*-->
 
 
 {% endblock %}
