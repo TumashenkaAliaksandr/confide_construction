@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from blog.models import News
+from blog.models import *
 
 
 def blog(request):
     """these are views for Blog News list"""
-    model_blog_main = News.objects.all()
+    model_blog_main = BlogNews.objects.all()
 
     context = locals()
     return render(request, 'blog/blog-listing.html', context=context)
@@ -12,7 +12,7 @@ def blog(request):
 
 def NewsDetailView(request):
     """these are views for News list"""
-    model = News.objects.all()
+    model = BlogNews.objects.all()
 
     context = locals()
     return render(request, 'blog/blog-details.html')

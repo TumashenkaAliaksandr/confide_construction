@@ -20,13 +20,15 @@
                 <li class="active">Blog List View</li>
             </ul>
         </div>
-    </div><!-- End breadcrumb -->
+    </div>
+    <!-- End breadcrumb -->
 
     <!--* Blog div Sec*-->
     <section id="blog_main_sec">
         <div class="container">
             <div class="row">
                 <!--*Blog Content Sec*-->
+                {% for main_news in model_blog_main %}
                 <div class="col-md-8 col-sm-12">
                     <div class="blog-listview">
                         <div class="post_item mar-bottom-30"><!-- post item -->
@@ -35,22 +37,22 @@
                                     <div class="blog-post-image">
                                         <div class="blog_cat">Design</div>
                                         <div class="img">
-                                            <img src="{% static 'blog/images/blog-listing/blog_list_01.jpg' %}" alt="image" />
+                                            <img src="{{ main_news.photo.url }}" alt="image" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-7 col-xs-12">
                                     <div class="post-detail_container">
                                     <div class="post-content pad-bottom-20">
-                                        <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i class="fa fa-calendar"></i> Mon, 03-09-2019</a></p>
+                                        <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i class="fa fa-calendar"></i> {{ main_news.pub_date }}</a></p>
                                         <h3 class="post-title text-uppercase">
-                                            <a href="{% url 'blog:single' %}">Exercitation ullamco laboris nisi ut aliquip</a>
+                                            <a href="{% url 'blog:single' %}">{{ main_news.title }}</a>
                                         </h3>
-                                        <p class="post-excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Exercitation ullamco laboris nisi ut aliquip consequat.</p>
+                                        <p class="post-excerpt">{{ main_news.description_small }}</p>
                                     </div>
                                     <div class="post-author">
                                         <span class="pull-left author-list">
-                                            <img src="{% static 'blog/images/team/member-1.jpg' %}" alt="author"> <a href="#">Jack Nelson</a>
+                                            <img src="{{ main_news.author_photo.url }}" alt="author"> <a href="#">{{ main_news.author }}</a>
                                         </span>
                                         <span class="pull-right comments-list pad-top-5">
                                             <i class="fa fa-comment"></i> <a href="#">Comments(5)</a>
@@ -61,231 +63,8 @@
                             </div>
                         </div>
 
-                        <div class="post_item mar-bottom-30"><!-- post item -->
-                            <div class="row">
-                                <div class="col-sm-5 col-xs-12">
-                                    <div class="blog-post-image">
-                                        <div class="blog_cat">Planning</div>
-                                        <div class="img">
-                                            <img src="{% static 'blog/images/blog-listing/blog_list_02.jpg' %}" alt="image" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-7 col-xs-12">
-                                    <div class="post-detail_container">
-                                    <div class="post-content pad-bottom-20">
-                                        <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i class="fa fa-calendar"></i> Mon, 03-09-2019</a></p>
-                                        <h3 class="post-title text-uppercase">
-                                            <a href="blog-details.html">Exercitation ullamco laboris nisi ut aliquip</a>
-                                        </h3>
-                                        <p class="post-excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Exercitation ullamco laboris nisi ut aliquip consequat.</p>
-                                    </div>
-                                    <div class="post-author">
-                                        <span class="pull-left author-list">
-                                            <img src="{% static 'blog/images/team/member-1.jpg' %}" alt="author"> <a href="#">Jack Nelson</a>
-                                        </span>
-                                        <span class="pull-right comments-list pad-top-5">
-                                            <i class="fa fa-comment"></i> <a href="#">Comments(5)</a>
-                                        </span>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="post_item mar-bottom-30"><!-- post item -->
-                            <div class="row">
-                                <div class="col-sm-5 col-xs-12">
-                                    <div class="blog-post-image">
-                                        <div class="blog_cat">Engineering</div>
-                                        <div class="img">
-                                            <img src="{% static 'blog/images/blog-listing/blog_list_03.jpg' %}" alt="image" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-7 col-xs-12">
-                                    <div class="post-detail_container">
-                                    <div class="post-content pad-bottom-20">
-                                        <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i class="fa fa-calendar"></i> Mon, 03-09-2019</a></p>
-                                        <h3 class="post-title text-uppercase">
-                                            <a href="blog-details.html">Exercitation ullamco laboris nisi ut aliquip</a>
-                                        </h3>
-                                        <p class="post-excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Exercitation ullamco laboris nisi ut aliquip consequat.</p>
-                                    </div>
-                                    <div class="post-author">
-                                        <span class="pull-left author-list">
-                                            <img src="{% static 'blog/images/team/member-1.jpg' %}" alt="author"> <a href="#">Jack Nelson</a>
-                                        </span>
-                                        <span class="pull-right comments-list pad-top-5">
-                                            <i class="fa fa-comment"></i> <a href="#">Comments(5)</a>
-                                        </span>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="post_item mar-bottom-30"><!-- post item -->
-                            <div class="row">
-                                <div class="col-sm-5 col-xs-12">
-                                    <div class="blog-post-image">
-                                        <div class="blog_cat">Innovation</div>
-                                        <div class="img">
-                                            <img src="{% static 'blog/images/blog-listing/blog_list_04.jpg' %}" alt="image" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-7 col-xs-12">
-                                    <div class="post-detail_container">
-                                    <div class="post-content pad-bottom-20">
-                                        <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i class="fa fa-calendar"></i> Mon, 03-09-2019</a></p>
-                                        <h3 class="post-title text-uppercase">
-                                            <a href="blog-details.html">Exercitation ullamco laboris nisi ut aliquip</a>
-                                        </h3>
-                                        <p class="post-excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Exercitation ullamco laboris nisi ut aliquip consequat.</p>
-                                    </div>
-                                    <div class="post-author">
-                                        <span class="pull-left author-list">
-                                            <img src="{% static 'blog/images/team/member-1.jpg' %}" alt="author"> <a href="#">Jack Nelson</a>
-                                        </span>
-                                        <span class="pull-right comments-list pad-top-5">
-                                            <i class="fa fa-comment"></i> <a href="#">Comments(5)</a>
-                                        </span>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="post_item mar-bottom-30"><!-- post item -->
-                            <div class="row">
-                                <div class="col-sm-5 col-xs-12">
-                                    <div class="blog-post-image">
-                                        <div class="blog_cat">Structure</div>
-                                        <div class="img">
-                                            <img src="{% static 'blog/images/blog-listing/blog_list_05.jpg' %}" alt="image" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-7 col-xs-12">
-                                    <div class="post-detail_container">
-                                    <div class="post-content pad-bottom-20">
-                                        <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i class="fa fa-calendar"></i> Mon, 03-09-2019</a></p>
-                                        <h3 class="post-title text-uppercase">
-                                            <a href="blog-details.html">Exercitation ullamco laboris nisi ut aliquip</a>
-                                        </h3>
-                                        <p class="post-excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Exercitation ullamco laboris nisi ut aliquip consequat.</p>
-                                    </div>
-                                    <div class="post-author">
-                                        <span class="pull-left author-list">
-                                            <img src="{% static 'blog/images/team/member-1.jpg' %}" alt="author"> <a href="#">Jack Nelson</a>
-                                        </span>
-                                        <span class="pull-right comments-list pad-top-5">
-                                            <i class="fa fa-comment"></i> <a href="#">Comments(5)</a>
-                                        </span>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="post_item mar-bottom-30"><!-- post item -->
-                            <div class="row">
-                                <div class="col-sm-5 col-xs-12">
-                                    <div class="blog-post-image">
-                                        <div class="blog_cat">Implement</div>
-                                        <div class="img">
-                                            <img src="{% static 'blog/images/blog-listing/blog_list_06.jpg' %}" alt="image" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-7 col-xs-12">
-                                    <div class="post-detail_container">
-                                    <div class="post-content pad-bottom-20">
-                                        <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i class="fa fa-calendar"></i> Mon, 03-09-2019</a></p>
-                                        <h3 class="post-title text-uppercase">
-                                            <a href="blog-details.html">Exercitation ullamco laboris nisi ut aliquip</a>
-                                        </h3>
-                                        <p class="post-excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Exercitation ullamco laboris nisi ut aliquip consequat.</p>
-                                    </div>
-                                    <div class="post-author">
-                                        <span class="pull-left author-list">
-                                            <img src="{% static 'blog/images/team/member-1.jpg' %}" alt="author"> <a href="#">Jack Nelson</a>
-                                        </span>
-                                        <span class="pull-right comments-list pad-top-5">
-                                            <i class="fa fa-comment"></i> <a href="#">Comments(5)</a>
-                                        </span>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="post_item mar-bottom-30"><!-- post item -->
-                            <div class="row">
-                                <div class="col-sm-5 col-xs-12">
-                                    <div class="blog-post-image">
-                                        <div class="blog_cat">Showing</div>
-                                        <div class="img">
-                                            <img src="{% static 'blog/images/blog-listing/blog_list_07.jpg' %}" alt="image" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-7 col-xs-12">
-                                    <div class="post-detail_container">
-                                    <div class="post-content pad-bottom-20">
-                                        <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i class="fa fa-calendar"></i> Mon, 03-09-2019</a></p>
-                                        <h3 class="post-title text-uppercase">
-                                            <a href="blog-details.html">Exercitation ullamco laboris nisi ut aliquip</a>
-                                        </h3>
-                                        <p class="post-excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Exercitation ullamco laboris nisi ut aliquip consequat.</p>
-                                    </div>
-                                    <div class="post-author">
-                                        <span class="pull-left author-list">
-                                            <img src="{% static 'blog/images/team/member-1.jpg' %}" alt="author"> <a href="#">Jack Nelson</a>
-                                        </span>
-                                        <span class="pull-right comments-list pad-top-5">
-                                            <i class="fa fa-comment"></i> <a href="#">Comments(5)</a>
-                                        </span>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="post_item mar-bottom-30"><!-- post item -->
-                            <div class="row">
-                                <div class="col-sm-5 col-xs-12">
-                                    <div class="blog-post-image">
-                                        <div class="blog_cat">Painting</div>
-                                        <div class="img">
-                                            <img src="{% static 'blog/images/blog-listing/blog_list_08.jpg' %}" alt="image" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-7 col-xs-12">
-                                    <div class="post-detail_container">
-                                        <div class="post-content pad-bottom-20">
-                                            <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i class="fa fa-calendar"></i> Mon, 03-09-2019</a></p>
-                                            <h3 class="post-title text-uppercase">
-                                                <a href="blog-details.html">Exercitation ullamco laboris nisi ut aliquip</a>
-                                            </h3>
-                                            <p class="post-excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Exercitation ullamco laboris nisi ut aliquip consequat.</p>
-                                        </div>
-                                        <div class="post-author">
-                                            <span class="pull-left author-list">
-                                                <img src="{% static 'blog/images/team/member-1.jpg' %}" alt="author"> <a href="#">Jack Nelson</a>
-                                            </span>
-                                            <span class="pull-right comments-list pad-top-5">
-                                                <i class="fa fa-comment"></i> <a href="#">Comments(5)</a>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row"><!-- pagination -->
+                        <!-- pagination -->
+                        <div class="row">
                             <div class="col-md-12">
                                 <div class="pagination-div text-center">
                                     <ul class="pagination">
@@ -313,15 +92,18 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div><!-- End pagination -->
+                        </div>
+                        <!-- End pagination -->
                     </div>
                 </div>
                 <!--* End Blog Content Sec*-->
+                {% endfor %}
 
                 <!--* Blog Sidebar*-->
                 <aside class="col-md-4 col-sm-12">
                     <div class="sidebar-main">
-                        <div class="widget"><!-- widget list -->
+                        <!-- widget list -->
+                        <div class="widget">
                             <h3 class="blog_heading_border"> Search </h3>
                             <form class="search-form" role="search" action="http://markupthemex.com/" method="post">
                                 <input id="sidebar-search" placeholder="Search" type="text" />
