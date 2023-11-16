@@ -300,7 +300,7 @@
                     <div class="col-md-4 col-sm-12 wow slideInDown" data-wow-delay=".2s">
                         <div class="blog-post-inner_wrapper">
                             <div class="blog-post-image">
-                                <div class="blog_cat">Innovation</div>
+                                <div class="blog_cat">Confide Construction</div>
                                 <div class="img">
                                     <img src="{{ main_blog.photo.url }}" alt="image"/>
                                 </div>
@@ -310,15 +310,14 @@
                                     <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i
                                             class="fa fa-calendar"></i> {{ main_blog.pub_date }}</a></p>
                                     <h3 class="post-title text-uppercase">
-                                        <a href="blog-details.html">Established fact </a>
+                                        <a href="{% url 'blog:single' pk=main_blog.id %}">{{ main_blog.title }} </a>
                                     </h3>
-                                    <p class="post-excerpt"> Sed ut perspiciatis unde omnis iste natus erro sit
-                                        voluiptatem accusantium doloremque ips totam quae ab illo inventore. </p>
+                                    <p class="post-excerpt"> {{ main_blog.description_small }} </p>
                                 </div>
                                 <div class="post-author">
                                     <span class="pull-left author-list">
-                                        <img src="{% static 'webapp/images/team/member-1.jpg' %}" alt="author"> <a
-                                            href="#">Jack Nelson</a>
+                                        <img src="{{ main_blog.author_photo.url }}" alt="author"> <a
+                                            href="#">{{ main_blog.author }}</a>
                                     </span>
                                     <span class="pull-right comments-list pad-top-5">
                                         <i class="fa fa-comment"></i> <a href="#">Comments(5)</a>
