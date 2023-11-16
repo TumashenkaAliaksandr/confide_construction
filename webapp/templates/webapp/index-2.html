@@ -290,26 +290,25 @@
                         <h2 class="section_title">
                             <span>Latest Blog</span>
                         </h2>
-                        <p class="heading_txt"><b>There are variations available majoritaey suffered alteration words which
-                            look believable
-                            dolor sit amet consectetuer adipiscing elit suspendisse justdo structure versions.</b></p>
+                        <p class="heading_txt"><b>Professional service from ConfideCo company</b></p>
                     </div>
                 </div>
             </div>
             <div class="blog_post_inner">
                 <div class="row">
+                    {% for main_blog in news %}
                     <div class="col-md-4 col-sm-12 wow slideInDown" data-wow-delay=".2s">
                         <div class="blog-post-inner_wrapper">
                             <div class="blog-post-image">
                                 <div class="blog_cat">Innovation</div>
                                 <div class="img">
-                                    <img src="{% static 'webapp/images/blog-listing/blog_08.jpg' %}" alt="image"/>
+                                    <img src="{{ main_blog.photo.url }}" alt="image"/>
                                 </div>
                             </div>
                             <div class="post-detail_container">
                                 <div class="post-content">
                                     <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i
-                                            class="fa fa-calendar"></i> Mon, 03-09-2019</a></p>
+                                            class="fa fa-calendar"></i> {{ main_blog.pub_date }}</a></p>
                                     <h3 class="post-title text-uppercase">
                                         <a href="blog-details.html">Established fact </a>
                                     </h3>
@@ -328,69 +327,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-4 col-sm-6 wow slideInDown" data-wow-delay=".2s">
-                        <div class="blog-post-inner_wrapper">
-                            <div class="blog-post-image">
-                                <div class="blog_cat">Structure</div>
-                                <div class="img">
-                                    <img src="{% static 'webapp/images/blog-listing/blog_09.jpg' %}" alt="image"/>
-                                </div>
-                            </div>
-                            <div class="post-detail_container">
-                                <div class="post-content">
-                                    <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i
-                                            class="fa fa-calendar"></i> Mon, 03-09-2019</a></p>
-                                    <h3 class="post-title text-uppercase">
-                                        <a href="blog-details.html">Established fact </a>
-                                    </h3>
-                                    <p class="post-excerpt"> Sed ut perspiciatis unde omnis iste natus erro sit
-                                        voluiptatem accusantium doloremque ips totam quae ab illo inventore. </p>
-                                </div>
-                                <div class="post-author">
-                                    <span class="pull-left author-list">
-                                        <img src="{% static 'webapp/images/team/member-1.jpg' %}" alt="author"> <a
-                                            href="#">Jack Nelson</a>
-                                    </span>
-                                    <span class="pull-right comments-list pad-top-5">
-                                        <i class="fa fa-comment"></i> <a href="#">Comments(5)</a>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-6 wow slideInDown" data-wow-delay=".2s">
-                        <div class="blog-post-inner_wrapper">
-                            <div class="blog-post-image">
-                                <div class="blog_cat">Design</div>
-                                <div class="img">
-                                    <img src="{% static 'webapp/images/blog-listing/blog_10.jpg' %}" alt="image"/>
-                                </div>
-                            </div>
-                            <div class="post-detail_container">
-                                <div class="post-content">
-                                    <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i
-                                            class="fa fa-calendar"></i> Mon, 03-09-2019</a></p>
-                                    <h3 class="post-title text-uppercase">
-                                        <a href="blog-details.html">Established fact </a>
-                                    </h3>
-                                    <p class="post-excerpt"> Sed ut perspiciatis unde omnis iste natus erro sit
-                                        voluiptatem accusantium doloremque ips totam quae ab illo inventore. </p>
-                                </div>
-                                <div class="post-author">
-                                    <span class="pull-left author-list">
-                                        <img src="{% static 'webapp/images/team/member-1.jpg' %}" alt="author"> <a
-                                            href="#">Jack Nelson</a>
-                                    </span>
-                                    <span class="pull-right comments-list pad-top-5">
-                                        <i class="fa fa-comment"></i> <a href="#">Comments(5)</a>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    {% endfor %}
                 </div>
             </div>
         </div>

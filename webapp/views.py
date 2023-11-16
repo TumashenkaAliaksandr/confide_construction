@@ -1,5 +1,7 @@
 from django.contrib.auth.views import LoginView
 from django.views.decorators.csrf import csrf_exempt
+
+from blog.models import BlogNews
 from webapp.models import *
 from django.core.mail import send_mail
 from .forms import CallbackForm, PaymentForm, RegistrationForm, ContactForm
@@ -10,13 +12,14 @@ from django.shortcuts import render, redirect
 
 
 
-def index(request):
+def index(request, pk):
     """Main, index constr"""
     serv = Services.objects.all()
     people = Review.objects.all()
     partner = Recommended.objects.all()
     project_constract = Project.objects.all()
     main_serv = Services.objects.filter(is_main=True).first()
+    news = BlogNews.objects.filter(pk=pk)
 
     context = locals()
     return render(request, 'webapp/index-2.html', context)
