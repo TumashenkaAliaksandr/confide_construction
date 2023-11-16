@@ -227,23 +227,8 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display = ('title', 'is_main', 'image', 'description')
 
 
-@admin.register(News)
-class NewsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'location', 'photo', 'pub_date')
-
-
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'first_name', 'last_name', 'phone', 'email', 'password')
 
 
-@admin.register(Review)
-class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('author', 'created_at', 'rating', 'approved')
-    list_filter = ('approved',)
-    search_fields = ('author', 'email', 'text')
-    list_editable = ('approved',)
-
-@admin.register(Quality)
-class QualityAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'icon')

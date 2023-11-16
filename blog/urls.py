@@ -6,7 +6,7 @@ app_name = 'blog'
 
 
 urlpatterns = [
-    path('blog/', NewsListView.as_view(), name='blog'),
-    path('single/', NewsDetailView.as_view(), name='single'),
+    path('blog/', blog, name='blog'),
+    path('single/', NewsDetailView, name='single'),
 
 ]

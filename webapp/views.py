@@ -3,10 +3,11 @@ from django.views.decorators.csrf import csrf_exempt
 from webapp.models import *
 from django.core.mail import send_mail
 from .forms import CallbackForm, PaymentForm, RegistrationForm, ContactForm
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 import stripe
 from django.contrib.auth import login
 from django.shortcuts import render, redirect
+
 
 
 def index(request):
@@ -39,6 +40,7 @@ def shop(request):
 
     context = locals()
     return render(request, 'webapp/shop.html', context=context)
+
 
 @csrf_exempt
 def process_payment(request):
@@ -139,8 +141,6 @@ def contacts(request):
     return render(request, 'webapp/contact-us-1.html', context=context)
 
 
-
-
 def backsplash(request):
     """Backsplash Constract"""
     back_sp = Backsplash.objects.all()
@@ -158,6 +158,7 @@ def drywall(request):
 
     context = locals()
     return render(request, 'webapp/services/drywall.html', context)
+
 
 def disposal(request):
     """Disposal Constract"""
@@ -258,7 +259,6 @@ def callback_view(request):
     return render(request, 'webapp/forms/register_form.html', {'form': form})
 
 
-
 # def callback_view(request):
 #     if request.method == 'POST':
 #         form = CallbackForm(request.POST)
@@ -312,6 +312,7 @@ class CRloginView(LoginView):
 
 def logout(request):
     return render(request, 'webapp/logout.html')
+
 
 def registerdone(request):
     return render(request, 'webapp/register_done.html')
