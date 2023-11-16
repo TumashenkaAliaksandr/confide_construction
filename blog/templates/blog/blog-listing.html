@@ -46,7 +46,7 @@
                                     <div class="post-content pad-bottom-20">
                                         <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i class="fa fa-calendar"></i> {{ main_news.pub_date }}</a></p>
                                         <h3 class="post-title text-uppercase">
-                                            <a href="{% url 'blog:single' %}">{{ main_news.title }}</a>
+                                            <a href="{% url 'blog:single' pk=main_news.id %}">{{ main_news.title }}</a>
                                         </h3>
                                         <p class="post-excerpt">{{ main_news.description_small }}</p>
                                     </div>

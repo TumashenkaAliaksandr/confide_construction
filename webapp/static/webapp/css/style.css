@@ -965,6 +965,12 @@ section#choose_us.about_choose_us {
     object-fit: contain; /* Сохраняет пропорции изображения и помещает его внутри контейнера без обрезания */
 }
 
+.img-fixed-size_ten {
+    width: 60px; /* Установите желаемую ширину */
+    height: 60px; /* Установите желаемую высоту */
+    object-fit: cover; /* Этот свойство сохраняет соотношение сторон и обрезает изображение по нужным размерам */
+}
+
 .review-text-container {
     max-height: 100px; /* Замените 100px на желаемую высоту */
     overflow: hidden;

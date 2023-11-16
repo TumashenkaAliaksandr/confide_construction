@@ -30,35 +30,32 @@
                 <!--*Blog Content Sec*-->
                 <main class="col-md-8 col-sm-12">
                     <div class="blog-details">
+                        {% for main_news_detail in news %}
                         <div class="post-detail_container">
                             <div class="post-content pad-bottom-20">
-                                <p class="post-date text-uppercase mar-bottom-10"><i class="fa fa-calendar"></i> Mon, 03-09-2019</p>
+                                <p class="post-date text-uppercase mar-bottom-10"><i class="fa fa-calendar"></i> {{ main_news_detail.pub_date }}</p>
                                 <h3 class="post-title text-uppercase mar-bottom-0">
-                                    <a href="{% url 'blog:single' %}">Exercitation ullamco laboris nisi ut aliquip</a>
+                                    <a href="{% url 'blog:single' pk=main_news_detail.id %}">{{ main_news_detail.title }}</a>
                                 </h3>
                             </div>
                         </div>
                         <div class="blog-post-image">
                             <div class="blog_cat">Planning</div>
                             <div class="img">
-                                <img src="{% static 'blog/images/blog-listing/blog_14.jpg' %}" alt="image" />
+                                <img src="{{ main_news_detail.photo.url }}" alt="image" />
                             </div>
                         </div>
                         <div class="post_body mar-top-20">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            <p>{{ main_news_detail.description_small }}
                                 </p>
                             <blockquote>
-                                <p>Sed felis est, placerat a ornare vel, tempor id est. Phasellus ac urna vitae massa porttitor lacinia. Integer mollis, nulla pretium porttitor sagittis, urna nibh lobortis eros, ut lacinia elit velit nec diam.</p>
-                                <span>Arthur & Molly Weasley</span>
+                                <p>{{ main_news_detail.comment }}</p>
+                                <span>{{ main_news_detail.comment_author }}</span>
                             </blockquote>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Ut
-                                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br><br>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Ut
-                                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat incidunt dicta eius corporis iste, nihil nam atque.
-                                Deserunt vel, velit cum aut error nam. Unde in ipsa quos earum. Atque.</p>
+
+                            <p>{{ main_news_detail.description }}</p>
                         </div>
+                        {% endfor %}
                         <div class="author_box mar-top-30">
                             <div class="author_img">
                                 <img src="{% static 'blog/images/blog/author.png' %}" alt="Author">
@@ -196,40 +193,18 @@
 
                         <div class="widget widget_recent_entries"><!-- widget list -->
                             <h3 class="blog_heading_border"> Recent Posts </h3>
+                            {% for main_news_posts in news %}
                             <ul>
                                 <li>
-                                    <img src="{% static 'blog/images/blog/r-post-1.jpg' %}" alt="image" />
-                                    <p class="date"><i class="fa fa-calendar"></i> Mon, 04-09-2016</p>
+                                    <img src="{{ main_news_posts.photo.url }}" class="img-fixed-size_ten" alt="image" />
+                                    <p class="date"><i class="fa fa-calendar"></i> {{ main_news_posts.pub_date }}</p>
                                     <h4>
-                                        <a href="blog-details.html">Always Have a Faith in Your Potential</a>
-                                    </h4>
-                                    <P class="Comments"><a href="#"><i class="fa fa-comments"></i> 5 Comments</a></P>
-                                </li>
-                                <li>
-                                    <img src="{% static 'blog/images/blog/r-post-2.jpg' %}" alt="image" />
-                                    <p class="date"><i class="fa fa-calendar"></i> Mon, 04-09-2016</p>
-                                    <h4>
-                                        <a href="blog-details.html">Nobody Knows What’s Gonna Happen</a>
-                                    </h4>
-                                    <P class="Comments"><a href="#"><i class="fa fa-comments"></i> 5 Comments</a></P>
-                                </li>
-                                <li>
-                                    <img src="{% static 'blog/images/blog/r-post-3.jpg' %}" alt="image" />
-                                    <p class="date"><i class="fa fa-calendar"></i> Mon, 04-09-2016</p>
-                                    <h4>
-                                        <a href="blog-details.html">Never Stop Believing Yourself</a>
-                                    </h4>
-                                    <P class="Comments"><a href="#"><i class="fa fa-comments"></i> 5 Comments</a></P>
-                                </li>
-                                <li>
-                                    <img src="{% static 'blog/images/blog/r-post-4.jpg' %}" alt="image" />
-                                    <p class="date"><i class="fa fa-calendar"></i> Mon, 04-09-2016</p>
-                                    <h4>
-                                        <a href="blog-details.html">Always Have a Faith in Your Potential</a>
+                                        <a href="{% url 'blog:single' pk=main_news_posts.id %}">{{ main_news_posts.title }}</a>
                                     </h4>
                                     <P class="Comments"><a href="#"><i class="fa fa-comments"></i> 5 Comments</a></P>
                                 </li>
                             </ul>
+                            {% endfor %}
                         </div><!-- End widget list -->
 
                         <div class="widget widget_categories"><!-- widget list -->
