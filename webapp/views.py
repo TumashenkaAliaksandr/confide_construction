@@ -12,14 +12,14 @@ from django.shortcuts import render, redirect
 
 
 
-def index(request, pk):
+def index(request):
     """Main, index constr"""
     serv = Services.objects.all()
     people = Review.objects.all()
     partner = Recommended.objects.all()
     project_constract = Project.objects.all()
     main_serv = Services.objects.filter(is_main=True).first()
-    news = BlogNews.objects.filter(pk=pk)
+    news = BlogNews.objects.all()
 
     context = locals()
     return render(request, 'webapp/index-2.html', context)
