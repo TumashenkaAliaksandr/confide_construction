@@ -24,7 +24,12 @@ def blog_news(request, pk):
 def NewsDetailView(request, pk):
     """Views for News details"""
     news = BlogNews.objects.filter(pk=pk)
-    context = {'news': news}
+    news_blog_main = BlogNews.objects.all()
+
+    context = {
+        'news': news,
+        'news_blog_main': news_blog_main
+    }
     return render(request, 'blog/blog-details.html', context=context)
 
 

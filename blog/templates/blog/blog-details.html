@@ -73,7 +73,7 @@
 
                         <div class="widget widget_recent_entries"><!-- widget list -->
                             <h3 class="blog_heading_border"> Recent Posts </h3>
-                            {% for main_news_posts in news %}
+                            {% for main_news_posts in news_blog_main %}
                             <ul>
                                 <li>
                                     <img src="{{ main_news_posts.photo.url }}" class="img-fixed-size_ten" alt="image" />
@@ -93,7 +93,7 @@
                                 <li>
                                     <a href="{% url 'blog:blog' %}"> All </a>
                                 </li>
-                                {% for main_news_categ in news %}
+                                {% for main_news_categ in news_blog_main %}
                                     <li>
                                         <a href="{% url 'blog:single' pk=main_news_categ.id %}">{{ main_news_categ.title }} </a>
                                     </li>
