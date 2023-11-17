@@ -62,38 +62,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- pagination -->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="pagination-div text-center">
-                                    <ul class="pagination">
-                                        <li class="prev">
-                                            <a href="#"><i class="fa fa-angle-double-left"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#">1</a>
-                                        </li>
-                                        <li class="active">
-                                            <a href="#">2</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">3</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">...</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">10</a>
-                                        </li>
-                                        <li class="next">
-                                            <a href="#"><i class="fa fa-angle-double-right"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End pagination -->
                     </div>
                 </div>
                 <!--* End Blog Content Sec*-->
@@ -111,10 +79,9 @@
                             </form>
                         </div><!-- End widget list -->
 
-                        {% for main_posts_serch in model_blog_main %}
-
                         <div class="widget widget_recent_entries"><!-- widget list -->
                             <h3 class="blog_heading_border"> Recent Posts </h3>
+                            {% for main_posts_serch in model_blog_main %}
                             <ul>
                                 <li>
                                     <img src="{{ main_posts_serch.photo.url }}" class="img-fixed-size_ten" alt="image" />
@@ -125,7 +92,9 @@
                                     <p class="Comments"><a href="{% url 'blog:single' pk=main_posts_serch.id %}"><i class="fa fa-book"></i> to read</a></p>
                                 </li>
                             </ul>
+                            {% endfor %}
                         </div><!-- End widget list -->
+
 
                         <div class="widget widget_categories"><!-- widget list -->
                             <h3 class="blog_heading_border"> Blog Categories </h3>
@@ -133,11 +102,14 @@
                                 <li>
                                     <a href="{% url 'blog:blog' %}"> All </a>
                                 </li>
+                                {% for main_posts_serch in model_blog_main %}
                                     <li>
                                         <a href="{% url 'blog:single' pk=main_posts_serch.id %}">{{ main_posts_serch.title }}</a>
                                     </li>
+                                {% endfor %}
                             </ul>
                         </div><!-- End widget list -->
+
 
                         <div class="widget widget_custom_menu"><!-- widget list -->
                             <h3 class="blog_heading_border"> Main Menu </h3>
@@ -162,7 +134,6 @@
                                 </li>
                             </ul>
                         </div><!-- End widget list -->
-                        {% endfor %}
 
                         <div class="widget widget-ads"><!-- widget list -->
                             <h3 class="blog_heading_border"><span>Advertisement</span></h3>
@@ -175,6 +146,38 @@
         </div>
     </section>
     <!--*End Blog div Sec*-->
+
+    <!-- pagination -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pagination-div text-center">
+                <ul class="pagination">
+                    <li class="prev">
+                        <a href="#"><i class="fa fa-angle-double-left"></i></a>
+                    </li>
+                    <li>
+                        <a href="#">1</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">2</a>
+                    </li>
+                    <li>
+                        <a href="#">3</a>
+                    </li>
+                    <li>
+                        <a href="#">...</a>
+                    </li>
+                    <li>
+                        <a href="#">10</a>
+                    </li>
+                    <li class="next">
+                        <a href="#"><i class="fa fa-angle-double-right"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End pagination -->
 
 
     <!--*Newsletter*-->

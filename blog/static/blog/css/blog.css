@@ -561,8 +561,16 @@ aside .widget.widget_follow .socibox span{font-size: 16px; color: #444;}
 #blog_main_sec {
   padding:60px 0px 60px;
   background-color: #fff;
-  position: relative; 
+  position: relative;
 }
+
+.sidebar-main {
+        /* Your styles for the sidebar-main class */
+        /* For example: */
+        padding: 20px;
+        background-color: #f9f9f9;
+        /* Add more styles as needed */
+    }
 
 /*#blog_main_sec .post_item:last-child{padding-bottom: 0; border: none; margin-bottom: 0;}*/
 
