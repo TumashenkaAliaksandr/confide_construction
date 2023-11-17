@@ -1,5 +1,4 @@
 from django.urls import path
-from blog.views import NewsDetailView
 from webapp.views import *
 from django.conf import settings
 from django.conf.urls.static import static
@@ -11,7 +10,6 @@ app_name = 'webapp'
 
 urlpatterns = [
     path('', index, name='home'),
-    path('single/<int:pk>/', NewsDetailView, name='single'),
     path('services/', services, name='services'),
     path('backsplash/', backsplash, name='backsplash'),
     path('drywall/', drywall, name='drywall'),

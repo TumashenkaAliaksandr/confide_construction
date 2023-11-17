@@ -11,6 +11,16 @@ def blog(request):
     return render(request, 'blog/blog-listing.html', context=context)
 
 
+def blog_news(request, pk):
+    """these are views for Blog News list"""
+    news = BlogNews.objects.filter(pk=pk)
+
+    context = {
+        'news': news
+    }
+    return render(request, 'blog/blog-listing.html', context=context)
+
+
 def NewsDetailView(request, pk):
     """Views for News details"""
     news = BlogNews.objects.filter(pk=pk)

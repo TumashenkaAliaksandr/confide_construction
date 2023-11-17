@@ -111,38 +111,16 @@
                             </form>
                         </div><!-- End widget list -->
 
+                        {% for main_posts_serch in model_blog_main %}
+
                         <div class="widget widget_recent_entries"><!-- widget list -->
                             <h3 class="blog_heading_border"> Recent Posts </h3>
                             <ul>
                                 <li>
-                                    <img src="{% static 'blog/images/blog/r-post-1.jpg' %}" alt="image" />
-                                    <p class="date"><i class="fa fa-calendar"></i> Mon, 04-09-2016</p>
+                                    <img src="{{ main_posts_serch.photo.url }}" class="img-fixed-size_ten" alt="image" />
+                                    <p class="date"><i class="fa fa-calendar"></i> {{ main_posts_serch.pub_date }}</p>
                                     <h4>
-                                        <a href="blog-details.html">Always Have a Faith in Your Potential</a>
-                                    </h4>
-                                    <P class="Comments"><a href="#"><i class="fa fa-comments"></i> 5 Comments</a></P>
-                                </li>
-                                <li>
-                                    <img src="{% static 'blog/images/blog/r-post-2.jpg' %}" alt="image" />
-                                    <p class="date"><i class="fa fa-calendar"></i> Mon, 04-09-2016</p>
-                                    <h4>
-                                        <a href="blog-details.html">Nobody Knows What’s Gonna Happen</a>
-                                    </h4>
-                                    <P class="Comments"><a href="#"><i class="fa fa-comments"></i> 5 Comments</a></P>
-                                </li>
-                                <li>
-                                    <img src="{% static 'blog/images/blog/r-post-3.jpg' %}" alt="image" />
-                                    <p class="date"><i class="fa fa-calendar"></i> Mon, 04-09-2016</p>
-                                    <h4>
-                                        <a href="blog-details.html">Never Stop Believing Yourself</a>
-                                    </h4>
-                                    <P class="Comments"><a href="#"><i class="fa fa-comments"></i> 5 Comments</a></P>
-                                </li>
-                                <li>
-                                    <img src="{% static 'blog/images/blog/r-post-4.jpg' %}" alt="image" />
-                                    <p class="date"><i class="fa fa-calendar"></i> Mon, 04-09-2016</p>
-                                    <h4>
-                                        <a href="blog-details.html">Always Have a Faith in Your Potential</a>
+                                        <a href="{% url 'blog:single' pk=main_posts_serch.id %}">{{ main_posts_serch.title }}</a>
                                     </h4>
                                     <P class="Comments"><a href="#"><i class="fa fa-comments"></i> 5 Comments</a></P>
                                 </li>
@@ -153,152 +131,38 @@
                             <h3 class="blog_heading_border"> Blog Categories </h3>
                             <ul>
                                 <li>
-                                    <a href="#"> All </a>
-                                    <span class="categoryCount pull-right">(50)</span>
+                                    <a href="{% url 'blog:blog' %}"> All </a>
                                 </li>
-                                <li>
-                                    <a href="#"> Web Design </a>
-                                    <span class="categoryCount pull-right">(10)</span>
-                                </li>
-                                <li>
-                                    <a href="#"> Graphic Design </a>
-                                    <span class="categoryCount pull-right">(07)</span>
-                                </li>
-                                <li>
-                                    <a href="#"> Web Development </a>
-                                    <span class="categoryCount pull-right">(18)</span>
-                                </li>
-                                <li>
-                                    <a href="#"> Marketing </a>
-                                    <span class="categoryCount pull-right">(08)</span>
-                                </li>
-                                <li>
-                                    <a href="#"> Security </a>
-                                    <span class="categoryCount pull-right">(05)</span>
-                                </li>
-                                <li>
-                                    <a href="#"> Bug Fixing </a>
-                                    <span class="categoryCount pull-right">(02)</span>
-                                </li>
+                                    <li>
+                                        <a href="{% url 'blog:single' pk=main_posts_serch.id %}">{{ main_posts_serch.title }}</a>
+                                    </li>
                             </ul>
                         </div><!-- End widget list -->
 
                         <div class="widget widget_custom_menu"><!-- widget list -->
-                            <h3 class="blog_heading_border"> Custom Menu </h3>
+                            <h3 class="blog_heading_border"> Main Menu </h3>
                             <ul>
                                 <li>
-                                    <a href="#"> Home </a>
+                                    <a href="{% url 'webapp:home' %}"> Home </a>
                                 </li>
                                 <li>
-                                    <a href="#"> About us </a>
+                                    <a href="{% url 'webapp:services' %}"> Services </a>
                                 </li>
                                 <li>
-                                    <a href="#"> Single </a>
+                                    <a href="{% url 'webapp:about' %}"> Company </a>
                                 </li>
                                 <li>
-                                    <a href="#"> Video </a>
+                                    <a href="{% url 'webapp:shop' %}"> Shopping </a>
                                 </li>
                                 <li>
-                                    <a href="#"> Gallery </a>
+                                    <a href="{% url 'blog:blog' %}"> Blog </a>
                                 </li>
                                 <li>
-                                    <a href="#"> Blog </a>
-                                </li>
-                                <li>
-                                    <a href="#"> Contact Us </a>
+                                    <a href="{% url 'webapp:contacts' %}"> Contact Us </a>
                                 </li>
                             </ul>
                         </div><!-- End widget list -->
-
-                        <div class="widget widget_follow"><!-- widget list -->
-                            <h3 class="blog_heading_border">Follow Me</h3>
-                            <div class="blog-social">
-                                <a href="#">
-                                    <div class="socibox">
-                                        <span class="fa fa-facebook"></span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="socibox">
-                                        <span class="fa fa-twitter"></span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="socibox">
-                                        <span class="fa fa-instagram"></span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="socibox">
-                                        <span class="fa fa-google-plus"></span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="socibox">
-                                        <span class="fa fa-rss"></span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="socibox">
-                                        <span class="fa fa-youtube-play"></span>
-                                    </div>
-                                </a>
-                            </div><!-- end blog-social -->
-                        </div><!-- End widget list -->
-
-                        <div class="widget widget_tag_cloud"><!-- widget list -->
-                            <h3 class="blog_heading_border"> Blog Tags </h3>
-                            <ul>
-                                <li>
-                                    <a href="#"> Web Design </a>
-                                </li>
-                                <li>
-                                    <a href="#"> Graphic Design </a>
-                                </li>
-                                <li>
-                                    <a href="#"> Html </a>
-                                </li>
-                                <li>
-                                    <a href="#"> CSS </a>
-                                </li>
-                                <li>
-                                    <a href="#"> Web Development </a>
-                                </li>
-                                <li>
-                                    <a href="#"> Marketing </a>
-                                </li>
-                                <li>
-                                    <a href="#"> php </a>
-                                </li>
-                                <li>
-                                    <a href="#"> Wordpress </a>
-                                </li>
-                                <li>
-                                    <a href="#"> Security </a>
-                                </li>
-                                <li>
-                                    <a href="#"> Bug Fixing </a>
-                                </li>
-                            </ul>
-                        </div><!-- End widget list -->
-
-                        <div class="widget widget_instagram"><!-- widget list -->
-                            <h3 class="blog_heading_border">Follow on instagram</h3>
-                            <div class="instagram-wrapper clearfix">
-                                <a href="#"><img src="{% static 'blog/images/insta/insta_01.jpg' %}" alt="" class="img-fluid"></a>
-                                <a href="#"><img src="{% static 'blog/images/insta/insta_02.jpg' %}" alt="" class="img-fluid"></a>
-                                <a href="#"><img src="{% static 'blog/images/insta/insta_03.jpg' %}" alt="" class="img-fluid"></a>
-                                <a href="#"><img src="{% static 'blog/images/insta/insta_04.jpg' %}" alt="" class="img-fluid"></a>
-                                <a href="#"><img src="{% static 'blog/images/insta/insta_05.jpg' %}" alt="" class="img-fluid"></a>
-                                <a href="#"><img src="{% static 'blog/images/insta/insta_06.jpg' %}" alt="" class="img-fluid"></a>
-                                <a href="#"><img src="{% static 'blog/images/insta/insta_07.jpg' %}" alt="" class="img-fluid"></a>
-                                <a href="#"><img src="{% static 'blog/images/insta/insta_08.jpg' %}" alt="" class="img-fluid"></a>
-                                <a href="#"><img src="{% static 'blog/images/insta/insta_09.jpg' %}" alt="" class="img-fluid"></a>
-                                <a href="#"><img src="{% static 'blog/images/insta/insta_10.jpg' %}" alt="" class="img-fluid"></a>
-                                <a href="#"><img src="{% static 'blog/images/insta/insta_11.jpg' %}" alt="" class="img-fluid"></a>
-                                <a href="#"><img src="{% static 'blog/images/insta/insta_12.jpg' %}" alt="" class="img-fluid"></a>
-                            </div><!-- end images/instagram wrapper -->
-                        </div><!-- End widget list -->
+                        {% endfor %}
 
                         <div class="widget widget-ads"><!-- widget list -->
                             <h3 class="blog_heading_border"><span>Advertisement</span></h3>
