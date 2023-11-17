@@ -55,7 +55,7 @@
                                             <img src="{{ main_news.author_photo.url }}" alt="author"> <a href="#">{{ main_news.author }}</a>
                                         </span>
                                         <span class="pull-right comments-list pad-top-5">
-                                            <i class="fa fa-comment"></i> <a href="#">Comments(5)</a>
+                                            <a href="{% url 'blog:single' pk=main_news.id %}"><i class="fa fa-book"></i> to Read</a>
                                         </span>
                                     </div>
                                     </div>
@@ -122,7 +122,7 @@
                                     <h4>
                                         <a href="{% url 'blog:single' pk=main_posts_serch.id %}">{{ main_posts_serch.title }}</a>
                                     </h4>
-                                    <P class="Comments"><a href="#"><i class="fa fa-comments"></i> 5 Comments</a></P>
+                                    <p class="Comments"><a href="{% url 'blog:single' pk=main_posts_serch.id %}"><i class="fa fa-book"></i> to Read</a></p>
                                 </li>
                             </ul>
                         </div><!-- End widget list -->
