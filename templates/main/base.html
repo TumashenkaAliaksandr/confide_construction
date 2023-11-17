@@ -231,9 +231,9 @@
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     <div class="mt_post_ftr">
-                        {% for main_posts_serch in model_blog_main|slice:":3" %}
                         <div class="widget widget_recent_entries"><!-- widget list -->
                             <h3 class="blog_heading_border"> Recent Posts </h3>
+                            {% for main_posts_serch in news|slice:":2" %}
                             <ul>
                                 <li>
                                     <img src="{{ main_posts_serch.photo.url }}" class="img-fixed-size_ten" alt="image" />
@@ -243,8 +243,8 @@
                                     </h4>
                                 </li>
                             </ul>
+                            {% endfor %}
                         </div><!-- End widget list -->
-                        {% endfor %}
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-6 col-xs-12">

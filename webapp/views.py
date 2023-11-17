@@ -329,3 +329,15 @@ def error(request):
 def checkout(request):
     """Checkout page Constract """
     return render(request, 'webapp/checkout.html')
+
+def base(request, pk):
+    """Base page Constract """
+    news = BlogNews.objects.filter(pk=pk)
+    news_blog_main = BlogNews.objects.all()
+
+    context = {
+        'news': news,
+        'news_blog_main': news_blog_main
+    }
+
+    return render(request, 'webapp/blog_footer_info.html', context=context)
