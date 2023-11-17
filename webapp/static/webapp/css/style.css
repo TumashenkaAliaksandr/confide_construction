@@ -985,7 +985,19 @@ section#choose_us.about_choose_us {
         background-color: #f9f9f9;
         /* Чтобы панель была сверху страницы */
         position: relative;
-        top: -25%;
+        top: 0px;
+        /* Чтобы весь контент помещался */
+        flex: 1;
+        overflow-y: auto; /* Добавить прокрутку, если контент не вмещается */
+    }
+
+.sidebar-main-two {
+        /* БЛОГ НОВЫЕ ПРАВКИ Your styles for the sidebar-main class */
+        padding: 20px;
+        background-color: #f9f9f9;
+        /* Чтобы панель была сверху страницы */
+        position: relative;
+        top: 0px;
         /* Чтобы весь контент помещался */
         flex: 1;
         overflow-y: auto; /* Добавить прокрутку, если контент не вмещается */

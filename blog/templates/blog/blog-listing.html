@@ -28,8 +28,8 @@
         <div class="container">
             <div class="row">
                 <!--*Blog Content Sec*-->
-                {% for main_news in model_blog_main %}
                 <div class="col-md-8 col-sm-12">
+                    {% for main_news in model_blog_main %}
                     <div class="blog-listview">
                         <div class="post_item mar-bottom-30"><!-- post item -->
                             <div class="row">
@@ -63,9 +63,42 @@
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
+
+                    <!-- pagination -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="pagination-div text-center">
+                                <ul class="pagination">
+                                    <li class="prev">
+                                        <a href="#"><i class="fa fa-angle-double-left"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">1</a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="#">2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">3</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">...</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">10</a>
+                                    </li>
+                                    <li class="next">
+                                        <a href="#"><i class="fa fa-angle-double-right"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End pagination -->
+
                 </div>
                 <!--* End Blog Content Sec*-->
-                {% endfor %}
 
                 <!--* Blog Sidebar*-->
                 <aside class="col-md-4 col-sm-12">
@@ -147,38 +180,6 @@
     </section>
     <!--*End Blog div Sec*-->
 
-    <!-- pagination -->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="pagination-div text-center">
-                <ul class="pagination">
-                    <li class="prev">
-                        <a href="#"><i class="fa fa-angle-double-left"></i></a>
-                    </li>
-                    <li>
-                        <a href="#">1</a>
-                    </li>
-                    <li class="active">
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#">...</a>
-                    </li>
-                    <li>
-                        <a href="#">10</a>
-                    </li>
-                    <li class="next">
-                        <a href="#"><i class="fa fa-angle-double-right"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- End pagination -->
-
 
     <!--*Newsletter*-->
     <div id="newsletter">
@@ -208,5 +209,6 @@
         </div>
     </div>
     <!--*End Newsletter*-->
+
 
 {% endblock %}
