@@ -233,17 +233,7 @@
                     <div class="mt_post_ftr">
                         <div class="widget widget_recent_entries"><!-- widget list -->
                             <h3 class="blog_heading_border"> Recent Posts </h3>
-                            {% for main_posts_serch in news|slice:":2" %}
-                            <ul>
-                                <li>
-                                    <img src="{{ main_posts_serch.photo.url }}" class="img-fixed-size_ten" alt="image" />
-                                    <p class="date"><i class="fa fa-calendar"></i> {{ main_posts_serch.pub_date }} <a href="{% url 'blog:single' pk=main_posts_serch.id %}"><i class="fa fa-book"></i> to read</a></p>
-                                    <h4>
-                                        <a href="{% url 'blog:single' pk=main_posts_serch.id %}">{{ main_posts_serch.title }}</a>
-                                    </h4>
-                                </li>
-                            </ul>
-                            {% endfor %}
+                            {% include 'webapp/blog_footer_info.html' %}
                         </div><!-- End widget list -->
                     </div>
                 </div>

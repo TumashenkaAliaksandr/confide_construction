@@ -6,6 +6,8 @@ from django.shortcuts import render, get_object_or_404
 def blog(request):
     """these are views for Blog News list"""
     model_blog_main = BlogNews.objects.all()
+    news_for_footer = BlogNews.objects.all()[:2]
+    news = BlogNews.objects.all()
 
     context = locals()
     return render(request, 'blog/blog-listing.html', context=context)
@@ -16,7 +18,7 @@ def blog_news(request, pk):
     news = BlogNews.objects.filter(pk=pk)
 
     context = {
-        'news': news
+        'news': news,
     }
     return render(request, 'blog/blog-listing.html', context=context)
 

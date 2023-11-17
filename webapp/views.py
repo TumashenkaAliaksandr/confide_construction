@@ -32,6 +32,7 @@ def services(request):
     servis_slider = ServicesSlider.objects.all()
     main_ser = Services.objects.filter(is_main=True).first()
     sl_serv = Services.objects.all()
+    news = BlogNews.objects.all()
 
     context = locals()
     return render(request, 'webapp/services.html', context)
@@ -40,6 +41,7 @@ def services(request):
 def shop(request):
     """Shop Constract"""
     services_shop = Services.objects.all()
+    news = BlogNews.objects.all()
 
     context = locals()
     return render(request, 'webapp/shop.html', context=context)
@@ -92,11 +94,13 @@ def about(request):
     assessment = Assessment.objects.all()
     partner = Recommended.objects.all()
     servis_sliders = ServicesSlider.objects.all()
+    news = BlogNews.objects.all()
 
     context = {
         'assessment': assessment,
         'partner': partner,
         'servis_sliders': servis_sliders,
+        'news': news,
     }
     return render(request, 'webapp/about-us.html', context=context)
 
@@ -120,7 +124,8 @@ def about(request):
 
 
 def contacts(request):
-    context = {}
+    news = BlogNews.objects.all()
+    context = locals()
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -148,6 +153,7 @@ def backsplash(request):
     """Backsplash Constract"""
     back_sp = Backsplash.objects.all()
     main_serv = Services.objects.all()
+    news = BlogNews.objects.all()
 
     context = locals()
     return render(request, 'webapp/services/backsplash.html', context=context)
@@ -158,6 +164,7 @@ def drywall(request):
     dry_obj = Drywall.objects.all()
     dry_ser = DrywallService.objects.all()
     main_serv = Services.objects.all()
+    news = BlogNews.objects.all()
 
     context = locals()
     return render(request, 'webapp/services/drywall.html', context)
@@ -168,6 +175,7 @@ def disposal(request):
     disp_obj = Disposal.objects.all()
     disp_serv = DisposalService.objects.all()
     main_serv = Services.objects.all()
+    news = BlogNews.objects.all()
 
     context = locals()
     return render(request, 'webapp/services/disposal.html', context)
@@ -178,6 +186,7 @@ def electricalworks(request):
     electr_obj = Electrical.objects.all()
     electr_serv = ElectricalService.objects.all()
     main_serv = Services.objects.all()
+    news = BlogNews.objects.all()
 
     context = locals()
     return render(request, 'webapp/services/electricalworks.html', context=context)
@@ -188,6 +197,7 @@ def handyman(request):
     handyman_obj = Handyman.objects.all()
     handy_serv = HandymanService.objects.all()
     main_serv = Services.objects.all()
+    news = BlogNews.objects.all()
 
     context = locals()
     return render(request, 'webapp/services/handyman.html', context=context)
@@ -199,6 +209,7 @@ def wallpaper(request):
     wallpap_obj = Wallpaper.objects.all()
     wallpap_serv = WallpaperService.objects.all()
     main_serv = Services.objects.all()
+    news = BlogNews.objects.all()
 
     context = locals()
 
@@ -210,6 +221,7 @@ def soundproofing(request):
     soundproof_obj = Soundproofing.objects.all()
     soundproof_serv = SoundproofingService.objects.all()
     main_serv = Services.objects.all()
+    news = BlogNews.objects.all()
 
     context = locals()
     return render(request, 'webapp/services/soundproofing.html', context)
@@ -220,6 +232,7 @@ def furniture(request):
     furniture_obj = Furniture.objects.all()
     furnitur_serv = FurnitureService.objects.all()
     main_serv = Services.objects.all()
+    news = BlogNews.objects.all()
 
     context = locals()
 
@@ -231,6 +244,7 @@ def painting(request):
     painting_obj = Painting.objects.all()
     paint_serv = PaintingService.objects.all()
     main_serv = Services.objects.all()
+    news = BlogNews.objects.all()
 
     context = locals()
     return render(request, 'webapp/services/painting.html', context)
@@ -328,7 +342,10 @@ def error(request):
 
 def checkout(request):
     """Checkout page Constract """
-    return render(request, 'webapp/checkout.html')
+    news = BlogNews.objects.all()
+
+    context = locals()
+    return render(request, 'webapp/checkout.html', context=context)
 
 def base(request, pk):
     """Base page Constract """
