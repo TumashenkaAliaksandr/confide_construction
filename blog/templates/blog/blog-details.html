@@ -56,126 +56,6 @@
                             <p>{{ main_news_detail.description }}</p>
                         </div>
                         {% endfor %}
-                        <div class="author_box mar-top-30">
-                            <div class="author_img">
-                                <img src="{% static 'blog/images/blog/author.png' %}" alt="Author">
-                            </div>
-                            <div class="author_bio">
-                                <h4 class="text-uppercase">Jhon Snow</h4>
-                                <p>Duis a enim vel mauris ultrices. Nullam aliquet velit ac velit tempus in semper an neque auctor. Aenean ligula mi, auctor sed tempus.Duis a enim vel mauris ultrices. Nullam aliquet velit ac velit tempus in semper an neque auctor.
-                                    Aenean ligula mi, auctor sed tempus.</p>
-                                <ul class="social_icons">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-google-plus"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-linkedin"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!--=========================* Comment Sec*===========================-->
-                        <div id="comments">
-                            <div class="comments-wrap">
-                                <h3 class="single-post_heading mar-bottom-30">Comments (4)</h3>
-                                <ol class="comments-lists">
-                                    <li class="comment">
-                                        <div class="activity_rounded">
-                                            <img src="{% static 'blog/images/blog/cmnt-1.jpg' %}" alt="image" /> </div>
-                                        <div class="comment-body">
-                                            <h4 class="text-left text-uppercase"> NIKLOS DELSON &nbsp;&nbsp;
-                                                <small class="date-posted pull-right">18th Mar, 2019</small>
-                                            </h4>
-                                            <p> Duis a enim vel mauris ultrices. Nullam aliquet velit ac velit tempus in semper neque auctor. Etiam pellentesque, magna eget lobortis placerat, leo leo consequat ante, non iaculis turpis augue ac ligula. Duis a
-                                                enim vel mauris ultrices, leo. </p>
-                                            <a href="#" class="pull-left mt_btn_yellow mar-top-10">Reply</a>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <ol class="children">
-                                            <li class="comment">
-                                                <div class="activity_rounded">
-                                                    <img src="{% static 'blog/images/blog/cmnt-2.jpg' %}" alt="image" /> </div>
-                                                <div class="comment-body">
-                                                    <h4 class="text-left text-uppercase"> NIKLOS DELSON &nbsp;&nbsp;
-                                                        <small class="date-posted pull-right">18th Mar, 2019</small>
-                                                    </h4>
-                                                    <p> Duis a enim vel mauris ultrices. Nullam aliquet velit ac velit tempus in semper neque auctor. Etiam pellentesque, magna eget lobortis placerat, leo leo consequat ante, non iaculis turpis augue ac ligula.
-                                                        Duis a enim vel mauris ultrices, leo. </p>
-                                                    <a href="#" class="pull-left mt_btn_yellow mar-top-10">Reply</a>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                            </li>
-                                        </ol>
-                                    </li>
-                                    <li class="comment">
-                                        <div class="activity_rounded">
-                                            <img src="{% static 'blog/images/blog/cmnt-3.jpg' %}" alt="image" /> </div>
-                                        <div class="comment-body">
-                                            <h4 class="text-left text-uppercase"> NIKLOS DELSON &nbsp;&nbsp;
-                                                <small class="date-posted pull-right">18th Mar, 2019</small>
-                                            </h4>
-                                            <p> Duis a enim vel mauris ultrices. Nullam aliquet velit ac velit tempus in semper neque auctor. Etiam pellentesque, magna eget lobortis placerat, leo leo consequat ante, non iaculis turpis augue ac ligula. Duis a
-                                                enim vel mauris ultrices, leo. </p>
-                                            <a href="#" class="pull-left mt_btn_yellow mar-top-10">Reply</a>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </li>
-                                    <li class="comment">
-                                        <div class="activity_rounded">
-                                            <img src="{% static 'blog/images/blog/cmnt-2.jpg' %}" alt="image" /> </div>
-                                        <div class="comment-body">
-                                            <h4 class="text-left text-uppercase"> NIKLOS DELSON &nbsp;&nbsp;
-                                                <small class="date-posted pull-right">18th Mar, 2019</small>
-                                            </h4>
-                                            <p> Duis a enim vel mauris ultrices. Nullam aliquet velit ac velit tempus in semper neque auctor. Etiam pellentesque, magna eget lobortis placerat, leo leo consequat ante, non iaculis turpis augue ac ligula. Duis a
-                                                enim vel mauris ultrices, leo. </p>
-                                            <a href="#" class="pull-left mt_btn_yellow mar-top-10">Reply</a>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </li>
-                                </ol>
-                                <div class="leave_comment">
-                                    <h3 class="blog_heading_border mar-bottom-30"> Leave a Comment </h3>
-                                    <form action="#" method="post">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <input placeholder="Name" class="form-control" type="text" required> </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <input placeholder="Email" class="form-control" type="email" required> </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <textarea placeholder="Message" class="form-control" required></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <button type="submit" class="mt_btn_yellow">Submit</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <!--=========================*End Comment Sec*===========================-->
                     </div>
                 </main>
                 <!--* End Blog Content Sec*-->
@@ -201,7 +81,7 @@
                                     <h4>
                                         <a href="{% url 'blog:single' pk=main_news_posts.id %}">{{ main_news_posts.title }}</a>
                                     </h4>
-                                    <P class="Comments"><a href="#"><i class="fa fa-comments"></i> 5 Comments</a></P>
+                                    <P class="Comments"><a href="{% url 'blog:single' pk=main_news_posts.id %}"><i class="fa fa-book"></i> to read</a></P>
                                 </li>
                             </ul>
                             {% endfor %}
@@ -258,6 +138,35 @@
         </div>
     </section>
     <!--*End Blog Main Sec*-->
+
+    <!--*Newsletter*-->
+    <div id="newsletter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="news-content">
+                        <h3>ORDER FREE CONSULTATION</h3>
+                        <p class="beige"><b>CALL US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE YOUR
+                            LIFESTYLE DREAMS.</b></p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="mailpoet_form">
+                        <form target="_self" method="post" action="" novalidate="">
+                            <input type="text" name="name" placeholder="Your Name">
+                            <input type="email" class="mailpoet_text" name="email" title="Email"
+                                   placeholder="Please specify your email address.">
+                            <input type="text" name="description" placeholder="Description Service">
+                            <div class="button">
+                                <input type="submit" class="mailpoet_submit" value="Free Quote">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--*End Newsletter*-->
 
 
 {% endblock %}
