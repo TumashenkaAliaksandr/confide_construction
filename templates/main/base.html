@@ -212,30 +212,6 @@
                             OAKTON, MERRIFIELD, RESTON, BURKE, CHANTILLY,
                             POTOMAC, HERNDON, RESTON, CENTERVILLE, WASHINGTON DC.</p>
 
-                        <h4>Follow Us on</h4>
-                        <ul class="social_icons">
-
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-instagram"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-linkedin"></i>
-                                </a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -255,53 +231,20 @@
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     <div class="mt_post_ftr">
-                        <h3>Latest Posts</h3>
-                        <ul>
-                            <li>
-                                <img src="{% static 'webapp/images/blog/r-post-1.jpg' %}" alt="image" />
-                                <div class="post_contnt_ftr">
-                                    <p>Fri, 03-07-2018 |
-                                        <a href="#"><span> Comment (8)</span></a>
-                                    </p>
+                        {% for main_posts_serch in model_blog_main|slice:":3" %}
+                        <div class="widget widget_recent_entries"><!-- widget list -->
+                            <h3 class="blog_heading_border"> Recent Posts </h3>
+                            <ul>
+                                <li>
+                                    <img src="{{ main_posts_serch.photo.url }}" class="img-fixed-size_ten" alt="image" />
+                                    <p class="date"><i class="fa fa-calendar"></i> {{ main_posts_serch.pub_date }} <a href="{% url 'blog:single' pk=main_posts_serch.id %}"><i class="fa fa-book"></i> to read</a></p>
                                     <h4>
-                                        <a href="#">Unde omnis iste natus</a>
+                                        <a href="{% url 'blog:single' pk=main_posts_serch.id %}">{{ main_posts_serch.title }}</a>
                                     </h4>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="{% static 'webapp/images/blog/r-post-8.jpg' %}" alt="image" />
-                                <div class="post_contnt_ftr">
-                                    <p>Fri, 03-07-2018 |
-                                        <a href="#"><span> Comment (8)</span></a>
-                                    </p>
-                                    <h4>
-                                        <a href="#">Aenean a mi et risus facilisis</a>
-                                    </h4>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="{% static 'webapp/images/blog/r-post-5.jpg' %}" alt="image" />
-                                <div class="post_contnt_ftr">
-                                    <p>Fri, 03-07-2018 |
-                                        <a href="#"><span> Comment (8)</span></a>
-                                    </p>
-                                    <h4>
-                                        <a href="#">Egestas luctus urna vitae dapibuss</a>
-                                    </h4>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="{% static 'webapp/images/blog/r-post-7.jpg' %}" alt="image" />
-                                <div class="post_contnt_ftr">
-                                    <p>Fri, 03-07-2018 |
-                                       <a href="#"><span> Comment (8)</span></a>
-                                    </p>
-                                    <h4>
-                                        <a href="#">Egestas luctus urna vitae dapibus</a>
-                                    </h4>
-                                </div>
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
+                        </div><!-- End widget list -->
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-6 col-xs-12">
