@@ -103,6 +103,62 @@
                 <!--* Blog Sidebar*-->
                 <aside class="col-md-4 col-sm-12">
                     <div class="sidebar-main">
+
+                        <div class="widget widget-ads"><!-- widget list -->
+                            <h3 class="blog_heading_border"><span>Advertisement</span></h3>
+                            <a href="#"><img src="{% static 'blog/images/banner.jpg' %}" alt="" class="img-fluid"></a>
+                        </div><!-- End widget list -->
+
+
+{#                        <div class="widget widget_categories"><!-- widget list -->#}
+{#                            <h3 class="blog_heading_border"> Blog Categories </h3>#}
+{#                            <ul>#}
+{#                                <li>#}
+{#                                    <a href="{% url 'blog:blog' %}"> All </a>#}
+{#                                </li>#}
+{#                                {% for main_posts_serch in model_blog_main %}#}
+{#                                    <li>#}
+{#                                        <a href="{% url 'blog:single' pk=main_posts_serch.id %}">{{ main_posts_serch.title }}</a>#}
+{#                                    </li>#}
+{#                                {% endfor %}#}
+{#                            </ul>#}
+{#                        </div><!-- End widget list -->#}
+
+
+                        <div class="widget widget_custom_menu"><!-- widget list -->
+                            <h3 class="blog_heading_border"> Our Services </h3>
+                            <ul>
+                                <li>
+                                    <a href="{% url 'webapp:backsplash' %}"> Backsplash </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'webapp:disposal' %}"> Disposal </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'webapp:drywall' %}"> Drywall </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'webapp:electricalworks' %}"> Electricalworks </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'webapp:handyman' %}"> Handyman </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'webapp:painting' %}"> Painting </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'webapp:soundproofing' %}"> Soundproofing </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'webapp:wallpaper' %}"> Wallpaper </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'webapp:furniture-assembly' %}"> Furniture Assembly </a>
+                                </li>
+                            </ul>
+                        </div><!-- End widget list -->
+
+
                         <div class="widget widget_recent_entries"><!-- widget list -->
                             <h3 class="blog_heading_border"> Recent Posts </h3>
                             {% for main_posts_serch in model_blog_main %}
@@ -119,50 +175,6 @@
                             {% endfor %}
                         </div><!-- End widget list -->
 
-
-                        <div class="widget widget_categories"><!-- widget list -->
-                            <h3 class="blog_heading_border"> Blog Categories </h3>
-                            <ul>
-                                <li>
-                                    <a href="{% url 'blog:blog' %}"> All </a>
-                                </li>
-                                {% for main_posts_serch in model_blog_main %}
-                                    <li>
-                                        <a href="{% url 'blog:single' pk=main_posts_serch.id %}">{{ main_posts_serch.title }}</a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </div><!-- End widget list -->
-
-
-                        <div class="widget widget_custom_menu"><!-- widget list -->
-                            <h3 class="blog_heading_border"> Main Menu </h3>
-                            <ul>
-                                <li>
-                                    <a href="{% url 'webapp:home' %}"> Home </a>
-                                </li>
-                                <li>
-                                    <a href="{% url 'webapp:services' %}"> Services </a>
-                                </li>
-                                <li>
-                                    <a href="{% url 'webapp:about' %}"> Company </a>
-                                </li>
-                                <li>
-                                    <a href="{% url 'webapp:shop' %}"> Shopping </a>
-                                </li>
-                                <li>
-                                    <a href="{% url 'blog:blog' %}"> Blog </a>
-                                </li>
-                                <li>
-                                    <a href="{% url 'webapp:contacts' %}"> Contact Us </a>
-                                </li>
-                            </ul>
-                        </div><!-- End widget list -->
-
-                        <div class="widget widget-ads"><!-- widget list -->
-                            <h3 class="blog_heading_border"><span>Advertisement</span></h3>
-                            <a href="#"><img src="{% static 'blog/images/banner.jpg' %}" alt="" class="img-fluid"></a>
-                        </div><!-- End widget list -->
                     </div>
                 </aside>
                 <!--* End Blog Sidebar*-->
