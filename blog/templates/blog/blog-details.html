@@ -86,19 +86,19 @@
                             <a href="#"><img src="{% static 'blog/images/banner.jpg' %}" alt="" class="img-fluid"></a>
                         </div><!-- End widget list -->
 
-                        <div class="widget widget_categories"><!-- widget list -->
-                            <h3 class="blog_heading_border"> Blog Categories </h3>
-                            <ul>
-                                <li>
-                                    <a href="{% url 'blog:blog' %}"> All </a>
-                                </li>
-                                {% for main_news_categ in news_blog_main %}
-                                    <li>
-                                        <a href="{% url 'blog:single' pk=main_news_categ.id %}">{{ main_news_categ.title }} </a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </div><!-- End widget list -->
+{#                        <div class="widget widget_categories"><!-- widget list -->#}
+{#                            <h3 class="blog_heading_border"> Blog Categories </h3>#}
+{#                            <ul>#}
+{#                                <li>#}
+{#                                    <a href="{% url 'blog:blog' %}"> All </a>#}
+{#                                </li>#}
+{#                                {% for main_news_categ in news_blog_main %}#}
+{#                                    <li>#}
+{#                                        <a href="{% url 'blog:single' pk=main_news_categ.id %}">{{ main_news_categ.title }} </a>#}
+{#                                    </li>#}
+{#                                {% endfor %}#}
+{#                            </ul>#}
+{#                        </div><!-- End widget list -->#}
 
                     </div>
                 </aside>
