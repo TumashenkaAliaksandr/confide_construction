@@ -3,6 +3,7 @@ from .models import BlogNews
 from ckeditor.widgets import CKEditorWidget
 from django import forms
 
+
 class BlogNewsAdminForm(forms.ModelForm):
     class Meta:
         model = BlogNews
@@ -11,6 +12,7 @@ class BlogNewsAdminForm(forms.ModelForm):
             'description': CKEditorWidget(),
             'description_small': CKEditorWidget(),
         }
+
 
 @admin.register(BlogNews)
 class BlogNewsAdmin(admin.ModelAdmin):
