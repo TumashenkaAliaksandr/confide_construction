@@ -48,7 +48,7 @@
                                         <h3 class="post-title text-uppercase">
                                             <a href="{% url 'blog:single' pk=main_news.id %}">{{ main_news.title }}</a>
                                         </h3>
-                                        <p class="post-excerpt">{{ main_news.description_small }}</p>
+                                        <p class="post-excerpt">{{ main_news.description_small|safe }}</p>
                                     </div>
                                     <div class="post-author">
                                         <span class="pull-left author-list">

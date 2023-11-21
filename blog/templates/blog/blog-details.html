@@ -47,14 +47,14 @@
                             </div>
                         </div>
                         <div class="post_body mar-top-20">
-                            <p>{{ main_news_detail.description_small }}
+                            <p>{{ main_news_detail.description_small|safe }}
                                 </p>
                             <blockquote>
                                 <p>{{ main_news_detail.comment }}</p>
                                 <span>{{ main_news_detail.comment_author }}</span>
                             </blockquote>
 
-                            <p>{{ main_news_detail.description }}</p>
+                            <p>{{ main_news_detail.description|safe }}</p>
                         </div>
                         {% endfor %}
                     </div>

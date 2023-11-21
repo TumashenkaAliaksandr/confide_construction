@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'webapp',
     'blog',
     'bootstrap4',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
