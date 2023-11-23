@@ -3,7 +3,6 @@ from django.db import models
 from django.conf import settings
 
 
-
 class BlogNews(models.Model):
     title = models.CharField(max_length=200, verbose_name='Name')
     description_small = models.TextField(max_length=400, default='', verbose_name='Description_small')

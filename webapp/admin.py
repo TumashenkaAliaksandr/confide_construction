@@ -232,3 +232,24 @@ class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'first_name', 'last_name', 'phone', 'email', 'password')
 
 
+@admin.register(Advertisement)
+class AdvertisementAdmin(admin.ModelAdmin):
+    list_display = ('title', 'image_tag', 'link', 'active', 'created_at', 'updated_at')
+    list_filter = ('active', 'created_at', 'updated_at')
+    search_fields = ('title', 'link')
+    readonly_fields = ('image_tag',)
+
+    def image_tag(self, obj):
+        return obj.image.url if obj.image else None
+
+    image_tag.short_description = 'Image Preview'
+
+    fieldsets = (
+        ('Advertisement Details', {
+            'fields': ('title', 'image', 'image_tag', 'link', 'active')
+        }),
+        ('Date Information', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
+        }),
+    )

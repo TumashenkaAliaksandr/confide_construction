@@ -601,3 +601,19 @@ class Quality(models.Model):
     class Meta:
         verbose_name = "Quality"
         verbose_name_plural = "Quality"
+
+
+class Advertisement(models.Model):
+    title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='ad_images/')
+    link = models.URLField()
+    active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Advertisement"
+        verbose_name_plural = "Advertisement"
