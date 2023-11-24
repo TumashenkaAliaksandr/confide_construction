@@ -96,7 +96,6 @@
 {#                        </div>#}
 {#                    </div>#}
 {#                    <!-- End pagination -->#}
-
                 </div>
                 <!--* End Blog Content Sec*-->
 
@@ -105,8 +104,10 @@
                     <div class="sidebar-main">
 
                         <div class="widget widget-ads"><!-- widget list -->
+                            {% for main_adverti in advertisement %}
                             <h3 class="blog_heading_border"><span>Advertisement</span></h3>
-                            <a href="#"><img src="{% static 'blog/images/banner.jpg' %}" alt="" class="img-fluid"></a>
+                            <a href="{{ main_adverti.link }}"><img src="{{ main_adverti.image.url }}" alt="" class="img-fluid"></a>
+                            {% endfor %}
                         </div><!-- End widget list -->
 
 
