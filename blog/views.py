@@ -38,3 +38,4 @@ def NewsDetailView(request, pk):
     return render(request, 'blog/blog-details.html', context=context)
 
 
+

@@ -1,6 +1,6 @@
 from django.contrib.auth.views import LoginView
 from django.views.decorators.csrf import csrf_exempt
-
+from django.views.generic import ListView
 from blog.models import BlogNews
 from webapp.models import *
 from django.core.mail import send_mail
@@ -358,3 +358,19 @@ def base(request, pk):
     }
 
     return render(request, 'webapp/blog_footer_info.html', context=context)
+
+
+class Search(ListView):
+    template_name = 'webapp/index-2.html'
+    context_object_name = 'news'  # Исправлено имя контекста
+
+    def get_queryset(self):
+        search_query = self.request.GET.get('s')
+        if search_query:
+            return BlogNews.objects.filter(title__icontains=search_query)
+        return BlogNews.objects.none()  # Если нет запроса, возвращаем пустой queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['s'] = self.request.GET.get('s')  # Получение поискового запроса для передачи в контекст
+        return context

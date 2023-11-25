@@ -296,7 +296,7 @@
             </div>
             <div class="blog_post_inner">
                 <div class="row">
-                    {% for main_blog in news %}
+                    {% for main_blog in news|slice:":3" %}
                     <div class="col-md-4 col-sm-12 wow slideInDown" data-wow-delay=".2s">
                         <div class="blog-post-inner_wrapper">
                             <div class="blog-post-image">

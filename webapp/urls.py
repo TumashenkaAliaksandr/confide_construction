@@ -32,6 +32,7 @@ urlpatterns = [
     path('logout/', logout, name='logout'),
     path('register_done/', registerdone, name='register_done'),
     # path('send_email/', send_email, name='send_email'),
+    path('search/', Search.as_view(), name='search'),
 
     ]
 

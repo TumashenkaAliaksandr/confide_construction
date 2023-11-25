@@ -116,7 +116,7 @@
                         <li {% if request.resolver_match.url_name == 'contacts' %}class="active"{% endif %}><a href="{% url 'webapp:contacts' %}">Contacts</a></li>
                         <li>
                             <div class="header-search">
-                                <a href="#" class="search-icon"><i class="fa fa-search"></i></a>
+                                <a href="{% url 'webapp:search' %}" class="search-icon"><i class="fa fa-search"></i></a>
                                 <div class="search-box-wrap" style="display: none;">
                                     <div class="searchform" role="search">
                                         <form class="search-form" method="get" action=".">
