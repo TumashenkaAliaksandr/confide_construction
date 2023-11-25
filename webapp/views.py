@@ -361,16 +361,16 @@ def base(request, pk):
 
 
 class Search(ListView):
-    template_name = 'webapp/index-2.html'
+    template_name = 'blog/blog-listing.html'
     context_object_name = 'news'  # Исправлено имя контекста
 
     def get_queryset(self):
         search_query = self.request.GET.get('s')
         if search_query:
             return BlogNews.objects.filter(title__icontains=search_query)
-        return BlogNews.objects.none()  # Если нет запроса, возвращаем пустой queryset
+        return BlogNews.objects.none()  # Пустой queryset, если нет запроса
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['s'] = self.request.GET.get('s')  # Получение поискового запроса для передачи в контекст
+        context['s'] = self.request.GET.get('s')  # Передача поискового запроса в контекст
         return context
