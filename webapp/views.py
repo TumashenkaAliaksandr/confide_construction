@@ -7,8 +7,12 @@ from django.core.mail import send_mail
 from .forms import CallbackForm, PaymentForm, RegistrationForm, ContactForm
 from django.http import JsonResponse
 import stripe
-from django.contrib.auth import login
 from django.shortcuts import render, redirect
+from django.contrib.auth import logout as auth_logout
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponseRedirect
+from django.views.decorators.csrf import csrf_protect
+
 
 
 
@@ -328,7 +332,22 @@ class CRloginView(LoginView):
 
 
 def logout(request):
+    auth_logout(request)
     return render(request, 'webapp/logout.html')
+
+@csrf_protect
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            # Вход выполнен успешно, перенаправляем пользователя на нужную страницу
+            return HttpResponseRedirect('home')  # Например, на главную страницу
+
+    return render(request, 'webapp/login.html')
+
 
 
 def registerdone(request):

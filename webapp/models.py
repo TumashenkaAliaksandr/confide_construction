@@ -1,7 +1,6 @@
 from decimal import Decimal
 from django.contrib.auth.models import User
 from django.db import models
-from django.urls import reverse
 
 
 class Services(models.Model):
@@ -86,8 +85,6 @@ class Callback(models.Model):
     def __str__(self):
         return self.name
 
-
-from django.db import models
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)  # Ссылка на пользователя, если есть
