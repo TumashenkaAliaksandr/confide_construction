@@ -329,15 +329,21 @@ def registration(request):
 
 class CRloginView(LoginView):
     template_name = 'webapp/login.html'
+    news = BlogNews.objects.all()
     redirect_authenticated_user = True
 
 
 def logout(request):
     auth_logout(request)
-    return render(request, 'webapp/logout.html')
+    news = BlogNews.objects.all()
+    context = {
+        'news': news,
+    }
+    return render(request, 'webapp/logout.html', context=context)
 
 @csrf_protect
 def login_view(request):
+    news = BlogNews.objects.all()
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -347,11 +353,15 @@ def login_view(request):
             # Вход выполнен успешно, перенаправляем пользователя на нужную страницу
             return HttpResponseRedirect('home')  # Например, на главную страницу
 
-    return render(request, 'webapp/login.html')
+    context = {
+        'news': news,
+    }
+    return render(request, 'webapp/login.html', context=context)
 
 
 @login_required
 def my_account(request):
+    news = BlogNews.objects.all()
     if request.method == 'POST':
         # Получаем данные из формы и обновляем профиль пользователя
         first_name = request.POST.get('first_name')
@@ -369,7 +379,11 @@ def my_account(request):
 
         return HttpResponseRedirect('my_account')  # Перенаправляем пользователя на страницу "My Account"
 
-    return render(request, 'webapp/my_account.html')
+    context = {
+        'news': news,
+    }
+
+    return render(request, 'webapp/my_account.html', context=context)
 
 
 def registerdone(request):
