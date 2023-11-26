@@ -31,17 +31,19 @@
                     enter your code</a></div>
 
                 <div class="checkout-info">
-                    <h3 class="mar-bottom-20">Billing details</h3>
+                    <h3 class="mar-bottom-20">Account details</h3>
                     <div class="row">
                         <div class="col-sm-6 col-xs-12">
                             <div class="checkout-billing">
-                                <form method="" target="">
+                                <form method="post" action="{% url 'webapp:my_account' %}">
+                                    {% csrf_token %}
                                     <div class="row">
                                         <div class="col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>First Name: <abbr class="required"
                                                                          title="required">*</abbr></label>
-                                                <input type="text" name="" class="form-control">
+                                                <input type="text" name="first_name" class="form-control"
+                                                       value="{{ request.user.first_name }}">
                                             </div>
                                         </div>
 
@@ -49,94 +51,48 @@
                                             <div class="form-group">
                                                 <label>Last Name: <abbr class="required"
                                                                         title="required">*</abbr></label>
-                                                <input type="text" name="" class="form-control">
+                                                <input type="text" name="last_name" class="form-control"
+                                                       value="{{ request.user.last_name }}">
                                             </div>
                                         </div>
+
+                                        <!-- Остальные поля формы могут быть заполнены аналогичным образом -->
 
                                         <div class="col-xs-12">
                                             <div class="form-group">
-                                                <label>Company Name (optional):</label>
-                                                <input type="text" name="" class="form-control">
+                                                <label>Email Address: <abbr class="required"
+                                                                            title="required">*</abbr></label>
+                                                <input type="text" name="email" class="form-control"
+                                                       value="{{ request.user.email }}">
                                             </div>
                                         </div>
+
+                                        <!-- Другие поля формы -->
 
                                         <div class="col-xs-12">
                                             <div class="form-group">
-                                                <label>Country: <abbr class="required" title="required">*</abbr></label>
-                                                <select class="form-control">
-                                                    <option>Argentina</option>
-                                                    <option>Bulgaria</option>
-                                                    <option>Canada</option>
-                                                    <option>Denmark</option>
-                                                    <option>Egypt</option>
-                                                    <option>Germany</option>
-                                                    <option>Hungary</option>
-                                                </select>
+                                                <label>
+                                                    <input type="checkbox" name="ship_to_different_address">
+                                                    <span>Ship to a different address?</span>
+                                                </label>
                                             </div>
                                         </div>
-
-                                        <div class="col-sm-6 col-xs-12">
-                                            <div class="form-group">
-                                                <label>Street Address: <abbr class="required" title="required">*</abbr></label>
-                                                <input type="text" name="" class="form-control">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6 col-xs-12">
-                                            <div class="form-group">
-                                                <label>Town/City: <abbr class="required"
-                                                                        title="required">*</abbr></label>
-                                                <input type="text" name="" class="form-control">
-                                            </div>
-                                        </div>
-
                                         <div class="col-xs-12">
                                             <div class="form-group">
-                                                <label>Postcode / ZIP (optional):</label>
-                                                <input type="text" name="" class="form-control">
+                                                <label>Order notes (optional):</label>
+                                                <textarea class="form-control" name="order_notes"
+                                                          placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                                             </div>
                                         </div>
-
                                     </div>
-
+                                    <button class="mt_btn_yellow" type="submit">Update Profile</button>
                                 </form>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-xs-12">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label>Phone No.: <abbr class="required" title="required">*</abbr></label>
-                                        <input type="text" name="" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label>Email Address: <abbr class="required" title="required">*</abbr></label>
-                                        <input type="text" name="" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label>
-                                            <input type="checkbox" name="">
-                                            <span>Ship to a different address?</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label>Order notes (optional):</label>
-                                        <textarea class="form-control"
-                                                  placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- Остальная часть формы -->
                     </div>
                 </div>
+
 
                 <div class="checkout-order">
                     <h3 class="mar-bottom-40">History</h3>
@@ -194,27 +150,34 @@
     </section>
     <!-- End checkout -->
 
+
     <!--*Newsletter*-->
     <div id="newsletter">
         <div class="container">
             <div class="row">
-            <div class="col-sm-6 col-xs-12">
-                <div class="news-content">
-                    <h3>SUBSCRIBE TO OUR NEWSLETTER</h3>
-                    <p class="white">Subscribe to our brief newsletter to get exclusive discounts and new theme launches right in your inbox.</p>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="news-content">
+                        <h3>ORDER FREE CONSULTATION</h3>
+                        <p class="beige"><b>CALL US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE YOUR
+                            LIFESTYLE DREAMS.</b></p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="mailpoet_form">
+                        <form target="_self" method="post" action="" novalidate="">
+                            <input type="text" name="name" placeholder="Your Name">
+                            <input type="email" class="mailpoet_text" name="email" title="Email"
+                                   placeholder="Please specify your email address.">
+                            <input type="text" name="description" placeholder="Description Service">
+                            <div class="button">
+                                <input type="submit" class="mailpoet_submit" value="Free Quote">
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-xs-12">
-                <div class="mailpoet_form">
-                    <form target="_self" method="post" action="" novalidate="">
-                        <input type="email" class="mailpoet_text" name="" title="Email" placeholder="Please specify a valid email address.">
-
-                        <div class="button"><input type="submit" class="mailpoet_submit" value="Subscribe!"></div>
-                    </form>
-                </div>
-            </div>
-            </div>
-        </div>    
+        </div>
     </div>
     <!--*End Newsletter*-->
+
 {% endblock %}

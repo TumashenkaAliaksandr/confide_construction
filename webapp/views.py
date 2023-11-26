@@ -352,7 +352,23 @@ def login_view(request):
 
 @login_required
 def my_account(request):
-    # Ваша логика для страницы "Мой аккаунт"
+    if request.method == 'POST':
+        # Получаем данные из формы и обновляем профиль пользователя
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+
+        # Обновление данных пользователя
+        user = request.user
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email
+        user.save()
+
+        # Дополнительная логика для обработки остальных полей формы
+
+        return HttpResponseRedirect('my_account')  # Перенаправляем пользователя на страницу "My Account"
+
     return render(request, 'webapp/my_account.html')
 
 
