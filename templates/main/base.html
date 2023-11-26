@@ -103,9 +103,9 @@
                             </ul>
                         </li>
                         <li {% if request.resolver_match.url_name == 'about' %}class="active"{% endif %}><a href="{% url 'webapp:about' %}">Company</a></li>
-                        <li {% if request.resolver_match.url_name in "[ 'process_payment', 'login', 'shop', 'checkout']" %}class="active"{% endif %}><a href="{% url 'webapp:shop' %}">Shopping <i class="fa fa-angle-down"></i></a>
+                        <li {% if request.resolver_match.url_name in "[ 'process_payment', 'my_account', 'shop', 'checkout']" %}class="active"{% endif %}><a href="{% url 'webapp:shop' %}">Shopping <i class="fa fa-angle-down"></i></a>
                             <ul>
-                                <li {% if request.resolver_match.url_name == 'login' %}class="active"{% endif %}><a href="{% url 'webapp:login' %}">My Account</a></li>
+                                <li {% if request.resolver_match.url_name == 'my_account' %}class="active"{% endif %}><a href="{% url 'webapp:my_account' %}">My Account</a></li>
                                 <li {% if request.resolver_match.url_name == 'process_payment' %}class="active"{% endif %}><a href="{% url 'webapp:process_payment' %}">Cart</a></li>
                                 <li {% if request.resolver_match.url_name == 'checkout' %}class="active"{% endif %}><a href="{% url 'webapp:checkout' %}">Checkout</a></li>
                             </ul>

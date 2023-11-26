@@ -12,6 +12,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -348,6 +349,11 @@ def login_view(request):
 
     return render(request, 'webapp/login.html')
 
+
+@login_required
+def my_account(request):
+    # Ваша логика для страницы "Мой аккаунт"
+    return render(request, 'webapp/my_account.html')
 
 
 def registerdone(request):

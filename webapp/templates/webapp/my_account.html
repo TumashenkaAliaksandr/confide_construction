@@ -1,0 +1,220 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <!-- pagebanner -->
+    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'webapp/images/cc_home_repair.jpg' %}{% endif %}');">
+        <div class="page-title">
+            <h2 class="white text-center">My Account</h2>
+        </div>
+    </section>
+    <!-- End Pagebanner -->
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb-main">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="{% url 'webapp:home' %}"><i class="fa fa-home"></i></a></li>
+                <li><a href="{% url 'webapp:services' %}">Shop</a></li>
+                <li class="active">My Account</li>
+            </ul>
+        </div>
+    </div><!-- End breadcrumb -->
+    
+    <!-- checkout -->
+    <section id="checkout-main" class="checkout-main section-padding">
+        <div class="container">
+            <div class="checkout-inner">
+                <div class="checkout-coupon mar-bottom-30">Have a coupon? <a href="#" class="showcoupon">Click here to
+                    enter your code</a></div>
+
+                <div class="checkout-info">
+                    <h3 class="mar-bottom-20">Billing details</h3>
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="checkout-billing">
+                                <form method="" target="">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <label>First Name: <abbr class="required"
+                                                                         title="required">*</abbr></label>
+                                                <input type="text" name="" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <label>Last Name: <abbr class="required"
+                                                                        title="required">*</abbr></label>
+                                                <input type="text" name="" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <label>Company Name (optional):</label>
+                                                <input type="text" name="" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <label>Country: <abbr class="required" title="required">*</abbr></label>
+                                                <select class="form-control">
+                                                    <option>Argentina</option>
+                                                    <option>Bulgaria</option>
+                                                    <option>Canada</option>
+                                                    <option>Denmark</option>
+                                                    <option>Egypt</option>
+                                                    <option>Germany</option>
+                                                    <option>Hungary</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <label>Street Address: <abbr class="required" title="required">*</abbr></label>
+                                                <input type="text" name="" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <label>Town/City: <abbr class="required"
+                                                                        title="required">*</abbr></label>
+                                                <input type="text" name="" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <label>Postcode / ZIP (optional):</label>
+                                                <input type="text" name="" class="form-control">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label>Phone No.: <abbr class="required" title="required">*</abbr></label>
+                                        <input type="text" name="" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label>Email Address: <abbr class="required" title="required">*</abbr></label>
+                                        <input type="text" name="" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label>
+                                            <input type="checkbox" name="">
+                                            <span>Ship to a different address?</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label>Order notes (optional):</label>
+                                        <textarea class="form-control"
+                                                  placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkout-order">
+                    <h3 class="mar-bottom-40">History</h3>
+                    <div class="order-list">
+                        <table class="shop_table rt-checkout-review-order-table">
+                            <thead>
+                            <tr>
+                                <th class="product-name">Product</th>
+                                <th class="product-total">Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    Blue Dress&nbsp; <strong class="product-quantity">× 1</strong></td>
+                                <td class="product-total">
+                                    <span class="rt-Price-amount"><span>$</span>329.00</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+
+                            <tr class="cart-subtotal">
+                                <th>Subtotal</th>
+                                <td><span class="rt-Price-amount"><span>$</span>329.00</span>
+                                </td>
+                            </tr>
+
+                            <tr class="rt-shipping-totals shipping">
+                                <th>Shipping</th>
+                                <td data-title="Shipping">
+                                    Enter your address to view shipping options.
+                                </td>
+                            </tr>
+
+                            <tr class="order-total">
+                                <th>Total</th>
+                                <td><strong><span class="rt-Price-amount"><span>$</span>329.00</span></strong></td>
+                            </tr>
+
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="checkout-place-order">
+                    <p>Your personal data will be used to process your order, support your experience throughout this
+                        website, and for other purposes described in our <a href="#">privacy policy</a>.
+                    </p>
+
+                    <button type="submit" class="btn mt_btn_yellow">Place order</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End checkout -->
+
+    <!--*Newsletter*-->
+    <div id="newsletter">
+        <div class="container">
+            <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <div class="news-content">
+                    <h3>SUBSCRIBE TO OUR NEWSLETTER</h3>
+                    <p class="white">Subscribe to our brief newsletter to get exclusive discounts and new theme launches right in your inbox.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="mailpoet_form">
+                    <form target="_self" method="post" action="" novalidate="">
+                        <input type="email" class="mailpoet_text" name="" title="Email" placeholder="Please specify a valid email address.">
+
+                        <div class="button"><input type="submit" class="mailpoet_submit" value="Subscribe!"></div>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>    
+    </div>
+    <!--*End Newsletter*-->
+{% endblock %}
