@@ -119,7 +119,7 @@
                                 <a href="{% url 'webapp:search' %}" class="search-icon"><i class="fa fa-search"></i></a>
                                 <div class="search-box-wrap" style="display: none;">
                                     <div class="searchform" role="search">
-                                        <form class="search-form" method="get" action=".">
+                                        <form class="search-form" method="get" action="{% url 'webapp:search' %}">
                                             <input type="text" name="s" id="s" placeholder="Search..." value="" class="search-field">
                                             <input type="submit" class="search-submit" value="Search">
                                         </form>
