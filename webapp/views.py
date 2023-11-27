@@ -15,8 +15,6 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 
 
-
-
 def index(request):
     """Main, index constr"""
     serv = Services.objects.all()
@@ -311,17 +309,29 @@ def callback_view(request):
 #
 #     return render(request, 'webapp/forms/register_form.html', {'form': form})
 
+
+# def registration(request):
+#     if request.method == 'POST':
+#         form = RegistrationForm(request.POST)
+#         if form.is_valid():
+#             user = User.objects.create_user(username=form.cleaned_data['email'], password=form.cleaned_data['password'])
+#             user.save()
+#             user_profile = form.save(commit=False)
+#             user_profile.user = user
+#             user_profile.save()
+#             login(request, user)
+#             return redirect('home')  # Замените 'home' на URL вашей главной страницы
+#     else:
+#         form = RegistrationForm()
+#     return render(request, 'webapp/forms/register_form.html', {'form': form})
+
+
 def registration(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            user = User.objects.create_user(username=form.cleaned_data['email'], password=form.cleaned_data['password'])
-            user.save()
-            user_profile = form.save(commit=False)
-            user_profile.user = user
-            user_profile.save()
-            login(request, user)
-            return redirect('home')  # Замените 'home' на URL вашей главной страницы
+            form.save()
+            return redirect('webapp:home')  # Замените 'home' на URL вашей главной страницы
     else:
         form = RegistrationForm()
     return render(request, 'webapp/forms/register_form.html', {'form': form})

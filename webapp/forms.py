@@ -27,8 +27,6 @@ class PaymentForm(forms.ModelForm):
         ]
 
 
-
-
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(), label='Password')
     password2 = forms.CharField(widget=forms.PasswordInput(), label='Confirm Password')

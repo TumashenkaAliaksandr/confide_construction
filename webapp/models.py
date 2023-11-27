@@ -151,11 +151,11 @@ class Transaction(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    phone = models.CharField(max_length=15)
-    email = models.EmailField()
-    password = models.CharField(max_length=128)  # Храните пароли в зашифрованном виде
+    first_name = models.CharField(max_length=100, blank=True, null=True)
+    last_name = models.CharField(max_length=100, blank=True, null=True)
+    phone = models.CharField(max_length=15, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    password = models.CharField(max_length=128, default="Your Password")  # Храните пароли в зашифрованном виде
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

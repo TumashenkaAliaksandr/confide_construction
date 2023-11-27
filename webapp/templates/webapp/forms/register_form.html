@@ -33,19 +33,8 @@
             {{ form.email.label_tag }} {{ form.email }}
             {{ form.password.label_tag }} {{ form.password }}
             {{ form.password2.label_tag }} {{ form.password2 }}
+            {{ form.errors }}
             <input type="submit" value="Register">
-
-
-
-
-{#            {% csrf_token %}#}
-{#            <label for="name" class="form-label">Your Name:</label>#}
-{#            <input type="text" id="name" name="name" class="form-input" required><br><br>#}
-{##}
-{#            <label for="phone" class="form-label">Phone:</label>#}
-{#            <input type="tel" id="phone" name="phone" class="form-input" required><br><br>#}
-{##}
-{#            <input type="submit" value="Send" class="form-input">#}
         </form>
     </div>
 

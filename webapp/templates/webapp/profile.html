@@ -43,26 +43,16 @@
                                                 <label>First Name: <abbr class="required"
                                                                          title="required">*</abbr></label>
                                                 <input type="text" name="first_name" class="form-control"
-                                                       value="{{ user_profile.first_name }}">
+                                                       value="{{ request.user.first_name }}">
                                             </div>
                                         </div>
-
-                                        {% if user_profile %}
-                                            <p>First Name: {{ user_profile.first_name }}</p>
-                                            <p>Last Name: {{ user_profile.last_name }}</p>
-                                            <p>Email: {{ user_profile.email }}</p>
-                                            <!-- Другие поля профиля -->
-                                        {% else %}
-                                            <p>No profile found for this user.</p>
-                                        {% endif %}
-
 
                                         <div class="col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Last Name: <abbr class="required"
                                                                         title="required">*</abbr></label>
                                                 <input type="text" name="last_name" class="form-control"
-                                                       value="{{ user_profile.last_name }}">
+                                                       value="{{ request.user.last_name }}">
                                             </div>
                                         </div>
 
@@ -73,7 +63,7 @@
                                                 <label>Email Address: <abbr class="required"
                                                                             title="required">*</abbr></label>
                                                 <input type="text" name="email" class="form-control"
-                                                       value="{{ user_profile.email }}">
+                                                       value="{{ request.user.email }}">
                                             </div>
                                         </div>
 

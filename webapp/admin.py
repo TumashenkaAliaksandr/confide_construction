@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import *
-from decimal import Decimal
+from .models import Advertisement
 
 @admin.register(Services)
 class ServicesAdmin(admin.ModelAdmin):
@@ -229,11 +229,8 @@ class ProjectAdmin(admin.ModelAdmin):
 
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'first_name', 'last_name', 'phone', 'email', 'password')
+    list_display = ('user', 'phone', 'email', 'password')
 
-
-from django.contrib import admin
-from .models import Advertisement
 
 @admin.register(Advertisement)
 class AdvertisementAdmin(admin.ModelAdmin):
