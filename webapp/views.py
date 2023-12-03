@@ -439,3 +439,8 @@ class Search(ListView):
         context = super().get_context_data(**kwargs)
         context['s'] = self.request.GET.get('s')  # Передача поискового запроса в контекст
         return context
+
+
+def comingsoon(request):
+    """Comingsoon page Constract """
+    return render(request, 'webapp/comingsoon.html')

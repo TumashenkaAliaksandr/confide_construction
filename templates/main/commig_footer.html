@@ -1,0 +1,153 @@
+{% load static %}
+
+
+{% block head %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Nirman is a Construction Business HTML Template">
+
+    <title>Drywall, Wallpaper, Handyman, in Washington DC | ConfideCo </title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'webapp/images/cc_favicon6.png' %}">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'webapp/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!--Default CSS-->
+    <link href="{% static 'webapp/css/default.css' %}" rel="stylesheet" type="text/css">
+
+    <!--Custom CSS-->
+    <link href="{% static 'webapp/css/style.css' %}" rel="stylesheet" type="text/css">
+
+    <!--Blog CSS-->
+    <link href="{% static 'webapp/css/blog.css' %}" rel="stylesheet" type="text/css">
+
+    <!--Plugin CSS-->
+    <link href="{% static 'webapp/css/plugin.css' %}" rel="stylesheet" type="text/css">
+
+    <!--Font Awesome-->
+    <link href="{% static 'webapp/css/font-awesome.css' %}" rel="stylesheet" type="text/css">
+
+    <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js' %}"></script> <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js' %}"></script><![endif]-->
+</head>
+
+{% endblock %}
+
+{% block content %}{% endblock %}
+
+
+    <!--*Footer*-->
+    <footer id="mt_footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="follow_us">
+                        <a href="{% url 'webapp:home' %}">
+                            <img src="{% static 'webapp/images/cc_favicon8.png' %}" alt="Logo">
+                        </a>
+                        <p> Areas served:</p>
+                            <p>FAIRFAX COUNTY, FAIRFAX STATION, ALEXANDRIA,
+                            ARLINGTON, FALLS CHURCH, VIENNA, GREAT FALLS,
+                            SPRINGFIELD, SEVEN CORNERS, HERNDON, MC LEAN,
+                            OAKTON, MERRIFIELD, RESTON, BURKE, CHANTILLY,
+                            POTOMAC, HERNDON, RESTON, CENTERVILLE, WASHINGTON DC.</p>
+
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="mt_contact_ftr">
+                        <h3>Credentials | Licensing</h3>
+                        <div class="single-tweet mar-bottom-20">
+                            <p class="white">Trade: Concrete Contracting (CEM)<br>
+                                License: 2705124215<br>
+                                Expiration: 08-31-2022</p>
+                        </div>
+                        <div class="single-tweet mar-bottom-20">
+                            <p class="white">Trade: Landscape Service Contracting (LSC)<br>
+                                License: 2705124215<br>
+                                Expiration: 08-31-2022</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="mt_post_ftr">
+                        <div class="widget widget_recent_entries"><!-- widget list -->
+                            <h3 class="blog_heading_border"> Recent Posts </h3>
+                            {% include 'webapp/blog_footer_info.html' %}
+                        </div><!-- End widget list -->
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-6 col-xs-12">
+                    <div class="mt_contact_ftr">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="{% url 'webapp:home' %}"><i class="fa fa-angle-right"></i>Home</a></li>
+                            <li><a href="{% url 'webapp:about' %}"><i class="fa fa-angle-right"></i>About</a></li>
+                            <li><a href="{% url 'webapp:services' %}"><i class="fa fa-angle-right"></i>Services</a></li>
+                            <li><a href="{% url 'webapp:contacts' %}"><i class="fa fa-angle-right"></i>Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="mt_footer_copy">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="copy_txt">
+                            <p>&copy; Copyright 2023 - Phoenix All rights Reserved</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="made_txt">
+                           <ul class="pull-right">
+                                <li><a href="{% url 'webapp:about' %}">About Us</a></li>
+                                <li><a href="{% url 'webapp:services' %}">Services</a></li>
+                                <li><a href="{% url 'blog:blog' %}">News</a></li>
+                                <li><a href="{% url 'webapp:contacts' %}">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--* End Footer*-->
+
+    <!-- back to top -->
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="" data-placement="left">
+        <span class="fa fa-arrow-up"></span>
+    </a>
+
+    <!--*Scripts*-->
+
+    <!-- Latest jquery --><script src="{% static 'webapp/js/jquery-3.2.1.min.js' %}"></script>
+
+    <!-- latest Bootstrap --><script src="{% static 'webapp/js/bootstrap.min.js' %}"></script>
+
+    <!-- Easing Jquery --><script src="{% static 'webapp/js/jquery.easing.min.js' %}"></script>
+
+    <!-- wow animated jquery --><script src="{% static 'webapp/js/wow.min.js' %}"></script>
+
+    <!-- Navigation jquery --><script src="{% static 'webapp/js/jquery.nav.js' %}"></script>
+
+    <!-- Slick jquery --><script src="{% static 'webapp/js/slick.js' %}"></script>
+
+    <!-- Slicknav jquery --><script src="{% static 'webapp/js/slicknav.js' %}"></script>
+
+    <!-- custom nav jquery --><script src="{% static 'webapp/js/custom-nav.js' %}"></script>
+
+    <!-- Modal Video Jquery --><script src="{% static 'webapp/js/jquery-modal-video.min.js' %}"></script>
+
+    <!-- LightBox Jquery --><script src="{% static 'webapp/js/ekko-lightbox.min.js' %}"></script>
+
+    <!-- CountTo Jquery --><script src="{% static 'webapp/js/jquery.countTo.js' %}"></script>
+
+    <!-- Appear Jquery --><script src="{% static 'webapp/js/jquery.appear.js' %}"></script>
+
+    <!-- custom video Jquery --><script src="{% static 'webapp/js/custom-video.js' %}"></script>
+
+    <!-- main default Jquery --><script src="{% static 'webapp/js/main.js' %}"></script>

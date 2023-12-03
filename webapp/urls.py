@@ -34,6 +34,7 @@ urlpatterns = [
     # path('send_email/', send_email, name='send_email'),
     path('search/', Search.as_view(), name='search'),
     path('my_account/', my_account, name='my_account'),
+    path('comingsoon/', comingsoon, name='comingsoon'),
     ]
 
 
