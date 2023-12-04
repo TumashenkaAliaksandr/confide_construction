@@ -45,6 +45,7 @@ def shop(request):
     """Shop Constract"""
     services_shop = Services.objects.all()
     news = BlogNews.objects.all()
+    partner = Recommended.objects.all()
 
     context = locals()
     return render(request, 'webapp/shop.html', context=context)
