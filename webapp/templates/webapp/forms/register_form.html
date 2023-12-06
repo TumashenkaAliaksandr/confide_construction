@@ -27,6 +27,7 @@
     <div class="form-container" style="margin-top: 25px; margin-bottom: 25px;">
         <form method="post">
             {% csrf_token %}
+            {{ form.username.label_tag }} {{ form.username }}
             {{ form.first_name.label_tag }} {{ form.first_name }}
             {{ form.last_name.label_tag }} {{ form.last_name }}
             {{ form.phone.label_tag }} {{ form.phone }}

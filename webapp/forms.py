@@ -28,12 +28,13 @@ class PaymentForm(forms.ModelForm):
 
 
 class RegistrationForm(forms.ModelForm):
+    username = forms.CharField(label='Username')
     password = forms.CharField(widget=forms.PasswordInput(), label='Password')
     password2 = forms.CharField(widget=forms.PasswordInput(), label='Confirm Password')
 
     class Meta:
         model = UserProfile
-        fields = ('first_name', 'last_name', 'phone', 'email', 'password')
+        fields = ('username', 'first_name', 'last_name', 'phone', 'email', 'password')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get('password')
