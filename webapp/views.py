@@ -15,6 +15,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm
 
+
 def index(request):
     """Main, index constr"""
     serv = Services.objects.all()
@@ -50,7 +51,7 @@ def shop(request):
     context = locals()
     return render(request, 'webapp/shop.html', context=context)
 
-
+@login_required(login_url='/login/')
 @csrf_exempt
 def process_payment(request):
     if request.method == 'POST':
@@ -107,24 +108,6 @@ def about(request):
         'news': news,
     }
     return render(request, 'webapp/about-us.html', context=context)
-
-
-# @csrf_exempt
-# def send_email(request):
-#     if request.method == 'POST':
-#         name = request.POST.get('name')
-#         email = request.POST.get('email')
-#         message = request.POST.get('message')
-#
-#         try:
-#             send_mail('Subject', message, email, ['tumashenkaaliaksandr@gmail.com'], fail_silently=False)
-#             response_data = {'signal': 'ok', 'msg': 'Message sent successfully.'}
-#             return JsonResponse(response_data)
-#         except Exception as e:
-#             response_data = {'signal': 'error', 'msg': str(e)}
-#             return JsonResponse(response_data)
-#     else:
-#         return HttpResponse(status=400)  # Return a Bad Request response if the request is not a POST request
 
 
 def contacts(request):
@@ -317,7 +300,7 @@ def login_view(request):
     return render(request, 'webapp/login.html', context=context)
 
 
-@login_required
+@login_required(login_url='/login/')
 def my_account(request):
     news = BlogNews.objects.all()
     if request.method == 'POST':
@@ -352,7 +335,7 @@ def error(request):
     """Error page Constract """
     return render(request, 'webapp/error.html')
 
-
+@login_required(login_url='/login/')
 def checkout(request):
     """Checkout page Constract """
     news = BlogNews.objects.all()
