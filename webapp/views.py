@@ -94,6 +94,15 @@ def process_payment(request):
 
     return render(request, 'webapp/cart.html', {'form': form})
 
+def lost_password(request):
+    """Lost Password Confide Constraction"""
+    news = BlogNews.objects.all()
+
+    context = {
+        'news': news,
+    }
+    return render(request, 'webapp/lost_password.html', context=context)
+
 
 def about(request):
     assessment = Assessment.objects.all()

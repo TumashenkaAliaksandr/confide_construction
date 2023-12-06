@@ -35,6 +35,7 @@ urlpatterns = [
     path('search/', Search.as_view(), name='search'),
     path('my_account/', my_account, name='my_account'),
     path('comingsoon/', comingsoon, name='comingsoon'),
+    path('lost_password/', lost_password, name='lost_password'),
     ]
 
 
