@@ -134,7 +134,7 @@ MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = reverse_lazy("webapp:my_account")
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = config('EMAIL_HOST', default='')
 EMAIL_PORT = config('EMAIL_PORT', default=0, cast=int)
 EMAIL_USE_TLS = True
