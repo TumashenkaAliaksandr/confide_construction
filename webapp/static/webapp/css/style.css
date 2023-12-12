@@ -3022,6 +3022,23 @@ section#mt_faq-testi .section_heading{padding: 0;}
 
 .video-banner .caption_slide1{top: 30%;}
 
+/* Для мобильных устройств */
+@media screen and (max-width: 768px) {
+  .video-banner .caption_slide1 {
+    top: 50%; /* Используем относительные единицы для центрирования по вертикали */
+    transform: translateY(-32%); /* Центрируем элемент по вертикали */
+  }
+}
+
+/* Для планшетов с шириной экрана от 768px до 1024px */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .img-fixed-size {
+    width: calc(100% + 30px); /* Увеличиваем ширину на 30px, чтобы изображение растянулось на всю ширину с отступом */
+    /*margin-top: 20px; !* Добавляем отступ сверху в 20px *!*/
+  }
+}
+
+
 .caption_slide1 > h1{
   font-size: 52px;
   letter-spacing: 1px;
@@ -3086,7 +3103,29 @@ section#mt_faq-testi .section_heading{padding: 0;}
     width: 80%;
   }
 
-  .caption_slide1 > h1{font-size: 32px;}
+  .caption_slide1 > h1{font-size: 17px;}
+}
+
+@media (max-width: 640px) {
+  .mt_btn_yellow, input[type="submit"] {
+    font-size: 14px;
+    padding: 10px 19px;
+  }
+}
+
+@media (max-width: 639px) {
+    .mt_btn_yellow {
+        padding: 10px 20px;
+        background: #ffac00;
+        font-size: 15px;
+        border-radius: 5px;
+        display: inline-block;
+        color: #ffffff;
+        text-decoration: none;
+        border: 2px solid #ffac00;
+        transition: all 0.5s ease;
+        /*margin: 13px 0;*/
+    }
 }
 
 @media(max-width: 360px){
@@ -4512,7 +4551,7 @@ p.lt-pswrd{margin-bottom: 20px;}
 @media (max-width: 767px) {
     #home-banner {
         overflow: hidden;
-        max-height: 179px;
+        /*max-height: 179px;*/
         position: relative;
     }
 }
@@ -4756,6 +4795,21 @@ p.lt-pswrd{margin-bottom: 20px;}
 /* ====================== */
 
 #home-banner.video-banner{height: 630px;}
+
+/* Для мобильных устройств с шириной экрана до 768px */
+@media screen and (max-width: 768px) {
+  #home-banner.video-banner {
+    height: auto; /* или любую другую высоту, которую хотите установить */
+  }
+}
+
+/* Для планшетов с шириной экрана от 768px до 1024px */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  #home-banner.video-banner {
+    height: auto; /* или другую желаемую высоту */
+  }
+}
+
 
 #home-banner.video-banner:before{display: none;}
 
