@@ -1046,7 +1046,7 @@ section#choose_us.about_choose_us {
 /* Добавьте media query для мобильных устройств, если необходимо */
 @media (max-width: 768px) {
     .slider-team1 {
-        flex-wrap: wrap;
+        /*flex-wrap: wrap;*/
     }
 
     .item1 {
@@ -1279,8 +1279,18 @@ section#mt_services.services_two .services_listing .section_heading{
   #mt_services .box {margin-bottom: 30px; } 
 }
 
+/* Для мобильных устройств */
+@media screen and (max-width: 768px) {
+  .box .box-content h3 {
+    white-space: nowrap; /* Это свойство предотвращает перенос текста на новую строку */
+    overflow: hidden; /* Обрезает текст, который выходит за пределы блока */
+    /*text-overflow: ellipsis; !* Добавляет многоточие в конце обрезанного текста *!*/
+    font-size: 10px;
+  }
+}
+
 @media (max-width: 736px){
-  #mt_services .box{margin-bottom: 30px;}
+  #mt_services .box{margin-bottom: 10px;}
 }
 
 @media (max-width: 639px){
@@ -1572,7 +1582,7 @@ section#mt_project .project-button a:hover{
 /*          Team          */
 /* ====================== */
   
-section#const-team{padding: 50px 0 40px;}
+section#const-team{padding: 40px 0 40px;}
 
 section#const-team .section_heading {
     padding-right: 0;
