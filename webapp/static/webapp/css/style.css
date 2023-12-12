@@ -2020,6 +2020,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
   }
 }
 
+
 /*innerpages*/
 
 .page .mt_testimonial{padding-bottom: 30px;} 
@@ -3160,7 +3161,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
         text-decoration: none;
         border: 2px solid #ffac00;
         transition: all 0.5s ease;
-        /*margin: 13px 0;*/
+        margin: 3px 0;
     }
 }
 
