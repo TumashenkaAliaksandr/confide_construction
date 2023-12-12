@@ -1994,6 +1994,32 @@ section#mt_faq-testi .section_heading{padding: 0;}
   font-size: 24px;
 }
 
+@media screen and (max-width: 768px) {
+    .mt_testimonial .slick-prev::before, .mt_testimonial .slick-next::before {
+        color: #333;
+        font-size: 20px;
+    }
+
+}
+
+/* Для мобильных устройств */
+@media screen and (max-width: 768px) {
+  .mt_testimonial .slick-next {
+    width: 30px;
+    height: 30px;
+    margin-top: -20px;
+  }
+}
+
+/* Для мобильных устройств */
+@media screen and (max-width: 768px) {
+  .mt_testimonial .slick-prev {
+    width: 30px;
+    height: 30px;
+    margin-top: -20px;
+  }
+}
+
 /*innerpages*/
 
 .page .mt_testimonial{padding-bottom: 30px;} 

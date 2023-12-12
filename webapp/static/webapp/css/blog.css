@@ -128,7 +128,10 @@
 }
 
 @media(max-width: 639px){
-  section#mt_blog{padding-bottom: 65px;}
+  section#mt_blog {
+      padding-top: 50px;
+      padding-bottom: 25px;
+  }
 }
 
 
