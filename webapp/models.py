@@ -150,7 +150,7 @@ class Transaction(models.Model):
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     first_name = models.CharField(max_length=100, blank=True, null=True)
     last_name = models.CharField(max_length=100, blank=True, null=True)
     phone = models.CharField(max_length=15, blank=True, null=True)
@@ -164,7 +164,13 @@ class UserProfile(models.Model):
         verbose_name = "User Profile"
         verbose_name_plural = "User Profiles"
 
+class User_Photo(models.Model):
+    user_profile = models.ForeignKey(UserProfile, related_name='photos', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='users_photos/', verbose_name='Photo', blank=True, null=True)
+    # Другие поля и методы модели Photo
 
+    def __str__(self):
+        return f"Photo of {self.user_profile.user.username}"
 
 class Disposal(models.Model):
     name = models.CharField(max_length=100, verbose_name='Name')
@@ -614,8 +620,3 @@ class Advertisement(models.Model):
     class Meta:
         verbose_name = "Advertisement"
         verbose_name_plural = "Advertisement"
-
-
-class Photo_User(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
-    image = models.ImageField(upload_to='photos/')

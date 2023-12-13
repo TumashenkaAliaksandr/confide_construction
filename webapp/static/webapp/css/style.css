@@ -357,6 +357,13 @@ background-color: #FFFFFF !important;
 }
 
 
+.photo-frame {
+    border: 2px solid #000; /* Любой цвет или стиль границы */
+    padding: 5px; /* Добавление отступа вокруг фотографии */
+    /* Другие свойства стиля, например, ширина, высота, тень и т. д. */
+}
+
+
 /*innerpage navbar*/
 
 #inner-navigation .navbar {

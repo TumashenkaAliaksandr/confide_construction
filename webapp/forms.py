@@ -101,5 +101,5 @@ def contacts(request):
 
 class PhotoForm(forms.ModelForm):
     class Meta:
-        model = Photo_User
+        model = User_Photo
         fields = ['image']

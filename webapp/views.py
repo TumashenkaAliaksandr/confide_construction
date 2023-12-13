@@ -313,34 +313,9 @@ def login_view(request):
 @login_required(login_url='/login/')
 def my_account(request):
     news = BlogNews.objects.all()
-    photos = Photo_User.objects.filter(user=request.user)  # Получаем фотографии текущего пользователя
-
-    if request.method == 'POST':
-        # Получаем данные из формы и обновляем профиль пользователя
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        email = request.POST.get('email')
-
-        # Обновление данных пользователя
-        user = request.user
-        user.first_name = first_name
-        user.last_name = last_name
-        user.email = email
-        user.save()
-
-        # Дополнительная логика для обработки остальных полей формы
-
-        # Обработка загрузки фото
-        form = PhotoForm(request.POST, request.FILES)
-        if form.is_valid():
-            photo = form.save(commit=False)
-            photo.user = request.user
-            photo.save()
-
-            # Обновляем список фотографий пользователя
-            photos = Photo_User.objects.filter(user=request.user)
-
-        return HttpResponseRedirect(reverse('webapp:my_account'))  # Перенаправляем пользователя на страницу "My Account"
+    user = request.user
+    profile = UserProfile.objects.get_or_create(user=user)[0]
+    photos = User_Photo.objects.filter(user_profile=profile)  # Используйте поле user_profile
 
     context = {
         'news': news,
