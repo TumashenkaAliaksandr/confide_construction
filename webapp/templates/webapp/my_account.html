@@ -57,6 +57,21 @@
                                         {% endif %}
 
 
+                                        {% for photo in photos %}
+                                            <div class="col-md-3 col-sm-4 col-xs-6">
+                                                <img src="{{ photo.image.url }}" alt="User Photo"
+                                                     class="img-responsive">
+                                            </div>
+                                        {% endfor %}
+
+                                        <form method="post" action="{% url 'webapp:my_account' %}"
+                                              enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <input type="file" name="image">
+                                            <button type="submit">Upload Photo</button>
+                                        </form>
+
+
                                         <div class="col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Last Name: <abbr class="required"
@@ -78,14 +93,6 @@
                                         </div>
 
                                         <!-- Другие поля формы -->
-
-                                        <div class="col-xs-12">
-                                            <div class="form-group">
-                                                <label>Order notes (optional):</label>
-                                                <textarea class="form-control" name="order_notes"
-                                                          placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
-                                            </div>
-                                        </div>
                                     </div>
                                     <button class="mt_btn_yellow" type="submit">Update Profile</button>
                                 </form>

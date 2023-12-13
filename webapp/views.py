@@ -1,10 +1,11 @@
 from django.contrib.auth.views import LoginView
+from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView
 from blog.models import BlogNews
 from webapp.models import *
 from django.core.mail import send_mail
-from .forms import CallbackForm, PaymentForm, RegistrationForm, ContactForm
+from .forms import CallbackForm, PaymentForm, RegistrationForm, ContactForm, PhotoForm
 from django.http import JsonResponse
 import stripe
 from django.shortcuts import render, redirect
@@ -312,6 +313,8 @@ def login_view(request):
 @login_required(login_url='/login/')
 def my_account(request):
     news = BlogNews.objects.all()
+    photos = Photo_User.objects.filter(user=request.user)  # Получаем фотографии текущего пользователя
+
     if request.method == 'POST':
         # Получаем данные из формы и обновляем профиль пользователя
         first_name = request.POST.get('first_name')
@@ -327,10 +330,21 @@ def my_account(request):
 
         # Дополнительная логика для обработки остальных полей формы
 
-        return HttpResponseRedirect('my_account')  # Перенаправляем пользователя на страницу "My Account"
+        # Обработка загрузки фото
+        form = PhotoForm(request.POST, request.FILES)
+        if form.is_valid():
+            photo = form.save(commit=False)
+            photo.user = request.user
+            photo.save()
+
+            # Обновляем список фотографий пользователя
+            photos = Photo_User.objects.filter(user=request.user)
+
+        return HttpResponseRedirect(reverse('webapp:my_account'))  # Перенаправляем пользователя на страницу "My Account"
 
     context = {
         'news': news,
+        'photos': photos,
     }
 
     return render(request, 'webapp/my_account.html', context=context)

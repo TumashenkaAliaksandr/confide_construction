@@ -614,3 +614,8 @@ class Advertisement(models.Model):
     class Meta:
         verbose_name = "Advertisement"
         verbose_name_plural = "Advertisement"
+
+
+class Photo_User(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    image = models.ImageField(upload_to='photos/')

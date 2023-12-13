@@ -240,6 +240,13 @@ background-color: #FFFFFF !important;
   .get-quote, .header-search, #inner-navigation .slicknav_nav i.fa.fa-angle-down, 
   #inner-navigation .slicknav_nav i.fa.fa-angle-right{display: none;}
 }
+/* правки для блока новости, шрифта тайтла*/
+@media (max-width: 735px) {
+    .news-content h3 {
+        font-size: 20px;
+        color: green;
+    }
+}
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 
@@ -909,6 +916,14 @@ section#choose_us.about_choose_us {
     white-space: nowrap;
 }
 
+/* Для мобильных устройств */
+@media screen and (max-width: 768px) {
+  .box {
+    white-space: normal; /* Включаем перенос текста на новую строку для мобильных устройств */
+  }
+}
+
+
 /*@media screen and (max-width: 767px) {*/
 /*    .box {*/
 /*        display: flex;*/
@@ -1132,7 +1147,7 @@ section#mt_services_three {
     width: 100%;
 }
 
-.box .box-content{padding:30px 20px;}
+.box .box-content{padding:20px 20px;}
 
 .box .icon {
     border-radius: 50%;
@@ -1156,7 +1171,7 @@ section#mt_services.services_one{
 }
 
 @media(max-width: 735px){
-  section#mt_services.services_one .box .box-content h3{font-size: 18px;}
+  section#mt_services.services_one .box .box-content h3{font-size: 20px;}
 }
 
 /*services style 2*/
@@ -1285,7 +1300,7 @@ section#mt_services.services_two .services_listing .section_heading{
     white-space: nowrap; /* Это свойство предотвращает перенос текста на новую строку */
     overflow: hidden; /* Обрезает текст, который выходит за пределы блока */
     /*text-overflow: ellipsis; !* Добавляет многоточие в конце обрезанного текста *!*/
-    font-size: 10px;
+    font-size: 10.7px;
   }
 }
 
@@ -3164,6 +3179,17 @@ section#mt_faq-testi .section_heading{padding: 0;}
         margin: 3px 0;
     }
 }
+
+/*правки по тексту*/
+@media (max-width: 639px) {
+    .smaller-font-two {
+        font-size: 13px;
+        color: #444444;
+        overflow-wrap: break-word; /* Позволяет переносить текст на новую строку, если он не помещается в блок */
+    }
+
+}
+
 
 @media(max-width: 360px){
   .caption_slide1 > h1{font-size: 24px;}

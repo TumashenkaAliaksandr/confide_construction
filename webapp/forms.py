@@ -97,3 +97,9 @@ def contacts(request):
 
     context['form'] = form
     return render(request, 'webapp/contact-us-1.html', context=context)
+
+
+class PhotoForm(forms.ModelForm):
+    class Meta:
+        model = Photo_User
+        fields = ['image']
