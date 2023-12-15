@@ -227,7 +227,7 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display = ('title', 'is_main', 'image', 'description')
 
 
-@admin.register(UserProfile)
+@admin.register(Profile)
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'phone', 'email', 'password')
 

@@ -149,8 +149,14 @@ class Transaction(models.Model):
         return f"Transaction #{self.pk} for Payment #{self.payment.pk}"
 
 
-class UserProfile(models.Model):
+
+class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    bio = models.TextField(null=True, blank=True)
+    profile_pic = models.ImageField(null=True, blank=True, upload_to="media/profile/")
+    facebook = models.CharField(max_length=50, null=True, blank=True)
+    twitter = models.CharField(max_length=50, null=True, blank=True)
+    instagram = models.CharField(max_length=50, null=True, blank=True)
     first_name = models.CharField(max_length=100, blank=True, null=True)
     last_name = models.CharField(max_length=100, blank=True, null=True)
     phone = models.CharField(max_length=15, blank=True, null=True)
@@ -165,7 +171,7 @@ class UserProfile(models.Model):
         verbose_name_plural = "User Profiles"
 
 class User_Photo(models.Model):
-    user_profile = models.ForeignKey(UserProfile, related_name='photos', on_delete=models.CASCADE)
+    user_profile = models.ForeignKey(Profile, related_name='photos', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='users_photos/', verbose_name='Photo', blank=True, null=True)
     # Другие поля и методы модели Photo
 

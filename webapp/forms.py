@@ -33,7 +33,7 @@ class RegistrationForm(forms.ModelForm):
     password2 = forms.CharField(widget=forms.PasswordInput(), label='Confirm Password')
 
     class Meta:
-        model = UserProfile
+        model = Profile
         fields = ('username', 'first_name', 'last_name', 'phone', 'email', 'password')
 
     def clean_password2(self):

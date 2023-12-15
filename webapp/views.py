@@ -1,5 +1,5 @@
 from django.contrib.auth.views import LoginView
-from django.urls import reverse
+from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView
 from blog.models import BlogNews
@@ -8,13 +8,15 @@ from django.core.mail import send_mail
 from .forms import CallbackForm, PaymentForm, RegistrationForm, ContactForm, PhotoForm
 from django.http import JsonResponse
 import stripe
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
 
 
 def index(request):
@@ -257,7 +259,7 @@ def registration(request):
                 password=form.cleaned_data['password']
             )
 
-            user_profile = UserProfile.objects.create(
+            user_profile = Profile.objects.create(
                 user=user,
                 first_name=form.cleaned_data['first_name'],
                 last_name=form.cleaned_data['last_name'],
@@ -309,17 +311,41 @@ def login_view(request):
     }
     return render(request, 'webapp/login.html', context=context)
 
+class ShowProfilePageView(DetailView):
+    model = Profile
+    template_name = 'webapp/my_account.html'
+    context_object_name = 'page_user'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+def my_view(request):
+    profile = request.user.profile  # Получение профиля пользователя
+    return render(request, 'webapp/my_account.html', {'profile': profile})
+
+class CreateProfilePageView(CreateView):
+    model = Profile
+
+    template_name = 'webapp/create_profile.html'
+    fields = ['profile_pic', 'bio', 'facebook', 'twitter', 'instagram']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    success_url = reverse_lazy('webapp:my_account')
 
 @login_required(login_url='/login/')
 def my_account(request):
     news = BlogNews.objects.all()
     user = request.user
-    profile = UserProfile.objects.get_or_create(user=user)[0]
+    profile = Profile.objects.get_or_create(user=user)[0]
     photos = User_Photo.objects.filter(user_profile=profile)  # Используйте поле user_profile
 
     context = {
         'news': news,
         'photos': photos,
+        'profile': profile,
     }
 
     return render(request, 'webapp/my_account.html', context=context)
