@@ -321,7 +321,8 @@ class ShowProfilePageView(DetailView):
         return context
 def my_view(request):
     profile = request.user.profile  # Получение профиля пользователя
-    return render(request, 'webapp/my_account.html', {'profile': profile})
+    advertisement = Advertisement.objects.all()
+    return render(request, 'webapp/my_account.html', {'profile': profile, 'advertisement': advertisement})
 
 class CreateProfilePageView(CreateView):
     model = Profile

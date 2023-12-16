@@ -26,43 +26,55 @@
     <!-- checkout -->
     <section id="checkout-main" class="checkout-main section-padding">
         <div class="container">
-            <div class="checkout-inner">
-                <div class="checkout-info">
-                    <h3 class="mar-bottom-20">Account details</h3>
-                    <div class="row">
-                        <div class="col-sm-6 col-xs-12">
-                            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-8 col-sm-12">
+                    <div class="checkout-inner">
+                        <div class="checkout-info">
+                            <h3 class="mar-bottom-20">Your Payments</h3>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        {% if user.profile.profile_pic %}
-                                            <img src="{{ profile.profile_pic.url }}" height=100 width=100><br>
-                                        {% else %}
-                                            <br><img src="{% static 'webapp/images/cc_hacker.jpg' %}" height=100
-                                                     width=100><br><br>
-                                        {% endif %}
-                                        <label style="font-family: 'Poppins', sans-serif; font-size: 17px;">User
-                                            Name: </label>
-                                        <input type="text" name="first_name" class="form-control"
-                                               value="{{ profile.user }}"
-                                               style="font-family: 'Poppins', sans-serif; font-size: 15px;"><br>
-                                        <label style="font-family: 'Poppins', sans-serif; font-size: 17px;">First
-                                            Name: </label>
-                                        <input type="text" name="first_name" class="form-control"
-                                               value="{{ profile.first_name }}"
-                                               style="font-family: 'Poppins', sans-serif; font-size: 15px;"><br>
-                                        <label style="font-family: 'Poppins', sans-serif; font-size: 17px;">Last
-                                            Name: </label>
-                                        <input type="text" name="first_name" class="form-control"
-                                               value="{{ profile.last_name }}"
-                                               style="font-family: 'Poppins', sans-serif; font-size: 15px;"><br>
-                                        <label style="font-family: 'Poppins', sans-serif; font-size: 17px;">Email
-                                            Address:</label>
-                                        <input type="text" name="first_name" class="form-control"
-                                               value="{{ profile.email }}"
-                                               style="font-family: 'Poppins', sans-serif; font-size: 15px;"><br>
+                                    <div class="row">
+                                        <!-- ... (ваша текущая информация) ... -->
+                                    </div>
+                                    <div class="row">
+                                        <!-- ... (ваша текущая информация) ... -->
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="sidebar-main">
+                        <div class="col-xs-12">
+                            <div class="checkout-inner">
+                                <div class="checkout-info">
+                                    <h3 class="mar-bottom-20">Account details</h3>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {% if user.profile.profile_pic %}
+                                    <img src="{{ profile.profile_pic.url }}" height=100 width=100 alt="Profile Picture"><br>
+                                {% else %}
+                                    <br><img src="{% static 'webapp/images/cc_hacker.jpg' %}" height=100
+                                             width=100 alt="Default Profile Picture"><br><br>
+                                {% endif %}
+
+                                <label style="font-family: 'Poppins', sans-serif; font-size: 18px;">User
+                                    Name:</label>
+                                <label style="font-family: 'Poppins', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.user }}</label><br>
+
+                                <label style="font-family: 'Poppins', sans-serif; font-size: 18px;">First
+                                    Name: </label>
+                                <label style="font-family: 'Poppins', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.first_name }}</label><br>
+
+                                <label for="username" style="font-family: 'Poppins', sans-serif; font-size: 17px;">Last Name:</label>
+                                <label style="font-family: 'Poppins', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.last_name }}</label><br><br>
+                                <label style="font-family: 'Poppins', sans-serif; font-size: 18px;">Email
+                                    Address:</label><br>
+                                <label style="font-family: 'Poppins', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.email }}</label><br><br>
+
+                                <button type="submit" class="btn mt_btn_yellow">Edit Account</button>
                             </div>
                         </div>
                     </div>
@@ -71,12 +83,6 @@
         </div>
     </section>
     <!-- End checkout -->
-
-
-
-{#      {% if user.id == profile.user.id %}#}
-{#      <a href="{% url 'webapp:create_user_profile' profile.id %}"><button class="button">Edit</button></a>#}
-{#      {% endif %}#}
 
 
     <!--*Newsletter*-->
@@ -107,8 +113,6 @@
         </div>
     </div>
     <!--*End Newsletter*-->
-
-
 
 
 {% endblock %}
