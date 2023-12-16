@@ -54,13 +54,12 @@
                             </div>
                             <div class="form-group">
                                 {% if user.profile.profile_pic %}
-                                    <img src="{{ profile.profile_pic.url }}" height=100 width=100 alt="Profile Picture"><br>
+                                    <img src="{{ profile.profile_pic.url }}" class="img-fixed-size-six" alt="Profile Picture"><br>
                                 {% else %}
-                                    <br><img src="{% static 'webapp/images/cc_hacker.jpg' %}" height=100
-                                             width=100 alt="Default Profile Picture"><br><br>
+                                    <br><img src="{% static 'webapp/images/cc_hacker.jpg' %}" class="img-fixed-size-two" alt="Default Profile Picture"><br><br>
                                 {% endif %}
 
-                                <label style="font-family: 'Poppins', sans-serif; font-size: 18px;">User
+                                <br><label style="font-family: 'Poppins', sans-serif; font-size: 18px;">User
                                     Name:</label>
                                 <label style="font-family: 'Poppins', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.user }}</label><br>
 
@@ -74,7 +73,7 @@
                                     Address:</label><br>
                                 <label style="font-family: 'Poppins', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.email }}</label><br><br>
 
-                                <a href="{% url 'webapp:create_user_profile' %}" class="btn mt_btn_yellow">Edit Account</a>
+                                <a href="{% url 'webapp:update_profile' pk=profile.pk %}" class="btn mt_btn_yellow">Edit Account</a>
                             </div>
                         </div>
                     </div>

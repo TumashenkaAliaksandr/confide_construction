@@ -3283,6 +3283,14 @@ section#mt_faq-testi .section_heading{padding: 0;}
   height: 300px;
   width: 100%;
 }
+#pagebanner_two{
+  background: url(../images/pagebanner.jpg) no-repeat;
+  background-size:100%;
+  background-attachment: fixed;
+  background-position: bottom;
+  height: 350px;
+  width: 100%;
+}
 
 #pagebanner:before{
   content: '';

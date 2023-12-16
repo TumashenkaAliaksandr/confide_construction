@@ -5,10 +5,10 @@ from django.views.generic import ListView
 from blog.models import BlogNews
 from webapp.models import *
 from django.core.mail import send_mail
-from .forms import CallbackForm, PaymentForm, RegistrationForm, ContactForm, PhotoForm
+from .forms import PaymentForm, ContactForm
 from django.http import JsonResponse
 import stripe
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
@@ -17,6 +17,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
+from django.views.generic import UpdateView
 
 
 def index(request):
@@ -324,17 +325,18 @@ def my_view(request):
     advertisement = Advertisement.objects.all()
     return render(request, 'webapp/my_account.html', {'profile': profile, 'advertisement': advertisement})
 
-class CreateProfilePageView(CreateView):
+class UpdateProfilePageView(UpdateView):
     model = Profile
 
     template_name = 'webapp/create_profile.html'
-    fields = ['profile_pic', 'bio', 'facebook', 'twitter', 'instagram']
+    fields = ['user', 'first_name', 'last_name', 'phone', 'email', 'password', 'profile_pic']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
     success_url = reverse_lazy('webapp:my_account')
+
 
 @login_required(login_url='/login/')
 def my_account(request):
