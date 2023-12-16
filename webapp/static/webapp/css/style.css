@@ -1077,6 +1077,14 @@ section#choose_us.about_choose_us {
     }
 }
 
+.style-my-acc {
+    font-size: 15px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+
 
 section#mt_services{padding:90px 0 90px; background-color: beige;} /* отступы по блокам и цвет*/
 section#mt_services_two {
