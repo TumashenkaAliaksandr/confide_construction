@@ -3433,6 +3433,17 @@ section#mt_faq-testi .section_heading{padding: 0;}
     position: absolute;
     left: 30%;
     width: 70%;
+    opacity: 0.7;
+}
+
+@media only screen and (max-width: 767px){
+.contact-inner {
+    text-align: center;
+    position: absolute;
+    width: 70%;
+    margin: 0 auto;
+    opacity: 0.7;
+}
 }
 
 #mt_contact .map_info {overflow: hidden; }
