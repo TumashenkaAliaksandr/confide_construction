@@ -1099,6 +1099,11 @@ section#mt_services_three {
     background-attachment: fixed;
 }
 
+section#mt_services_four {
+    padding: 50px 0 90px;
+    background: linear-gradient(rgba(245, 245, 220, 1), rgba(110, 110, 110, 0.7)), url('../images/cc_map.jpg') center/cover;
+    background-attachment: fixed;
+}
 
 
 /* отступы по блокам и цвет*/
@@ -2082,7 +2087,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
 @media only screen and (max-width: 480px) {
   .accrodion-grp .accrodion .accrodion-title{padding: 14.5px 10px;}
 
-  .mt_testimonial .testimonial_main{padding: 0 0 10px;}
+  .mt_testimonial .testimonial_main{padding: 0 30px 10px;}
 }
 
 /* ============================= */
@@ -3425,6 +3430,9 @@ section#mt_faq-testi .section_heading{padding: 0;}
 
 .contact-inner {
     text-align: center;
+    position: absolute;
+    left: 30%;
+    width: 70%;
 }
 
 #mt_contact .map_info {overflow: hidden; }
