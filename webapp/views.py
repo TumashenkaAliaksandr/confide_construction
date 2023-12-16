@@ -327,9 +327,10 @@ def my_view(request):
 
 class UpdateProfilePageView(UpdateView):
     model = Profile
+    news = BlogNews.objects.all()
 
     template_name = 'webapp/create_profile.html'
-    fields = ['user', 'first_name', 'last_name', 'phone', 'email', 'password', 'profile_pic']
+    fields = ['first_name', 'last_name', 'phone', 'email', 'password', 'photo']
 
     def form_valid(self, form):
         form.instance.user = self.request.user

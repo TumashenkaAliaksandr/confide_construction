@@ -53,8 +53,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                {% if user.profile.profile_pic %}
-                                    <img src="{{ profile.profile_pic.url }}" class="img-fixed-size-six" alt="Profile Picture"><br>
+                                {% if user.profile.photo %}
+                                    <img src="{{ profile.photo.url }}" class="img-fixed-size-six" alt="Profile Picture"><br>
                                 {% else %}
                                     <br><img src="{% static 'webapp/images/cc_hacker.jpg' %}" class="img-fixed-size-two" alt="Default Profile Picture"><br><br>
                                 {% endif %}
@@ -68,7 +68,11 @@
                                 <label style="font-family: 'Poppins', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.first_name }}</label><br>
 
                                 <label for="username" style="font-family: 'Poppins', sans-serif; font-size: 17px;">Last Name:</label>
-                                <label style="font-family: 'Poppins', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.last_name }}</label><br><br>
+                                <label style="font-family: 'Poppins', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.last_name }}</label><br>
+
+                                <label for="username" style="font-family: 'Poppins', sans-serif; font-size: 17px;">Phone:</label>
+                                <label style="font-family: 'Poppins', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.phone }}</label><br><br>
+
                                 <label style="font-family: 'Poppins', sans-serif; font-size: 18px;">Email
                                     Address:</label><br>
                                 <label style="font-family: 'Poppins', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.email }}</label><br><br>

@@ -1223,6 +1223,16 @@ section#mt_services.services_two .services_listing .section_heading{
     background-color: #fff;
 }
 
+.form-container-two {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
 .form-container h1 {
     text-align: center;
 }
@@ -3290,6 +3300,17 @@ section#mt_faq-testi .section_heading{padding: 0;}
   background-position: bottom;
   height: 350px;
   width: 100%;
+}
+
+#pagebanner-two:before{
+  content: '';
+  background: #00000068;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 #pagebanner:before{

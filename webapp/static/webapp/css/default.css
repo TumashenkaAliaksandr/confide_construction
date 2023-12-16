@@ -500,6 +500,20 @@ input[type="submit"] {
   text-decoration: none;
   border: 2px solid #ffac00;
   transition: all 0.5s ease;
+  margin: 13px 5px; /* Добавьте здесь нужное значение отступа, например, 10px сверху и снизу, и 0 по бокам */
+}
+
+.mt_btn_green,
+input[type="submit"] {
+  padding: 10px 20px;
+  background: #a4fa54;
+  font-size: 15px;
+  border-radius: 5px;
+  display: inline-block;
+  color: #707070;
+  text-decoration: none;
+  border: 2px solid #4ce62c;
+  transition: all 0.5s ease;
   margin: 13px 0; /* Добавьте здесь нужное значение отступа, например, 10px сверху и снизу, и 0 по бокам */
 }
 
