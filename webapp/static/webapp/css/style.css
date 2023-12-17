@@ -953,6 +953,15 @@ section#choose_us.about_choose_us {
     object-fit: cover; /* Этот свойство сохраняет соотношение сторон и обрезает изображение по нужным размерам */
 }
 
+@media screen and (max-width: 767px) {
+    .img-fixed-size {
+        width: 100%; /* Установите желаемую ширину */
+        height: 150px; /* Установите желаемую высоту */
+        object-fit: cover; /* Этот свойство сохраняет соотношение сторон и обрезает изображение по нужным размерам */
+    }
+
+}
+
 .img-fixed-size-two {
     width: 100%; /* Установите желаемую ширину */
     height: 220px; /* Установите желаемую высоту */
@@ -3220,6 +3229,26 @@ section#mt_faq-testi .section_heading{padding: 0;}
     }
 }
 
+@media (max-width: 639px) {
+    .mt_btn_yellow_two {
+        padding: 10px 20px;
+        background: #ffac00;
+        font-size: 15px;
+        border-radius: 5px;
+        display: inline-block;
+        color: #ffffff;
+        text-decoration: none;
+        border: 2px solid #ffac00;
+        transition: all 0.5s ease;
+        margin: 3px 0;
+        width: 70%;
+    }
+}
+
+.rrt-price-amount {
+    text-align: center;
+}
+
 /*правки по тексту*/
 @media (max-width: 639px) {
     .smaller-font-two {
@@ -3866,12 +3895,12 @@ section#mt_faq-testi .section_heading{padding: 0;}
 
 .product-categories , .product-categories a{color: #ffac00; font-size: 14px;}
 
-h3.product_title{margin: 15px 0; }
+h3.product_title{margin: 10px 0; }
 
 .rt-product-meta-wrapper del{opacity: 0.6; font-size: 16px;}
 
 .rt-product-meta-wrapper ins {
-    padding-left: 15px;
+    /*padding-left: 15px;*/
     text-decoration: none;
     font-size: 16px;
 }
