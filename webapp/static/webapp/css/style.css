@@ -1175,6 +1175,10 @@ section#mt_services_five {
 
 .box .box-content{padding:20px 20px;}
 
+@media(max-width: 735px){
+    .box .box-content{padding:15px 15px;}
+}
+
 .box .icon {
     border-radius: 50%;
     height: 100px;
@@ -1336,7 +1340,7 @@ section#mt_services.services_two .services_listing .section_heading{
     white-space: nowrap; /* Это свойство предотвращает перенос текста на новую строку */
     overflow: hidden; /* Обрезает текст, который выходит за пределы блока */
     /*text-overflow: ellipsis; !* Добавляет многоточие в конце обрезанного текста *!*/
-    font-size: 10.7px;
+    font-size: 13px;
   }
 }
 
@@ -3486,6 +3490,16 @@ section#mt_faq-testi .section_heading{padding: 0;}
         height: 250px;
         border: 2px solid #adadad;
         box-shadow: 0 0 10px rgb(183, 183, 183);
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+    .col-sm-6-6 {
+        position: relative;
+        min-height: 1px;
+        padding-right: 7px;
+        padding-left: 7px;
     }
 }
 
