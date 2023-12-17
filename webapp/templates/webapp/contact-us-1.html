@@ -46,46 +46,39 @@
                     <iframe class="map-frame" frameborder="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA8R7_Rhd8xtER8nCzfy_XvV3nhT0Gj8OA
 &amp;q=Alexandria, Arlington+VA" allowfullscreen="">
                     </iframe>
-
                 </div>
-
-                <div class="col-sm-6 col-xs-12">
-                    <div class="contact-inner">
-                        <div class="contact_form">
-                            <form id="contact_form" data-url="{% url 'webapp:contacts' %}">
-                                {% csrf_token %}
-                                {% if success %}
-                                    <div class="alert alert-damage">
-                                        <strong> Thank you so much</strong>
-                                    </div>
-                                {% endif %}
-                                <div class="form-group">
-                                    {{ form.name }}
-                                </div>
-
-                                <div class="form-group">
-                                    {{ form.email }}
-                                </div>
-
-                                <div class="form-group">
-                                    {{ form.message }}
-                                </div>
-                                <button class="mt_btn_yellow" id="submit-btn" type="submit">SEND MESSAGE
-                                    {# Добавляем type="submit" #}
-                                    <span class="mt_load">
-                        <span></span>
-                    </span>
-                                </button>
-                                <div id="msg"></div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-
         </div>
     </section>
     <!--* End Contact*-->
+
+    <!--*Newsletter*-->
+    <div id="newsletter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="news-content">
+                        <h3>ORDER FREE CONSULTATION</h3>
+                        <p class="beige"><b>CALL US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE YOUR
+                            LIFESTYLE DREAMS.</b></p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="mailpoet_form">
+                        <form target="_self" method="post" action="" novalidate="">
+                            <input type="text" name="name" placeholder="Your Name">
+                            <input type="email" class="mailpoet_text" name="email" title="Email"
+                                   placeholder="Please specify your email address.">
+                            <input type="text" name="description" placeholder="Description Service">
+                            <div class="button">
+                                <input type="submit" class="mailpoet_submit" value="Free Quote">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--*End Newsletter*-->
 
 {% endblock %}
