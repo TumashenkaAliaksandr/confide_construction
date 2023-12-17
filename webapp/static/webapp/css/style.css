@@ -3339,12 +3339,24 @@ section#mt_faq-testi .section_heading{padding: 0;}
   #pagebanner{background-attachment: initial;} 
 }
 
-@media(max-width: 767px){
-  #pagebanner{background-size: cover;}
+@media (max-width: 767px) {
+    #pagebanner {
+        background-size: cover;
+        height: 100px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    #pagebanner-blog {
+        background-size: cover;
+        height: 100px;
+        width: 100%;
+    }
 }
 
 @media(max-width: 639px){
-  #pagebanner .page-title{padding-top: 90px;}
+  #pagebanner .page-title{padding-top: 35px;}
 }
 
 /* ========================================= */
@@ -3422,6 +3434,11 @@ section#mt_faq-testi .section_heading{padding: 0;}
 
 .contact-info ul{text-align: center; margin-bottom: 30px;}
 
+@media (max-width: 767px) {
+    .contact-info ul{text-align: center; margin-bottom: 5px;}
+}
+
+
 .contact-info ul li {padding: 0 25px 0 0; display: inline-block; margin-bottom: 0;}
 
 .contact-info ul li:last-child{padding: 0;}
@@ -3445,6 +3462,24 @@ section#mt_faq-testi .section_heading{padding: 0;}
     opacity: 0.7;
 }
 }
+
+/*map*/
+.map-frame {
+  width: 130%;
+  height: 450px;
+  border: 2px solid #adadad;
+  box-shadow: 0 0 10px rgb(183, 183, 183);
+}
+
+@media only screen and (max-width: 767px) {
+    .map-frame {
+        width: 100%;
+        height: 250px;
+        border: 2px solid #adadad;
+        box-shadow: 0 0 10px rgb(183, 183, 183);
+    }
+}
+
 
 #mt_contact .map_info {overflow: hidden; }
 
