@@ -5,10 +5,10 @@ from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
+
 class CallbackForm(forms.Form):
     name = forms.CharField(max_length=100)
     phone = forms.CharField(max_length=20)
-
 
 
 class PaymentForm(forms.ModelForm):
@@ -86,7 +86,7 @@ def contacts(request):
             send_mail(
                 'Feedback from your website',
                 f'Name: {name}\nEmail: {email}\nMessage: {message}',
-                'your_email@example.com',  # Отправитель
+                'tumashenkaaliaksandr@gmail.com',  # Отправитель
                 ['recipient@example.com'],  # Получатель
                 fail_silently=False,
             )

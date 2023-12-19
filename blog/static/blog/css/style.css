@@ -659,6 +659,12 @@ div#home-banner:before {
     }
 }
 
+#pagebanner-blog {
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
 @media only screen and (max-width: 1100px) {
   #mt_banner .banner_caption_text h1 {
     font-size: 34px; 

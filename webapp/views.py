@@ -16,7 +16,6 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
 from django.views.generic import UpdateView
 
 
@@ -54,6 +53,7 @@ def shop(request):
 
     context = locals()
     return render(request, 'webapp/shop.html', context=context)
+
 
 @login_required(login_url='/login/')
 @csrf_exempt
@@ -97,6 +97,7 @@ def process_payment(request):
         form = PaymentForm()
 
     return render(request, 'webapp/cart.html', {'form': form})
+
 
 def lost_password(request):
     """Lost Password Confide Constraction"""
@@ -280,7 +281,6 @@ def registration(request):
     return render(request, 'webapp/forms/register_form.html', {'form': form})
 
 
-
 class CRloginView(LoginView):
     template_name = 'webapp/login.html'
     news = BlogNews.objects.all()
@@ -294,6 +294,7 @@ def logout(request):
         'news': news,
     }
     return render(request, 'webapp/logout.html', context=context)
+
 
 @csrf_protect
 def login_view(request):
@@ -312,6 +313,7 @@ def login_view(request):
     }
     return render(request, 'webapp/login.html', context=context)
 
+
 class ShowProfilePageView(DetailView):
     model = Profile
     template_name = 'webapp/my_account.html'
@@ -320,10 +322,13 @@ class ShowProfilePageView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
+
 def my_view(request):
     profile = request.user.profile  # Получение профиля пользователя
     advertisement = Advertisement.objects.all()
     return render(request, 'webapp/my_account.html', {'profile': profile, 'advertisement': advertisement})
+
 
 class UpdateProfilePageView(UpdateView):
     model = Profile
@@ -363,6 +368,7 @@ def error(request):
     """Error page Constract """
     return render(request, 'webapp/error.html')
 
+
 @login_required(login_url='/login/')
 def checkout(request):
     """Checkout page Constract """
@@ -370,6 +376,7 @@ def checkout(request):
 
     context = locals()
     return render(request, 'webapp/checkout.html', context=context)
+
 
 def base(request, pk):
     """Base page Constract """

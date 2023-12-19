@@ -1017,6 +1017,12 @@ section#choose_us.about_choose_us {
     object-fit: cover; /* Этот свойство сохраняет соотношение сторон и обрезает изображение по нужным размерам */
 }
 
+.img-fixed-size-eleven {
+    width: 87px; /* Ширина контейнера 55px *!*/
+    /*height: 155px; !* Высота контейнера 55px *!*/
+    margin-right: 2px; /* Отступ справа между объектами (измените значение по вашему усмотрению) */
+}
+
 .review-text-container {
     max-height: 100px; /* Замените 100px на желаемую высоту */
     overflow: hidden;
@@ -1646,7 +1652,7 @@ section#mt_project .project-button a:hover{
 /*          Team          */
 /* ====================== */
   
-section#const-team{padding: 40px 0 40px;}
+section#const-team{padding: 40px 0 25px;}
 
 section#const-team .section_heading {
     padding-right: 0;
@@ -3392,6 +3398,12 @@ section#mt_faq-testi .section_heading{padding: 0;}
         height: 100px;
         width: 100%;
     }
+}
+
+#pagebanner-blog {
+    background-size: cover;
+    height: 100px;
+    width: 100%;
 }
 
 @media(max-width: 639px){

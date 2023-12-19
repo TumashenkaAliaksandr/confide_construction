@@ -228,6 +228,7 @@
                 <div class="col-sm-6 col-xs-12">
                     <div class="mailpoet_form">
                         <form target="_self" method="post" action="" novalidate="">
+                            {% csrf_token %}
                             <input type="text" name="name" placeholder="Your Name">
                             <input type="email" class="mailpoet_text" name="email" title="Email"
                                    placeholder="Please specify your email address.">
@@ -352,7 +353,7 @@
                             <div class="col-md-4 item1">
                                 <div class="team_member1">
                                     <a href="{{ recomended.link }}">
-                                        <img src="{{ recomended.image.url }}" class="testimonial_main img-fixed-size-four" alt="team">
+                                        <img src="{{ recomended.image.url }}" class="testimonial_main img-fixed-size-eleven" alt="team">
                                     </a>
                                 </div>
                             </div>
