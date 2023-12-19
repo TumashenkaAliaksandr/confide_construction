@@ -410,3 +410,8 @@ class Search(ListView):
 def comingsoon(request):
     """Comingsoon page Constract """
     return render(request, 'webapp/comingsoon.html')
+
+
+def success(request):
+    """Success page Constract """
+    return render(request, 'webapp/success.html')
