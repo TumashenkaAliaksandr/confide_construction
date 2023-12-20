@@ -125,29 +125,22 @@ def about(request):
 
 
 def contacts(request):
-    news = BlogNews.objects.all()
-    context = locals()
     if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            message = form.cleaned_data['message']
+        email = request.POST.get('email')
+        message = request.POST.get('message')
 
-            # Здесь отправляем письмо
+        if email and message:
             send_mail(
-                subject='New Contact Form Submission',
-                message=message,
+                subject='Message from your website',
+                message=f'Email: {email}\nMessage: {message}',
                 from_email=email,
                 recipient_list=['tumashenkaaliaksandr@gmail.com'],  # Замените на ваш адрес получателя
                 fail_silently=False,
             )
 
-            context = {'success': 1}
-    else:
-        form = ContactForm()
-    context['form'] = form
-    return render(request, 'webapp/contact-us-1.html', context=context)
+            return render(request, 'webapp/success.html')  # Шаблон для страницы успешной отправки
+
+    return render(request, 'webapp/contact-us-1.html')  # Шаблон с формой обратной связи
 
 
 def backsplash(request):

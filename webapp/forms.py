@@ -71,7 +71,7 @@ class ContactForm(forms.Form):
     )
 
 
-def contacts(request):
+def contact(request):
     context = {}
 
     if request.method == 'POST':
@@ -91,7 +91,7 @@ def contacts(request):
                 fail_silently=False,
             )
 
-            return HttpResponseRedirect('/thankyou/')  # Перенаправление на страницу "Спасибо"
+            return HttpResponseRedirect('')  # Перенаправление на страницу "Спасибо"
     else:
         form = ContactForm()
 
