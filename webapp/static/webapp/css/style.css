@@ -2358,6 +2358,16 @@ section#mt_faq-testi .section_heading{padding: 0;}
 }
 
 
+/*настраиваю шаблон успешно*/
+.success-box {
+    width: 60%; /* Задаем ширину блока */
+    margin: 0 auto; /* Центрируем блок на странице */
+    padding: 20px;
+    border: 2px solid #000;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5); /* Добавляем тень */
+    text-align: center;
+}
+
 
 /* ====================== */
 /*         Footer         */

@@ -4,7 +4,32 @@
 
 {% block content %}
 
-    <h1>Success!</h1>
-    <p>Thank you for contacting us. We have received your message.</p>
+        <!-- pagebanner -->
+    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'webapp/images/cc_success1.jpg' %}{% endif %}')">
+        <div class="page-title">
+            <h2 class="white text-center">Success!</h2>
+        </div>
+    </section>
+    <!-- End Pagebanner -->
+
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb-main">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="{% url 'webapp:home' %}"><i class="fa fa-home"></i></a></li>
+                <li class="active">Success</li>
+            </ul>
+        </div>
+    </div><!-- End breadcrumb -->
+
+    <div class="container">
+        <div class="success-box">
+            <h1>Success!</h1>
+            <p>Thank you for contacting us. We have received your message.</p>
+        </div>
+    </div>
+
+
 
 {% endblock %}
