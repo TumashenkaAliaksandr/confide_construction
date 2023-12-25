@@ -366,6 +366,8 @@ def error(request):
 def checkout(request):
     """Checkout page Constract """
     news = BlogNews.objects.all()
+    main_serv = Services.objects.all()
+    partner = Recommended.objects.all()
 
     context = locals()
     return render(request, 'webapp/checkout.html', context=context)

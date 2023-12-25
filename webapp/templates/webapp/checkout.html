@@ -60,21 +60,6 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-xs-12">
-                                            <div class="form-group">
-                                                <label>Country: <abbr class="required" title="required">*</abbr></label>
-                                                <select class="form-control">
-                                                    <option>Argentina</option>
-                                                    <option>Bulgaria</option>
-                                                    <option>Canada</option>
-                                                    <option>Denmark</option>
-                                                    <option>Egypt</option>
-                                                    <option>Germany</option>
-                                                    <option>Hungary</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
                                         <div class="col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Street Address: <abbr class="required" title="required">*</abbr></label>
@@ -86,13 +71,6 @@
                                             <div class="form-group">
                                                 <label>Town/City: <abbr class="required"
                                                                         title="required">*</abbr></label>
-                                                <input type="text" name="" class="form-control">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12">
-                                            <div class="form-group">
-                                                <label>Postcode / ZIP (optional):</label>
                                                 <input type="text" name="" class="form-control">
                                             </div>
                                         </div>
@@ -118,14 +96,6 @@
                                     </div>
                                 </div>
 
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label>
-                                            <input type="checkbox" name="">
-                                            <span>Ship to a different address?</span>
-                                        </label>
-                                    </div>
-                                </div>
                                 <div class="col-xs-12">
                                     <div class="form-group">
                                         <label>Order notes (optional):</label>
@@ -194,32 +164,92 @@
     </section>
     <!-- End checkout -->
 
-    <!--*Newsletter*-->
-    <div id="newsletter">
+
+    <!-- store -->
+    <section id="our_store" class="our_store related_store">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-xs-12">
-                    <div class="news-content">
-                        <h3>ORDER FREE CONSULTATION</h3>
-                        <p class="beige"><b>CALL US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE
-                            YOUR LIFESTYLE DREAMS.</b></p>
+                <div class="col-xs-12">
+                    <!-- section title -->
+                    <div class="section_heading">
+                        <h2 class="section_title">
+                            <span>Our Services</span>
+                        </h2>
+                        <p class="heading_txt">We offer a range of services in the field of repair and construction.</p>
                     </div>
                 </div>
-                <div class="col-sm-6 col-xs-12">
-                    <div class="mailpoet_form">
-                        <form target="_self" method="post" action="" novalidate="">
-                            <input type="text" name="name" placeholder="Your Name">
-                            <input type="email" class="mailpoet_text" name="email" title="Email"
-                                   placeholder="Please specify your email address.">
-                            <input type="text" name="description" placeholder="Description Service">
-                            <div class="button">
-                                <input type="submit" class="mailpoet_submit" value="Free Quote">
+            </div>
+
+            <div class="row slider-shop">
+                {% for main_sl_cart_prod in main_serv %}
+                    <div class="col-md-3 col-xs-12">
+                        <div class="rt-product-wrapper">
+                            <div class="product-thumbnail-wrapper">
+                                <div class="product-image">
+                                    <img src="{{ main_sl_cart_prod.image.url }}" class="img-fixed-size"
+                                         alt="product-list">
+                                </div>
+                                <div class="product-label"><span class="onsale">Sale</span></div>
                             </div>
-                        </form>
+                            <div class="rt-product-meta-wrapper">
+                                <h3 class="product_title">
+                                    <a href="store-detail.html">{{ main_sl_cart_prod.name }}</a>
+                                </h3>
+                                <div class="rt-cartprice-wrapper">
+                                <span class="price mar-bottom-20">
+{#                                    <del>#}
+{#                                        <span class="rt-price-amount">#}
+{#                                            <span >$</span>#}
+{#                                        </span>#}
+{#                                    </del>#}
+                                    <ins>
+                                        <span class="rrt-price-amount">
+                                            <span>$</span>{{ main_sl_cart_prod.price }}
+                                        </span>
+                                    </ins>
+                                </span>
+                                    <div class="button">
+                                        <a href="{{ main_sl_cart_prod.link }}" class="mt_btn_yellow">Go to service</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- End store -->
+
+
+    <!--* Partner*-->
+    <section id="const-team">
+        <div class="container wow slideInRight">
+            <div class="my_row">
+                <div class="col-md-6 col-sm-13">
+                    <!-- section title -->
+                    <div class="section_heading">
+                        <h2 class="section_title">
+                            <span>We are recommended by</span>
+                        </h2>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-10">
+                    <div class="row slider-team1">
+                        {% for recomended in partner %}
+                            <div class="col-md-4 item1">
+                                <div class="team_member1">
+                                    <a href="{{ recomended.link }}">
+                                        <img src="{{ recomended.image.url }}" class="testimonial_main img-fixed-size-eleven" alt="team">
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--*End Newsletter*-->
+    </section>
+    <!--* End partner*-->
+
 {% endblock %}
