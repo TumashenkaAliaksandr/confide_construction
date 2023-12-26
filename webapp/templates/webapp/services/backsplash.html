@@ -30,17 +30,17 @@
 
             <div class="services-detail mar-bottom-80">
                 <div class="row">
-                    {% for main_disposal in disp_obj %}
+                    {% for main_back_spl in back_sp %}
                         <div class="col-md-8 col-sm-12">
                             <span class="page-title mar-bottom-15">Confide Construction</span>
                             <h2 class="mar-bottom-15">We individually assess each <br> plan and offer optimal solutions
                             </h2>
-                            <p>{{ main_disposal.description }}<br><br>
-                                {{ main_disposal.material }}</p>
+                            <p>{{ main_back_spl.description }}<br><br>
+                                {{ main_back_spl.material }}</p>
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <div class="slider-services">
-                                {% for all_photo in main_disposal.photos.all %}
+                                {% for all_photo in  main_back_spl.photos.all %}
                                     <div><img src="{{ all_photo.photo.url }}" class="img-fixed-size-eight"
                                               alt="services-img"></div>
                                 {% endfor %}
@@ -84,14 +84,14 @@
 
             <div class="services-detail mar-bottom-80">
                 <div class="row">
-                    {% for main_disposal_serv in disp_serv %}
+                    {% for main_back_spl_serv in back_spl_serv %}
                         <div class="col-md-4 col-sm-12">
                             <div class="box">
                                 <div class="box-content">
-                                    <h3 class="mar-bottom-20">{{ main_disposal_serv.name }}</h3>
-                                    <img src="{{ main_disposal_serv.photo.url }}" class="img-fixed-size-seven"
+                                    <h3 class="mar-bottom-20">{{ main_back_spl_serv.name }}</h3>
+                                    <img src="{{ main_back_spl_serv.photo.url }}" class="img-fixed-size-seven"
                                          alt="services-1">
-                                    <p class="mar-top-20">{{ main_disposal_serv.description }}</p>
+                                    <p class="mar-top-20">{{ main_back_spl_serv.description }}</p>
                                 </div>
                             </div>
                         </div>

@@ -35,16 +35,31 @@ class DrywallServiceAdmin(admin.ModelAdmin):
 admin.site.register(DrywallService, DrywallServiceAdmin)
 
 
+class BacksplashPhotoInline(admin.TabularInline):
+    model = Backsplash.photos.through
+    extra = 6  # Это позволит добавить 6 фотографий
+
+
 class BacksplashAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'photo')
+    list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'display_photos')
 
-    def photo(self, obj):
-        return ", ".join([str(photo) for photo in obj.photos.all()])
+    def display_photos(self, obj):
+        return ", ".join([str(photo.photo) for photo in obj.photos.all()])
 
-    photo.short_description = 'Photo'
+    display_photos.short_description = 'Photos'
+
+    inlines = [BacksplashPhotoInline]
 
 
 admin.site.register(Backsplash, BacksplashAdmin)
+admin.site.register(BacksplashPhoto)
+
+
+class BacksplashServiceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'photo')
+
+
+admin.site.register(BacksplashService, BacksplashServiceAdmin)
 
 
 class ElectricalPhotoInline(admin.TabularInline):

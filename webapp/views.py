@@ -147,6 +147,7 @@ def contacts(request):
 def backsplash(request):
     """Backsplash Constract"""
     back_sp = Backsplash.objects.all()
+    back_spl_serv = BacksplashService.objects.all()
     main_serv = Services.objects.all()
     news = BlogNews.objects.all()
 

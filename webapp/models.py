@@ -373,27 +373,73 @@ class Backsplash(models.Model):
     name = models.CharField(max_length=100, verbose_name='Name')
     description = models.TextField(verbose_name='Description')
     advantages = models.TextField(verbose_name='Benefits')
-    material = models.CharField(max_length=150, verbose_name='Material')
-    photo = models.ImageField(upload_to='soundproofing_photos/', verbose_name='Photo', default=0)
+    material = models.CharField(max_length=350, verbose_name='Material')
+    photo = models.ImageField(upload_to='backsplash_photos/', verbose_name='Photo', default=0)
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Price', default=0.00)
     discount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Discount', default=0.00)
+
+    # Создание поля photos для связи с моделью DisposalPhoto.
+    # Множество фотографий может быть связано с одним элементом Disposal.
+    photos = models.ManyToManyField('BacksplashPhoto', related_name='backsplash', blank=True)
 
     def __str__(self):
         return self.name
 
-    def save_model(self, request, obj, form, change):
-        # Если цена была изменена, пересчитываем скидку
-        if 'price' in form.changed_data:
-            price = form.cleaned_data['price']
-            discount = price - Decimal('90.00')  # Вычитаем Decimal объект
-
-            obj.discount = discount
-
-        super().save_model(request, obj, form, change)
-
     class Meta:
         verbose_name = "Backsplash"
         verbose_name_plural = "Backsplash"
+
+
+# Определение модели DisposalPhoto, которая представляет фотографии для электрооборудования.
+class BacksplashPhoto(models.Model):
+    # Поле для загрузки фотографий, указан путь для сохранения в папке Disposal_photos.
+    photo = models.ImageField(upload_to='backsplash_photos/', verbose_name='Photo', default=0)
+
+    def __str__(self):
+        return str(self.photo)
+
+    class Meta:
+        verbose_name = "Photo for Backsplash"
+        verbose_name_plural = "Photos for Backsplash"
+
+
+class BacksplashService(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Name')
+    description = models.TextField(verbose_name='Description')
+    photo = models.ImageField(upload_to='backsplashservice_photos/', verbose_name='Photo')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "BacksplashService"
+        verbose_name_plural = "BacksplashService"
+
+# class Backsplash(models.Model):
+#     name = models.CharField(max_length=100, verbose_name='Name')
+#     description = models.TextField(verbose_name='Description')
+#     advantages = models.TextField(verbose_name='Benefits')
+#     material = models.CharField(max_length=150, verbose_name='Material')
+#     photo = models.ImageField(upload_to='soundproofing_photos/', verbose_name='Photo', default=0)
+#     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Price', default=0.00)
+#     discount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Discount', default=0.00)
+#
+#     def __str__(self):
+#         return self.name
+#
+#     def save_model(self, request, obj, form, change):
+#         # Если цена была изменена, пересчитываем скидку
+#         if 'price' in form.changed_data:
+#             price = form.cleaned_data['price']
+#             discount = price - Decimal('90.00')  # Вычитаем Decimal объект
+#
+#             obj.discount = discount
+#
+#         super().save_model(request, obj, form, change)
+#
+#     class Meta:
+#         verbose_name = "Backsplash"
+#         verbose_name_plural = "Backsplash"
 
 
 class Electrical(models.Model):
