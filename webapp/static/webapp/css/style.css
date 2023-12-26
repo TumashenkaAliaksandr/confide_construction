@@ -3230,6 +3230,19 @@ section#mt_faq-testi .section_heading{padding: 0;}
   }
 }
 
+/*check out main */
+.checkout-main{
+    background-color: beige;
+}
+
+@media (max-width: 639px) {
+    .section-padding {
+        padding: 50px 0 30px;
+        position: relative;
+        overflow: hidden;
+    }
+}
+
 @media (max-width: 639px) {
     .mt_btn_yellow {
         padding: 10px 20px;
@@ -5367,4 +5380,8 @@ p.lt-pswrd{margin-bottom: 20px;}
    -ms-animation: none !important;
    animation: none !important;
   }
+}
+
+.const-team{
+    background-color: #d8d8d8;
 }

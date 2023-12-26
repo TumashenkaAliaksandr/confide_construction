@@ -484,7 +484,7 @@ section{padding:75px 0 80px; position: relative; overflow: hidden;}
 
 
 @media(max-width: 640px){
-  .section_heading{padding-right: 0;}
+  .section_heading{padding-right: 8px;}
 }
 
 /*button*/
@@ -523,17 +523,18 @@ input[type="submit"] {
 input[type="submit"] {
   padding: 10px 20px;
   background: #ffac00;
-  font-size: 15px;
+  font-size: 14px;
   border-radius: 5px;
   display: inline-block;
   color: #ffffff;
   text-decoration: none;
   border: 2px solid #ffac00;
   transition: all 0.5s ease;
-  margin: 13px 5px; /* Добавьте здесь нужное значение отступа, например, 10px сверху и снизу, и 0 по бокам */
+  margin: 17px 0px; /* Добавьте здесь нужное значение отступа, например, 10px сверху и снизу, и 0 по бокам */
   position: absolute;
   bottom: 0;
   left: 0;
+  width: 49%;
 }
 
 .mt_btn_yellow_three:hover,
@@ -584,7 +585,7 @@ input[type="submit"]:focus {
 @media (max-width: 640px) {
   .mt_btn_yellow_three,
   input[type="submit"] {
-    font-size: 17px;
+    font-size: 14px;
     padding: 10px 0;
     width: 92%;
     position: relative;
