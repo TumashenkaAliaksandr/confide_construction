@@ -519,8 +519,7 @@ input[type="submit"] {
 
 
 /*кнопка в ордер checkout*/
-.mt_btn_yellow_three,
-input[type="submit"] {
+.mt_btn_yellow_three{
   padding: 10px 20px;
   background: #ffac00;
   font-size: 14px;

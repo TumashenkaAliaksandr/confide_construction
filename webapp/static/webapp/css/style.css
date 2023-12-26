@@ -2308,10 +2308,21 @@ section#mt_faq-testi .section_heading{padding: 0;}
 }
 
 #newsletter .mailpoet_form {
-    margin-top: 25px;
+    margin-top: 5px;
     position: relative;
     overflow:hidden;
     background: #fff;
+    height: 24.6%;
+}
+
+@media (max-width: 736px) {
+    #newsletter .mailpoet_form {
+        margin-top: 5px;
+        position: relative;
+        overflow: hidden;
+        background: #fff;
+        height: 21%;
+    }
 }
 
 #newsletter .mailpoet_form input.mailpoet_text {
@@ -2327,12 +2338,13 @@ section#mt_faq-testi .section_heading{padding: 0;}
     border: none;
     background: #4ce62c;
     position: absolute;
-    top: 80px;
+    /*top: 0px;*/
     right: 0;
     color: #fff;
     margin: 0;
     padding: 13px 20px 12px;
     border-radius: 0;
+    width: 100%;
 }
 
 
@@ -2340,7 +2352,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
 
   #newsletter:before{width: 100%;}
 
-  #newsletter input[type="submit"]{color: #5b5b5b; background: #4ce62c;}
+  #newsletter input[type="submit"]{color: #5b5b5b; background: #4ce62c; width: 0;}
 
 }
 

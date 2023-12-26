@@ -127,14 +127,15 @@ def about(request):
 def contacts(request):
     if request.method == 'POST':
         email = request.POST.get('email')
-        message = request.POST.get('message')
+        name = request.POST.get('name')
+        description = request.POST.get('description')
 
-        if email and message:
+        if email and description:
             send_mail(
                 subject='Message from your website',
-                message=f'Email: {email}\nMessage: {message}',
-                from_email=email,
-                recipient_list=['tumashenkaaliaksandr@gmail.com'],  # Замените на ваш адрес получателя
+                message=f'Email: {name}\nMessage: {email}\nMessage: {description}',
+                from_email='tumashenkaaliaksandr@gmail.com',
+                recipient_list=[email],  # Замените на ваш адрес получателя
                 fail_silently=False,
             )
 
