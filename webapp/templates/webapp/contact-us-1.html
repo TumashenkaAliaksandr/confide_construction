@@ -59,26 +59,15 @@
                 <div class="col-sm-6 col-xs-12">
                     <div class="news-content">
                         <h3>ORDER FREE CONSULTATION</h3>
-                        <p class="beige"><b>CALL US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE YOUR
+                        <p class="beige"><b><br>CALL US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE YOUR
                             LIFESTYLE DREAMS.</b></p>
                     </div>
                 </div>
                 <div class="col-sm-6 col-xs-12">
-{#                    <div class="mailpoet_form">#}
-{#                        <form method="post" action="{% url 'webapp:contacts' %}">#}
-{#                            {% csrf_token %}#}
-{#                            <input type="text" name="name" placeholder="Your Name">#}
-{#                            <input type="email" name="email" placeholder="Your Email">#}
-{#                            <textarea name="message" placeholder="Your Message"></textarea>#}
-{#                        </form>#}
-{#                        <div class="button">#}
-{#                            <input type="submit" class="mailpoet_submit" value="Send Message">#}
-{#                        </div>#}
-
                     <div class="mailpoet_form">
                         <form target="_self" method="post" action="{% url 'webapp:contacts' %}" novalidate="">
                             {% csrf_token %}
-                            <input type="text" name="message" placeholder="Your Name">
+                            <input type="text" name="name" placeholder="Your Name">
                             <input type="email" class="mailpoet_text" name="email" title="Email"
                                    placeholder="Please specify your email address.">
                             <input type="text" name="description" placeholder="Description Service">
@@ -87,9 +76,7 @@
                             </div>
                         </form>
                     </div>
-                    </div>
                 </div>
-
             </div>
         </div>
     </div>

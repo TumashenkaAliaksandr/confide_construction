@@ -100,7 +100,8 @@
                 </div>
                 <div class="col-sm-6 col-xs-12">
                     <div class="mailpoet_form">
-                        <form target="_self" method="post" action="" novalidate="">
+                        <form target="_self" method="post" action="{% url 'webapp:contacts' %}" novalidate="">
+                            {% csrf_token %}
                             <input type="text" name="name" placeholder="Your Name">
                             <input type="email" class="mailpoet_text" name="email" title="Email"
                                    placeholder="Please specify your email address.">
