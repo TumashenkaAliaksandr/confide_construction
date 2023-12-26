@@ -517,6 +517,37 @@ input[type="submit"] {
   margin: 13px 5px; /* Добавьте здесь нужное значение отступа, например, 10px сверху и снизу, и 0 по бокам */
 }
 
+
+/*кнопка в ордер checkout*/
+.mt_btn_yellow_three,
+input[type="submit"] {
+  padding: 10px 20px;
+  background: #ffac00;
+  font-size: 15px;
+  border-radius: 5px;
+  display: inline-block;
+  color: #ffffff;
+  text-decoration: none;
+  border: 2px solid #ffac00;
+  transition: all 0.5s ease;
+  margin: 13px 5px; /* Добавьте здесь нужное значение отступа, например, 10px сверху и снизу, и 0 по бокам */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.mt_btn_yellow_three:hover,
+.mt_btn_yellow_three:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+  color: #fff !important;
+  background-color: #ffbb2e;
+  border-color: #f8d789;
+  transition: all 0.5s ease;
+  text-shadow: initial;
+  text-decoration: none;
+}
+
 .mt_btn_green,
 input[type="submit"] {
   padding: 10px 20px;
@@ -548,6 +579,20 @@ input[type="submit"]:focus {
   .mt_btn_yellow,
   input[type="submit"] {font-size: 14px; padding: 10px 19px; } 
 }
+
+/*кнопка в ордер checkout*/
+@media (max-width: 640px) {
+  .mt_btn_yellow_three,
+  input[type="submit"] {
+    font-size: 17px;
+    padding: 10px 0;
+    width: 92%;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
 
 .mt_btn_yellow_two:hover,
 .mt_btn_yellow_two:focus,

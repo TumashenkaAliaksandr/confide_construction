@@ -24,146 +24,64 @@
     </div>
     <!-- End breadcrumb -->
 
-    <!--* Event*-->
-    <section id="event" class="event">
-
+    <!-- checkout -->
+    <section id="checkout-main" class="checkout-main section-padding">
         <div class="container">
-            <div class="row">
-                <div class="col-sm-3">
-                    <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
-                        <li class="active"><a href="#vtab1" data-toggle="tab">Janaury</a></li>
-                        <li><a href="#vtab2" data-toggle="tab">February</a></li>
-                        <li><a href="#vtab3" data-toggle="tab">March</a></li>
-                        <li><a href="#vtab4" data-toggle="tab">April</a></li>
-                        <li><a href="#vtab5" data-toggle="tab">May</a></li>
-                        <li><a href="#vtab6" data-toggle="tab">June</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-9">
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade in active" id="vtab1">
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-12">
-                                    <div class="event-inner">
-                                        <a class="img-box" href="blog-details.html">
-                                            <img src="{% static 'webapp/images/project/bw10.jpg' %}" alt="event-img" >
-                                        </a>
+            <div class="checkout-inner">
+                <div class="checkout-order">
+                    <h3 class="mar-bottom-40">Order</h3>
+                    <div class="order-list">
+                        <table class="shop_table rt-checkout-review-order-table">
+                            <thead>
+                            <tr>
+                                <th class="product-name">Product</th>
+                                <th class="product-total">Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    Blue Dress&nbsp; <strong class="product-quantity">× 1</strong></td>
+                                <td class="product-total">
+                                    <span class="rt-Price-amount"><span>$</span>329.00</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
 
-                                        <div class="event-box-content">
-                                            <div class="event-date white">02 <span>JAN</span></div>
-                                            <h3><a href="blog-details.html">Metan turbine engineering presentation</a></h3>
-                                            <p>
-                                                Lorem ipsum dolor sitamet, consectetur adipisicing elito, sed do eiusmod tempor incididunt
-                                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, qrem aperiamo ...
-                                            </p>
-                                            <a class="mt_btn_yellow mar-top-20" href="blog-details.html">Event details </a>
-                                        </div>
-                                    </div>
-                                </div>
+                            <tr class="cart-subtotal">
+                                <th>Subtotal</th>
+                                <td><span class="rt-Price-amount"><span>$</span>329.00</span>
+                                </td>
+                            </tr>
 
-                                <div class="col-sm-6 col-xs-12">
-                                    <div class="event-inner">
-                                        <a class="img-box" href="blog-details.html">
-                                            <img src="{% static 'webapp/images/project/bw9.jpg' %}" alt="event-img" >
-                                        </a>
-                                        <div class="event-box-content">
-                                            <div class="event-date white">02 <span>JAN</span></div>
-                                            <h3><a href="blog-details.html">Metan turbine engineering presentation</a></h3>
-                                            <p>
-                                                Lorem ipsum dolor sitamet, consectetur adipisicing elito, sed do eiusmod tempor incididunt
-                                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, qrem aperiamo ...
-                                            </p>
-                                            <a class="mt_btn_yellow mar-top-20" href="blog-details.html">Event details </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <tr class="rt-shipping-totals shipping">
+                                <th>Shipping</th>
+                                <td data-title="Shipping">
+                                    Enter your address to view shipping options.
+                                </td>
+                            </tr>
 
-                        <div role="tabpanel" class="tab-pane fade" id="vtab2">
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-12">
-                                    <div class="event-inner">
-                                        <a class="img-box" href="blog-details.html">
-                                            <img src="{% static 'webapp/images/project/bw8.jpg' %}" alt="event-img" >
-                                        </a>
+                            <tr class="order-total">
+                                <th>Total</th>
+                                <td><strong><span class="rt-Price-amount"><span>$</span>329.00</span></strong></td>
+                            </tr>
 
-                                        <div class="event-box-content">
-                                            <div class="event-date white">02 <span>JAN</span></div>
-                                            <h3><a href="blog-details.html">Metan turbine engineering presentation</a></h3>
-                                            <p>
-                                                Lorem ipsum dolor sitamet, consectetur adipisicing elito, sed do eiusmod tempor incididunt
-                                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, qrem aperiamo ...
-                                            </p>
-                                            <a class="mt_btn_yellow mar-top-20" href="blog-details.html">Event details </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6 col-xs-12">
-                                    <div class="event-inner">
-                                        <a class="img-box" href="blog-details.html">
-                                            <img src="{% static 'webapp/images/project/bw7.jpg' %}" alt="event-img" >
-                                        </a>
-                                        <div class="event-box-content">
-                                            <div class="event-date white">02 <span>JAN</span></div>
-                                            <h3><a href="blog-details.html">Metan turbine engineering presentation</a></h3>
-                                            <p>
-                                                Lorem ipsum dolor sitamet, consectetur adipisicing elito, sed do eiusmod tempor incididunt
-                                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, qrem aperiamo ...
-                                            </p>
-                                            <a class="mt_btn_yellow mar-top-20" href="blog-details.html">Event details </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div role="tabpanel" class="tab-pane fade" id="vtab3">
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-12">
-                                    <div class="event-inner">
-                                        <a class="img-box" href="blog-details.html">
-                                            <img src="{% static 'webapp/images/project/bw6.jpg' %}" alt="event-img" >
-                                        </a>
-
-                                        <div class="event-box-content">
-                                            <div class="event-date white">02 <span>JAN</span></div>
-                                            <h3><a href="blog-details.html">Metan turbine engineering presentation</a></h3>
-                                            <p>
-                                                Lorem ipsum dolor sitamet, consectetur adipisicing elito, sed do eiusmod tempor incididunt
-                                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, qrem aperiamo ...
-                                            </p>
-                                            <a class="mt_btn_yellow mar-top-20" href="blog-details.html">Event details </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6 col-xs-12">
-                                    <div class="event-inner">
-                                        <a class="img-box" href="blog-details.html">
-                                            <img src="{% static 'webapp/images/project/bw5.jpg' %}" alt="event-img" >
-                                        </a>
-                                        <div class="event-box-content">
-                                            <div class="event-date white">02 <span>JAN</span></div>
-                                            <h3><a href="blog-details.html">Metan turbine engineering presentation</a></h3>
-                                            <p>
-                                                Lorem ipsum dolor sitamet, consectetur adipisicing elito, sed do eiusmod tempor incididunt
-                                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, qrem aperiamo ...
-                                            </p>
-                                            <a class="mt_btn_yellow mar-top-20" href="blog-details.html">Event details </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            </tfoot>
+                        </table>
                     </div>
+                </div>
+
+                <div class="checkout-place-order">
+                    <p>Your personal data will be used to process your order, support your experience throughout this
+                        website, and for other purposes described in our <a href="#">privacy policy</a>.
+                    </p>
+                    <button type="submit" class="btn mt_btn_yellow">Back to Checkout</button>
                 </div>
             </div>
         </div>
-
     </section>
-    <!--* End event*-->
+    <!-- End checkout -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">

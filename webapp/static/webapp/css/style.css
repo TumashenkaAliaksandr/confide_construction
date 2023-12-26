@@ -4312,7 +4312,7 @@ input.quantity-input {
 
 .checkout-inner .checkout-coupon a{float: right; color: #ffac00;}
 
-.checkout-info, .checkout-order{margin-bottom: 20px;}
+.checkout-info, .checkout-order{margin-bottom: 20px; position: relative;}
 
 .checkout-info label span{padding-left: 5px;}
 
