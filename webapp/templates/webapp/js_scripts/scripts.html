@@ -1,0 +1,38 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#placeOrderBtn').on('click', function() {
+        // Получение данных из формы
+        var firstName = $('input[name="{{ form.first_name }}"]').val();
+        var lastName = $('input[name="{{ form.last_name }}"]').val();
+        var companyName = $('input[name="{{ form.company_name }}"]').val();
+        var streetAddress = $('input[name="{{ form.street_address }}"]').val();
+        var townCity = $('input[name="{{ form.town_city }}"]').val();
+        var phoneNumber = $('input[name="{{ form.phone_number }}"]').val();
+        var email = $('input[name="{{ form.email }}"]').val();
+        var orderNotes = $('textarea[name="{{ form.order_notes }}"]').val();
+
+        // Отправка данных на страницу "card"
+        $.ajax({
+            url: '"{% url 'webapp:process_payment' %}"', // Укажите путь к вашему представлению "card"
+            method: 'POST',
+            data: {
+                'first_name': firstName,
+                'last_name': lastName,
+                'company_name': companyName,
+                'street_address': streetAddress,
+                'town_city': townCity,
+                'phone_number': phoneNumber,
+                'email': email,
+                'order_notes': orderNotes
+            },
+            success: function(response) {
+                window.location.href = "{% url 'webapp:process_payment' %}"; // Перенаправление на страницу "card"
+            },
+            error: function(error) {
+                console.log(error); // Обработка ошибки, если она есть
+            }
+        });
+    });
+});
+</script>

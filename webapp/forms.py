@@ -11,20 +11,11 @@ class CallbackForm(forms.Form):
     phone = forms.CharField(max_length=20)
 
 
-class PaymentForm(forms.ModelForm):
+class CheckoutForm(forms.ModelForm):
     class Meta:
-        model = Payment
-        fields = [
-            'order',
-            'payment_amount',
-            'payment_method',
-            'expiration_date_month',
-            'expiration_date_year',
-            'cvv',
-            'card_number',
-            'owner',
-            'total_amount',
-        ]
+        model = CheckoutDetails
+        fields = ['first_name', 'last_name', 'company_name', 'street_address', 'town_city', 'phone_number', 'email', 'order_notes', 'user']
+
 
 
 class RegistrationForm(forms.ModelForm):

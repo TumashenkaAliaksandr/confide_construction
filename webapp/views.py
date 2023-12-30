@@ -1,13 +1,9 @@
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
-from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView
 from blog.models import BlogNews
 from webapp.models import *
 from django.core.mail import send_mail
-from .forms import PaymentForm, ContactForm
-from django.http import JsonResponse
-import stripe
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate, login
@@ -15,8 +11,10 @@ from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm
+from .forms import CheckoutForm
 from django.views.generic.detail import DetailView
 from django.views.generic import UpdateView
+from django.http import HttpResponseServerError
 
 
 def index(request):
@@ -53,50 +51,6 @@ def shop(request):
 
     context = locals()
     return render(request, 'webapp/shop.html', context=context)
-
-
-@login_required(login_url='/login/')
-@csrf_exempt
-def process_payment(request):
-    if request.method == 'POST':
-        form = PaymentForm(request.POST)
-        if form.is_valid():
-            # Получите данные из формы
-            order = form.cleaned_data['order']
-            payment_amount = form.cleaned_data['payment_amount']
-            payment_method = form.cleaned_data['payment_method']
-            expiration_date_month = form.cleaned_data['expiration_date_month']
-            expiration_date_year = form.cleaned_data['expiration_date_year']
-
-            # Создайте Stripe токен (необходимо подключить Stripe.js для этого)
-            try:
-                token = stripe.Token.create(
-                    card={
-                        "number": form.cleaned_data['card_number'],
-                        "exp_month": expiration_date_month,
-                        "exp_year": expiration_date_year,
-                        "cvc": form.cleaned_data['cvv'],
-                    },
-                )
-
-                # Создайте платеж в Stripe
-                charge = stripe.Charge.create(
-                    amount=int(payment_amount * 100),  # Сумма в центах
-                    currency='usd',
-                    source=token.id,
-                    description=f'Payment for Order #{order}',
-                )
-
-                # Обработка успешного платежа
-                return JsonResponse({'success': True, 'message': 'Payment successful. Your order has been confirmed.'})
-            except stripe.error.StripeError as e:
-                # Обработка ошибок Stripe
-                return JsonResponse({'success': False, 'message': f'Payment failed: {str(e)}'})
-
-    else:
-        form = PaymentForm()
-
-    return render(request, 'webapp/cart.html', {'form': form})
 
 
 def lost_password(request):
@@ -366,13 +320,44 @@ def error(request):
 
 @login_required(login_url='/login/')
 def checkout(request):
-    """Checkout page Constract """
+    """Checkout page Construct"""
     news = BlogNews.objects.all()
     main_serv = Services.objects.all()
     partner = Recommended.objects.all()
+    checkout_details = CheckoutDetails.objects.filter(user=request.user).first()
 
-    context = locals()
+    context = {
+        'news': news,
+        'main_serv': main_serv,
+        'partner': partner,
+        'checkout_details': checkout_details,
+    }
     return render(request, 'webapp/checkout.html', context=context)
+
+
+@login_required(login_url='/login/')
+def process_payment(request):
+    if request.method == 'POST':
+        form = CheckoutForm(request.POST)
+        if form.is_valid():
+            checkout_details = CheckoutDetails.objects.create(
+                first_name=form.cleaned_data['first_name'],
+                last_name=form.cleaned_data['last_name'],
+                company_name=form.cleaned_data['company_name'],
+                street_address=form.cleaned_data['street_address'],
+                town_city=form.cleaned_data['town_city'],
+                phone_number=form.cleaned_data['phone_number'],
+                email=form.cleaned_data['email'],
+                order_notes=form.cleaned_data['order_notes'],
+                user=request.user  # Предполагается, что у вас есть переменная request с доступом к пользователю
+            )
+            checkout_details.save()
+            return redirect('webapp:success')  # Перенаправление на страницу успешного оформления заказа
+    else:
+        form = CheckoutForm()
+
+    context = {'form': form}
+    return render(request, 'webapp/cart.html', context)
 
 
 def base(request, pk):
