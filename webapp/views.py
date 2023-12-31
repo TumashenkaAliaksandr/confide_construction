@@ -14,7 +14,7 @@ from .forms import RegistrationForm
 from .forms import CheckoutForm
 from django.views.generic.detail import DetailView
 from django.views.generic import UpdateView
-from django.http import HttpResponseServerError
+
 
 
 def index(request):
@@ -343,13 +343,14 @@ def process_payment(request):
             checkout_details = CheckoutDetails.objects.create(
                 first_name=form.cleaned_data['first_name'],
                 last_name=form.cleaned_data['last_name'],
-                company_name=form.cleaned_data['company_name'],
                 street_address=form.cleaned_data['street_address'],
                 town_city=form.cleaned_data['town_city'],
                 phone_number=form.cleaned_data['phone_number'],
                 email=form.cleaned_data['email'],
                 order_notes=form.cleaned_data['order_notes'],
-                user=request.user  # Предполагается, что у вас есть переменная request с доступом к пользователю
+                date=form.cleaned_data['date'],
+                price=form.cleaned_data['price'],
+                user=request.user,  # Предполагается, что у вас есть переменная request с доступом к пользователю
             )
             checkout_details.save()
             return redirect('webapp:success')  # Перенаправление на страницу успешного оформления заказа

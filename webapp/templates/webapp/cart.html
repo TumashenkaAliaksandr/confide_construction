@@ -41,53 +41,58 @@
                             <table class="shop_table rt-checkout-review-order-table">
                                 <tr class="order-total">
                                     <th>Last Name:</th>
-                                    <td><strong><span class="rt-Price-amount">{{ form.last_name }}</span></strong></td>
+                                    <td><strong><span class="rt-Price-amount">{{ form.instance.last_name }}</span></strong></td>
                                 </tr>
                                 <tr class="order-total">
                                     <th>First Name:</th>
-                                    <td><strong><span class="rt-Price-amount">{{ form.first_name }}</span></strong></td>
+                                    <td><strong><span class="rt-Price-amount">{{ form.instance.first_name }}</span></strong></td>
                                 </tr>
                                 <tr class="order-total">
                                     <th>Town/City:</th>
-                                    <td><strong><span class="rt-Price-amount">{{ form.town_city }}</span></strong></td>
+                                    <td><strong><span class="rt-Price-amount">{{ form.instance.town_city }}</span></strong></td>
                                 </tr>
                                 <tr class="order-total">
                                     <th>Street Address:</th>
-                                    <td><strong><span class="rt-Price-amount">{{ form.street_address }}</span></strong>
+                                    <td><strong><span class="rt-Price-amount">{{ form.instance.street_address }}</span></strong>
                                     </td>
                                 </tr>
                                 <tr class="order-total">
-                                    <th>Company Name:</th>
-                                    <td><strong><span class="rt-Price-amount">{{ form.company_name }}</span></strong>
+                                    <th>Date:</th>
+                                    <td><strong><span class="rt-Price-amount">{{ form.instance.data }}</span></strong>
                                     </td>
                                 </tr>
                                 <tr class="order-total">
                                     <th>Phone Number:</th>
-                                    <td><strong><span class="rt-Price-amount">{{ form.phone_number }}</span></strong>
+                                    <td><strong><span class="rt-Price-amount">{{ form.instance.phone_number }}</span></strong>
                                     </td>
                                 </tr>
                                 <tr class="order-total">
                                     <th>Order Notes:</th>
-                                    <td><strong><span class="rt-Price-amount">{{ form.order_notes }}</span></strong>
+                                    <td><strong><span class="rt-Price-amount">{{ form.instance.order_notes }}</span></strong>
+                                    </td>
+                                </tr>
+                                <tr class="order-total">
+                                    <th>Price:</th>
+                                    <td><strong><span class="rt-Price-amount">{{ form.instance.price }}</span></strong>
                                     </td>
                                 </tr>
                             </table>
                             <div class="checkout-place-order" style="text-align: right;">
-                                <div style="text-align: center;">
+                                <div style="text-align: center; padding: 15px;">
                                     <p>Your personal data will be used to process your order, support your experience
                                         throughout
                                         this website, and for other purposes described in our <a href="#">privacy
                                             policy</a>.
                                     </p>
                                 </div>
-                                <button onclick="window.location.href='{% url 'webapp:checkout' %}'"
-                                        class="btn mt_btn_yellow">Back
-                                    to Checkout
-                                </button>
                                 <button type="submit" class="btn mt_btn_yellow">Send to Pay</button>
                             </div>
                         </div>
                     </form>
+                    <button onclick="window.location.href='{% url 'webapp:checkout' %}'"
+                            class="back-to-checkout-btn btn mt_btn_yellow">Back
+                        to Checkout
+                    </button>
                 </div>
             </div>
         </div>

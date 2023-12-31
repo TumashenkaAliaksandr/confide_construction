@@ -1,6 +1,7 @@
 from decimal import Decimal
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 
 
 class Services(models.Model):
@@ -85,6 +86,7 @@ class Callback(models.Model):
     def __str__(self):
         return self.name
 
+
 class CheckoutDetails(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -95,6 +97,8 @@ class CheckoutDetails(models.Model):
     email = models.EmailField()
     order_notes = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    date = models.DateField()  # Добавляем поле с датой и временем
+    price = models.CharField(max_length=100)  # Добавляем поле с ценой
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

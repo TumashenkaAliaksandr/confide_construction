@@ -14,7 +14,10 @@ class CallbackForm(forms.Form):
 class CheckoutForm(forms.ModelForm):
     class Meta:
         model = CheckoutDetails
-        fields = ['first_name', 'last_name', 'company_name', 'street_address', 'town_city', 'phone_number', 'email', 'order_notes', 'user']
+        fields = ['first_name', 'last_name', 'street_address', 'town_city', 'phone_number', 'email', 'order_notes', 'user', 'price']
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date'})  # Используем виджет DateInput для отображения поля даты
+        }
 
 
 
