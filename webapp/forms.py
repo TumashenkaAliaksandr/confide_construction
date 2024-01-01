@@ -12,12 +12,11 @@ class CallbackForm(forms.Form):
 
 
 class CheckoutForm(forms.ModelForm):
+    date = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date', 'lang': 'en-us'}))
     class Meta:
         model = CheckoutDetails
         fields = ['first_name', 'last_name', 'street_address', 'town_city', 'phone_number', 'email', 'order_notes', 'user', 'price']
-        widgets = {
-            'date': forms.DateInput(attrs={'type': 'date'})  # Используем виджет DateInput для отображения поля даты
-        }
+
 
 
 
