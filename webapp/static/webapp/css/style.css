@@ -2356,11 +2356,12 @@ section#mt_faq-testi .section_heading{padding: 0;}
 
 }
 
-@media (max-width: 480px){
-  #newsletter input[type="submit"] {
-    width: 100%;
-    position: inherit;
-  }
+@media (max-width: 480px) {
+    #newsletter input[type="submit"] {
+        width: 100%;
+        position: inherit;
+        height: 30%;
+    }
 
   #newsletter .news-content{text-align: center;}
 
