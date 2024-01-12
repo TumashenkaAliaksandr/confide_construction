@@ -299,11 +299,13 @@ def my_account(request):
     user = request.user
     profile = Profile.objects.get_or_create(user=user)[0]
     photos = User_Photo.objects.filter(user_profile=profile)  # Используйте поле user_profile
+    form = CheckoutForm(request.POST)
 
     context = {
         'news': news,
         'photos': photos,
         'profile': profile,
+        'form': form,
     }
 
     return render(request, 'webapp/my_account.html', context=context)

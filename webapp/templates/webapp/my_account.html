@@ -31,13 +31,63 @@
                     <div class="checkout-inner">
                         <div class="checkout-info">
                             <h3 class="mar-bottom-20">Your Payments</h3>
+                            <p class="heading_txt"><b>Your payment details in history.</b></p>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-12">
                                     <div class="row">
-                                        <!-- ... (ваша текущая информация) ... -->
-                                    </div>
-                                    <div class="row">
-                                        <!-- ... (ваша текущая информация) ... -->
+                                        {% csrf_token %}
+                                        <div class="order-list">
+                                            <table class="shop_table rt-checkout-review-order-table">
+                                                <tr class="order-total">
+                                                    <th>Last Name:</th>
+                                                    <td><strong><span
+                                                            class="rt-Price-amount">{{ form.instance.last_name }}</span></strong>
+                                                    </td>
+                                                </tr>
+                                                <tr class="order-total">
+                                                    <th>First Name:</th>
+                                                    <td><strong><span
+                                                            class="rt-Price-amount">{{ form.instance.first_name }}</span></strong>
+                                                    </td>
+                                                </tr>
+                                                <tr class="order-total">
+                                                    <th>Town/City:</th>
+                                                    <td><strong><span
+                                                            class="rt-Price-amount">{{ form.instance.town_city }}</span></strong>
+                                                    </td>
+                                                </tr>
+                                                <tr class="order-total">
+                                                    <th>Street Address:</th>
+                                                    <td><strong><span
+                                                            class="rt-Price-amount">{{ form.instance.street_address }}</span></strong>
+                                                    </td>
+                                                </tr>
+                                                <tr class="order-total">
+                                                    <th>Date:</th>
+                                                    <td><strong><span
+                                                            class="rt-Price-amount">{{ form.date }}</span></strong>
+                                                    </td>
+                                                </tr>
+                                                <tr class="order-total">
+                                                    <th>Phone Number:</th>
+                                                    <td><strong><span
+                                                            class="rt-Price-amount">{{ form.instance.phone_number }}</span></strong>
+                                                    </td>
+                                                </tr>
+                                                <tr class="order-total">
+                                                    <th>Order Notes:</th>
+                                                    <td><strong><span
+                                                            class="rt-Price-amount">{{ form.instance.order_notes }}</span></strong>
+                                                    </td>
+                                                </tr>
+                                                <tr class="order-total">
+                                                    <th>Price:</th>
+                                                    <td><strong><span
+                                                            class="rt-Price-amount">{{ form.instance.price }}</span></strong>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
