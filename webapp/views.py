@@ -40,7 +40,7 @@ def services(request):
     news = BlogNews.objects.all()
 
     context = locals()
-    return render(request, 'webapp/services.html', context)
+    return render(request, 'webapp/services/services.html', context)
 
 
 def shop(request):
@@ -50,7 +50,7 @@ def shop(request):
     partner = Recommended.objects.all()
 
     context = locals()
-    return render(request, 'webapp/shop.html', context=context)
+    return render(request, 'webapp/shop/shop.html', context=context)
 
 
 def lost_password(request):
@@ -60,7 +60,7 @@ def lost_password(request):
     context = {
         'news': news,
     }
-    return render(request, 'webapp/lost_password.html', context=context)
+    return render(request, 'webapp/register/lost_password.html', context=context)
 
 
 def about(request):
@@ -93,7 +93,7 @@ def contacts(request):
                 fail_silently=False,
             )
 
-            return render(request, 'webapp/success.html')  # Шаблон для страницы успешной отправки
+            return render(request, 'webapp/register/success.html')  # Шаблон для страницы успешной отправки
 
     return render(request, 'webapp/contact-us-1.html')  # Шаблон с формой обратной связи
 
@@ -231,7 +231,7 @@ def registration(request):
 
 
 class CRloginView(LoginView):
-    template_name = 'webapp/login.html'
+    template_name = 'webapp/register/login.html'
     news = BlogNews.objects.all()
     redirect_authenticated_user = True
 
@@ -242,7 +242,7 @@ def logout(request):
     context = {
         'news': news,
     }
-    return render(request, 'webapp/logout.html', context=context)
+    return render(request, 'webapp/register/logout.html', context=context)
 
 
 @csrf_protect
@@ -260,12 +260,12 @@ def login_view(request):
     context = {
         'news': news,
     }
-    return render(request, 'webapp/login.html', context=context)
+    return render(request, 'webapp/register/login.html', context=context)
 
 
 class ShowProfilePageView(DetailView):
     model = Profile
-    template_name = 'webapp/my_account.html'
+    template_name = 'webapp/register/my_account.html'
     context_object_name = 'page_user'
 
     def get_context_data(self, **kwargs):
@@ -276,14 +276,14 @@ class ShowProfilePageView(DetailView):
 def my_view(request):
     profile = request.user.profile  # Получение профиля пользователя
     advertisement = Advertisement.objects.all()
-    return render(request, 'webapp/my_account.html', {'profile': profile, 'advertisement': advertisement})
+    return render(request, 'webapp/register/my_account.html', {'profile': profile, 'advertisement': advertisement})
 
 
 class UpdateProfilePageView(UpdateView):
     model = Profile
     news = BlogNews.objects.all()
 
-    template_name = 'webapp/create_profile.html'
+    template_name = 'webapp/register/create_profile.html'
     fields = ['first_name', 'last_name', 'phone', 'email', 'password', 'photo']
 
     def form_valid(self, form):
@@ -308,11 +308,11 @@ def my_account(request):
         'form': form,
     }
 
-    return render(request, 'webapp/my_account.html', context=context)
+    return render(request, 'webapp/register/my_account.html', context=context)
 
 
 def registerdone(request):
-    return render(request, 'webapp/register_done.html')
+    return render(request, 'webapp/register/register_done.html')
 
 
 def error(request):
@@ -334,7 +334,7 @@ def checkout(request):
         'partner': partner,
         'checkout_details': checkout_details,
     }
-    return render(request, 'webapp/checkout.html', context=context)
+    return render(request, 'webapp/register/checkout.html', context=context)
 
 
 @login_required(login_url='/login/')
@@ -360,7 +360,7 @@ def process_payment(request):
         form = CheckoutForm()
 
     context = {'form': form}
-    return render(request, 'webapp/cart.html', context)
+    return render(request, 'webapp/shop/cart.html', context)
 
 
 def base(request, pk):
@@ -399,4 +399,4 @@ def comingsoon(request):
 
 def success(request):
     """Success page Constract """
-    return render(request, 'webapp/success.html')
+    return render(request, 'webapp/register/success.html')
