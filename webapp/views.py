@@ -79,6 +79,7 @@ def about(request):
 
 
 def contacts(request):
+    news = BlogNews.objects.all()
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -94,8 +95,10 @@ def contacts(request):
             )
 
             return render(request, 'webapp/register/success.html')  # Шаблон для страницы успешной отправки
-
-    return render(request, 'webapp/contact-us-1.html')  # Шаблон с формой обратной связи
+    context = {
+        'news': news,
+    }
+    return render(request, 'webapp/contact-us-1.html', context=context)  # Шаблон с формой обратной связи
 
 
 def backsplash(request):
