@@ -15,7 +15,6 @@ from .forms import CheckoutForm
 from django.views.generic.detail import DetailView
 from django.views.generic import UpdateView
 from django.db import IntegrityError
-from datetime import datetime
 
 
 def index(request):
@@ -276,6 +275,7 @@ class ShowProfilePageView(DetailView):
         context = super().get_context_data(**kwargs)
         return context
 
+
 class ShowFormsProfilePageView(DetailView):
     model = CheckoutDetails
     template_name = 'webapp/register/my_account.html'
@@ -312,13 +312,13 @@ def my_account(request):
     user = request.user
     profile = Profile.objects.get_or_create(user=user)[0]
     photos = User_Photo.objects.filter(user_profile=profile)  # Используйте поле user_profile
-    form = CheckoutForm(request.POST)
+    checkout_details = CheckoutDetails.objects.last()
 
     context = {
         'news': news,
         'photos': photos,
         'profile': profile,
-        'form': form,
+        'checkout_details': checkout_details,
     }
 
     return render(request, 'webapp/register/my_account.html', context=context)
@@ -349,7 +349,6 @@ def checkout(request):
         'checkout_details': checkout_details,
     }
     return render(request, 'webapp/register/checkout.html', context=context)
-
 
 
 @login_required(login_url='/login/')
@@ -394,6 +393,7 @@ def process_payment(request):
 
     return render(request, 'webapp/shop/cart.html', context)
 
+
 def order_exists(request):
     """errors payment"""
     news = BlogNews.objects.all()
@@ -414,6 +414,7 @@ def order_error(request):
     }
 
     return render(request, 'webapp/shop/order_error.html', context=context)
+
 
 def base(request, pk):
     """Base page Constract """
