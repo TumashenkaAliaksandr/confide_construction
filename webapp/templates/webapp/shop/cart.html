@@ -35,46 +35,53 @@
                         </h2>
                         <p class="heading_txt"><b>Review data, proceed to payment if accurate.</b></p>
                     </div>
-                    <form method="post" action="{% url 'webapp:success' %}">
+                    <form method="get" action="{% url 'webapp:success' %}">
                         {% csrf_token %}
                         <div class="order-list">
                             <table class="shop_table rt-checkout-review-order-table">
                                 <tr class="order-total">
                                     <th>Last Name:</th>
-                                    <td><strong><span class="rt-Price-amount">{{ form.instance.last_name }}</span></strong></td>
+                                    <td><strong><span
+                                            class="rt-Price-amount">{{ checkout_details.last_name }}</span></strong>
+                                    </td>
                                 </tr>
                                 <tr class="order-total">
                                     <th>First Name:</th>
-                                    <td><strong><span class="rt-Price-amount">{{ form.instance.first_name }}</span></strong></td>
+                                    <td><strong><span class="rt-Price-amount">{{ checkout_details.first_name }}</span></strong>
+                                    </td>
                                 </tr>
                                 <tr class="order-total">
                                     <th>Town/City:</th>
-                                    <td><strong><span class="rt-Price-amount">{{ form.instance.town_city }}</span></strong></td>
+                                    <td><strong><span
+                                            class="rt-Price-amount">{{ checkout_details.town_city }}</span></strong>
+                                    </td>
                                 </tr>
                                 <tr class="order-total">
                                     <th>Street Address:</th>
-                                    <td><strong><span class="rt-Price-amount">{{ form.instance.street_address }}</span></strong>
+                                    <td><strong><span
+                                            class="rt-Price-amount">{{ checkout_details.street_address }}</span></strong>
                                     </td>
                                 </tr>
                                 <tr class="order-total">
                                     <th>Date:</th>
-                                    <td><strong><span class="rt-Price-amount">{{ form.date }}</span></strong>
-                                    </td>
+                                    <td><strong><span
+                                            class="rt-Price-amount">{{ checkout_details.date }}</span></strong></td>
                                 </tr>
                                 <tr class="order-total">
                                     <th>Phone Number:</th>
-                                    <td><strong><span class="rt-Price-amount">{{ form.instance.phone_number }}</span></strong>
+                                    <td><strong><span
+                                            class="rt-Price-amount">{{ checkout_details.phone_number }}</span></strong>
                                     </td>
                                 </tr>
                                 <tr class="order-total">
                                     <th>Order Notes:</th>
-                                    <td><strong><span class="rt-Price-amount">{{ form.instance.order_notes }}</span></strong>
+                                    <td><strong><span class="rt-Price-amount">{{ checkout_details.order_notes }}</span></strong>
                                     </td>
                                 </tr>
                                 <tr class="order-total">
                                     <th>Price:</th>
-                                    <td><strong><span class="rt-Price-amount">{{ form.instance.price }}</span></strong>
-                                    </td>
+                                    <td><strong><span
+                                            class="rt-Price-amount">{{ checkout_details.price }}</span></strong></td>
                                 </tr>
                             </table>
                             <div class="checkout-place-order" style="text-align: right;">
@@ -89,6 +96,8 @@
                             </div>
                         </div>
                     </form>
+
+
                     <button onclick="window.location.href='{% url 'webapp:checkout' %}'"
                             class="back-to-checkout-btn btn mt_btn_yellow">Back
                         to Checkout

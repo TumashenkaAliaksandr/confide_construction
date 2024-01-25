@@ -14,7 +14,8 @@ from .forms import RegistrationForm
 from .forms import CheckoutForm
 from django.views.generic.detail import DetailView
 from django.views.generic import UpdateView
-
+from django.db import IntegrityError
+from datetime import datetime
 
 
 def index(request):
@@ -275,6 +276,15 @@ class ShowProfilePageView(DetailView):
         context = super().get_context_data(**kwargs)
         return context
 
+class ShowFormsProfilePageView(DetailView):
+    model = CheckoutDetails
+    template_name = 'webapp/register/my_account.html'
+    context_object_name = 'page_user'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
 
 def my_view(request):
     profile = request.user.profile  # Получение профиля пользователя
@@ -326,10 +336,11 @@ def error(request):
 @login_required(login_url='/login/')
 def checkout(request):
     """Checkout page Construct"""
+
     news = BlogNews.objects.all()
     main_serv = Services.objects.all()
     partner = Recommended.objects.all()
-    checkout_details = CheckoutDetails.objects.filter(user=request.user).first()
+    checkout_details = CheckoutDetails.objects.last()  # Получаем последний объект CheckoutDetails
 
     context = {
         'news': news,
@@ -340,31 +351,69 @@ def checkout(request):
     return render(request, 'webapp/register/checkout.html', context=context)
 
 
+
 @login_required(login_url='/login/')
 def process_payment(request):
+    checkout_details = CheckoutDetails.objects.last()
     if request.method == 'POST':
         form = CheckoutForm(request.POST)
         if form.is_valid():
-            checkout_details = CheckoutDetails.objects.create(
-                first_name=form.cleaned_data['first_name'],
-                last_name=form.cleaned_data['last_name'],
-                street_address=form.cleaned_data['street_address'],
-                town_city=form.cleaned_data['town_city'],
-                phone_number=form.cleaned_data['phone_number'],
-                email=form.cleaned_data['email'],
-                order_notes=form.cleaned_data['order_notes'],
-                date=form.cleaned_data['date'],
-                price=form.cleaned_data['price'],
-                user=request.user,  # Предполагается, что у вас есть переменная request с доступом к пользователю
-            )
-            checkout_details.save()
-            return redirect('webapp:success')  # Перенаправление на страницу успешного оформления заказа
+            try:
+                # Передаем пользователя при создании объекта CheckoutDetails
+                checkout_details, created = CheckoutDetails.objects.get_or_create(
+                    first_name=form.cleaned_data['first_name'],
+                    last_name=form.cleaned_data['last_name'],
+                    street_address=form.cleaned_data['street_address'],
+                    town_city=form.cleaned_data['town_city'],
+                    phone_number=form.cleaned_data['phone_number'],
+                    email=form.cleaned_data['email'],
+                    order_notes=form.cleaned_data['order_notes'],
+                    date=form.cleaned_data['date'],
+                    price=form.cleaned_data['price'],
+                )
+
+                if not created:
+                    # Обработка случая, когда заказ уже существует
+                    return redirect('webapp:order_exists')
+
+                # Сохраняем объект в базе данных
+                checkout_details.save()
+
+            except IntegrityError as e:
+                # Обработка ошибок при сохранении в базе данных
+                return redirect('webapp:order_error')
+
+            return redirect('webapp:process_payment')  # Перенаправление на страницу успешного оформления заказа
     else:
         form = CheckoutForm()
 
-    context = {'form': form}
+    context = {
+        'form': form,
+        'checkout_details': checkout_details,
+    }
+
     return render(request, 'webapp/shop/cart.html', context)
 
+def order_exists(request):
+    """errors payment"""
+    news = BlogNews.objects.all()
+
+    context = {
+        'news': news,
+    }
+
+    return render(request, 'webapp/shop/order_exists.html', context=context)
+
+
+def order_error(request):
+    """errors payment"""
+    news = BlogNews.objects.all()
+
+    context = {
+        'news': news,
+    }
+
+    return render(request, 'webapp/shop/order_error.html', context=context)
 
 def base(request, pk):
     """Base page Constract """

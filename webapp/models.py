@@ -90,13 +90,11 @@ class Callback(models.Model):
 class CheckoutDetails(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    company_name = models.CharField(max_length=100, blank=True, null=True)
     street_address = models.CharField(max_length=255)
     town_city = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=20)
     email = models.EmailField()
     order_notes = models.TextField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     date = models.DateField()  # Добавляем поле с датой и временем
     price = models.CharField(max_length=100)  # Добавляем поле с ценой
 

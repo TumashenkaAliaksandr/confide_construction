@@ -37,6 +37,8 @@ urlpatterns = [
     path('comingsoon/', comingsoon, name='comingsoon'),
     path('lost_password/', lost_password, name='lost_password'),
     path('success/', success, name='success'),
+    path('order_exists/', order_exists, name='order_exists'),
+    path('order_error/', order_error, name='order_error'),
     ]
 
 
