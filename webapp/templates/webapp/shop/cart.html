@@ -18,7 +18,7 @@
             <ul class="breadcrumb">
                 <li><a href="{% url 'webapp:home' %}"><i class="fa fa-home"></i></a></li>
                 <li><a href="{% url 'webapp:shop' %}">Shop</a></li>
-                <li class="active">My Cart</li>
+                <li class="active">Check Out</li>
             </ul>
         </div>
     </div>
@@ -33,7 +33,7 @@
                         <h2 class="section_title">
                             <span>Order</span>
                         </h2>
-                        <p class="heading_txt"><b>Review data, proceed to payment if accurate.</b></p>
+                        <p class="heading_txt"><b>Review data, proceed to payment in the STRIPE if accurate.</b></p>
                     </div>
                     <form method="get" action="{% url 'webapp:success' %}">
                         {% csrf_token %}

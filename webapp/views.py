@@ -348,11 +348,12 @@ def checkout(request):
         'partner': partner,
         'checkout_details': checkout_details,
     }
-    return render(request, 'webapp/register/checkout.html', context=context)
+    return render(request, 'webapp/shop/checkout.html', context=context)
 
 
 @login_required(login_url='/login/')
 def process_payment(request):
+    news = BlogNews.objects.all()
     checkout_details = CheckoutDetails.objects.last()
     if request.method == 'POST':
         form = CheckoutForm(request.POST)
@@ -387,6 +388,7 @@ def process_payment(request):
         form = CheckoutForm()
 
     context = {
+        'news': news,
         'form': form,
         'checkout_details': checkout_details,
     }
