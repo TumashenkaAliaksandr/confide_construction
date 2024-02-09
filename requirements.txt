@@ -4,3 +4,4 @@ Pillow==10.0.0
 python-decouple==3.8
 sqlparse==0.4.4
 tzdata==2023.3
+stripe=6.7.0

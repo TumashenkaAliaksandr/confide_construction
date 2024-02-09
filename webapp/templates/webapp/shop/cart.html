@@ -92,7 +92,7 @@
                                             policy</a>.
                                     </p>
                                 </div>
-                                <button type="submit" class="btn mt_btn_yellow">Send to Pay</button>
+                                <button type="submit" class="btn mt_btn_yellow">Pay with Stripe</button>
                             </div>
                         </div>
                     </form>
@@ -108,7 +108,42 @@
     </section>
     <!-- End checkout -->
 
+<form id="checkout-form" action="/process_payment/" method="POST">
+  {% csrf_token %}
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="{{ STRIPE_PUBLISHABLE_KEY }}"
+            data-description="Example charge"
+            data-amount="1000"
+            data-currency="usd"
+            data-name="dchomefix"
+            data-locale="auto"
+            data-label="Pay with Card"
+            data-allow-remember-me="false"
+            data-token="{{ form.stripe_token.value }}">
+    </script>
+</form>
 
+
+
+
+
+{#<!-- checkout.html -->#}
+{#<form method="post" action="{% url 'webapp:checkout' %}">#}
+{#    {% csrf_token %}#}
+{#    {{ form.as_p }}#}
+{#    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"#}
+{#            data-key="{{ STRIPE_PUBLISHABLE_KEY }}"#}
+{#            data-description="Example charge"#}
+{#            data-amount="1000"#}
+{#            data-currency="usd"#}
+{#            data-name="dchomefix"#}
+{#            data-locale="auto"#}
+{#            data-label="Pay with Card"#}
+{#            data-allow-remember-me="false"#}
+{#            data-token="{{ form.stripe_token.value }}">#}
+{#    </script>#}
+{#    <button type="submit">Submit Payment</button>#}
+{#</form>#}
 
 
 {% endblock %}
