@@ -499,15 +499,15 @@ def process_payment(request):
                         'price_data': {
                             'currency': 'usd',
                             'product_data': {
-                                'name': 'Your product',
+                                'name': 'test_product',
                             },
                             'unit_amount': int(checkout_details.price * 100),  # Сумма в копейках
                         },
                         'quantity': 1,
                     }],
                     mode='payment',
-                    success_url='http://example.com/success/',
-                    cancel_url='http://example.com/cancel/',
+                    success_url='webapp:success',
+                    cancel_url='webapp:order_error',
                 )
 
                 # Перенаправляем на страницу Stripe Checkout
@@ -540,7 +540,7 @@ def order_exists(request):
         'news': news,
     }
 
-    return render(request, 'webapp/shop/order_exists.html', context=context)
+    return render(request, 'webapp/shop/order_error.html', context=context)
 
 
 def order_error(request):
