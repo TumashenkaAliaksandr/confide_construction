@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'webapp',
     'blog',
-    # 'bootstrap4',
-    # 'ckeditor',
+    'bootstrap4',
+    'ckeditor',
     'payments.apps.PaymentsConfig',
 ]
 
