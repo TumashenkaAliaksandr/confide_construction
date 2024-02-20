@@ -20,7 +20,9 @@ from django.conf import settings
 from django.contrib import messages
 from .models import CheckoutDetails
 import stripe
+from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from payments.views import create_checkout_session
 
 
 def index(request):
@@ -136,8 +138,12 @@ def disposal(request):
     main_serv = Services.objects.all()
     news = BlogNews.objects.all()
 
+    # Создаем чекаут-сессию
+    checkout_session = create_checkout_session(request)
+
     context = locals()
     return render(request, 'webapp/services/disposal.html', context)
+
 
 
 def electricalworks(request):

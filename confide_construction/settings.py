@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'blog',
     'bootstrap4',
     'ckeditor',
+    'payments.apps.PaymentsConfig',
 ]
 
 MIDDLEWARE = [
@@ -73,6 +74,7 @@ TEMPLATES = [
         },
     },
 ]
+print(BASE_DIR / 'payments/')
 
 WSGI_APPLICATION = 'confide_construction.wsgi.application'
 
@@ -122,7 +124,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
+
+STATIC_URL = '/static/'
+
+# for django >= 3.1
+STATICFILES_DIRS = [BASE_DIR / 'static']  # new
+
+# for django < 3.1
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # new
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -144,5 +154,6 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 
 #stripe
 STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
+print(STRIPE_PUBLISHABLE_KEY)
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
-STRIPE_API_VERSION = config('STRIPE_API_VERSION')
+# STRIPE_API_VERSION = config('STRIPE_API_VERSION')
