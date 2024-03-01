@@ -353,132 +353,32 @@ def checkout(request):
     main_serv = Services.objects.all()
     partner = Recommended.objects.all()
     checkout_details = CheckoutDetails.objects.last()  # Получаем последний объект CheckoutDetails
+    checkout_session = create_checkout_session(request)
 
     context = {
         'news': news,
         'main_serv': main_serv,
         'partner': partner,
         'checkout_details': checkout_details,
+        'checkout_session': checkout_session,
     }
     return render(request, 'webapp/shop/checkout.html', context=context)
 
-
-# @login_required(login_url='/login/')
-# def process_payment(request):
-#     news = BlogNews.objects.all()
-#     checkout_details = CheckoutDetails.objects.last()
-#     if request.method == 'POST':
-#         form = CheckoutForm(request.POST)
-#         if form.is_valid():
-#             try:
-#                 # Передаем пользователя при создании объекта CheckoutDetails
-#                 checkout_details, created = CheckoutDetails.objects.get_or_create(
-#                     first_name=form.cleaned_data['first_name'],
-#                     last_name=form.cleaned_data['last_name'],
-#                     street_address=form.cleaned_data['street_address'],
-#                     town_city=form.cleaned_data['town_city'],
-#                     phone_number=form.cleaned_data['phone_number'],
-#                     email=form.cleaned_data['email'],
-#                     order_notes=form.cleaned_data['order_notes'],
-#                     date=form.cleaned_data['date'],
-#                     price=form.cleaned_data['price'],
-#                 )
-#
-#                 if not created:
-#                     # Обработка случая, когда заказ уже существует
-#                     return redirect('webapp:order_exists')
-#
-#                 # Сохраняем объект в базе данных
-#                 checkout_details.save()
-#
-#             except IntegrityError as e:
-#                 # Обработка ошибок при сохранении в базе данных
-#                 return redirect('webapp:order_error')
-#
-#             return redirect('webapp:process_payment')  # Перенаправление на страницу успешного оформления заказа
-#     else:
-#         form = CheckoutForm()
-#
-#     context = {
-#         'news': news,
-#         'form': form,
-#         'checkout_details': checkout_details,
-#     }
-#
-#     return render(request, 'webapp/shop/cart.html', context)
-
-
-# @login_required(login_url='/login/')
-# def process_payment(request):
-#     if request.method == 'POST':
-#         form = CheckoutForm(request.POST)
-#         if form.is_valid():
-#             try:
-#                 # Передаем данные для создания объекта CheckoutDetails
-#                 checkout_details, created = CheckoutDetails.objects.get_or_create(
-#                     first_name=form.cleaned_data['first_name'],
-#                     last_name=form.cleaned_data['last_name'],
-#                     street_address=form.cleaned_data['street_address'],
-#                     town_city=form.cleaned_data['town_city'],
-#                     phone_number=form.cleaned_data['phone_number'],
-#                     email=form.cleaned_data['email'],
-#                     order_notes=form.cleaned_data['order_notes'],
-#                     date=form.cleaned_data['date'],
-#                     price=form.cleaned_data['price'],
-#                 )
-#
-#                 if not created:
-#                     # Обработка случая, когда заказ уже существует
-#                     return redirect('webapp:order_exists')
-#
-#                 # Сохраняем объект в базе данных
-#                 checkout_details.save()
-#
-#                 # Получаем токен карты из POST-запроса
-#                 token = request.POST.get('stripeToken')
-#
-#                 # Создаем платеж в Stripe с использованием PaymentIntent
-#                 payment_intent = stripe.PaymentIntent.create(
-#                     amount=int(checkout_details.price * 100),  # Сумма в копейках
-#                     currency='usd',  # Валюта (USD)
-#                     description='Payment for order',  # Описание платежа
-#                     payment_method=token,  # Токен карты, полученный от Stripe.js
-#                     confirmation_method='manual',  # Ручное подтверждение платежа
-#                     confirm=True  # Автоматически подтверждать платеж
-#                 )
-#
-#                 # Перенаправляем на страницу успешного оформления заказа
-#                 return redirect('webapp:success')
-#
-#             except IntegrityError as e:
-#                 # Обработка ошибок при сохранении в базе данных
-#                 return redirect('webapp:order_error')
-#     else:
-#         form = CheckoutForm()
-#
-#     news = BlogNews.objects.all()
-#     checkout_details = CheckoutDetails.objects.last()
-#
-#     context = {
-#         'news': news,
-#         'form': form,
-#         'checkout_details': checkout_details,
-#         'stripe_publishable_key': settings.STRIPE_PUBLISHABLE_KEY  # Передаем ключ Stripe на клиент
-#     }
-#
-#     return render(request, 'webapp/shop/cart.html', context)
 
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+
 @login_required(login_url='/login/')
 def process_payment(request):
+    news = BlogNews.objects.all()
+    checkout_details = CheckoutDetails.objects.last()
     if request.method == 'POST':
         form = CheckoutForm(request.POST)
         if form.is_valid():
             try:
-                # Передаем данные для создания объекта CheckoutDetails
+                # Передаем пользователя при создании объекта CheckoutDetails
                 checkout_details, created = CheckoutDetails.objects.get_or_create(
                     first_name=form.cleaned_data['first_name'],
                     last_name=form.cleaned_data['last_name'],
@@ -498,41 +398,18 @@ def process_payment(request):
                 # Сохраняем объект в базе данных
                 checkout_details.save()
 
-                # Создаем сессию для платежа через Stripe Checkout
-                session = stripe.checkout.Session.create(
-                    payment_method_types=['card'],
-                    line_items=[{
-                        'price_data': {
-                            'currency': 'usd',
-                            'product_data': {
-                                'name': 'test_product',
-                            },
-                            'unit_amount': int(checkout_details.price * 100),  # Сумма в копейках
-                        },
-                        'quantity': 1,
-                    }],
-                    mode='payment',
-                    success_url='webapp:success',
-                    cancel_url='webapp:order_error',
-                )
-
-                # Перенаправляем на страницу Stripe Checkout
-                return redirect(session.url)
-
             except IntegrityError as e:
                 # Обработка ошибок при сохранении в базе данных
                 return redirect('webapp:order_error')
+
+            return redirect('webapp:process_payment')  # Перенаправление на страницу успешного оформления заказа
     else:
         form = CheckoutForm()
-
-    news = BlogNews.objects.all()
-    checkout_details = CheckoutDetails.objects.last()
 
     context = {
         'news': news,
         'form': form,
         'checkout_details': checkout_details,
-        'stripe_publishable_key': settings.STRIPE_PUBLISHABLE_KEY  # Передаем ключ Stripe на клиент
     }
 
     return render(request, 'webapp/shop/cart.html', context)

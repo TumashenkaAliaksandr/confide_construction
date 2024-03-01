@@ -39,6 +39,15 @@
                             </h2>
                             <p>{{ main_disposal.description }}<br><br>
                                 {{ main_disposal.material }}</p>
+                            {% if checkout_session %}
+                                <form action="{% url 'webapp:checkout' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="session_id" value="{{ checkout_session.sessionId }}">
+                                    <button class="mt_btn_yellow" type="submit">To Payment</button>
+                                </form>
+                            {% else %}
+                                <p>Ошибка создания чекаут-сессии</p>
+                            {% endif %}
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <div class="slider-services">
@@ -49,7 +58,6 @@
                             </div>
                         </div>
                     {% endfor %}
-                <button class="btn mt_btn_yellow_three" id="submitBtn">Purchase!</button>
                 </div>
             </div>
 
