@@ -15,6 +15,7 @@ class HomePageView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['main_serv'] = Services.objects.all()
         context['news'] = BlogNews.objects.all()
+        context['checkout_details'] = CheckoutDetails.objects.last()
         return context
 
 

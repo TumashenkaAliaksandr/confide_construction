@@ -32,7 +32,7 @@
                 <div class="checkout-info">
                     <h3 class="mar-bottom-20">Billing details</h3>
                     <h4 class="mar-bottom-20">Fill out the form to pay for the service</h4>
-                    <form method="post" action="{% url 'webapp:process_payment' %}">
+                    <form method="post" action="{% url 'payments' %}">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-sm-6 col-xs-12">

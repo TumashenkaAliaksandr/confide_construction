@@ -26,11 +26,99 @@
     <!-- End breadcrumb -->
 
 
-    <section class="section">
+    <!-- checkout -->
+    <section id="checkout-main" class="checkout-main section-padding">
         <div class="container">
-            <button class="btn mt_btn_yellow" id="submitBtn">Purchase!</button>
+            <div class="checkout-inner">
+                <div class="checkout-order">
+                    <div class="section_heading">
+                        <h2 class="section_title">
+                            <span>Order</span>
+                        </h2>
+                        <p class="heading_txt"><b>Review data, proceed to payment in the STRIPE if accurate.</b></p>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="row">
+                            {% csrf_token %}
+                            <div class="order-list">
+                                <table class="shop_table rt-checkout-review-order-table">
+                                    <tr class="order-total">
+                                        <th>Last Name:</th>
+                                        <td><strong><span
+                                                class="rt-Price-amount">{{ checkout_details.last_name }}</span></strong>
+                                        </td>
+                                    </tr>
+                                    <tr class="order-total">
+                                        <th>First Name:</th>
+                                        <td><strong><span
+                                                class="rt-Price-amount">{{ checkout_details.first_name }}</span></strong>
+                                        </td>
+                                    </tr>
+                                    <tr class="order-total">
+                                        <th>Town/City:</th>
+                                        <td><strong><span
+                                                class="rt-Price-amount">{{ checkout_details.town_city }}</span></strong>
+                                        </td>
+                                    </tr>
+                                    <tr class="order-total">
+                                        <th>Street Address:</th>
+                                        <td><strong><span
+                                                class="rt-Price-amount">{{ checkout_details.street_address }}</span></strong>
+                                        </td>
+                                    </tr>
+                                    <tr class="order-total">
+                                        <th>Date:</th>
+                                        <td><strong><span
+                                                class="rt-Price-amount">{{ checkout_details.date }}</span></strong>
+                                        </td>
+                                    </tr>
+                                    <tr class="order-total">
+                                        <th>Phone Number:</th>
+                                        <td><strong><span
+                                                class="rt-Price-amount">{{ checkout_details.phone_number }}</span></strong>
+                                        </td>
+                                    </tr>
+                                    <tr class="order-total">
+                                        <th>Order Notes:</th>
+                                        <td><strong><span
+                                                class="rt-Price-amount">{{ checkout_details.order_notes }}</span></strong>
+                                        </td>
+                                    </tr>
+                                    <tr class="order-total">
+                                        <th>Price:</th>
+                                        <td><strong><span
+                                                class="rt-Price-amount">{{ checkout_details.price }}</span></strong>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="checkout-place-order" style="text-align: right;">
+                                <div style="text-align: center; padding: 15px;">
+                                    <p>Your personal data will be used to process your order, support your experience
+                                        throughout
+                                        this website, and for other purposes described in our <a href="#">privacy
+                                            policy</a>.
+                                    </p>
+                                </div>
+                                <button class="btn mt_btn_yellow" id="submitBtn">Pay with Stripe</button>
+                            </div>
+
+                            <button onclick="window.location.href='{% url 'webapp:checkout' %}'"
+                                    class="back-to-checkout-btn btn mt_btn_yellow">Back
+                                to Checkout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
         </div>
     </section>
+    <!-- End checkout -->
+
 
 
     <!-- store -->
