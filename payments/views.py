@@ -9,7 +9,7 @@ import stripe
 
 
 class HomePageView(TemplateView):
-    template_name = 'home.html'
+    template_name = 'payment_stripe.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -41,7 +41,7 @@ def create_checkout_session(request):
                 # Создаем новую сессию оформления заказа для товара
                 checkout_session = stripe.checkout.Session.create(
                     success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
-                    cancel_url=domain_url + 'cancelled/',
+                    cancel_url=domain_url + 'payments/',
                     payment_method_types=['card'],
                     mode='payment',
                     line_items=[
