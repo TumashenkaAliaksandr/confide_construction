@@ -373,13 +373,12 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 @login_required(login_url='/login/')
 def process_payment(request):
     news = BlogNews.objects.all()
-    checkout_details = CheckoutDetails.objects.last()
     if request.method == 'POST':
         form = CheckoutForm(request.POST)
         if form.is_valid():
             try:
-                # Передаем пользователя при создании объекта CheckoutDetails
-                checkout_details, created = CheckoutDetails.objects.get_or_create(
+                # Сохраняем данные заказа
+                checkout_details = CheckoutDetails.objects.create(
                     first_name=form.cleaned_data['first_name'],
                     last_name=form.cleaned_data['last_name'],
                     street_address=form.cleaned_data['street_address'],
@@ -390,21 +389,14 @@ def process_payment(request):
                     date=form.cleaned_data['date'],
                     price=form.cleaned_data['price'],
                 )
-
-                if not created:
-                    # Обработка случая, когда заказ уже существует
-                    return redirect('webapp:order_exists')
-
-                # Сохраняем объект в базе данных
-                checkout_details.save()
-
+                # Перенаправляем на страницу с обзором заказа
+                return redirect('payments', checkout_id=checkout_details.pk)
             except IntegrityError as e:
                 # Обработка ошибок при сохранении в базе данных
                 return redirect('webapp:order_error')
-
-            return redirect('webapp:process_payment')  # Перенаправление на страницу успешного оформления заказа
     else:
         form = CheckoutForm()
+        checkout_details = None
 
     context = {
         'news': news,
