@@ -362,7 +362,7 @@ def checkout(request):
         'checkout_details': checkout_details,
         'checkout_session': checkout_session,
     }
-    return render(request, 'webapp/shop/checkout.html', context=context)
+    return render(request, '../templates/webapp/shop/checkout.html', context=context)
 
 
 
