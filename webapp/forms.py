@@ -16,7 +16,7 @@ class CheckoutForm(forms.ModelForm):
 
     class Meta:
         model = CheckoutDetails
-        fields = ['first_name', 'last_name', 'street_address', 'town_city', 'phone_number', 'date', 'email', 'order_notes', 'price']
+        fields = ['first_name_check', 'last_name_check', 'street_address', 'town_city', 'phone_number', 'date', 'email', 'order_notes', 'price_check']
 
 
 

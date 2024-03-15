@@ -88,18 +88,18 @@ class Callback(models.Model):
 
 
 class CheckoutDetails(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
+    first_name_check = models.CharField(max_length=100)
+    last_name_check = models.CharField(max_length=100)
     street_address = models.CharField(max_length=255)
     town_city = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=20)
     email = models.EmailField()
     order_notes = models.TextField()
     date = models.DateField()  # Добавляем поле с датой и временем
-    price = models.CharField(max_length=100)  # Добавляем поле с ценой
+    price_check = models.CharField(max_length=100)  # Добавляем поле с ценой
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.first_name_check} {self.last_name_check}"
 
 
 
