@@ -1,3 +1,5 @@
+import re
+
 from webapp.models import *
 from blog.models import *
 from django.conf import settings
@@ -73,12 +75,18 @@ def create_checkout_session(request):
         domain_url = 'http://localhost:8000/'
         stripe.api_key = settings.STRIPE_SECRET_KEY
         try:
-            # Получаем первый объект Disposal из базы данных
-            check_datails = CheckoutDetails.objects.last()
-            if check_datails:
-                price = int(check_datails.price_check * 100)  # Преобразуем цену в центы
-                name = check_datails.first_name
-                descriptions = check_datails.order_notes
+            # Получаем первый объект CheckoutDetails из базы данных
+            checkout_details = CheckoutDetails.objects.last()
+            if checkout_details:
+                # Очищаем значение price_check от ненужных символов и преобразуем его в число
+                price_check_cleaned = re.sub(r'[^\d.]', '', checkout_details.price_check)
+                try:
+                    price = int(float(price_check_cleaned) * 100)
+                except ValueError:
+                    return JsonResponse({'error': 'Invalid price_check value'})
+
+                name = checkout_details.first_name_check
+                descriptions = checkout_details.order_notes
 
                 # Создаем новую сессию оформления заказа для товара
                 checkout_session = stripe.checkout.Session.create(
@@ -97,27 +105,14 @@ def create_checkout_session(request):
                                 },
                             },
                             'quantity': 1,
-                        },
-                        # {
-                        #     'price_data': {
-                        #         'currency': 'usd',
-                        #         'unit_amount': 15,
-                        #         'product_data': {
-                        #             'name': 'Dimon',
-                        #             'description': 'Описание',
-                        #         },
-                        #     },
-                        #     'quantity': 1,
-                        # }
+                        }
                     ]
                 )
                 return JsonResponse({'sessionId': checkout_session['id']})
             else:
-                return JsonResponse({'error': 'No Disposal objects found'})
+                return JsonResponse({'error': 'No CheckoutDetails objects found'})
         except Exception as e:
             return JsonResponse({'error': str(e)})
-
-
 
 class SuccessView(TemplateView):
     template_name = 'success.html'
