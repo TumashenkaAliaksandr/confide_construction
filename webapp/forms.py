@@ -4,6 +4,7 @@ from django.contrib.auth.password_validation import validate_password
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.core.validators import RegexValidator
 
 
 class CallbackForm(forms.Form):
@@ -14,10 +15,14 @@ class CallbackForm(forms.Form):
 class CheckoutForm(forms.ModelForm):
     date = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date', 'lang': 'en-us'}))
 
+    # Валидатор для поля price_check
+    price_check = forms.CharField(max_length=100, validators=[RegexValidator(r'^\d+(\.\d{1,2})?$',
+                                   'Введите корректное числовое значение')])
+
     class Meta:
         model = CheckoutDetails
-        fields = ['first_name_check', 'last_name_check', 'street_address', 'town_city', 'phone_number', 'date', 'email', 'order_notes', 'price_check']
-
+        fields = ['first_name_check', 'last_name_check', 'street_address', 'town_city', 'phone_number', 'date', 'email',
+                  'order_notes', 'price_check']
 
 
 class RegistrationForm(forms.ModelForm):
