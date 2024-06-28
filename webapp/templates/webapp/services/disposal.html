@@ -6,7 +6,7 @@
 
 
     <!-- pagebanner -->
-    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'webapp/images/cc_disposal1.jpg' %}{% endif %}');">
+    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'images/cc_disposal1.jpg' %}{% endif %}');">
         <div class="page-title">
             <h2 class="white text-center">Disposal</h2>
         </div>
@@ -39,6 +39,15 @@
                             </h2>
                             <p>{{ main_disposal.description }}<br><br>
                                 {{ main_disposal.material }}</p>
+                            {% if checkout_session %}
+                                <form action="{% url 'webapp:checkout' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="session_id" value="{{ checkout_session.sessionId }}">
+                                    <button class="mt_btn_yellow" type="submit">To Payment</button>
+                                </form>
+                            {% else %}
+                                <p>Ошибка создания чекаут-сессии</p>
+                            {% endif %}
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <div class="slider-services">
@@ -49,7 +58,6 @@
                             </div>
                         </div>
                     {% endfor %}
-                <button class="btn mt_btn_yellow_three" id="submitBtn">Purchase!</button>
                 </div>
             </div>
 
@@ -134,7 +142,7 @@
                         </div>
                         <div class="rt-product-meta-wrapper">
                             <h3 class="product_title">
-                                <a href="store-detail.html">{{ main_sl_cart_prod.name }}</a>
+                                <a href="{{ main_sl_cart_prod.link }}">{{ main_sl_cart_prod.name }}</a>
                             </h3>
                             <div class="rt-cartprice-wrapper">
                                 <span class="price mar-bottom-20">

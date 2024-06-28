@@ -5,7 +5,7 @@
 {% block content %}
 
     <!-- pagebanner -->
-    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'webapp/images/cc_key.jpg' %}{% endif %}'); background-size: cover;">
+    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'images/cc_key.jpg' %}{% endif %}'); background-size: cover;">
         <div class="page-title">
             <h2 class="white text-center">Logout</h2>
         </div>
@@ -27,7 +27,7 @@
                         <p class="heading_txt">You've logged out of your account, goodbye</p>
                     </div>
                     <!-- Добавляем изображение справа -->
-                    <img src="{% static 'webapp/images/cc_logo1_1.png' %}" alt="Your Image" class="pull-right">
+                    <img src="{% static 'images/cc_logo1_1.png' %}" alt="Your Image" class="pull-right">
                 </div>
             </div>
         </div>

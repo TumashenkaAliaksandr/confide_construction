@@ -6,7 +6,7 @@
 
 
     <!-- pagebanner -->
-    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'webapp/images/cc_electrical_works.jpg' %}{% endif %}');">
+    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'images/cc_electrical_works.jpg' %}{% endif %}');">
         <div class="page-title">
             <h2 class="white text-center">Electricalworks</h2>
         </div>
@@ -127,7 +127,7 @@
                             </div>
                             <div class="rt-product-meta-wrapper">
                                 <h3 class="product_title">
-                                    <a href="store-detail.html">{{ main_sl_cart_prod.name }}</a>
+                                    <a href="{{ main_sl_cart_prod.link }}">{{ main_sl_cart_prod.name }}</a>
                                 </h3>
                                 <div class="rt-cartprice-wrapper">
                                 <span class="price mar-bottom-20">

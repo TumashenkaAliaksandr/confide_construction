@@ -5,7 +5,7 @@
 {% block content %}
 
     <!-- pagebanner -->
-    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'webapp/images/cc_confide_checkout.jpg' %}{% endif %}');">
+    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'images/cc_confide_checkout.jpg' %}{% endif %}');">
         <div class="page-title">
             <h2 class="white text-center">CheckOut</h2>
         </div>
@@ -32,7 +32,7 @@
                 <div class="checkout-info">
                     <h3 class="mar-bottom-20">Billing details</h3>
                     <h4 class="mar-bottom-20">Fill out the form to pay for the service</h4>
-                    <form method="post" action="{% url 'webapp:process_payment' %}">
+                    <form method="post" action="{% url 'payments' %}">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-sm-6 col-xs-12">
@@ -42,7 +42,7 @@
                                             <div class="form-group">
                                                 <label>Last Name: <abbr class="required"
                                                                         title="required">*</abbr></label>
-                                                <input type="text" name="last_name" value="{{ current_name }}"
+                                                <input type="text" name="last_name_check" value="{{ current_name }}"
                                                        class="form-control">
                                             </div>
                                             <div class="form-group">
@@ -62,7 +62,7 @@
                                             <div class="form-group">
                                                 <label>First Name: <abbr class="required"
                                                                          title="required">*</abbr></label>
-                                                <input type="text" name="first_name" value="{{ current_name }}"
+                                                <input type="text" name="first_name_check" value="{{ current_name }}"
                                                        class="form-control">
                                             </div>
                                             <div class="form-group">
@@ -73,7 +73,7 @@
                                             <div class="form-group">
                                                 <label>Price: <abbr class="required"
                                                                         title="required">*</abbr></label>
-                                                <input type="text" name="price"
+                                                <input type="text" name="price_check"
                                                        class="form-control">
                                             </div>
                                         </div>

@@ -1,0 +1,175 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+    <!-- pagebanner -->
+    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'images/cc_brcump_card1.png' %}{% endif %}');">
+        <div class="page-title">
+            <h2 class="white text-center">PAYMENTS</h2>
+        </div>
+    </section>
+    <!-- End Pagebanner -->
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb-main">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="{% url 'webapp:home' %}"><i class="fa fa-home"></i></a></li>
+                <li><a href="{% url 'webapp:services' %}">Services</a></li>
+                <li class="active">Disposal</li>
+            </ul>
+        </div>
+    </div>
+    <!-- End breadcrumb -->
+
+
+    <!-- checkout -->
+    <section id="checkout-main" class="checkout-main section-padding">
+        <div class="container">
+            <div class="checkout-inner">
+                <div class="checkout-order">
+                    <div class="section_heading">
+                        <h2 class="section_title">
+                            <span>Order</span>
+                        </h2>
+                        <p class="heading_txt"><b>Review data, proceed to payment in the STRIPE if accurate.</b></p>
+                    </div>
+                    <div class="row">
+                        {% csrf_token %}
+                        <div class="order-list">
+                            <table class="shop_table rt-checkout-review-order-table">
+                                <tr class="order-total">
+                                    <th>Last Name:</th>
+                                    <td><strong><span
+                                            class="rt-Price-amount">{{ checkout_details.last_name_check }}</span></strong>
+                                    </td>
+                                </tr>
+                                <tr class="order-total">
+                                    <th>First Name:</th>
+                                    <td><strong><span
+                                            class="rt-Price-amount">{{ checkout_details.first_name_check }}</span></strong>
+                                    </td>
+                                </tr>
+                                <tr class="order-total">
+                                    <th>Town/City:</th>
+                                    <td><strong><span
+                                            class="rt-Price-amount">{{ checkout_details.town_city }}</span></strong>
+                                    </td>
+                                </tr>
+                                <tr class="order-total">
+                                    <th>Street Address:</th>
+                                    <td><strong><span
+                                            class="rt-Price-amount">{{ checkout_details.street_address }}</span></strong>
+                                    </td>
+                                </tr>
+                                <tr class="order-total">
+                                    <th>Date:</th>
+                                    <td><strong><span
+                                            class="rt-Price-amount">{{ checkout_details.date }}</span></strong>
+                                    </td>
+                                </tr>
+                                <tr class="order-total">
+                                    <th>Phone Number:</th>
+                                    <td><strong><span
+                                            class="rt-Price-amount">{{ checkout_details.phone_number }}</span></strong>
+                                    </td>
+                                </tr>
+                                <tr class="order-total">
+                                    <th>Order Notes:</th>
+                                    <td><strong><span
+                                            class="rt-Price-amount">{{ checkout_details.order_notes }}</span></strong>
+                                    </td>
+                                </tr>
+                                <tr class="order-total">
+                                    <th>Price:</th>
+                                    <td><strong><span
+                                            class="rt-Price-amount">{{ checkout_details.price_check }}</span></strong>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="checkout-place-order" style="text-align: right;">
+                            <div style="text-align: center; padding: 15px;">
+                                <p>Your personal data will be used to process your order, support your experience
+                                    throughout
+                                    this website, and for other purposes described in our <a href="#">privacy
+                                        policy</a>.
+                                </p>
+                            </div>
+                            <button class="btn mt_btn_yellow" id="submitBtn">Pay with Stripe</button>
+                        </div>
+
+                        <button onclick="window.location.href='{% url 'webapp:checkout' %}'"
+                                class="back-to-checkout-btn btn mt_btn_yellow">Back
+                            to Checkout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End checkout -->
+
+
+    <!-- store -->
+    <section id="our_store" class="our_store related_store">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- section title -->
+                    <div class="section_heading">
+                        <h2 class="section_title">
+                            <span>Our Services</span>
+                        </h2>
+                        <p class="heading_txt">We offer a range of services in the field of repair and construction.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row slider-shop">
+                {% for main_sl_cart_prod in main_serv %}
+                    <div class="col-md-3 col-xs-12">
+                        <div class="rt-product-wrapper">
+                            <div class="product-thumbnail-wrapper">
+                                <div class="product-image">
+                                    <img src="{{ main_sl_cart_prod.image.url }}" class="img-fixed-size"
+                                         alt="product-list">
+                                </div>
+                                <div class="product-label"><span class="onsale">Sale</span></div>
+                            </div>
+                            <div class="rt-product-meta-wrapper">
+                                <h3 class="product_title">
+                                    <a href="{{ main_sl_cart_prod.link }}">{{ main_sl_cart_prod.name }}</a>
+                                </h3>
+                                <div class="rt-cartprice-wrapper">
+                                <span class="price mar-bottom-20">
+{#                                    <del>#}
+{#                                        <span class="rt-price-amount">#}
+{#                                            <span >$</span>#}
+{#                                        </span>#}
+{#                                    </del>#}
+                                    <ins>
+                                        <span class="rrt-price-amount">
+                                            <span>$</span>{{ main_sl_cart_prod.price }}
+                                        </span>
+                                    </ins>
+                                </span>
+                                    <div class="button">
+                                        <a href="{{ main_sl_cart_prod.link }}" id="submitBtn" class="mt_btn_yellow">Go to service</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- End store -->
+
+
+{% endblock %}
