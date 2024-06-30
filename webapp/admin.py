@@ -293,3 +293,11 @@ class AdvertisementAdmin(admin.ModelAdmin):
             'fields': ('title', 'image', 'image_tag', 'link', 'active')
         }),
     )
+
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('author', 'text', 'created_at', 'rating', 'approved')
+    list_filter = ('approved', 'rating')
+    search_fields = ('author', 'text')
+    ordering = ('-created_at',)
+
+admin.site.register(Review, ReviewAdmin)
