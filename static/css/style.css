@@ -1167,6 +1167,12 @@ section#mt_services_three {
     background-attachment: fixed;
 }
 
+.mt_services_process {
+    padding: 50px 0 90px;
+    background: linear-gradient(rgba(255, 255, 244, 1), rgba(239, 239, 239, 0.7)), url('../images/confide_construction_man.jpg') center/cover;
+    background-attachment: fixed;
+}
+
 section#mt_services_four {
     padding: 50px 0 50px;
     background: linear-gradient(rgba(245, 245, 220, 1), rgba(110, 110, 110, 0.7)), url('../images/cc_map.jpg') center/cover;
@@ -1935,7 +1941,7 @@ section#choose_us{
 
   .choose-list i{top: 24%;}
 
-  .mission-image img{width: auto;}
+  .mission-image img{width: auto; display: none}
 }
 
 @media(max-width: 811px){
@@ -3386,7 +3392,7 @@ a.checkout-link {
 
 
 .caption_slide1 > h1{
-  font-size: 52px;
+  font-size: 45px;
   letter-spacing: 1px;
   margin-bottom: 0;
 }
@@ -3501,6 +3507,12 @@ a.checkout-link {
         margin: 3px 0;
         width: 70%;
     }
+
+    .choose-list p {
+        margin: 0;
+        font-size: 12px;
+        font-weight: bold;
+    }
 }
 
 .rrt-price-amount {
@@ -3518,20 +3530,38 @@ a.checkout-link {
 }
 
 
-@media(max-width: 360px){
-  .caption_slide1 > h1{font-size: 25px;}
+@media (max-width: 360px) {
+    .caption_slide1 > h1 {
+        font-size: 25px;
+    }
 
-  .caption_slide1 > span{padding-left: 35px;}
+    .caption_slide1 > span {
+        padding-left: 35px;
+    }
+
+    .choose-list p {
+        margin: 0;
+        font-size: 12px;
+        font-weight: bold;
+    }
 }
-@media (max-width: 320px){
-  .section_heading p {
-  font-weight: 400;
-  line-height: 24px;
-  color: #666;
-  font-family: 'Roboto', sans-serif;
-  font-size: 12.5px;
+
+@media (max-width: 320px) {
+    .section_heading p {
+        font-weight: 400;
+        line-height: 24px;
+        color: #666;
+        font-family: 'Roboto', sans-serif;
+        font-size: 12.5px;
+    }
+
+    .choose-list p {
+        margin: 0;
+        font-size: 12px;
+        font-weight: bold;
+    }
 }
-}
+
 @media(max-width: 359px){
   .caption_slide1{top: 12%;}
 }
