@@ -1717,6 +1717,17 @@ section#const-team .section_heading {
     padding-right: 0;
 }
 
+@media(max-width: 320px){
+
+.const-team-font h2 {
+    font-size: 17px;
+  }
+}
+.section_heading h2.section_title {
+  position: relative;
+  padding-left: 25px;
+  margin-top: 15px;
+}
 section#const-team .team_member{
   box-shadow: 0 0 5px #ccc;
   overflow: hidden;
@@ -1910,6 +1921,7 @@ section#choose_us{
     background: #fff;
     position: relative;
     box-shadow: 0px 0px 25px 0px rgba(122,122,122,0.1);
+    opacity: 0.9;
 }
 
 .choose-list h3{margin-bottom: 10px;} 
@@ -2370,7 +2382,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
 
 #newsletter .mailpoet_form {
     margin-top: 5px;
-    margin-right: 5px;
+    margin-right: 15px;
     position: initial;
     overflow:hidden;
     background: #fff;
@@ -2424,7 +2436,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
   margin: 0;
   padding: 13px 20px 12px;
   border-radius: 0;
-  width: 95%;
+  width: 93%;
   transition: background-color 0.3s;
   left: 13px;
   bottom: 0;
