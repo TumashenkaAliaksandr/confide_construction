@@ -597,6 +597,9 @@ class Review(models.Model):
     class Meta:
         ordering = ['-created_at']  # Отсортировать отзывы по дате создания (сначала новые)
 
+        verbose_name = "Review"
+        verbose_name_plural = "Review"
+
 
 class Quality(models.Model):
     name = models.CharField(max_length=100)

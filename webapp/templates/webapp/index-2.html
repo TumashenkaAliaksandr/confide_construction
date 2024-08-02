@@ -42,7 +42,7 @@
 
 
     <!--* Choose Us*-->
-    <section id="choose_us" class="choose_us">
+    <section id="choose_us" class="choose_us mt_services_process">
         <div class="container">
 
             <div class="row">
@@ -220,8 +220,10 @@
             <div class="row">
                 <div class="col-sm-6 col-xs-12">
                     <div class="news-content">
+                        <img src="{% static 'images/cc_favicon8.png' %}"
+                                         class="img-fixed-size-for-mailform" alt="Awesome Logo">
                         <h3>ORDER FREE CONSULTATION</h3>
-                        <p class="beige"><b><br>WRITE US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE
+                        <p class="beige"><b>WRITE US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE
                             YOUR
                             LIFESTYLE DREAMS.</b></p>
                     </div>
@@ -270,7 +272,7 @@
                             <div class="client-pic"><img src="{{ main_review.photo.url }}" class="img-fixed-size" alt=""></div>
                             <h4>
                                 <a href="#">{{ main_review.author }}</a>
-                                <span>MD of Nicolos</span>
+{#                                <span>MD of Nicolos</span>#}
                             </h4>
                         </div>
                     </div>
@@ -337,7 +339,7 @@
 
 
     <!--* Partner*-->
-    <section id="const-team">
+    <section id="const-team" class="const-team-font">
         <div class="container wow slideInRight">
             <div class="my_row">
                 <div class="col-md-6 col-sm-13">

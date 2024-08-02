@@ -218,9 +218,9 @@ select {
   padding: 10px 20px;
   width: 100%;
   color: #444444;
-  margin-bottom: 15px; 
+  /*margin-bottom: 15px; */
   font-family: 'Roboto', sans-serif;
-  height: 42px;
+  height: 50px;
   box-shadow: none;
   margin-bottom: 0;
 }
@@ -500,7 +500,7 @@ input[type="submit"] {
   text-decoration: none;
   border: 2px solid #ffac00;
   transition: all 0.5s ease;
-  margin: 13px 5px; /* Добавьте здесь нужное значение отступа, например, 10px сверху и снизу, и 0 по бокам */
+  margin: 13px 0px; /* Добавьте здесь нужное значение отступа, например, 10px сверху и снизу, и 0 по бокам */
 }
 
 .mt_btn_yellow_two,

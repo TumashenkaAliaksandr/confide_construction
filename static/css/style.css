@@ -80,6 +80,20 @@
     padding:0;
 }
 
+.topbar-style{
+    position: absolute; top: 11px; right: 62px;
+}
+
+@media only screen and (max-width: 360px) {
+    .topbar-style {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        float: left;
+        /*width: 100%;*/
+        padding: 0;
+    }
+}
+
+
 header#inner-navigation {
     position: absolute;
     top: 0;
@@ -338,9 +352,33 @@ background-color: #FFFFFF !important;
     max-height: 225px; 
   } 
 
-  .topbar-section {
-      display: none;
-  }
+  /*.topbar-section {*/
+  /*    display: none;*/
+  /*}*/
+}
+
+@media only screen and (max-width: 639px) {
+    .top-bar-left ul li {
+        font-size: 14px;
+        border-left: 1px solid #cccccc40;
+        color: #fbfbfb;
+        font-weight: 300;
+        padding: 16px 0 16px 20px;
+        padding-left: 20px;
+        margin-left: 20px;
+        margin-bottom: 0;
+        display: none;
+    }
+
+    .topbar-style {
+        position: absolute;
+        /*top: 167px;*/
+        right: 10px;
+    }
+
+    #inner-navigation .logo {
+        margin: 0px 0;
+    }
 }
 
 @media only screen and (max-width: 360px) {
@@ -348,12 +386,27 @@ background-color: #FFFFFF !important;
   .sticky-nav-white .logo a img {
     margin-top: 0px;
     width: 150px;
-  } 
+  }
 
-  .reveal-menu-home .logo a img {
-    margin-top: 0px;
-    width: 150px; 
-  } 
+    .reveal-menu-home .logo a img {
+        margin-top: 0px;
+        width: 150px;
+    }
+
+}
+
+@media only screen and (max-width: 390px) {
+
+    .caption_slide1 > span::before {
+        content: '';
+        height: 2px;
+        width: 6%;
+        background: #ffac00;
+        position: absolute;
+        top: 46%;
+        left: 0;
+        /*display: none;!important;*/
+    }
 }
 
 
@@ -1114,6 +1167,12 @@ section#mt_services_three {
     background-attachment: fixed;
 }
 
+.mt_services_process {
+    padding: 50px 0 90px;
+    background: linear-gradient(rgba(255, 255, 244, 1), rgba(239, 239, 239, 0.7)), url('../images/confide_construction_man.jpg') center/cover;
+    background-attachment: fixed;
+}
+
 section#mt_services_four {
     padding: 50px 0 50px;
     background: linear-gradient(rgba(245, 245, 220, 1), rgba(110, 110, 110, 0.7)), url('../images/cc_map.jpg') center/cover;
@@ -1658,6 +1717,17 @@ section#const-team .section_heading {
     padding-right: 0;
 }
 
+@media(max-width: 320px){
+
+.const-team-font h2 {
+    font-size: 17px;
+  }
+}
+.section_heading h2.section_title {
+  position: relative;
+  padding-left: 25px;
+  margin-top: 15px;
+}
 section#const-team .team_member{
   box-shadow: 0 0 5px #ccc;
   overflow: hidden;
@@ -1851,6 +1921,7 @@ section#choose_us{
     background: #fff;
     position: relative;
     box-shadow: 0px 0px 25px 0px rgba(122,122,122,0.1);
+    opacity: 0.9;
 }
 
 .choose-list h3{margin-bottom: 10px;} 
@@ -1882,7 +1953,7 @@ section#choose_us{
 
   .choose-list i{top: 24%;}
 
-  .mission-image img{width: auto;}
+  .mission-image img{width: auto; display: none}
 }
 
 @media(max-width: 811px){
@@ -1995,7 +2066,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
 
 .mt_testimonial .testimonial_main {
   flex: 0 0 calc(33.33% - 20px); /* 33.33% - задает ширину для 3-х блоков в строке */
-  margin-bottom: 20px; /* Определяет расстояние между блоками */
+  margin-bottom: 10px; /* Определяет расстояние между блоками */
 }
 
 
@@ -2014,7 +2085,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
 .mt_testimonial .testimonial_main h4 {
     display: inline-block;
     vertical-align: super;
-    padding-left: 100px;
+    padding-left: 78px;
 }
 
 
@@ -2040,7 +2111,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
 
 .mt_testimonial .slick-prev, .mt_testimonial .slick-next {
     left: -25px;
-    bottom: 50%;
+    bottom: 70%;
     top: inherit;
     background: #ccc;
     border-radius: 5px;
@@ -2112,7 +2183,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
 @media only screen and (max-width: 480px) {
   .accrodion-grp .accrodion .accrodion-title{padding: 14.5px 10px;}
 
-  .mt_testimonial .testimonial_main{padding: 0 30px 10px;}
+  .mt_testimonial .testimonial_main{padding: 0 20px 0px;}
 }
 
 /* ============================= */
@@ -2291,28 +2362,32 @@ section#mt_faq-testi .section_heading{padding: 0;}
 /* ====================== */
 
 #newsletter{
-    padding: 35px 0 25px;
+    padding: 21px 0 21px;
     background: #f1f1f1;
     position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* добавляем тень */
   }
 
 #newsletter:before {
-  background: #d8d8d8;
+  background: #e1e1e1;
   content: '';
   height: 100%;
   width: 55%;
   position: absolute;
   top: 0;
   left: 0;
-  border-right: 5px solid #4ce62c;
+  border-right: 5px solid #10a62e;
+  opacity: 0.9;
 }
 
 #newsletter .mailpoet_form {
     margin-top: 5px;
-    position: relative;
+    margin-right: 15px;
+    position: initial;
     overflow:hidden;
     background: #fff;
-    height: 24.6%;
+    height: 27%;
+    box-shadow: 1px 4px 5px #222;
 }
 
 @media (max-width: 736px) {
@@ -2321,8 +2396,25 @@ section#mt_faq-testi .section_heading{padding: 0;}
         position: relative;
         overflow: hidden;
         background: #fff;
-        height: 21%;
+        height: 22.5%;
+        top: 0px;
     }
+}
+
+@media (max-width: 320px) {
+    #newsletter .mailpoet_form {
+        margin-top: 5px;
+        position: relative;
+        overflow: hidden;
+        background: #fff;
+        height: 35.5%;
+        top: 0px;
+    }
+}
+
+.mailpoet_submit {
+    position: absolute; /* Делаем кнопку абсолютно позиционированной */
+    bottom: 0; /* Располагаем кнопку внизу контейнера формы */
 }
 
 #newsletter .mailpoet_form input.mailpoet_text {
@@ -2331,20 +2423,24 @@ section#mt_faq-testi .section_heading{padding: 0;}
     margin: 0;
     border-radius: 0;
     background: transparent;
-    height: 45px;
+    height: 50px;
 }
 
 #newsletter input[type="submit"] {
-    border: none;
-    background: #4ce62c;
-    position: absolute;
-    /*top: 0px;*/
-    right: 0;
-    color: #fff;
-    margin: 0;
-    padding: 13px 20px 12px;
-    border-radius: 0;
-    width: 100%;
+  border: none;
+  background: #10a62e;
+  position: absolute;
+  /*top: 0px;*/
+  right: 0px;
+  color: #fff;
+  margin: 0;
+  padding: 13px 20px 12px;
+  border-radius: 0;
+  width: 93%;
+  transition: background-color 0.3s;
+  left: 13px;
+  bottom: 0;
+
 }
 
 
@@ -2352,15 +2448,16 @@ section#mt_faq-testi .section_heading{padding: 0;}
 
   #newsletter:before{width: 100%;}
 
-  #newsletter input[type="submit"]{color: #5b5b5b; background: #4ce62c; width: 0;}
+  #newsletter input[type="submit"]{color: #ffffff; background: #10a62e; width: 0; font-size: 16px;}
 
 }
 
 @media (max-width: 480px) {
     #newsletter input[type="submit"] {
         width: 100%;
-        position: inherit;
-        height: 30%;
+        position: absolute;
+        height: 25%;
+        left: 0;
     }
 
   #newsletter .news-content{text-align: center;}
@@ -2368,6 +2465,84 @@ section#mt_faq-testi .section_heading{padding: 0;}
   #newsletter .mailpoet_form input.mailpoet_text {
     padding: 16px 25px 16px 25px;
   }
+}
+
+.news-content h2{
+  color: #0d2d1a;
+  font-size: 30px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 30px 15px 0px;
+  transition: all 500ms ease;
+}
+
+@media (max-width:736px){
+  .news-content h2{
+  color: #0d2d1a;
+  font-size: 30px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0px 0 10px;
+  transition: all 500ms ease;
+}
+}
+.news-content p {
+  color: #dcdbdb; /* Цвет текста */
+  font-size: 14px; /* Размер шрифта */
+  text-transform: uppercase; /* Преобразование текста в верхний регистр */
+  font-weight: 700; /* Жирность шрифта */
+  margin: 0 0 13px; /* Отступы */
+  transition: all 500ms ease; /* Плавные переходы */
+  background-color: #e3e3e3; /* Цвет фона */
+    letter-spacing: 1.2px;
+  text-shadow:
+    1px 1px 0 #444444,  /* Верхний светлый тень */
+    -1px -1px 0 #444444, /* Нижний светлый тень */
+    1px -1px 0 #444444,  /* Левый светлый тень */
+    -1px 1px 0 #444444,  /* Правый светлый тень */
+    2px 2px 2px rgba(0, 0, 0, 0.1); /* Обычная тень */
+}
+
+
+
+.news-content h3 {
+    font-size: 30px; /* Размер шрифта */
+    text-transform: uppercase; /* Преобразование текста в верхний регистр */
+    margin: -10px 0 0; /* Отступы */
+    transition: all 500ms ease; /* Плавные переходы */
+    text-shadow:
+        1.5px 1.5px 4px rgba(105, 105, 105, 0.5), /* Основная тень */
+        -1.5px -1.5px 0 #444444, /* Левый верхний тень */
+        1.5px -1.5px 0 #444444,  /* Правый верхний тень */
+        -1.5px 1.5px 0 #444444;  /* Левый нижний тень */
+    -webkit-text-stroke-width: 2px; /* Ширина обводки текста */
+    color: #10a62e; /* Цвет текста */
+    letter-spacing: 2.5px; /* Расстояние между буквами */
+    font-weight: 400; /* Средняя жирность шрифта */
+}
+
+
+@media screen and (max-width: 320px) {
+  .box .box-content h3 {
+    white-space: nowrap;
+    overflow: hidden;
+    /*text-overflow: ellipsis;*/
+    font-size: 10px;
+  }
+}
+
+
+.img-fixed-size-for-mailform {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  margin-top: 25px;
+  margin-bottom: 21px;
+  /*margin-left: 15px;*/
+}
+
+#newsletter input[type="submit"]:hover {
+    background-color: #13d033; /* изменяем цвет при наведении */
 }
 
 
@@ -2382,6 +2557,21 @@ section#mt_faq-testi .section_heading{padding: 0;}
     background-color: beige;
 }
 
+/* Add media queries for different screen sizes */
+@media only screen and (max-width: 768px) {
+    .success-box {
+        width: 90%; /* Adjust the width for smaller screens */
+        font-size: 35px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .success-box {
+        width: 100%; /* Make it full-width on very small screens */
+        font-size: 35px;
+    }
+}
+
 
 a.checkout-link {
         color: hsl(60, 100%, 82%);  /* Исходный цвет текста в желтый (60 - оттенок желтого) */
@@ -2391,6 +2581,21 @@ a.checkout-link {
     a.checkout-link:hover {
         color: hsl(60, 100%, 50%);  /* Более яркий цвет при наведении */
     }
+
+
+/* For smaller screens (mobile devices) */
+@media only screen and (max-width: 768px) {
+    .top-bar-right ul li a {
+        color: #7e7e7e;
+    }
+}
+
+/* For even smaller screens (smaller mobile devices) */
+@media only screen and (max-width: 480px) {
+    .top-bar-right ul li a {
+        color: #ffffff;
+    }
+}
 
 /* ====================== */
 /*         Footer         */
@@ -2642,8 +2847,27 @@ a.checkout-link {
   overflow: hidden;
   max-height: 670px;
   position: relative;
-  background: #000000;
+  background: #660a80;
 }
+
+@media only screen and (max-width: 768px) {
+    #home-banner {
+        overflow: hidden;
+        max-height: 670px;
+        position: relative;
+        background: #660a80;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    #home-banner {
+        overflow: hidden;
+        max-height: 670px;
+        position: relative;
+        background: #660a80;
+    }
+}
+
 #home-banner:hover{
   cursor: grab;
   cursor: grab;
@@ -3165,8 +3389,8 @@ a.checkout-link {
 /* Для мобильных устройств */
 @media screen and (max-width: 768px) {
   .video-banner .caption_slide1 {
-    top: 50%; /* Используем относительные единицы для центрирования по вертикали */
-    transform: translateY(-32%); /* Центрируем элемент по вертикали */
+    top: 45%; /* Используем относительные единицы для центрирования по вертикали */
+    transform: translateY(-20%); /* Центрируем элемент по вертикали */
   }
 }
 
@@ -3180,14 +3404,14 @@ a.checkout-link {
 
 
 .caption_slide1 > h1{
-  font-size: 52px;
+  font-size: 45px;
   letter-spacing: 1px;
   margin-bottom: 0;
 }
 
 .caption_slide1 > span {
     display: block;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     padding-left: 62px;
     position: relative;
@@ -3240,10 +3464,10 @@ a.checkout-link {
 
   .caption_slide1{
     top: 15%;
-    width: 80%;
+    width: 100%;
   }
 
-  .caption_slide1 > h1{font-size: 17px;}
+  .caption_slide1 > h1{font-size: 21px;}
 }
 
 @media (max-width: 640px) {
@@ -3277,7 +3501,7 @@ a.checkout-link {
         text-decoration: none;
         border: 2px solid #ffac00;
         transition: all 0.5s ease;
-        margin: 3px 0;
+        margin: 10px 0;
     }
 }
 
@@ -3294,6 +3518,12 @@ a.checkout-link {
         transition: all 0.5s ease;
         margin: 3px 0;
         width: 70%;
+    }
+
+    .choose-list p {
+        margin: 0;
+        font-size: 12px;
+        font-weight: bold;
     }
 }
 
@@ -3312,10 +3542,36 @@ a.checkout-link {
 }
 
 
-@media(max-width: 360px){
-  .caption_slide1 > h1{font-size: 24px;}
+@media (max-width: 360px) {
+    .caption_slide1 > h1 {
+        font-size: 25px;
+    }
 
-  .caption_slide1 > span{padding-left: 35px;}
+    .caption_slide1 > span {
+        padding-left: 35px;
+    }
+
+    .choose-list p {
+        margin: 0;
+        font-size: 12px;
+        font-weight: bold;
+    }
+}
+
+@media (max-width: 320px) {
+    .section_heading p {
+        font-weight: 400;
+        line-height: 24px;
+        color: #666;
+        font-family: 'Roboto', sans-serif;
+        font-size: 12.5px;
+    }
+
+    .choose-list p {
+        margin: 0;
+        font-size: 12px;
+        font-weight: bold;
+    }
 }
 
 @media(max-width: 359px){
@@ -5128,11 +5384,42 @@ p.lt-pswrd{margin-bottom: 20px;}
     right: 0;
     bottom: 0;
     width: 100%;
+    /*height: 55%;*/
     position: relative;
 }
 
 #home-banner.video-banner .home-banner_vid > video {
     width: 100%;
+}
+
+/* For smaller screens (mobile devices) */
+@media only screen and (max-width: 768px) {
+    #home-banner.video-banner .home-banner_vid > video {
+        height: 65%; /* Adjust the height for smaller screens */
+    }
+
+    .mar-bottom-25 {
+        margin-bottom: 40px;
+    }
+}
+
+@media only screen and (max-width: 812px) {
+    /* Styles for screens with a maximum width of 812px and a maximum height of 375px */
+    #home-banner.video-banner .home-banner_vid > video {
+        height: 47%; /* Adjust the height for smaller screens */
+    }
+}
+
+
+/* For even smaller screens (smaller mobile devices) */
+@media only screen and (max-width: 320px) {
+    #home-banner.video-banner .home-banner_vid > video {
+        height: 63%; /* Adjust the height for smaller screens */
+    }
+
+    .mar-bottom-25 {
+        margin-bottom: 40px;
+    }
 }
 
 /* ====================== */
