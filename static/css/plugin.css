@@ -1036,6 +1036,14 @@
   animation-timing-function: ease-in;
 }
 
+
+@media only screen and (max-width: 375px) and (max-width: 812px) {
+    .slicknav_btn.slicknav_open::before, .slicknav_btn.slicknav_collapsed::before {
+        font-size: 21px;
+        color: #FFF;
+    }
+}
+
 @keyframes rotateIn {
   from {
     transform-origin: center;
@@ -2656,7 +2664,7 @@
 
 .slicknav_btn.slicknav_open:before,
 .slicknav_btn.slicknav_collapsed:before {
-    font-size: 21px;
+    font-size: 30px;
     color: #FFF;
 }
 

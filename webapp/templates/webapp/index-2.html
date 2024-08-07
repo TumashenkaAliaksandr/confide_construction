@@ -6,9 +6,34 @@
 
     {% include 'slider/slider_main.html' %}
 
+
+    <!--* Contact*-->
+    <section id="mt_services">
+        <div class="container wow slideInRight">
+
+            <div class="row">
+                <div class="col-xs-12 mar-bottom-30">
+                    <div class="contact-info text-center slide-in">
+                        <ul>
+                            <a href="{% url 'webapp:disposal' %}"><h2>We INSTALL and SELL waste disposal units buy NOW <i class="fa fa-hand-o-down"></i></h2></a>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-xs-12">
+                    <div class="main_disposal">
+                        <a href="{% url 'webapp:disposal' %}"><img src="{% static 'images/confide_constract_disposal.png' %}" class="img-fixed-size-for-disposal-main">
+                            <button class="mt_btn_yellow" type="submit">Buy Now or order the Installation</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--* End Contact*-->
+
     <!--* Services*-->
-    <section id="mt_services" class="wow slideInLeft">
-        <div class="container">
+    <section id="mt_services">
+        <div class="container wow slideInLeft">
             <div class="row">
                 <div class="col-xs-12">
                     <!-- section title -->
@@ -220,11 +245,11 @@
             <div class="row">
                 <div class="col-sm-6 col-xs-12">
                     <div class="news-content">
-                        <img src="{% static 'images/cc_favicon8.png' %}"
-                                         class="img-fixed-size-for-mailform" alt="Awesome Logo">
-                        <h3>ORDER FREE CONSULTATION</h3>
-                        <p class="beige"><b>WRITE US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE
-                            YOUR
+                        <img src="{% static 'images/cc_favicon8.png' %}" class="img-fixed-size-for-mailform"
+                             alt="Awesome Logo">
+                        <h3 id="consultation-title" class="slide-in">ORDER FREE CONSULTATION</h3>
+                        <!-- Добавлен класс slide-in -->
+                        <p class="beige"><b>WRITE US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE YOUR
                             LIFESTYLE DREAMS.</b></p>
                     </div>
                 </div>
@@ -246,6 +271,7 @@
         </div>
     </div>
     <!--*End Newsletter*-->
+
 
 
     <!--* Testimonial*-->

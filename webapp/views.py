@@ -137,6 +137,7 @@ def disposal(request):
     disp_serv = DisposalService.objects.all()
     main_serv = Services.objects.all()
     news = BlogNews.objects.all()
+    assessment = Assessment.objects.all()
 
     # Создаем чекаут-сессию
     checkout_session = create_checkout_session(request)
