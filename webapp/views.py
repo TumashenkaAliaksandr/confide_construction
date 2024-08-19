@@ -134,9 +134,11 @@ def drywall(request):
 def disposal(request):
     """Disposal Constract"""
     disp_obj = Disposal.objects.all()
+    disposal = Disposal.objects.get(pk=1)
     disp_serv = DisposalService.objects.all()
     main_serv = Services.objects.all()
     news = BlogNews.objects.all()
+    assessment = Assessment.objects.all()
 
     # Создаем чекаут-сессию
     checkout_session = create_checkout_session(request)
@@ -353,14 +355,18 @@ def checkout(request):
     main_serv = Services.objects.all()
     partner = Recommended.objects.all()
     checkout_details = CheckoutDetails.objects.last()  # Получаем последний объект CheckoutDetails
+    checkout_disposal = Disposal.objects.last()  # Получаем последний объект CheckoutDetails
     checkout_session = create_checkout_session(request)
+    discount = checkout_disposal.discount if checkout_disposal else None
 
     context = {
         'news': news,
         'main_serv': main_serv,
         'partner': partner,
         'checkout_details': checkout_details,
+        'checkout_disposal': checkout_disposal,
         'checkout_session': checkout_session,
+        'discount': discount,  # Добавляем дисконт в контекст
     }
     return render(request, '../templates/webapp/shop/checkout.html', context=context)
 
@@ -370,6 +376,42 @@ def checkout(request):
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
+# @login_required(login_url='/login/')
+# def process_payment(request):
+#     news = BlogNews.objects.all()
+#     if request.method == 'POST':
+#         form = CheckoutForm(request.POST)
+#         if form.is_valid():
+#             try:
+#                 # Сохраняем данные заказа
+#                 checkout_details = CheckoutDetails.objects.create(
+#                     first_name=form.cleaned_data['first_name'],
+#                     last_name=form.cleaned_data['last_name'],
+#                     street_address=form.cleaned_data['street_address'],
+#                     town_city=form.cleaned_data['town_city'],
+#                     phone_number=form.cleaned_data['phone_number'],
+#                     email=form.cleaned_data['email'],
+#                     order_notes=form.cleaned_data['order_notes'],
+#                     date=form.cleaned_data['date'],
+#                     price=form.cleaned_data['price'],
+#                 )
+#                 # Перенаправляем на страницу с обзором заказа
+#                 return redirect('payments', checkout_id=checkout_details.pk)
+#             except IntegrityError as e:
+#                 # Обработка ошибок при сохранении в базе данных
+#                 return redirect('webapp:order_error')
+#     else:
+#         form = CheckoutForm()
+#         checkout_details = None
+#
+#     context = {
+#         'news': news,
+#         'form': form,
+#         'checkout_details': checkout_details,
+#     }
+#
+#     return render(request, 'webapp/shop/cart.html', context)
+
 @login_required(login_url='/login/')
 def process_payment(request):
     news = BlogNews.objects.all()
@@ -377,6 +419,13 @@ def process_payment(request):
         form = CheckoutForm(request.POST)
         if form.is_valid():
             try:
+                # Получаем объект Disposal (например, первый объект или по какому-то критерию)
+                disposal = Disposal.objects.first()  # Замените на нужный вам запрос
+
+                # Проверяем, существует ли объект Disposal
+                if not disposal:
+                    return redirect('webapp:order_error')
+
                 # Сохраняем данные заказа
                 checkout_details = CheckoutDetails.objects.create(
                     first_name=form.cleaned_data['first_name'],
@@ -387,7 +436,7 @@ def process_payment(request):
                     email=form.cleaned_data['email'],
                     order_notes=form.cleaned_data['order_notes'],
                     date=form.cleaned_data['date'],
-                    price=form.cleaned_data['price'],
+                    price_check=str(disposal.discount),  # Используем цену из модели Disposal
                 )
                 # Перенаправляем на страницу с обзором заказа
                 return redirect('payments', checkout_id=checkout_details.pk)
@@ -405,6 +454,8 @@ def process_payment(request):
     }
 
     return render(request, 'webapp/shop/cart.html', context)
+
+
 
 
 def order_exists(request):

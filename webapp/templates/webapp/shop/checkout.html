@@ -71,11 +71,17 @@
                                                        class="form-control">
                                             </div>
                                             <div class="form-group">
-                                                <label>Price: <abbr class="required"
-                                                                        title="required">*</abbr></label>
-                                                <input type="text" name="price_check"
-                                                       class="form-control">
+                                                <label>Discount: </label>
+                                                <span class="form-control-static"><br>{{ discount|floatformat:0 }}$</span>
+                                                <!-- Отображение дисконта -->
                                             </div>
+
+                                            {#                                            <div class="form-group">#}
+{#                                                <label>Price: <abbr class="required"#}
+{#                                                                        title="required">*</abbr></label>#}
+{#                                                <input type="text" name="discount"#}
+{#                                                       class="form-control">#}
+{#                                            </div>#}
                                         </div>
                                     </div>
                                 </div>

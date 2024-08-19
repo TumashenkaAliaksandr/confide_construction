@@ -149,7 +149,8 @@ class DisposalPhotoInline(admin.TabularInline):
 
 
 class DisposalAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'advantages', 'material', 'price', 'discount', 'display_photos')
+    list_display = ('name', 'description', 'description_installations',
+                    'solution', 'advantages', 'brand', 'capacity', 'color', 'material_up', 'power_source', 'material', 'price', 'discount', 'display_photos')
 
     def display_photos(self, obj):
         return ", ".join([str(photo.photo) for photo in obj.photos.all()])

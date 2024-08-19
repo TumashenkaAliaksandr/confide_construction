@@ -16,13 +16,19 @@ class HomePageView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['main_serv'] = Services.objects.all()
         context['news'] = BlogNews.objects.all()
+
+        # Получаем последний объект Disposal и добавляем его дисконт в контекст
+        disposal = Disposal.objects.last()  # Или используйте другой способ получения объекта
+        if disposal:
+            context['discount'] = disposal.discount  # Добавляем дисконт в контекст
+            context['price'] = disposal.price  # Если нужно, добавьте и цену
+
         context['checkout_details'] = CheckoutDetails.objects.last()
         return context
 
     def post(self, request, *args, **kwargs):
         last_name = request.POST.get('last_name_check')
         first_name = request.POST.get('first_name_check')
-        price = request.POST.get('price_check')
         description = request.POST.get('order_notes')
         street_address = request.POST.get('street_address')
         town_city = request.POST.get('town_city')
@@ -30,15 +36,24 @@ class HomePageView(TemplateView):
         email = request.POST.get('email')
         date_check = request.POST.get('date')
 
+        # Получаем последний объект Disposal
+        disposal = Disposal.objects.last()  # Или используйте другой способ получения объекта
+
+        # Проверяем, существует ли объект Disposal
+        if disposal:
+            price = disposal.discount.quantize(Decimal('1.00'))  # Используем дисконт из объекта Disposal
+        else:
+            price = 0  # Установите значение по умолчанию, если объект не найден
+
         # Выводим полученные значения для отладки
         print("Received data from the form:")
         print("Last Name:", last_name)
         print("First Name:", first_name)
         print("Price:", price)
         print("Descriptions:", description)
-        print("street_address:", street_address)
-        print("Town_City:", town_city)
-        print("phone_number:", phone_number)
+        print("Street Address:", street_address)
+        print("Town City:", town_city)
+        print("Phone Number:", phone_number)
         print("Email:", email)
         print("Date Check:", date_check)
 
@@ -46,7 +61,7 @@ class HomePageView(TemplateView):
         checkout_details = CheckoutDetails.objects.create(
             last_name_check=last_name,
             first_name_check=first_name,
-            price_check=price,
+            # discount=price,  # Сохраняем дисконт как цену
             order_notes=description,
             street_address=street_address,
             town_city=town_city,
@@ -75,18 +90,18 @@ def create_checkout_session(request):
         domain_url = 'http://localhost:8000/'
         stripe.api_key = settings.STRIPE_SECRET_KEY
         try:
-            # Получаем первый объект CheckoutDetails из базы данных
-            checkout_details = CheckoutDetails.objects.last()
-            if checkout_details:
-                # Очищаем значение price_check от ненужных символов и преобразуем его в число
-                price_check_cleaned = re.sub(r'[^\d.]', '', checkout_details.price_check)
+            # Получаем последний объект Disposal из базы данных
+            disposal = Disposal.objects.last()
+            if disposal:
+                # Очищаем значение discount от ненужных символов и преобразуем его в число
+                discount_cleaned = re.sub(r'[^\d.]', '', str(disposal.discount))
                 try:
-                    price = int(float(price_check_cleaned) * 100)
+                    price = int(float(discount_cleaned) * 100)
                 except ValueError:
-                    return JsonResponse({'error': 'Invalid price_check value'})
+                    return JsonResponse({'error': 'Invalid discount value'})
 
-                name = checkout_details.first_name_check
-                descriptions = checkout_details.order_notes
+                name = disposal.name
+                descriptions = disposal.description
 
                 # Создаем новую сессию оформления заказа для товара
                 checkout_session = stripe.checkout.Session.create(
@@ -110,9 +125,10 @@ def create_checkout_session(request):
                 )
                 return JsonResponse({'sessionId': checkout_session['id']})
             else:
-                return JsonResponse({'error': 'No CheckoutDetails objects found'})
+                return JsonResponse({'error': 'No Disposal objects found'})
         except Exception as e:
             return JsonResponse({'error': str(e)})
+
 
 class SuccessView(TemplateView):
     template_name = 'success.html'

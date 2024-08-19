@@ -32,8 +32,8 @@
                     <div class="col-md-6 col-sm-12">
                         <div class="about-content">
                             <span class="mar-bottom-15">About Company</span>
-                            <h2 class="mar-bottom-30">We individually assess each <br> plan and offer optimal solutions</h2>
-                            <p class="mar-bottom-40">The Confide.Co company was founded in 2008. More than 10 years we
+                            <h2 class="mar-bottom-30 custom-h2">We individually assess each <br> plan and offer optimal solutions</h2>
+                            <p class="mar-bottom-40 custom-margin">The Confide.Co company was founded in 2008. More than 10 years we
                                 do minor and major repairs of any kinds of premises.
                                 We have a huge experience, wide range of materials and use only reliable up-to-date
                                 technologies.
@@ -148,53 +148,22 @@
                     </div>
                 </div>
             </div>
-
             <div class="row slider-services1">
                 {% for slider in servis_sliders %}
-                <div class="col-md-4 col-sm-6 col-xs-6">
-                    <div class="box text-center">
-                        <img src="{{ slider.image.url}}" class="img-fixed-size-two" alt="services-1">
-                        <div class="box-content">
-                            <h3><a href="{{ slider.link }}">{{ slider.name }}</a></h3>
+                    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <div class="box text-center">
+                            <img src="{{ slider.image.url }}" class="img-fixed-size-two" alt="services-1">
+                            <div class="box-content">
+                                <h3><a href="{{ slider.link }}">{{ slider.name }}</a></h3>
+                            </div>
                         </div>
                     </div>
-                </div>
                 {% endfor %}
             </div>
         </div>
     </section>
     <!--* End Services*-->
 
-
-    <!--* Partner*-->
-    <section id="const-team">
-        <div class="container wow slideInRight">
-            <div class="my_row">
-                <div class="col-md-6 col-sm-13">
-                    <!-- section title -->
-                    <div class="section_heading">
-                        <h2 class="section_title">
-                            <span>We are recommended by</span>
-                        </h2>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-10">
-                    <div class="row slider-team1">
-                        {% for recomended in partner %}
-                            <div class="col-md-4 item1">
-                                <div class="team_member1">
-                                    <a href="{{ recomended.link }}">
-                                        <img src="{{ recomended.image.url }}" class="testimonial_main img-fixed-size-eleven" alt="team">
-                                    </a>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--* End partner*-->
 
     <!--*Newsletter*-->
     <div id="newsletter">

@@ -96,10 +96,14 @@ class CheckoutDetails(models.Model):
     email = models.EmailField()
     order_notes = models.TextField()
     date = models.DateField()  # Добавляем поле с датой и временем
-    price_check = models.CharField(max_length=100)  # Добавляем поле с ценой
+    price_check = models.CharField(max_length=100, null=True)  # Добавляем поле с ценой
 
     def __str__(self):
         return f"{self.first_name_check} {self.last_name_check}"
+
+    class Meta:
+        verbose_name = "Checkout Details"
+        verbose_name_plural = "Checkout Details"
 
 
 
@@ -131,12 +135,27 @@ class User_Photo(models.Model):
     def __str__(self):
         return f"Photo of {self.user_profile.user.username}"
 
+
 class Disposal(models.Model):
+
     name = models.CharField(max_length=100, verbose_name='Name')
-    description = models.TextField(verbose_name='Description')
+    description = models.TextField(default='Description', verbose_name='Description')
+    description_installations = models.TextField(default='description_installations', verbose_name='Description installations')
+    description_all = models.TextField(default='description all', verbose_name='Description all')
+    additional_information = models.TextField(default='Additional Information', verbose_name='Additional Information')
+    solution = models.TextField(default='Solution', verbose_name='Solution')
     advantages = models.TextField(verbose_name='Benefits')
+    brand = models.CharField(max_length=350, default='Brand', verbose_name='Brand')
+    capacity = models.CharField(max_length=350, default='Capacity', verbose_name='Capacity')
+    color = models.CharField(max_length=350, default='Color', verbose_name='Color')
+    material_up = models.CharField(max_length=350, default='Material Up', verbose_name='Material Up')
+    power_source = models.CharField(max_length=350, default='Power Source', verbose_name='Power Source')
     material = models.CharField(max_length=350, verbose_name='Material')
     photo = models.ImageField(upload_to='disposal_photos/', verbose_name='Photo', default=0)
+    # photo_two = models.ImageField(upload_to='disposal_photos/', verbose_name='Photo', default=0)
+    # photo_three = models.ImageField(upload_to='disposal_photos/', verbose_name='Photo', default=0)
+    # photo_four = models.ImageField(upload_to='disposal_photos/', verbose_name='Photo', default=0)
+    # photo_five = models.ImageField(upload_to='disposal_photos/', verbose_name='Photo', default=0)
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Price', default=0.00)
     discount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Discount', default=0.00)
 

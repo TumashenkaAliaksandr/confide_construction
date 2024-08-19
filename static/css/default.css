@@ -68,48 +68,41 @@ body {
 /* Preloader */
 
 .preloader {
-  background-color: #f5f5dc;
-  height: 100%;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 9999999;
+    background-color: #f5f5dc; /* Выберите один цвет */
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999999;
 }
+
 .preloader .spinner {
-  width: 60px;
-  height: 60px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -30px;
-  margin-left: -30px;
-  background-color: #242C33;
-  border-radius: 100%;
-  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
-  animation: sk-scaleout 1.0s infinite ease-in-out;
+    width: 40px; /* Уменьшение размера */
+    height: 40px; /* Уменьшение размера */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -20px; /* Измените в соответствии с новым размером */
+    margin-left: -20px; /* Измените в соответствии с новым размером */
+    background-color: #242C33;
+    border-radius: 100%;
+    animation: sk-scaleout 1.0s infinite ease-in-out; /* Уменьшение времени анимации */
 }
-@-webkit-keyframes sk-scaleout {
-  0% {
-    -webkit-transform: scale(0);
-  }
-  100% {
-    -webkit-transform: scale(1);
-    opacity: 0;
-  }
-}
+
 @keyframes sk-scaleout {
-  0% {
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    opacity: 0;
-  }
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
 }
+
 /* End Preloader */
+
 
 h1,h2,h3,h4,h5,h6{
   font-weight: 600;
