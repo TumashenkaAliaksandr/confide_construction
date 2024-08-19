@@ -1675,7 +1675,7 @@
 .slick-slide {
     display: none;
     float: left;
-    height: auto; /* тут поменял на авто было 100% и отступы были большие*/
+    /*height: auto; !* тут поменял на авто было 100% и отступы были большие*!*/
     min-height: 1px
 }
 

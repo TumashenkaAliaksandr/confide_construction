@@ -1,0 +1,25 @@
+server {
+    listen 80;
+    server_name 157.245.137.29;
+
+    location / {
+    proxy_pass http://unix:/run/gunicorn.sock;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+}
+
+
+    location /static/ {
+    alias /home/uncledrew/ConfideDisposal/static/;
+    try_files $uri $uri/ =404;
+            }
+
+    location /media/ {
+        alias /home/uncledrew/ConfideDisposal/media/;
+    }
+
+    error_log /var/log/nginx/ConfideDisposal_error.log;
+    access_log /var/log/nginx/ConfideDisposal_access.log;
+}

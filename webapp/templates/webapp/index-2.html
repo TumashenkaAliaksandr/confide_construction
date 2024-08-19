@@ -4,13 +4,17 @@
 
 {% block content %}
 
-    {% include 'slider/slider_main.html' %}
+    <div class="slider-container">
+        {% include 'slider/slider_main.html' %}
+    </div>
 
+    <div class="slider-mobile">
+        {% include 'slider/mobile_slider.html' %}
+    </div>
 
-    <!--* Contact*-->
+    <!--* We INSTALL and SELL waste disposal units buy NOW*-->
     <section id="mt_services">
         <div class="container wow slideInRight">
-
             <div class="row">
                 <div class="col-xs-12 mar-bottom-30">
                     <div class="contact-info text-center slide-in">
@@ -22,14 +26,16 @@
 
                 <div class="col-sm-6 col-xs-12">
                     <div class="main_disposal">
-                        <a href="{% url 'webapp:disposal' %}"><img src="{% static 'images/confide_constract_disposal.png' %}" class="img-fixed-size-for-disposal-main">
-                            <button class="mt_btn_yellow" type="submit">Buy Now or order the Installation</button></a>
+                        <a href="{% url 'webapp:disposal' %}"><img src="{% static 'images/confide_constract_disposal.png' %}"
+                                class="img-fixed-size-for-disposal-main" loading="lazy">
+                        </a>
                     </div>
+                    <a href="{% url 'webapp:disposal' %}" class="mt_btn_yellow">Buy Now or Install</a>
                 </div>
             </div>
         </div>
     </section>
-    <!--* End Contact*-->
+    <!--* End We INSTALL and SELL waste disposal units buy NOW*-->
 
     <!--* Services*-->
     <section id="mt_services">
@@ -64,7 +70,6 @@
         </div>
     </section>
     <!--* End Services*-->
-
 
     <!--* Choose Us*-->
     <section id="choose_us" class="choose_us mt_services_process">
@@ -143,11 +148,9 @@
     </section>
     <!--* End choose us*-->
 
-
     <!--* Fun And Facts*-->
     <section id="mt_fun">
         <div class="container wow slideInDown">
-
             <div class="row">
                 <div class="col-md-3 col-sm-12">
                     <div class="fun-content">
@@ -187,7 +190,6 @@
         </div>
     </section>
     <!--* End Fun And Facts*-->
-
 
     <!--* Step Services*-->
     <section id="mt_services_three" class="services_two">
@@ -238,7 +240,6 @@
     </section>
     <!--* End Step Services*-->
 
-
     <!--*Newsletter*-->
     <div id="newsletter">
         <div class="container">
@@ -272,12 +273,9 @@
     </div>
     <!--*End Newsletter*-->
 
-
-
     <!--* Testimonial*-->
     <section id="mt_faq-testi">
         <div class="container wow slideInLeft">
-
             <div class="row">
                 <div class="col-xs-12">
                     <!-- section title -->
@@ -308,7 +306,6 @@
         </div>
     </section>
     <!--* EndTestimonial*-->
-
 
     <!--* Blog*-->
     <section id="mt_blog" class="light-bg">
@@ -362,37 +359,6 @@
         </div>
     </section>
     <!--* End Blog*-->
-
-
-    <!--* Partner*-->
-    <section id="const-team" class="const-team-font">
-        <div class="container wow slideInRight">
-            <div class="my_row">
-                <div class="col-md-6 col-sm-13">
-                    <!-- section title -->
-                    <div class="section_heading">
-                        <h2 class="section_title">
-                            <span>We are recommended by</span>
-                        </h2>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-10">
-                    <div class="row slider-team1">
-                        {% for recomended in partner %}
-                            <div class="col-md-4 item1">
-                                <div class="team_member1">
-                                    <a href="{{ recomended.link }}">
-                                        <img src="{{ recomended.image.url }}" class="testimonial_main img-fixed-size-eleven" alt="team">
-                                    </a>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--* End partner*-->
 
 
 {% endblock %}

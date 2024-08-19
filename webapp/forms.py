@@ -16,13 +16,39 @@ class CheckoutForm(forms.ModelForm):
     date = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date', 'lang': 'en-us'}))
 
     # Валидатор для поля price_check
-    price_check = forms.CharField(max_length=100, validators=[RegexValidator(r'^\d+(\.\d{1,2})?$',
-                                   'Введите корректное числовое значение')])
+    price_check = forms.CharField(max_length=100, validators=[RegexValidator(
+        r'^\d+(\.\d{1,2})?$', 'Введите корректное числовое значение'
+    )])
+
+    # Поля из модели Disposal
+    discount = forms.DecimalField(max_digits=10, decimal_places=2, required=False)
+    price = forms.DecimalField(max_digits=10, decimal_places=2, required=False)
 
     class Meta:
         model = CheckoutDetails
-        fields = ['first_name_check', 'last_name_check', 'street_address', 'town_city', 'phone_number', 'date', 'email',
-                  'order_notes', 'price_check']
+        fields = [
+            'first_name_check',
+            'last_name_check',
+            'street_address',
+            'town_city',
+            'phone_number',
+            'date',
+            'email',
+            'order_notes',
+            'price_check',
+            'discount',
+            'price'
+        ]
+
+    def __init__(self, *args, **kwargs):
+        # Получаем объект Disposal, если он передан
+        self.disposal = kwargs.pop('disposal', None)
+        super().__init__(*args, **kwargs)
+
+        # Если объект Disposal передан, устанавливаем значения полей discount и price
+        if self.disposal:
+            self.fields['discount'].initial = self.disposal.discount
+            self.fields['price'].initial = self.disposal.price
 
 
 class RegistrationForm(forms.ModelForm):
