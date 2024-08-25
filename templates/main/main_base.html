@@ -152,6 +152,59 @@
 
     <!--*Footer*-->
     <footer id="mt_footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="follow_us">
+                        <a href="{% url 'webapp:home' %}">
+                            <img src="{% static 'images/cc_favicon8.png' %}" alt="Logo">
+                        </a>
+                        <p> Areas served:</p>
+                            <p>FAIRFAX COUNTY, FAIRFAX STATION, ALEXANDRIA,
+                            ARLINGTON, FALLS CHURCH, VIENNA, GREAT FALLS,
+                            SPRINGFIELD, SEVEN CORNERS, HERNDON, MC LEAN,
+                            OAKTON, MERRIFIELD, RESTON, BURKE, CHANTILLY,
+                            POTOMAC, HERNDON, RESTON, CENTERVILLE, WASHINGTON DC.</p>
+
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="mt_contact_ftr">
+                        <h3>Credentials | Licensing</h3>
+                        <div class="single-tweet mar-bottom-20">
+                            <p class="white">Trade: Concrete Contracting (CEM)<br>
+                                License: 2705124215<br>
+                                Expiration: 08-31-2022</p>
+                        </div>
+                        <div class="single-tweet mar-bottom-20">
+                            <p class="white">Trade: Landscape Service Contracting (LSC)<br>
+                                License: 2705124215<br>
+                                Expiration: 08-31-2022</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="mt_post_ftr">
+                        <div class="widget widget_recent_entries"><!-- widget list -->
+                            <h3 class="blog_heading_border"> Recent Posts </h3>
+                            {% include 'webapp/blog_footer_info.html' %}
+                        </div><!-- End widget list -->
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-6 col-xs-12">
+                    <div class="mt_contact_ftr">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="{% url 'webapp:home' %}"><i class="fa fa-angle-right"></i>Home</a></li>
+                            <li><a href="{% url 'webapp:about' %}"><i class="fa fa-angle-right"></i>About</a></li>
+                            <li><a href="{% url 'webapp:services' %}"><i class="fa fa-angle-right"></i>Services</a></li>
+                            <li><a href="{% url 'webapp:contacts' %}"><i class="fa fa-angle-right"></i>Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
         <div class="mt_footer_copy">
             <div class="container">
                 <div class="row">
