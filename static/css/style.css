@@ -1077,8 +1077,9 @@ section#choose_us.about_choose_us {
 
 .img-fixed-size-four {
     width: 103px; /* Ширина контейнера 55px *!*/
-    /*height: 155px; !* Высота контейнера 55px *!*/
+    height: auto; /* Высота контейнера 55px */
     margin-right: 2px; /* Отступ справа между объектами (измените значение по вашему усмотрению) */
+    margin-bottom: 5%;
 }
 
 .img-fixed-size-five {
@@ -2707,9 +2708,9 @@ a.checkout-link {
 /* ====================== */
 
 #mt_footer {
-    background: #000 url(../images/cc_company.jpg) no-repeat;
+    background: #000 url(../images/cc_company.jpg) no-repeat bottom;
     background-size: 100%;
-    padding-top: 80px;
+    padding-top: 0.5px;
     position: relative;
 }
 
