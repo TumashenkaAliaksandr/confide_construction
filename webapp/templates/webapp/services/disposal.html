@@ -87,6 +87,13 @@
 
 
                                     <div class="product_meta mar-top-30">
+
+                                    <span class="sku_wrapper">Brand: <span class="sku">{{ main_disposal.brand }}</span></span>
+                                    <span class="posted_in">Capacity: <a href="#" rel="tag">{{ main_disposal.capacity }}</a></span>
+                                    <span class="tagged_as">Color: <a href="#" rel="tag">{{ main_disposal.color }}</a></span>
+{#                                    <span class="tagged_as">Material: <a href="#" rel="tag">{{ main_disposal.material_up }}</a></span>#}
+                                    <span class="tagged_as">Power Source: <a href="#" rel="tag">{{ main_disposal.power_source }}</a></span>
+
                                     </div>
                                         {% if checkout_session %}
                                             <form action="{% url 'webapp:checkout' %}" method="POST">

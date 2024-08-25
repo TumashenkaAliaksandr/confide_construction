@@ -1077,7 +1077,7 @@ section#choose_us.about_choose_us {
 
 .img-fixed-size-four {
     width: 103px; /* Ширина контейнера 55px *!*/
-    /*height: 155px; !* Высота контейнера 55px *!*/
+    height: auto; /* Высота контейнера 55px */
     margin-right: 2px; /* Отступ справа между объектами (измените значение по вашему усмотрению) */
     margin-bottom: 5%;
 }
