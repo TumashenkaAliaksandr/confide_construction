@@ -142,6 +142,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+USER = os.environ.get('USER', 'uncledrew')
+
 LOGIN_REDIRECT_URL = reverse_lazy("webapp:my_account")
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
