@@ -1103,7 +1103,13 @@ section#choose_us.about_choose_us {
 
 .img-fixed-size-eight {
     width: 100%; /* Установите желаемую ширину */
-    height: 262px; /* Установите желаемую высоту */
+    height: 45%; /* Установите желаемую высоту */
+    object-fit: cover; /* Этот свойство сохраняет соотношение сторон и обрезает изображение по нужным размерам */
+}
+
+.img-fixed-size-slider_disposal {
+    width: 100%; /* Установите желаемую ширину */
+    height: 50%; /* Установите желаемую высоту */
     object-fit: cover; /* Этот свойство сохраняет соотношение сторон и обрезает изображение по нужным размерам */
 }
 
@@ -1323,6 +1329,13 @@ section#mt_services_five {
 section#mt_services.services_one{
   padding: 75px 0 15px;
 }
+
+@media (max-width: 767px) { /* Ширина экрана 767 пикселей и меньше */
+    .my-hidden-div {
+        display: none; /* Скрываем элемент на мобильных устройствах */
+    }
+}
+
 
 @media(max-width: 735px){
   section#mt_services.services_one .box .box-content h3{font-size: 20px;}
