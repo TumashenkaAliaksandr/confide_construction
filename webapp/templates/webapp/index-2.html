@@ -79,7 +79,7 @@
                 <div class="col-xs-12">
                     <!-- section title -->
                     <div class="section_heading">
-                        <h2 class="section_title">
+                        <h2 class="section_title wow slideInLeft">
                             <span>Our Special Services</span>
                         </h2>
                         <p class="heading_txt"><b>The Confide.Co company was founded in 2008.</b></p>
@@ -339,7 +339,7 @@
                                     <h3 class="post-title text-uppercase">
                                         <a href="{% url 'blog:single' pk=main_blog.id %}">{{ main_blog.title }} </a>
                                     </h3>
-                                    <p class="post-excerpt"> {{ main_blog.description_small }} </p>
+                                    <p class="post-excerpt"> {{ main_blog.description_small|safe }} </p>
                                 </div>
                                 <div class="post-author">
                                     <span class="pull-left author-list">
