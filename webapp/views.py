@@ -347,7 +347,7 @@ def error(request):
     return render(request, 'webapp/error.html')
 
 
-@login_required(login_url='/login/')
+# @login_required(login_url='/login/')
 def checkout(request):
     """Checkout page Construct"""
 
@@ -412,7 +412,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 #
 #     return render(request, 'webapp/shop/cart.html', context)
 
-@login_required(login_url='/login/')
+# @login_required(login_url='/login/')
 def process_payment(request):
     news = BlogNews.objects.all()
     if request.method == 'POST':
