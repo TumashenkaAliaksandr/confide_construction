@@ -28,7 +28,7 @@ class HomePageView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         last_name = request.POST.get('last_name_check')
-        first_name = request.POST.get('first_name_check')
+        # first_name = request.POST.get('first_name_check')
         description = request.POST.get('order_notes')
         street_address = request.POST.get('street_address')
         town_city = request.POST.get('town_city')
@@ -48,7 +48,7 @@ class HomePageView(TemplateView):
         # Выводим полученные значения для отладки
         print("Received data from the form:")
         print("Last Name:", last_name)
-        print("First Name:", first_name)
+        # print("First Name:", first_name)
         print("Price:", price)
         print("Descriptions:", description)
         print("Street Address:", street_address)
@@ -60,7 +60,7 @@ class HomePageView(TemplateView):
         # Создайте объект CheckoutDetails и сохраните его в базу данных
         checkout_details = CheckoutDetails.objects.create(
             last_name_check=last_name,
-            first_name_check=first_name,
+            # first_name_check=first_name,
             # discount=price,  # Сохраняем дисконт как цену
             order_notes=description,
             street_address=street_address,

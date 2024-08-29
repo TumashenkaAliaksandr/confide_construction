@@ -147,7 +147,6 @@ def disposal(request):
     return render(request, 'webapp/services/disposal.html', context)
 
 
-
 def electricalworks(request):
     """Electricalworks Constract"""
     electr_obj = Electrical.objects.all()
@@ -347,7 +346,7 @@ def error(request):
     return render(request, 'webapp/error.html')
 
 
-@login_required(login_url='/login/')
+# @login_required(login_url='/login/')
 def checkout(request):
     """Checkout page Construct"""
 
@@ -377,42 +376,6 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 # @login_required(login_url='/login/')
-# def process_payment(request):
-#     news = BlogNews.objects.all()
-#     if request.method == 'POST':
-#         form = CheckoutForm(request.POST)
-#         if form.is_valid():
-#             try:
-#                 # Сохраняем данные заказа
-#                 checkout_details = CheckoutDetails.objects.create(
-#                     first_name=form.cleaned_data['first_name'],
-#                     last_name=form.cleaned_data['last_name'],
-#                     street_address=form.cleaned_data['street_address'],
-#                     town_city=form.cleaned_data['town_city'],
-#                     phone_number=form.cleaned_data['phone_number'],
-#                     email=form.cleaned_data['email'],
-#                     order_notes=form.cleaned_data['order_notes'],
-#                     date=form.cleaned_data['date'],
-#                     price=form.cleaned_data['price'],
-#                 )
-#                 # Перенаправляем на страницу с обзором заказа
-#                 return redirect('payments', checkout_id=checkout_details.pk)
-#             except IntegrityError as e:
-#                 # Обработка ошибок при сохранении в базе данных
-#                 return redirect('webapp:order_error')
-#     else:
-#         form = CheckoutForm()
-#         checkout_details = None
-#
-#     context = {
-#         'news': news,
-#         'form': form,
-#         'checkout_details': checkout_details,
-#     }
-#
-#     return render(request, 'webapp/shop/cart.html', context)
-
-@login_required(login_url='/login/')
 def process_payment(request):
     news = BlogNews.objects.all()
     if request.method == 'POST':
