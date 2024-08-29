@@ -51,29 +51,31 @@
                                                 <input type="text" name="town_city"
                                                        class="form-control">
                                             </div>
-                                            <div class="form-group">
-                                                <label>Date: <abbr class="required"
-                                                                        title="required">*</abbr></label>
-                                                <input type="date" name="date" value="{{ current_name }}"
-                                                       class="form-control">
+                                            <div class="slider-container">
+                                                <div class="form-group">
+                                                    <label>Discount: </label>
+                                                    <span class="form-control-static"><br>{{ discount|floatformat:0 }}$</span>
+                                                    <!-- Отображение дисконта -->
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-xs-12">
-                                            <div class="form-group">
-                                                <label>First Name: <abbr class="required"
-                                                                         title="required">*</abbr></label>
-                                                <input type="text" name="first_name_check" value="{{ current_name }}"
-                                                       class="form-control">
-                                            </div>
+{#                                            <div class="form-group">#}
+{#                                                <label>First Name: <abbr class="required"#}
+{#                                                                         title="required">*</abbr></label>#}
+{#                                                <input type="text" name="first_name_check" value="{{ current_name }}"#}
+{#                                                       class="form-control">#}
+{#                                            </div>#}
                                             <div class="form-group">
                                                 <label>Street Address: <abbr class="required" title="required">*</abbr></label>
                                                 <input type="text" name="street_address"
                                                        class="form-control">
                                             </div>
                                             <div class="form-group">
-                                                <label>Discount: </label>
-                                                <span class="form-control-static"><br>{{ discount|floatformat:0 }}$</span>
-                                                <!-- Отображение дисконта -->
+                                                <label>Date: <abbr class="required"
+                                                                        title="required">*</abbr></label>
+                                                <input type="date" name="date" value="{{ current_name }}"
+                                                       class="form-control">
                                             </div>
 
                                             {#                                            <div class="form-group">#}
@@ -107,6 +109,15 @@
                                             <label>Order notes: <abbr class="required" title="required">*</abbr></label>
                                             <textarea class="form-control" name="order_notes"
                                                       placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="slider-mobile">
+                                            <div class="form-group">
+                                                <label>Discount: </label>
+                                                <span class="form-control-static"><br>{{ discount|floatformat:0 }}$</span>
+                                                <!-- Отображение дисконта -->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
