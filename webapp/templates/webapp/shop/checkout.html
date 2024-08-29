@@ -32,7 +32,7 @@
                 <div class="checkout-info">
                     <h3 class="mar-bottom-20">Billing details</h3>
                     <h4 class="mar-bottom-20">Fill out the form to pay for the service</h4>
-                    <form method="post" action="{% url 'payments' %}">
+                    <form id="checkout-form" method="post" action="{% url 'payments' %}">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-sm-6 col-xs-12">
@@ -40,16 +40,14 @@
                                     <div class="row">
                                         <div class="col-sm-6 col-xs-12">
                                             <div class="form-group">
-                                                <label>Name: <abbr class="required"
-                                                                        title="required">*</abbr></label>
+                                                <label>Name: <abbr class="required" title="required">*</abbr></label>
                                                 <input type="text" name="last_name_check" value="{{ current_name }}"
                                                        class="form-control">
                                             </div>
                                             <div class="form-group">
                                                 <label>Town/City: <abbr class="required"
                                                                         title="required">*</abbr></label>
-                                                <input type="text" name="town_city"
-                                                       class="form-control">
+                                                <input type="text" name="town_city" class="form-control">
                                             </div>
                                             <div class="slider-container">
                                                 <div class="form-group">
@@ -60,30 +58,15 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-xs-12">
-{#                                            <div class="form-group">#}
-{#                                                <label>First Name: <abbr class="required"#}
-{#                                                                         title="required">*</abbr></label>#}
-{#                                                <input type="text" name="first_name_check" value="{{ current_name }}"#}
-{#                                                       class="form-control">#}
-{#                                            </div>#}
                                             <div class="form-group">
                                                 <label>Street Address: <abbr class="required" title="required">*</abbr></label>
-                                                <input type="text" name="street_address"
-                                                       class="form-control">
+                                                <input type="text" name="street_address" class="form-control">
                                             </div>
                                             <div class="form-group">
-                                                <label>Date: <abbr class="required"
-                                                                        title="required">*</abbr></label>
+                                                <label>Date: <abbr class="required" title="required">*</abbr></label>
                                                 <input type="date" name="date" value="{{ current_name }}"
                                                        class="form-control">
                                             </div>
-
-                                            {#                                            <div class="form-group">#}
-{#                                                <label>Price: <abbr class="required"#}
-{#                                                                        title="required">*</abbr></label>#}
-{#                                                <input type="text" name="discount"#}
-{#                                                       class="form-control">#}
-{#                                            </div>#}
                                         </div>
                                     </div>
                                 </div>
@@ -93,15 +76,15 @@
                                     <div class="col-xs-12">
                                         <div class="form-group">
                                             <label>Phone No.: <abbr class="required" title="required">*</abbr></label>
-                                            <input type="text" name="phone_number"
-                                                   class="form-control">
+                                            <input type="text" name="phone_number" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12">
                                         <div class="form-group">
                                             <label>Email Address: <abbr class="required"
                                                                         title="required">*</abbr></label>
-                                            <input type="text" name="email" value="{{ current_name }}" class="form-control">
+                                            <input type="text" name="email" value="{{ current_name }}"
+                                                   class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12">
@@ -122,14 +105,22 @@
                                     </div>
                                 </div>
                             </div>
+                            <button type="button" class="btn mt_btn_yellow_three" onclick="submitForm()">PLACE ORDER
+                            </button>
                         </div>
-                        <button type="submit" class="btn mt_btn_yellow_three">PLACE ORDER</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
     <!-- End checkout -->
+
+    <script>
+        function submitForm() {
+            document.getElementById('checkout-form').submit();
+        }
+    </script>
+
 
 
     <!-- store -->

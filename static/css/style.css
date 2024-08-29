@@ -2468,6 +2468,18 @@ section#mt_faq-testi .section_heading{padding: 0;}
     }
 }
 
+@media (max-width: 667px) {
+  #newsletter .mailpoet_form {
+    margin-top: 5px;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    height: 30%;
+    top: 0px;
+    width: 98.5%;
+  }
+}
+
 @media (max-width: 320px) {
     #newsletter .mailpoet_form {
         margin-top: 5px;
