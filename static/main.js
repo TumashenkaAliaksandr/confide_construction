@@ -1,27 +1,58 @@
-// static/main.js
+// // static/main.js
+//
+// console.log("Sanity check!");
+//
+// // Get Stripe publishable key
+// fetch("/payments/config/")
+// .then((result) => { return result.json(); })
+// .then((data) => {
+//   // Initialize Stripe.js
+//   const stripe = Stripe(data.publicKey);
+//
+//   // new
+//   // Event handler
+//   document.querySelector("#submitBtn").addEventListener("click", () => {
+//     // Get Checkout Session ID
+//     fetch("create-checkout-session/")
+//     .then((result) => { return result.json(); })
+//     .then((data) => {
+//       console.log(data);
+//       // Redirect to Stripe Checkout
+//       return stripe.redirectToCheckout({sessionId: data.sessionId})
+//     })
+//     .then((res) => {
+//       console.log(res);
+//     });
+//   });
+// });
 
-console.log("Sanity check!");
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Sanity check!");
 
-// Get Stripe publishable key
-fetch("/payments/config/")
-.then((result) => { return result.json(); })
-.then((data) => {
-  // Initialize Stripe.js
-  const stripe = Stripe(data.publicKey);
-
-  // new
-  // Event handler
-  document.querySelector("#submitBtn").addEventListener("click", () => {
-    // Get Checkout Session ID
-    fetch("create-checkout-session/")
+    // Get Stripe publishable key
+    fetch("/payments/config/")
     .then((result) => { return result.json(); })
     .then((data) => {
-      console.log(data);
-      // Redirect to Stripe Checkout
-      return stripe.redirectToCheckout({sessionId: data.sessionId})
-    })
-    .then((res) => {
-      console.log(res);
+        if (typeof Stripe !== 'undefined') {
+            console.log('Stripe loaded');
+            const stripe = Stripe(data.publicKey);
+
+            // Event handler
+            document.getElementById("#submitBtn").addEventListener("click", () => {
+                // Get Checkout Session ID
+                fetch("create-checkout-session/")
+                .then((result) => { return result.json(); })
+                .then((data) => {
+                    console.log(data);
+                    // Redirect to Stripe Checkout
+                    return stripe.redirectToCheckout({sessionId: data.sessionId})
+                })
+                .then((res) => {
+                    console.log(res);
+                });
+            });
+        } else {
+            console.error('Stripe is not defined');
+        }
     });
-  });
 });
