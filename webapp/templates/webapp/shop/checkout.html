@@ -105,15 +105,22 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <button type="button" id="submitBtn" class="btn mt_btn_yellow_three" >PLACE ORDER
+                            <button type="button" class="btn mt_btn_yellow_three" onclick="submitForm()">PLACE ORDER
                             </button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </section>
     <!-- End checkout -->
+
+    <script>
+        function submitForm() {
+            document.getElementById('checkout-form').submit();
+        }
+    </script>
+
 
 
     <!-- store -->
