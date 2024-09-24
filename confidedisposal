@@ -12,7 +12,7 @@ server {
 
 
     location /static/ {
-    alias /home/uncledrew/ConfideDisposal/static/;
+    alias /home/uncledrew/ConfideDisposal/staticfiles/;
     try_files $uri $uri/ =404;
             }
 
