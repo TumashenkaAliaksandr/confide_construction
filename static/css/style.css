@@ -2497,6 +2497,26 @@ section#mt_faq-testi .section_heading{padding: 0;}
     bottom: 0; /* Располагаем кнопку внизу контейнера формы */
 }
 
+.button-mail{
+    padding-top: 9%;
+}
+
+.description-form {
+    font-size: 14px;
+    font-weight: 300;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 0px;
+    padding: 10px 20px 0%;
+    width: 100%;
+    color: #444444;
+    margin-bottom: 15px;
+    font-family: 'Roboto', sans-serif;
+    height: 50px;
+    box-shadow: none;
+    margin-bottom: 0px;
+}
+
 #newsletter .mailpoet_form input.mailpoet_text {
     border: none;
     padding: 16px 142px 16px 25px;
