@@ -1247,7 +1247,7 @@ section#mt_services_five {
 /* Отступы для мобильных устройств (ширина экрана менее 768px) */
 @media (max-width: 768px) {
     section#mt_services {
-        padding: 40px 0; background-color: beige;/* Измените на нужные вам значения для мобильных устройств */
+        padding: 15px 0; background-color: beige;/* Измените на нужные вам значения для мобильных устройств */
     }
 }
 
@@ -2653,12 +2653,21 @@ section#mt_faq-testi .section_heading{padding: 0;}
 
 
 @media screen and (max-width: 320px) {
-  .box .box-content h3 {
-    white-space: nowrap;
-    overflow: hidden;
-    /*text-overflow: ellipsis;*/
-    font-size: 13px;
-  }
+    .box .box-content h3 {
+        white-space: nowrap;
+        overflow: hidden;
+        /*text-overflow: ellipsis;*/
+        font-size: 10px;
+    }
+
+    .section_heading {
+        margin: 0 0px 2rem;
+        padding-right: 30%;
+    }
+
+    .fun-content h2 {
+        font-size: 21px;
+    }
 }
 
 
@@ -2925,7 +2934,7 @@ a.checkout-link {
 
 @media only screen and (max-width: 767px){
 
-  #mt_footer{padding-top: 40px;}
+  #mt_footer{padding-top: 25px;}
 
    #mt_footer .mt_footer_copy{margin-top: 40px;}
 
@@ -3013,7 +3022,7 @@ a.checkout-link {
 @media only screen and (max-width: 480px) {
     #home-banner {
         overflow: hidden;
-        max-height: 295px;
+        max-height: 250px;
         position: relative;
         background: #660a80;
     }
@@ -3796,7 +3805,7 @@ a.checkout-link {
         line-height: 24px;
         color: #666;
         font-family: 'Roboto', sans-serif;
-        font-size: 12.5px;
+        font-size: 12px;
     }
 
     .choose-list p {
@@ -5884,6 +5893,7 @@ p.lt-pswrd{margin-bottom: 20px;}
   .industry .mt_testimonial .slick-prev, .industry .mt_testimonial .slick-next{left: inherit; bottom: 0px; right: 25px;}
 
   .industry .mt_testimonial .slick-prev{right: 90px;}
+  .button-mail {padding-top: 20%;}
 }
 
 @media(max-width: 359px){
