@@ -1247,7 +1247,7 @@ section#mt_services_five {
 /* Отступы для мобильных устройств (ширина экрана менее 768px) */
 @media (max-width: 768px) {
     section#mt_services {
-        padding: 15px 0; background-color: beige;/* Измените на нужные вам значения для мобильных устройств */
+        padding: 21px 0; background-color: beige;/* Измените на нужные вам значения для мобильных устройств */
     }
 }
 
