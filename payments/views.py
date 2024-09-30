@@ -4,7 +4,7 @@ from webapp.models import *
 from blog.models import *
 from django.conf import settings
 from django.http.response import JsonResponse,  HttpResponseRedirect # new
-from django.views.decorators.csrf import csrf_exempt # new
+from django.views.decorators.csrf import csrf_exempt  # new
 from django.views.generic.base import TemplateView
 import stripe
 
@@ -75,7 +75,6 @@ class HomePageView(TemplateView):
         return HttpResponseRedirect('', checkout_details)
 
 
-
 # new
 @csrf_exempt
 def stripe_config(request):
@@ -87,7 +86,7 @@ def stripe_config(request):
 @csrf_exempt
 def create_checkout_session(request):
     if request.method == 'GET':
-        domain_url = 'http://localhost:8000/'
+        domain_url = 'https://www.db-qp.xyz/'
         stripe.api_key = settings.STRIPE_SECRET_KEY
         try:
             # Получаем последний объект Disposal из базы данных
