@@ -1210,7 +1210,7 @@ section#choose_us.about_choose_us {
 
 
 
-section#mt_services{padding:70px 0 55px; background-color: beige;} /* отступы по блокам и цвет*/
+section#mt_services{padding:35px 0 55px; background-color: beige;} /* отступы по блокам и цвет*/
 section#mt_services_two {
     padding: 10px 0 90px;
     background: linear-gradient(rgba(252, 246, 246, 0.7), rgba(110, 110, 110, 0.7)), url('../images/cc_space.jpg') center/cover;
@@ -3677,6 +3677,22 @@ a.checkout-link {
   .caption_slide1 > h1{font-size: 21px;}
 }
 
+.mt_btn_yellow_position {
+    padding: 10px 20px;
+    background: #ffac00;
+    font-size: 15px;
+    border-radius: 5px;
+    display: inline-block;
+    color: #ffffff;
+    text-decoration: none;
+    border: 2px solid #ffac00;
+    transition: all 0.5s ease;
+    padding-left: 10%;
+    padding-right: 10%;
+    float: right;
+    margin-top: -50px;
+}
+
 @media (max-width: 640px) {
   .mt_btn_yellow, input[type="submit"] {
     font-size: 14px;
@@ -3740,7 +3756,9 @@ a.checkout-link {
         text-decoration: none;
         border: 2px solid #ffac00;
         transition: all 0.5s ease;
-        margin: 15px 0; /* Отступ для iPhone 11 Max и других больших экранов */
+        /*margin: 0px 0; !* Отступ для iPhone 11 Max и других больших экранов *!*/
+        padding-left: 10%;
+        padding-right: 10%;
     }
 }
 
