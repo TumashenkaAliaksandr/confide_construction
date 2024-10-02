@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 {% extends 'main/base.html' %}
 {% load static %}
-{#{% include 'stripe_scripts.html' %}#}
 
 
 {% block content %}
@@ -40,7 +39,7 @@
                         <p class="heading_txt"><b>Review data, proceed to payment in the STRIPE if accurate.</b></p>
                     </div>
                     <div class="row">
-                        {% csrf_token %}
+{#                        {% csrf_token %}#}
                         <div class="order-list">
                             <table class="shop_table rt-checkout-review-order-table">
                                 <tr class="order-total">
@@ -106,7 +105,7 @@
                         </div>
 
                         <button onclick="window.location.href='{% url 'webapp:checkout' %}'"
-                                class="back-to-checkout-btn btn mt_btn_yellow"> < Back
+                                class="back-to-checkout-btn btn mt_btn_yellow_checkout"> < Back
                             to Checkout
                         </button>
                     </div>

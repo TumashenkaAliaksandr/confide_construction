@@ -4903,7 +4903,7 @@ table.shop_table.rt-checkout-review-order-table thead, table.shop_table.rt-check
 .back-to-checkout-btn {
     cursor: pointer;
     position: relative; /* Устанавливаем позицию как относительную */
-    top: -57.7px; /* Перемещаем кнопку вверх на 20px */
+    top: -58px; /* Перемещаем кнопку вверх на 20px */
     left: 0%;
 }
 
