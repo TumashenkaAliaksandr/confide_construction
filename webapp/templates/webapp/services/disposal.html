@@ -94,17 +94,17 @@
 {#                                    <span class="tagged_as">Material: <a href="#" rel="tag">{{ main_disposal.material_up }}</a></span>#}
                                     <span class="tagged_as">Power Source: <a href="#" rel="tag">{{ main_disposal.power_source }}</a></span>
 
-                                    </div>
                                         {% if checkout_session %}
                                             <form action="{% url 'webapp:checkout' %}" method="POST">
                                                 {% csrf_token %}
                                                 <input type="hidden" name="session_id"
                                                        value="{{ checkout_session.sessionId }}">
-                                                <button class="mt_btn_yellow" type="submit">Order By</button>
+                                                <button class="mt_btn_yellow mt_btn_yellow_position" type="submit">Order By</button>
                                             </form>
                                         {% else %}
                                             <p>Ошибка создания чекаут-сессии</p>
                                         {% endif %}
+                                    </div>
                                 </div>
                             </div>
                         {% endfor %}
@@ -114,6 +114,7 @@
         </div>
     </section>
     <!--/End store detail -->
+
 
 
 {% endblock %}
