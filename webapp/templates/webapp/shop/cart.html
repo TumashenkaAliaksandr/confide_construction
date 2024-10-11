@@ -36,7 +36,7 @@
                         </h2>
                         <p class="heading_txt"><b>Review data, proceed to payment in the STRIPE if accurate.</b></p>
                     </div>
-                    <form method="get" action="{% url 'webapp:success' %}">
+                    <form method="get" action="{% url 'webapp:process_payment' %}">
                         {% csrf_token %}
                         <div class="order-list">
                             <table class="shop_table rt-checkout-review-order-table">
@@ -46,11 +46,11 @@
                                             class="rt-Price-amount">{{ checkout_details.last_name }}</span></strong>
                                     </td>
                                 </tr>
-                                <tr class="order-total">
-                                    <th>First Name:</th>
-                                    <td><strong><span class="rt-Price-amount">{{ checkout_details.first_name }}</span></strong>
-                                    </td>
-                                </tr>
+{#                                <tr class="order-total">#}
+{#                                    <th>First Name:</th>#}
+{#                                    <td><strong><span class="rt-Price-amount">{{ checkout_details.first_name }}</span></strong>#}
+{#                                    </td>#}
+{#                                </tr>#}
                                 <tr class="order-total">
                                     <th>Town/City:</th>
                                     <td><strong><span

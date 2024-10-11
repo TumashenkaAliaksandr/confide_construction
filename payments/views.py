@@ -1,5 +1,7 @@
 import re
 
+from django.urls import reverse
+
 from webapp.models import *
 from blog.models import *
 from django.conf import settings
@@ -18,17 +20,16 @@ class HomePageView(TemplateView):
         context['news'] = BlogNews.objects.all()
 
         # Получаем последний объект Disposal и добавляем его дисконт в контекст
-        disposal = Disposal.objects.last()  # Или используйте другой способ получения объекта
+        disposal = Disposal.objects.last()
         if disposal:
-            context['discount'] = disposal.discount  # Добавляем дисконт в контекст
-            context['price'] = disposal.price  # Если нужно, добавьте и цену
+            context['discount'] = disposal.discount
+            context['price'] = disposal.price
 
         context['checkout_details'] = CheckoutDetails.objects.last()
         return context
 
     def post(self, request, *args, **kwargs):
         last_name = request.POST.get('last_name_check')
-        # first_name = request.POST.get('first_name_check')
         description = request.POST.get('order_notes')
         street_address = request.POST.get('street_address')
         town_city = request.POST.get('town_city')
@@ -37,18 +38,17 @@ class HomePageView(TemplateView):
         date_check = request.POST.get('date')
 
         # Получаем последний объект Disposal
-        disposal = Disposal.objects.last()  # Или используйте другой способ получения объекта
+        disposal = Disposal.objects.last()
 
         # Проверяем, существует ли объект Disposal
         if disposal:
-            price = disposal.discount.quantize(Decimal('1.00'))  # Используем дисконт из объекта Disposal
+            price = disposal.discount.quantize(Decimal('1.00'))
         else:
-            price = 0  # Установите значение по умолчанию, если объект не найден
+            price = 0
 
         # Выводим полученные значения для отладки
         print("Received data from the form:")
         print("Last Name:", last_name)
-        # print("First Name:", first_name)
         print("Price:", price)
         print("Descriptions:", description)
         print("Street Address:", street_address)
@@ -58,21 +58,24 @@ class HomePageView(TemplateView):
         print("Date Check:", date_check)
 
         # Создайте объект CheckoutDetails и сохраните его в базу данных
-        checkout_details = CheckoutDetails.objects.create(
-            last_name_check=last_name,
-            # first_name_check=first_name,
-            # discount=price,  # Сохраняем дисконт как цену
-            order_notes=description,
-            street_address=street_address,
-            town_city=town_city,
-            phone_number=phone_number,
-            email=email,
-            date=date_check,
-            # Укажите остальные поля объекта CheckoutDetails
-        )
-        print("CheckoutDetails object created successfully:", checkout_details)
+        try:
+            checkout_details = CheckoutDetails.objects.create(
+                last_name_check=last_name,
+                order_notes=description,
+                street_address=street_address,
+                town_city=town_city,
+                phone_number=phone_number,
+                email=email,
+                date=date_check,
+            )
+            print("CheckoutDetails object created successfully:", checkout_details)
 
-        return HttpResponseRedirect('', checkout_details)
+            # Перенаправление на страницу успешного завершения (например, success)
+            return HttpResponseRedirect(reverse('payments'))  # Замените 'success_url_name' на имя вашего URL
+
+        except Exception as e:
+            print(f"Error creating CheckoutDetails: {e}")
+            return HttpResponseRedirect(reverse('webapp:error'))  # Замените 'error_url_name' на имя вашего URL для обработки ошибок
 
 
 # new

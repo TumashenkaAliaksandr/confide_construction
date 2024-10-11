@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 {% extends 'main/base.html' %}
 {% load static %}
-{#{% include 'stripe_scripts.html' %}#}
 
 
 {% block content %}
@@ -49,12 +48,12 @@
                                             class="rt-Price-amount">{{ checkout_details.last_name_check }}</span></strong>
                                     </td>
                                 </tr>
-{#                                <tr class="order-total">#}
-{#                                    <th>First Name:</th>#}
-{#                                    <td><strong><span#}
-{#                                            class="rt-Price-amount">{{ checkout_details.first_name_check }}</span></strong>#}
-{#                                    </td>#}
-{#                                </tr>#}
+                                {#                                <tr class="order-total">#}
+                                {#                                    <th>First Name:</th>#}
+                                {#                                    <td><strong><span#}
+                                {#                                            class="rt-Price-amount">{{ checkout_details.first_name_check }}</span></strong>#}
+                                {#                                    </td>#}
+                                {#                                </tr>#}
                                 <tr class="order-total">
                                     <th>Town/City:</th>
                                     <td><strong><span
@@ -106,7 +105,7 @@
                         </div>
 
                         <button onclick="window.location.href='{% url 'webapp:checkout' %}'"
-                                class="back-to-checkout-btn btn mt_btn_yellow"> < Back
+                                class="back-to-checkout-btn btn mt_btn_yellow_checkout"> < Back
                             to Checkout
                         </button>
                     </div>
