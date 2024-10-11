@@ -39,7 +39,7 @@
                         <p class="heading_txt"><b>Review data, proceed to payment in the STRIPE if accurate.</b></p>
                     </div>
                     <div class="row">
-{#                        {% csrf_token %}#}
+                        {% csrf_token %}
                         <div class="order-list">
                             <table class="shop_table rt-checkout-review-order-table">
                                 <tr class="order-total">
@@ -48,12 +48,12 @@
                                             class="rt-Price-amount">{{ checkout_details.last_name_check }}</span></strong>
                                     </td>
                                 </tr>
-{#                                <tr class="order-total">#}
-{#                                    <th>First Name:</th>#}
-{#                                    <td><strong><span#}
-{#                                            class="rt-Price-amount">{{ checkout_details.first_name_check }}</span></strong>#}
-{#                                    </td>#}
-{#                                </tr>#}
+                                {#                                <tr class="order-total">#}
+                                {#                                    <th>First Name:</th>#}
+                                {#                                    <td><strong><span#}
+                                {#                                            class="rt-Price-amount">{{ checkout_details.first_name_check }}</span></strong>#}
+                                {#                                    </td>#}
+                                {#                                </tr>#}
                                 <tr class="order-total">
                                     <th>Town/City:</th>
                                     <td><strong><span
