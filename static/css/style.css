@@ -3707,7 +3707,7 @@ a.checkout-link {
 
 @media (max-width: 639px) {
     .section-padding {
-        padding: 50px 0 30px;
+        padding: 40px 0 15px;
         position: relative;
         overflow: hidden;
     }
@@ -3726,7 +3726,7 @@ a.checkout-link {
         transition: all 0.5s ease;
         margin: 10px 0; /* Отступ для iPhone 5 */
         /*display: none;*/
-        width: 100%;
+        width: 45%;
     }
 }
 
@@ -3757,8 +3757,9 @@ a.checkout-link {
         border: 2px solid #ffac00;
         transition: all 0.5s ease;
         /*margin: 0px 0; !* Отступ для iPhone 11 Max и других больших экранов *!*/
-        padding-left: 10%;
-        padding-right: 10%;
+        /*padding-left: 3%;*/
+        /*padding-right: 3%;*/
+        width: 17%;
     }
 }
 
@@ -4418,7 +4419,7 @@ a.checkout-link {
 /*         Shop      */
 /* ====================== */
 
-.our_store{ padding: 75px 0 50px; background-color: beige;}
+.our_store{ padding: 50px 0 50px; background-color: beige;}
 
 .our_store .col-sm-3.col-xs-12{padding: 0 10px;}
 
@@ -4912,7 +4913,7 @@ table.shop_table.rt-checkout-review-order-table thead, table.shop_table.rt-check
   .back-to-checkout-btn {
     cursor: pointer;
     position: relative; /* Устанавливаем позицию как относительную */
-    top: 20px; /* Перемещаем кнопку вверх на 20px */
+    /*top: 20px; !* Перемещаем кнопку вверх на 20px *!*/
     left: 0%;
 }
 }
