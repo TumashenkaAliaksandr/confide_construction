@@ -5,8 +5,8 @@ from django.urls import reverse
 from webapp.models import *
 from blog.models import *
 from django.conf import settings
-from django.http.response import JsonResponse,  HttpResponseRedirect # new
-from django.views.decorators.csrf import csrf_exempt  # new
+from django.http.response import JsonResponse,  HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import TemplateView
 import stripe
 

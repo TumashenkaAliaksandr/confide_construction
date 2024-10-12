@@ -508,8 +508,8 @@ input[type="submit"] {
   border: 2px solid #ffac00;
   transition: all 0.5s ease;
   margin: 13px 0px; /* Добавьте здесь нужное значение отступа, например, 10px сверху и снизу, и 0 по бокам */
-  padding-left: 7%;
-  padding-right: 7%;
+  /*padding-left: 7%;*/
+  /*padding-right: 7%;*/
 }
 
 .mt_btn_yellow_checkout:hover, .mt_btn_yellow:focus, input[type="submit"]:hover, input[type="submit"]:focus {
