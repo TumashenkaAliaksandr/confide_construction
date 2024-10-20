@@ -30,7 +30,7 @@
                                 class="img-fixed-size-for-disposal-main" loading="lazy">
                         </a>
                     </div>
-                    <a href="{% url 'webapp:disposal' %}" class="mt_btn_yellow">Buy Now or Install</a>
+                    <a href="{% url 'webapp:disposal' %}" class="mt_btn_yellow">Restore</a>
                 </div>
             </div>
         </div>
@@ -273,92 +273,92 @@
     </div>
     <!--*End Newsletter*-->
 
-    <!--* Testimonial*-->
-    <section id="mt_faq-testi">
-        <div class="container wow slideInLeft">
-            <div class="row">
-                <div class="col-xs-12">
-                    <!-- section title -->
-                    <div class="section_heading">
-                        <h2 class="section_title">
-                            <span>What Say Our Client</span>
-                        </h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt_testimonial">
-                <div class="row slider-testi1">
-                    {% for main_review in people %}
-                    <div class="col-xs-12">
-                        <div class="testimonial_main">
-                            <p class="mar-bottom-30">{{ main_review.text }}</p>
-                            <div class="client-pic"><img src="{{ main_review.photo.url }}" class="img-fixed-size" alt=""></div>
-                            <h4>
-                                <a href="#">{{ main_review.author }}</a>
+{#    <!--* Testimonial*-->#}
+{#    <section id="mt_faq-testi">#}
+{#        <div class="container wow slideInLeft">#}
+{#            <div class="row">#}
+{#                <div class="col-xs-12">#}
+{#                    <!-- section title -->#}
+{#                    <div class="section_heading">#}
+{#                        <h2 class="section_title">#}
+{#                            <span>What Say Our Client</span>#}
+{#                        </h2>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <div class="mt_testimonial">#}
+{#                <div class="row slider-testi1">#}
+{#                    {% for main_review in people %}#}
+{#                    <div class="col-xs-12">#}
+{#                        <div class="testimonial_main">#}
+{#                            <p class="mar-bottom-30">{{ main_review.text }}</p>#}
+{#                            <div class="client-pic"><img src="{{ main_review.photo.url }}" class="img-fixed-size" alt=""></div>#}
+{#                            <h4>#}
+{#                                <a href="#">{{ main_review.author }}</a>#}
 {#                                <span>MD of Nicolos</span>#}
-                            </h4>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--* EndTestimonial*-->
+{#                            </h4>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+{#    <!--* EndTestimonial*-->#}
 
-    <!--* Blog*-->
-    <section id="mt_blog" class="light-bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
-                    <!-- section title -->
-                    <div class="section_heading">
-                        <h2 class="section_title">
-                            <span>Latest Blog</span>
-                        </h2>
-                        <p class="heading_txt"><b>Professional service from ConfideCo company</b></p>
-                    </div>
-                </div>
-            </div>
-            <div class="blog_post_inner">
-                <div class="row">
-                    {% for main_blog in news|slice:":3" %}
-                    <div class="col-md-4 col-sm-12 wow slideInDown" data-wow-delay=".2s">
-                        <div class="blog-post-inner_wrapper">
-                            <div class="blog-post-image">
-                                <div class="blog_cat">Confide Construction</div>
-                                <div class="img">
-                                    <img src="{{ main_blog.photo.url }}" class="img-fixed-size-six" alt="image"/>
-                                </div>
-                            </div>
-                            <div class="post-detail_container">
-                                <div class="post-content">
-                                    <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i
-                                            class="fa fa-calendar"></i> {{ main_blog.pub_date }}</a></p>
-                                    <h3 class="post-title text-uppercase">
-                                        <a href="{% url 'blog:single' pk=main_blog.id %}">{{ main_blog.title }} </a>
-                                    </h3>
-                                    <p class="post-excerpt"> {{ main_blog.description_small|safe }} </p>
-                                </div>
-                                <div class="post-author">
-                                    <span class="pull-left author-list">
-                                        <img src="{{ main_blog.author_photo.url }}" alt="author"> <a
-                                            href="#">{{ main_blog.author }}</a>
-                                    </span>
-                                    <span class="pull-right comments-list pad-top-5">
-                                        <i class="fa fa-book"></i> <a href="{% url 'blog:single' pk=main_blog.id %}">to read</a>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--* End Blog*-->
+{#    <!--* Blog*-->#}
+{#    <section id="mt_blog" class="light-bg">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-xs-12">#}
+{#                    <!-- section title -->#}
+{#                    <div class="section_heading">#}
+{#                        <h2 class="section_title">#}
+{#                            <span>Latest Blog</span>#}
+{#                        </h2>#}
+{#                        <p class="heading_txt"><b>Professional service from ConfideCo company</b></p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="blog_post_inner">#}
+{#                <div class="row">#}
+{#                    {% for main_blog in news|slice:":3" %}#}
+{#                    <div class="col-md-4 col-sm-12 wow slideInDown" data-wow-delay=".2s">#}
+{#                        <div class="blog-post-inner_wrapper">#}
+{#                            <div class="blog-post-image">#}
+{#                                <div class="blog_cat">Confide Construction</div>#}
+{#                                <div class="img">#}
+{#                                    <img src="{{ main_blog.photo.url }}" class="img-fixed-size-six" alt="image"/>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="post-detail_container">#}
+{#                                <div class="post-content">#}
+{#                                    <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i#}
+{#                                            class="fa fa-calendar"></i> {{ main_blog.pub_date }}</a></p>#}
+{#                                    <h3 class="post-title text-uppercase">#}
+{#                                        <a href="{% url 'blog:single' pk=main_blog.id %}">{{ main_blog.title }} </a>#}
+{#                                    </h3>#}
+{#                                    <p class="post-excerpt"> {{ main_blog.description_small|safe }} </p>#}
+{#                                </div>#}
+{#                                <div class="post-author">#}
+{#                                    <span class="pull-left author-list">#}
+{#                                        <img src="{{ main_blog.author_photo.url }}" alt="author"> <a#}
+{#                                            href="#">{{ main_blog.author }}</a>#}
+{#                                    </span>#}
+{#                                    <span class="pull-right comments-list pad-top-5">#}
+{#                                        <i class="fa fa-book"></i> <a href="{% url 'blog:single' pk=main_blog.id %}">to read</a>#}
+{#                                    </span>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+{#    <!--* End Blog*-->#}
 
 
 {% endblock %}

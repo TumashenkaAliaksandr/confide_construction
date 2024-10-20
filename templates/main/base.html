@@ -117,17 +117,17 @@
                             </ul>
                         </li>
                         <li {% if request.resolver_match.url_name == 'about' %}class="active"{% endif %}><a href="{% url 'webapp:about' %}">Company</a></li>
-                        <li {% if request.resolver_match.url_name in "[ 'process_payment', 'my_account', 'shop', 'checkout']" %}class="active"{% endif %}><a href="{% url 'webapp:shop' %}">Shopping</a>
+{#                        <li {% if request.resolver_match.url_name in "[ 'process_payment', 'my_account', 'shop', 'checkout']" %}class="active"{% endif %}><a href="{% url 'webapp:shop' %}">Shopping</a>#}
 {#                            <ul>#}
 {#                                <li {% if request.resolver_match.url_name == 'my_account' %}class="active"{% endif %}><a href="{% url 'webapp:my_account' %}">My Account</a></li>#}
 {#                                <li {% if request.resolver_match.url_name == 'checkout' %}class="active"{% endif %}><a href="{% url 'webapp:checkout' %}">Checkout</a></li>#}
 {#                                <li {% if request.resolver_match.url_name == 'process_payment' %}class="active"{% endif %}><a href="{% url 'webapp:process_payment' %}">Cart</a></li>#}
 {#                            </ul>#}
-                        </li>
-                        <li>
-                            <li {% if request.resolver_match.url_name in "['blog', 'single']" %}class="active"{% endif %}><a href="{% url 'blog:blog' %}">Blog</a></li>
-                        </li>
-                        <li {% if request.resolver_match.url_name == 'contacts' %}class="active"{% endif %}><a href="{% url 'webapp:contacts' %}">Contacts</a></li>
+{#                        </li>#}
+{#                        <li>#}
+{#                            <li {% if request.resolver_match.url_name in "['blog', 'single']" %}class="active"{% endif %}><a href="{% url 'blog:blog' %}">Blog</a></li>#}
+{#                        </li>#}
+{#                        <li {% if request.resolver_match.url_name == 'contacts' %}class="active"{% endif %}><a href="{% url 'webapp:contacts' %}">Contacts</a></li>#}
                         <li>
                             <div class="header-search">
                                 <a href="{% url 'webapp:search' %}" class="search-icon"><i class="fa fa-search"></i></a>
