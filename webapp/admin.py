@@ -164,6 +164,29 @@ admin.site.register(Disposal, DisposalAdmin)
 admin.site.register(DisposalPhoto)
 
 
+class CeilingFanPhotoInline(admin.TabularInline):
+    model = CeilingFan.photos.through  # Используем промежуточную модель для ManyToMany
+    extra = 6  # Позволяет добавить 6 фотографий
+
+
+class CeilingFanAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'description_installations',
+                    'solution', 'advantages', 'brand',
+                    'color', 'material_up', 'power_source',
+                    'material', 'price', 'discount', 'display_photos')
+
+    def display_photos(self, obj):
+        return ", ".join([str(photo.photo) for photo in obj.photos.all()])
+
+    display_photos.short_description = 'Photos'
+
+    inlines = [CeilingFanPhotoInline]
+
+# Регистрация модели и административного интерфейса
+admin.site.register(CeilingFan, CeilingFanAdmin)
+admin.site.register(CeilingFanPhoto)
+
+
 class DisposalServiceAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'photo')
 

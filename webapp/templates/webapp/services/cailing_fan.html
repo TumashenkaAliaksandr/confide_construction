@@ -1,0 +1,119 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+    <!-- pagebanner -->
+    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'images/cailing_fun.jpg' %}{% endif %}');">
+        <div class="page-title">
+            <h2 class="white text-center">Cailing Fan</h2>
+        </div>
+    </section>
+    <!-- End Pagebanner -->
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb-main">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="{% url 'webapp:home' %}"><i class="fa fa-home"></i></a></li>
+                <li><a href="{% url 'webapp:services' %}">Services</a></li>
+                <li class="active">Cailing Fan</li>
+            </ul>
+        </div>
+    </div>
+    <!-- End breadcrumb -->
+
+    <!--store detail -->
+    <section id="store-detail" class="store-detail">
+        <div class="container">
+            <div class="single-product-content">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="thumbnail-images">
+                            <div class="slider slider-store">
+                                {% for photo in cailing.photos.all %}
+                                    <div>
+                                        <img src="{{ photo.photo.url }}" alt="{{ photo.name }}"
+                                             class="img-fixed-size-four">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        {% for main_cailing_fan in cailing_obj %}
+                            <div class="single-product-summary">
+                                <div class="entry-summary">
+                                    <h2 class="single-product-title">{{ main_cailing_fan.name }}</h2>
+                                    <div class="rt-product-meta-wrapper">
+                                    <span class="price">
+                                        <del>
+                                            <span class="rt-price-amount">
+                                                <span>$</span>{{ main_cailing_fan.price }}
+                                            </span>
+                                        </del>
+                                        <ins>
+                                            <span class="rt-price-amount">
+                                                <span>$</span>{{ main_cailing_fan.discount }}
+                                            </span>
+                                        </ins>
+                                    </span>
+                                    </div>
+                                    <div class="product-details_short-description mar-top-30">
+                                        <h4>{{ main_cailing_fan.description }}
+                                            <br></h4>
+                                    </div>
+                                    <div class="product-details_short-description mar-top-30">
+                                        <h6>The Main Advantages of Using a Ceiling Fan in Your Home:</h6>
+                                        <p>{{ main_cailing_fan.advantages }}</p>
+                                    </div>
+
+                                    {#                                <form class="cart mar-top-30" action="" method="post">#}
+                                    {##}
+                                    {#                                    <div class="quantity-buttons">#}
+                                    {#                                        <label class="screen-reader-text">Quantity</label>#}
+                                    {#                                        <input type="number" class="quantity-input" name="quantity" min="1" max="100"#}
+                                    {#                                               placeholder="No.">#}
+                                    {#                                    </div>#}
+                                    {##}
+                                    {#                                    <button type="submit" name="add-to-cart" value="1605" class="mt_btn_yellow">Add to#}
+                                    {#                                        cart#}
+                                    {#                                    </button>#}
+                                    {##}
+                                    {#                                </form>#}
+
+
+                                    <div class="product_meta mar-top-30">
+
+                                    <span class="sku_wrapper">Brand: <span class="sku">{{ main_cailing_fan.brand }}</span></span>
+                                    <span class="tagged_as">Color: <a href="#" rel="tag">{{ main_cailing_fan.color }}</a></span>
+{#                                    <span class="tagged_as">Material: <a href="#" rel="tag">{{ main_disposal.material_up }}</a></span>#}
+                                    <span class="tagged_as">Power Source: <a href="#" rel="tag">{{ main_cailing_fan.power_source }}</a></span>
+
+                                        {% if checkout_session %}
+                                            <form action="{% url 'webapp:checkout' %}" method="POST">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="session_id"
+                                                       value="{{ checkout_session.sessionId }}">
+                                                <button class="mt_btn_yellow mt_btn_yellow_position" type="submit">Order By</button>
+                                            </form>
+                                        {% else %}
+                                            <p>Ошибка создания чекаут-сессии</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/End store detail -->
+
+
+
+{% endblock %}

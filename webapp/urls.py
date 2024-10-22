@@ -14,6 +14,7 @@ urlpatterns = [
     path('backsplash/', backsplash, name='backsplash'),
     path('drywall/', drywall, name='drywall'),
     path('disposal/', disposal, name='disposal'),
+    path('cailing-fan/', cailing_fan, name='cailing-fan'),
     path('handyman/', handyman, name='handyman'),
     path('furniture-assembly/', furniture, name='furniture-assembly'),
     path('wallpaper/', wallpaper, name='wallpaper'),

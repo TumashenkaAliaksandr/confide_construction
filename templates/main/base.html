@@ -107,6 +107,7 @@
                             <ul>
                                 <li {% if request.resolver_match.url_name == 'backsplash' %}class="active"{% endif %}><a href="{% url 'webapp:backsplash' %}">Backsplash</a></li>
                                 <li {% if request.resolver_match.url_name == 'disposal' %}class="active"{% endif %}><a href="{% url 'webapp:disposal' %}">Disposal</a></li>
+                                <li {% if request.resolver_match.url_name == 'cailing_fan' %}class="active"{% endif %}><a href="{% url 'webapp:cailing-fan' %}">Cailing Fan</a></li>
                                 <li {% if request.resolver_match.url_name == 'drywall' %}class="active"{% endif %}><a href="{% url 'webapp:drywall'  %}">Drywall</a></li>
                                 <li {% if request.resolver_match.url_name == 'electricalworks' %}class="active"{% endif %}><a href="{% url 'webapp:electricalworks' %}">Electricalworks</a>
                                 <li {% if request.resolver_match.url_name == 'handyman' %}class="active"{% endif %}><a href="{% url 'webapp:handyman' %}">Handyman</a></li>
