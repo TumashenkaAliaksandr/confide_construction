@@ -147,6 +147,21 @@ def disposal(request):
     return render(request, 'webapp/services/disposal.html', context)
 
 
+def cailing_fan(request):
+    """Disposal Constract"""
+    cailing_obj = CeilingFan.objects.all()
+    cailing = CeilingFan.objects.get(pk=1)
+    main_serv = Services.objects.all()
+    news = BlogNews.objects.all()
+    assessment = Assessment.objects.all()
+
+    # Создаем чекаут-сессию
+    checkout_session = create_checkout_session(request)
+
+    context = locals()
+    return render(request, 'webapp/services/cailing_fan.html', context)
+
+
 def electricalworks(request):
     """Electricalworks Constract"""
     electr_obj = Electrical.objects.all()

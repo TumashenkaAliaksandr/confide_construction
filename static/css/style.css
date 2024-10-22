@@ -3726,44 +3726,9 @@ a.checkout-link {
         transition: all 0.5s ease;
         margin: 10px 0; /* Отступ для iPhone 5 */
         /*display: none;*/
-        width: 45%;
+        width: auto;
     }
 }
-
-@media (min-width: 569px) and (max-width: 931px) {
-    .mt_btn_yellow {
-        padding: 10px 20px;
-        background: #ffac00;
-        font-size: 15px;
-        border-radius: 5px;
-        display: inline-block;
-        color: #ffffff;
-        text-decoration: none;
-        border: 2px solid #ffac00;
-        transition: all 0.5s ease;
-        margin: 35px 0; /* Отступ для устройств между 569px и 931px */
-    }
-}
-
-
-@media (min-width: 932px) {
-    .mt_btn_yellow {
-        padding: 10px 20px;
-        background: #ffac00;
-        font-size: 15px;
-        border-radius: 5px;
-        display: inline-block;
-        color: #ffffff;
-        text-decoration: none;
-        border: 2px solid #ffac00;
-        transition: all 0.5s ease;
-        /*margin: 0px 0; !* Отступ для iPhone 11 Max и других больших экранов *!*/
-        /*padding-left: 3%;*/
-        /*padding-right: 3%;*/
-        width: 17%;
-    }
-}
-
 
 
 @media (max-width: 639px) {
