@@ -185,6 +185,47 @@ class DisposalPhoto(models.Model):
         verbose_name_plural = "Photos for Disposal"
 
 
+class TVMount(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Name')
+    description = models.TextField(default='Description', verbose_name='Description')
+    description_installations = models.TextField(default='Installation Instructions', verbose_name='Description of Installations')
+    description_all = models.TextField(default='Detailed Description', verbose_name='Description All')
+    additional_information = models.TextField(default='Additional Information', verbose_name='Additional Information')
+    solution = models.TextField(default='Solution', verbose_name='Solution')
+    advantages = models.TextField(verbose_name='Benefits')
+    brand = models.CharField(max_length=350, default='Brand', verbose_name='Brand')
+    color = models.CharField(max_length=350, default='Color', verbose_name='Color')
+    material_up = models.CharField(max_length=350, default='Material Up', verbose_name='Material Up')
+    power_source = models.CharField(max_length=350, default='Power Source', verbose_name='Power Source')
+    material = models.CharField(max_length=350, verbose_name='Material')
+    photo = models.ImageField(upload_to='tv_mount_photos/', verbose_name='Photo', default=0)
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Price', default=0.00)
+    discount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Discount', default=0.00)
+
+    # Создание поля photos для связи с моделью CeilingFanPhoto.
+    photos = models.ManyToManyField('TvMountPhoto', related_name='TvMount', blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Tv Mount"
+        verbose_name_plural = "Tv Mount"
+
+
+# Определение модели TvMountPhoto, которая представляет фотографии для потолочного вентилятора.
+class TvMountPhoto(models.Model):
+    # Поле для загрузки фотографий, указан путь для сохранения в папке tv mount photos.
+    photo = models.ImageField(upload_to='tv_mount_photos/', verbose_name='Photo', default=0)
+
+    def __str__(self):
+        return str(self.photo)
+
+    class Meta:
+        verbose_name = "Photo for Tv Mount"
+        verbose_name_plural = "Photos for Tv Mounts"
+
+
 class CeilingFan(models.Model):
     name = models.CharField(max_length=100, verbose_name='Name')
     description = models.TextField(default='Description', verbose_name='Description')
