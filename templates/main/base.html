@@ -103,14 +103,20 @@
                 <div id="navbar" class="navbar-nav-wrapper pull-right">
                     <ul class="nav navbar-nav navbar-right" id="responsive-menu">
                         <li {% if request.resolver_match.url_name == 'home' %}class="active"{% endif %}><a href="{% url 'webapp:home' %}">Home</a></li>
-                        <li {% if request.resolver_match.url_name in "['services', 'backsplash', 'disposal', 'drywall', 'electricalworks', 'handyman', 'painting', 'soundproofing', 'wallpaper', furniture-assembly]" %}class="active"{% endif %}><a href="{% url 'webapp:services' %}">Services <i class="fa fa-angle-down"></i></a>
+                        <li {% if request.resolver_match.url_name in "['services', 'backsplash', 'disposal', 'drywall', 'electricalworks', 'handyman', 'painting', 'soundproofing', 'wallpaper', furniture-assembly, 'cailing-fan', 'tv-mount']" %}class="active"{% endif %}><a href="{% url 'webapp:services' %}">Services <i class="fa fa-angle-down"></i></a>
                             <ul>
                                 <li {% if request.resolver_match.url_name == 'backsplash' %}class="active"{% endif %}><a href="{% url 'webapp:backsplash' %}">Backsplash</a></li>
                                 <li {% if request.resolver_match.url_name == 'disposal' %}class="active"{% endif %}><a href="{% url 'webapp:disposal' %}">Disposal</a></li>
-                                <li {% if request.resolver_match.url_name == 'cailing_fan' %}class="active"{% endif %}><a href="{% url 'webapp:cailing-fan' %}">Cailing Fan</a></li>
+                                <li {% if request.resolver_match.url_name == 'cailing-fan' %}class="active"{% endif %}><a href="{% url 'webapp:cailing-fan' %}">Cailing Fan</a></li>
                                 <li {% if request.resolver_match.url_name == 'drywall' %}class="active"{% endif %}><a href="{% url 'webapp:drywall'  %}">Drywall</a></li>
                                 <li {% if request.resolver_match.url_name == 'electricalworks' %}class="active"{% endif %}><a href="{% url 'webapp:electricalworks' %}">Electricalworks</a>
-                                <li {% if request.resolver_match.url_name == 'handyman' %}class="active"{% endif %}><a href="{% url 'webapp:handyman' %}">Handyman</a></li>
+                                <li {% if request.resolver_match.url_name in "['handyman', 'tv-mount']" %}class="active"{% endif %}><a href="{% url 'webapp:handyman' %}">Handyman</a>
+                                    <ul>
+                                        <li {% if request.resolver_match.url_name == 'tv-mount' %}class="active"{% endif %}>
+                                            <a href="{% url 'webapp:tv-mount' %}">TV Mount</a>
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li {% if request.resolver_match.url_name == 'painting' %}class="active"{% endif %}><a href="{% url 'webapp:painting' %}">Painting</a></li>
                                 <li {% if request.resolver_match.url_name == 'soundproofing' %}class="active"{% endif %}><a href="{% url 'webapp:soundproofing' %}">Soundproofing</a></li>
                                 <li {% if request.resolver_match.url_name == 'wallpaper' %}class="active"{% endif %}><a href="{% url 'webapp:wallpaper' %}">Wallpaper</a></li>

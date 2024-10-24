@@ -327,3 +327,26 @@ class ReviewAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Review, ReviewAdmin)
+
+
+class TvMountPhotoInline(admin.TabularInline):
+    model = TVMount.photos.through  # Используем промежуточную модель для ManyToMany
+    extra = 6  # Позволяет добавить 6 фотографий
+
+
+class TVMountAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'description_installations',
+                    'solution', 'advantages', 'brand',
+                    'color', 'material_up', 'power_source',
+                    'material', 'price', 'discount', 'display_photos')
+
+    def display_photos(self, obj):
+        return ", ".join([str(photo.photo) for photo in obj.photos.all()])
+
+    display_photos.short_description = 'Photos'
+
+    inlines = [TvMountPhotoInline]
+
+# Регистрация модели и административного интерфейса
+admin.site.register(TVMount, TVMountAdmin)
+admin.site.register(TvMountPhoto)

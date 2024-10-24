@@ -184,6 +184,22 @@ def handyman(request):
     return render(request, 'webapp/services/handyman.html', context=context)
 
 
+def tv_mount(request):
+    """Tv Mount Constract"""
+
+    tv_obj = TVMount.objects.all()
+    mount = TVMount.objects.get(pk=1)
+    main_serv = Services.objects.all()
+    news = BlogNews.objects.all()
+    assessment = Assessment.objects.all()
+
+    # Создаем чекаут-сессию
+    checkout_session = create_checkout_session(request)
+
+    context = locals()
+    return render(request, 'webapp/services/tv_mount.html', context)
+
+
 def wallpaper(request):
     """Wallpaper Constract"""
 
