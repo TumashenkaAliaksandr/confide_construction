@@ -147,7 +147,7 @@ def disposal(request):
     return render(request, 'webapp/services/disposal.html', context)
 
 
-def cailing_fan(request):
+def ceiling_fan(request):
     """Disposal Constract"""
     cailing_obj = CeilingFan.objects.all()
     cailing = CeilingFan.objects.get(pk=1)

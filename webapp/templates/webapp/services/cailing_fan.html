@@ -8,7 +8,7 @@
     <!-- pagebanner -->
     <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'images/cailing_fun.jpg' %}{% endif %}');">
         <div class="page-title">
-            <h2 class="white text-center">Cailing Fan</h2>
+            <h2 class="white text-center">Ceiling Fan</h2>
         </div>
     </section>
     <!-- End Pagebanner -->
@@ -19,7 +19,7 @@
             <ul class="breadcrumb">
                 <li><a href="{% url 'webapp:home' %}"><i class="fa fa-home"></i></a></li>
                 <li><a href="{% url 'webapp:services' %}">Services</a></li>
-                <li class="active">Cailing Fan</li>
+                <li class="active">Ceiling Fan</li>
             </ul>
         </div>
     </div>
@@ -46,7 +46,7 @@
                     <div class="col-sm-6">
                         {% for main_cailing_fan in cailing_obj %}
                             <div class="single-product-summary">
-                                <div class="entry-summary cailing-fan">
+                                <div class="entry-summary">
                                     <h2 class="single-product-title">{{ main_cailing_fan.name }}</h2>
                                     <div class="rt-product-meta-wrapper">
                                     <span class="price">
