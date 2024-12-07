@@ -32,7 +32,7 @@
                 <div class="col-xs-12 mar-bottom-30">
                     <div class="contact-info text-center slide-in">
                         <ul>
-                            <a href="{% url 'webapp:disposal' %}"><h2>We INSTALL and SELL waste disposal units buy NOW
+                            <a href="http://127.0.0.1:8000/services/disposal"><h2>We INSTALL and SELL waste disposal units buy NOW
                                 <i class="fa fa-hand-o-down"></i></h2></a>
                         </ul>
                     </div>
@@ -40,7 +40,7 @@
 
                 <div class="col-sm-6 col-xs-12">
                     <div class="main_disposal">
-                        <a href="{% url 'webapp:disposal' %}"><img
+                        <a href="http://127.0.0.1:8000/services/disposal"><img
                                 src="{% static 'images/cc_disposals.jpg' %}"
                                 class="img-fixed-size-for-disposal-main">
                             <button class="mt_btn_yellow" type="submit">Buy Now or order the Installation</button>
@@ -52,31 +52,38 @@
     </section>
     <!--* End Contact*-->
 
-    <!--* Services*-->
+    <!--* Products*-->
     <section id="mt_services">
         <div class="container wow slideInLeft">
             <div class="row">
                 <div class="col-xs-12">
-                    <!-- section title -->
+                    <!-- Section title -->
                     <div class="section_heading">
                         <h2 class="section_title">
-                            <span>OUR SERVICES</span>
+                            <span>OUR PRODUCTS</span>
                         </h2>
-                        <p class="heading_txt">We offer a range of services in the field of repair and construction.</p>
+                        <p class="heading_txt">We offer a range of products in the field of repair and construction.</p>
                     </div>
                 </div>
             </div>
             <div class="row">
-                {% for main_ser in serv_serv|slice:":8" %}
+                {% for main_product in product|slice:":8" %}
                     <div class="col-md-3 col-sm-6 col-xs-6">
-                        <div class="box mar-bottom-30 text-center">
-                            <img src="{{ main_ser.image.url }}" class="img-fixed-size">
+                        <div class="box mar-bottom-30 text-center text_products">
+                            {% if main_product.image %}
+                                <img src="{{ main_product.image.url }}" class="img-fixed-size" alt="{{ main_product.name }}">
+                            {% else %}
+                                <img src="{% static 'images/cc_hacker.jpg' %}" class="img-fixed-size"
+                                     alt="Default product image">
+                            {% endif %}
                             <div class="box-content">
-                                <h3><a href="{{ main_ser.link }}">{{ main_ser.name }}</a></h3>
+                                <h3><a href="{% url 'webapp:services_with_slug' main_product.slug %}">{{ main_product.name }}</a></h3>
+                                <span class="price">${{ main_product.price }}</span>
                             </div>
                         </div>
                     </div>
-                    {% if forloop.counter|divisibleby:4 %} {# Закрываем текущий ряд после каждой четвертой модели #}
+
+                    {% if forloop.counter|divisibleby:4 and not forloop.last %}
                         </div>
                         <div class="row">
                     {% endif %}
@@ -84,7 +91,8 @@
                 </div>
         </div>
     </section>
-    <!--* End Services*-->
+    <!--* End Products*-->
+
 
 
     <!--* Services*-->

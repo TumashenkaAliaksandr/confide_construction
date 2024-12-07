@@ -19,8 +19,8 @@
         <div class="container">
             <ul class="breadcrumb">
                 <li><a href="{% url 'webapp:home' %}"><i class="fa fa-home"></i></a></li>
-                <li><a href="{% url 'webapp:services' %}">Services</a></li>
-                <li class="active">Disposal</li>
+                <li><a href="{% url 'webapp:services' %}">Data Validation</a></li>
+                <li class="active">{{ checkout_details.name_check }}</li>
             </ul>
         </div>
     </div>
@@ -40,20 +40,22 @@
                     </div>
                     <div class="row">
                         {% csrf_token %}
+                        <input type="hidden" name="product_object_id" value="{{ product_id }}">
+                        <!-- Передаем ID продукта -->
                         <div class="order-list">
                             <table class="shop_table rt-checkout-review-order-table">
+                                <tr class="order-total">
+                                    <th>Product Name:</th>
+                                    <td><strong><span
+                                            class="rt-Price-amount">{{ checkout_details.name_check }}</span></strong>
+                                    </td>
+                                </tr>
                                 <tr class="order-total">
                                     <th>Name:</th>
                                     <td><strong><span
                                             class="rt-Price-amount">{{ checkout_details.last_name_check }}</span></strong>
                                     </td>
                                 </tr>
-                                {#                                <tr class="order-total">#}
-                                {#                                    <th>First Name:</th>#}
-                                {#                                    <td><strong><span#}
-                                {#                                            class="rt-Price-amount">{{ checkout_details.first_name_check }}</span></strong>#}
-                                {#                                    </td>#}
-                                {#                                </tr>#}
                                 <tr class="order-total">
                                     <th>Town/City:</th>
                                     <td><strong><span
@@ -81,13 +83,19 @@
                                 <tr class="order-total">
                                     <th>Order Notes:</th>
                                     <td><strong><span
+                                            class="rt-Price-amount">{{ checkout_details.email }}</span></strong>
+                                    </td>
+                                </tr>
+                                <tr class="order-total">
+                                    <th>Order Notes:</th>
+                                    <td><strong><span
                                             class="rt-Price-amount">{{ checkout_details.order_notes }}</span></strong>
                                     </td>
                                 </tr>
                                 <tr class="order-total">
                                     <th>Price:</th>
                                     <td><strong><span
-                                            class="rt-Price-amount">{{ discount|floatformat:0 }} $</span></strong>
+                                            class="rt-Price-amount">{{ checkout_details.discount_check|floatformat:0 }} $</span></strong>
                                     </td>
                                 </tr>
                             </table>
@@ -101,12 +109,14 @@
                                         policy</a>.
                                 </p>
                             </div>
+                            <input type="hidden" name="session_id" value="{{ checkout_session.sessionId }}">
                             <button class="btn mt_btn_yellow" id="submitBtn">Pay with Stripe ></button>
                         </div>
 
-                        <button onclick="window.location.href='{% url 'webapp:checkout' %}'"
-                                class="back-to-checkout-btn btn mt_btn_yellow_checkout"> < Back
-                            to Checkout
+{#                        <button type="button" onclick="window.location.href='{% url 'webapp:checkout' %}?product_id={{ product.id }}'" class="back-to-checkout-btn btn mt_btn_yellow_checkout"> < Back#}
+{#                            to Checkout#}
+{#                        </button>#}
+                        <button type="button" onclick="window.location.href='{% url 'webapp:services' %}'" class="back-to-checkout-btn btn mt_btn_yellow_checkout"> Cancel Payment
                         </button>
                     </div>
                 </div>
@@ -115,62 +125,38 @@
     </section>
     <!-- End checkout -->
 
-
-    <!-- store -->
-    <section id="our_store" class="our_store related_store">
+    <!--*Newsletter*-->
+    <div id="newsletter">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12">
-                    <!-- section title -->
-                    <div class="section_heading">
-                        <h2 class="section_title">
-                            <span>Our Services</span>
-                        </h2>
-                        <p class="heading_txt">We offer a range of services in the field of repair and construction.</p>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="news-content">
+                        <img src="{% static 'images/cc_favicon8.png' %}" class="img-fixed-size-for-mailform"
+                             alt="Awesome Logo">
+                        <h3 id="consultation-title" class="slide-in">ORDER FREE CONSULTATION</h3>
+                        <!-- Добавлен класс slide-in -->
+                        <p class="beige"><b>WRITE US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE YOUR
+                            LIFESTYLE DREAMS.</b></p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="mailpoet_form">
+                        <form target="_self" method="post" action="{% url 'webapp:contacts' %}" novalidate="">
+                            {% csrf_token %}
+                            <input type="text" name="name" placeholder="Your Name">
+                            <input type="email" class="mailpoet_text" name="email" title="Email"
+                                   placeholder="Please specify your email address.">
+                            <input type="text" name="description" placeholder="Description Service">
+                            <div class="button button-mail">
+                                <input type="submit" class="button mailpoet_submit" value="Free Quote">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-
-            <div class="row slider-shop">
-                {% for main_sl_cart_prod in main_serv %}
-                    <div class="col-md-3 col-xs-12">
-                        <div class="rt-product-wrapper">
-                            <div class="product-thumbnail-wrapper">
-                                <div class="product-image">
-                                    <img src="{{ main_sl_cart_prod.image.url }}" class="img-fixed-size"
-                                         alt="product-list">
-                                </div>
-                                <div class="product-label"><span class="onsale">Sale</span></div>
-                            </div>
-                            <div class="rt-product-meta-wrapper">
-                                <h3 class="product_title">
-                                    <a href="{{ main_sl_cart_prod.link }}">{{ main_sl_cart_prod.name }}</a>
-                                </h3>
-                                <div class="rt-cartprice-wrapper">
-                                <span class="price mar-bottom-20">
-{#                                    <del>#}
-{#                                        <span class="rt-price-amount">#}
-{#                                            <span >$</span>#}
-{#                                        </span>#}
-{#                                    </del>#}
-                                    <ins>
-                                        <span class="rrt-price-amount">
-                                            <span>$</span>{{ main_sl_cart_prod.price }}
-                                        </span>
-                                    </ins>
-                                </span>
-                                    <div class="button">
-                                        <a href="{{ main_sl_cart_prod.link }}" id="submitBtn" class="mt_btn_yellow">Go to service</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
         </div>
-    </section>
-    <!-- End store -->
+    </div>
+    <!--*End Newsletter*-->
 
 
 {% endblock %}
