@@ -1051,6 +1051,10 @@ section#choose_us.about_choose_us {
     object-fit: cover; /* Этот свойство сохраняет соотношение сторон и обрезает изображение по нужным размерам */
 }
 
+.text_products h3 {
+  font-size: 17px;
+}
+
 @media screen and (max-width: 767px) {
     .img-fixed-size {
         width: 100%; /* Установите желаемую ширину */
@@ -2445,7 +2449,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
   position: absolute;
   top: 0;
   left: 0;
-  border-right: 5px solid #0b5ad7;
+  border-right: 5px solid #ffb620;
   opacity: 0.9;
 }
 
@@ -2531,7 +2535,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
 
 #newsletter input[type="submit"] {
   border: none;
-  background: #0b5ad7;
+  background: #ffb620;
   position: absolute;
   /*top: 0px;*/
   right: 0px;
@@ -2649,7 +2653,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
         1.5px -1.5px 0 #444444,  /* Правый верхний тень */
         -1.5px 1.5px 0 #444444;  /* Левый нижний тень */
     -webkit-text-stroke-width: 2px; /* Ширина обводки текста */
-    color: #005bea; /* Цвет текста */
+    color: #ffb620; /* Цвет текста */
     letter-spacing: 2.5px; /* Расстояние между буквами */
     font-weight: 400; /* Средняя жирность шрифта */
 }

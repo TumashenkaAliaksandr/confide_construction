@@ -34,23 +34,103 @@
                         <h2 class="section_title">
                             <span>Order</span>
                         </h2>
-                        <p class="heading_txt"><b>Review data, proceed to payment in the STRIPE if accurate.</b></p>
+                        <p class="heading_txt"><b>Review data, proceed to payment in STRIPE if accurate.</b></p>
                     </div>
-                    <form method="get" action="{% url 'webapp:process_payment' %}">
+{#                    <form method="POST" action="{% url 'webapp:process_payment' %}">#}
+{#                        {% csrf_token %}#}
+{#                        <input type="hidden" name="product_object_id" value="{{ product.id }}">#}
+{#                        <div class="order-list">#}
+{#                            <table class="shop_table rt-checkout-review-order-table">#}
+{#                                <tr class="order-total">#}
+{#                                    <th>Product Name:</th>#}
+{#                                    <td><strong><span#}
+{#                                            class="rt-Price-amount">{{ checkout_details.name_check }}</span></strong>#}
+{#                                    </td>#}
+{#                                </tr>#}
+{#                                <tr class="order-total">#}
+{#                                    <th>Last Name:</th>#}
+{#                                    <td><strong><span#}
+{#                                            class="rt-Price-amount">{{ checkout_details.last_name_check }}</span></strong>#}
+{#                                    </td>#}
+{#                                </tr>#}
+{#                                <tr class="order-total">#}
+{#                                    <th>Town/City:</th>#}
+{#                                    <td><strong><span#}
+{#                                            class="rt-Price-amount">{{ checkout_details.town_city }}</span></strong>#}
+{#                                    </td>#}
+{#                                </tr>#}
+{#                                <tr class="order-total">#}
+{#                                    <th>Street Address:</th>#}
+{#                                    <td><strong><span#}
+{#                                            class="rt-Price-amount">{{ checkout_details.street_address }}</span></strong>#}
+{#                                    </td>#}
+{#                                </tr>#}
+{#                                <tr class="order-total">#}
+{#                                    <th>Date:</th>#}
+{#                                    <td><strong><span#}
+{#                                            class="rt-Price-amount">{{ checkout_details.date }}</span></strong></td>#}
+{#                                </tr>#}
+{#                                <tr class="order-total">#}
+{#                                    <th>Phone Number:</th>#}
+{#                                    <td><strong><span class="rt-Price-amount">{{ checkout_details.phone_number }}</span></strong>#}
+{#                                    </td>#}
+{#                                </tr>#}
+{#                                <tr class="order-total">#}
+{#                                    <th>Order Notes:</th>#}
+{#                                    <td><strong><span class="rt-Price-amount">{{ checkout_details.order_notes }}</span></strong>#}
+{#                                    </td>#}
+{#                                </tr>#}
+{#                                <tr class="order-total">#}
+{#                                    <th>Price:</th>#}
+{#                                    <td><strong><span#}
+{#                                            class="rt-Price-amount">${{ checkout_details.discount_check|floatformat:2 }}</span></strong>#}
+{#                                    </td> <!-- Форматирование цены -->#}
+{#                                </tr>#}
+{#                            </table>#}
+{##}
+{#                            <div class="checkout-place-order" style="text-align: right;">#}
+{#                                <div style="text-align: center; padding: 15px;">#}
+{#                                    <p>Your personal data will be used to process your order, support your experience#}
+{#                                        throughout this website, and for other purposes described in our <a href="#">privacy#}
+{#                                            policy</a>.</p>#}
+{#                                </div>#}
+{#                                <!-- Кнопка отправки формы -->#}
+{#                                <button type="submit" class="btn mt_btn_yellow">Pay with Stripe</button>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </form>#}
+{##}
+{#                    <!-- Кнопка возврата на страницу оформления заказа -->#}
+{#                    <button onclick="window.location.href='{% url 'webapp:checkout' %}'"#}
+{#                            class="back-to-checkout-btn btn mt_btn_yellow">Back to Checkout#}
+{#                    </button>#}
+
+                    <form method="POST" action="{% url 'payments' %}?product_id={{ product.id }}">
                         {% csrf_token %}
+                        <h2>Payment Details</h2>
+                        <p>Product Name: {{ product.name }}</p>
+                        <p>Price: ${{ checkout_details.price_check|floatformat:2 }}</p>
+                        <p>Discount Price: ${{ checkout_details.discount_check|floatformat:2 }}</p>
+
+                        <!-- Остальные детали заказа -->
+
+                        <input type="hidden" name="product_object_id" value="{{ product.id }}">
+                        <!-- Передаем ID продукта -->
+
                         <div class="order-list">
                             <table class="shop_table rt-checkout-review-order-table">
                                 <tr class="order-total">
-                                    <th>Last Name:</th>
+                                    <th>Product Name:</th>
                                     <td><strong><span
-                                            class="rt-Price-amount">{{ checkout_details.last_name }}</span></strong>
+                                            class="rt-Price-amount">{{ checkout_details.name_check }}</span></strong>
                                     </td>
                                 </tr>
-{#                                <tr class="order-total">#}
-{#                                    <th>First Name:</th>#}
-{#                                    <td><strong><span class="rt-Price-amount">{{ checkout_details.first_name }}</span></strong>#}
-{#                                    </td>#}
-{#                                </tr>#}
+                                <tr class="order-total">
+                                    <th>Last Name:</th>
+                                    <td><strong><span
+                                            class="rt-Price-amount">{{ checkout_details.last_name_check }}</span></strong>
+                                    </td>
+                                </tr>
                                 <tr class="order-total">
                                     <th>Town/City:</th>
                                     <td><strong><span
@@ -70,8 +150,7 @@
                                 </tr>
                                 <tr class="order-total">
                                     <th>Phone Number:</th>
-                                    <td><strong><span
-                                            class="rt-Price-amount">{{ checkout_details.phone_number }}</span></strong>
+                                    <td><strong><span class="rt-Price-amount">{{ checkout_details.phone_number }}</span></strong>
                                     </td>
                                 </tr>
                                 <tr class="order-total">
@@ -82,31 +161,36 @@
                                 <tr class="order-total">
                                     <th>Price:</th>
                                     <td><strong><span
-                                            class="rt-Price-amount">{{ checkout_details.price }}</span></strong></td>
+                                            class="rt-Price-amount">${{ checkout_details.discount_check|floatformat:2 }}</span></strong>
+                                    </td> <!-- Форматирование цены -->
                                 </tr>
                             </table>
+
                             <div class="checkout-place-order" style="text-align: right;">
                                 <div style="text-align: center; padding: 15px;">
                                     <p>Your personal data will be used to process your order, support your experience
-                                        throughout
-                                        this website, and for other purposes described in our <a href="#">privacy
-                                            policy</a>.
-                                    </p>
+                                        throughout this website, and for other purposes described in our <a href="#">privacy
+                                            policy</a>.</p>
                                 </div>
+                                <!-- Кнопка отправки формы -->
                                 <button type="submit" class="btn mt_btn_yellow">Pay with Stripe</button>
                             </div>
                         </div>
                     </form>
 
-
+                    <!-- Кнопка возврата на страницу оформления заказа -->
                     <button onclick="window.location.href='{% url 'webapp:checkout' %}'"
-                            class="back-to-checkout-btn btn mt_btn_yellow">Back
-                        to Checkout
+                            class="back-to-checkout-btn btn mt_btn_yellow">Back to Checkout
                     </button>
+
                 </div>
             </div>
         </div>
     </section>
     <!-- End checkout -->
+
+
+
+
 
 {% endblock %}

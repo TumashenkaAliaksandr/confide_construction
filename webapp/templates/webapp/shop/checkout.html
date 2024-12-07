@@ -22,8 +22,6 @@
             </ul>
         </div>
     </div><!-- End breadcrumb -->
-    {#                <div class="checkout-coupon mar-bottom-30">Have a coupon? <a href="#" class="showcoupon">Click here to#}
-    {#                    enter your code</a></div>#}
 
     <!-- checkout -->
     <section id="checkout-main" class="checkout-main section-padding">
@@ -32,8 +30,13 @@
                 <div class="checkout-info">
                     <h3 class="mar-bottom-20">Billing details</h3>
                     <h4 class="mar-bottom-20">Fill out the form to pay for the service</h4>
-                    <form id="checkout-form" method="post" action="{% url 'payments' %}">
+                    <form id="checkout-form" method="post" action="{% url 'payments' %}?product_id={{ product.id }}">
                         {% csrf_token %}
+                        <input type="hidden" name="product_object_id" value="{{ product.id }}">
+                        <input type="hidden" name="name_check" value="{{ product.name }}">
+                        <input type="hidden" name="price_check" value="{{ product.price }}">
+                        <input type="hidden" name="discount_check" value="{{ product.discount }}">
+
                         <div class="row">
                             <div class="col-sm-6 col-xs-12">
                                 <div class="checkout-billing">
@@ -51,8 +54,8 @@
                                             </div>
                                             <div class="slider-container">
                                                 <div class="form-group">
-                                                    <label>Discount: </label>
-                                                    <span class="form-control-static"><br>{{ discount|floatformat:0 }}$</span>
+                                                    <label>Name of the service and price: </label>
+                                                    <span class="form-control-static"><br>{{ product.name }} {{ product.discount|floatformat:0 }}$</span>
                                                     <!-- Отображение дисконта -->
                                                 </div>
                                             </div>
@@ -94,21 +97,16 @@
                                                       placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                                         </div>
                                     </div>
-                                    <div class="col-xs-12">
-                                        <div class="slider-mobile">
-                                            <div class="form-group">
-                                                <label>Discount: </label>
-                                                <span class="form-control-static"><br>{{ discount|floatformat:0 }}$</span>
-                                                <!-- Отображение дисконта -->
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn mt_btn_yellow_three" onclick="submitForm()">PLACE ORDER
-                            </button>
+                            <input type="hidden" name="session_id" value="{{ checkout_session.sessionId }}">
+
+                            <!-- Измените тип кнопки на submit -->
+                            <button type="button" id="placeOrderBtn" onclick="goToCheck({{ product.id }})" class="btn mt_btn_yellow_three">GO TO CHECK</button>
+
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -116,9 +114,13 @@
     <!-- End checkout -->
 
     <script>
-        function submitForm() {
+
+        function goToCheck(productId) {
+            const url = `/payments/?product_id=${productId}`;
             document.getElementById('checkout-form').submit();
+            window.location.href = url;
         }
+
     </script>
 
 
@@ -155,11 +157,6 @@
                                 </h3>
                                 <div class="rt-cartprice-wrapper">
                                 <span class="price mar-bottom-20">
-{#                                    <del>#}
-{#                                        <span class="rt-price-amount">#}
-{#                                            <span >$</span>#}
-{#                                        </span>#}
-{#                                    </del>#}
                                     <ins>
                                         <span class="rrt-price-amount">
                                             <span>$</span>{{ main_sl_cart_prod.price }}

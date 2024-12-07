@@ -1,6 +1,9 @@
 from decimal import Decimal
 from django.contrib.auth.models import User
 from django.db import models
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
+from django.urls import reverse
 from django.utils import timezone
 
 
@@ -87,24 +90,88 @@ class Callback(models.Model):
         return self.name
 
 
-class CheckoutDetails(models.Model):
-    first_name_check = models.CharField(max_length=100)
-    last_name_check = models.CharField(max_length=100)
-    street_address = models.CharField(max_length=255)
-    town_city = models.CharField(max_length=100)
-    phone_number = models.CharField(max_length=20)
-    email = models.EmailField()
-    order_notes = models.TextField()
-    date = models.DateField()  # Добавляем поле с датой и временем
-    price_check = models.CharField(max_length=100, null=True)  # Добавляем поле с ценой
+class Product(models.Model):
+    """Продукты в каталоге"""
+    name = models.CharField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, db_index=True, unique=True)
+    image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
+    description = models.TextField(blank=True)  # Основное описание продукта
+    additional_description = models.TextField(blank=True)  # Дополнительное описание продукта
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    discount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, null=True)  # Поле для скидки
+
+    # Новые поля
+    brand = models.CharField(max_length=100, blank=True)  # Бренд продукта
+    capacity = models.CharField(max_length=100, blank=True)  # Вместимость
+    color = models.CharField(max_length=50, blank=True)  # Цвет
+    material_up = models.CharField(max_length=100, blank=True)  # Верхний материал
+    power_source = models.CharField(max_length=100, blank=True)  # Источник питания
+    material = models.CharField(max_length=100, blank=True)  # Материал
+
+    # Новые поля для флагов
+    flag_1 = models.BooleanField(default=False)
+    flag_2 = models.BooleanField(default=False)
+    flag_3 = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ('name',)
+        verbose_name = 'Продукт'
+        verbose_name_plural = 'Продукты'
 
     def __str__(self):
-        return f"{self.first_name_check} {self.last_name_check}"
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('product_detail', args=[self.id, self.slug])
+
+
+class CheckoutDetails(models.Model):
+    last_name_check = models.CharField(max_length=100, default='')
+    street_address = models.CharField(max_length=255, default='')
+    town_city = models.CharField(max_length=100, default='')
+    phone_number = models.CharField(max_length=20, default='')
+    email = models.EmailField()
+    order_notes = models.TextField()
+    date = models.DateField()  # Добавляем поле с датой
+    price_check = models.DecimalField(max_digits=10, decimal_places=2, null=True)  # Используйте DecimalField для цены
+    discount_check = models.DecimalField(max_digits=10, decimal_places=2, null=True)  # Поле для скидки
+    name_check = models.CharField(max_length=255, default='')  # Поле для имени продукта
+
+    # Поля для GenericForeignKey
+    product_content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True)
+    product_object_id = models.PositiveIntegerField(null=True)
+    product = GenericForeignKey('product_content_type', 'product_object_id')
+
+    def __str__(self):
+        return f"{self.last_name_check}"
 
     class Meta:
         verbose_name = "Checkout Details"
         verbose_name_plural = "Checkout Details"
 
+
+# class CheckoutDetails(models.Model):
+#     first_name_check = models.CharField(max_length=100)
+#     last_name_check = models.CharField(max_length=100)
+#     street_address = models.CharField(max_length=255)
+#     town_city = models.CharField(max_length=100)
+#     phone_number = models.CharField(max_length=20)
+#     email = models.EmailField()
+#     order_notes = models.TextField()
+#     date = models.DateField()  # Добавляем поле с датой и временем
+#     price_check = models.DecimalField(max_digits=10, decimal_places=2, null=True)  # Используйте DecimalField для цены
+#
+#     # Поля для GenericForeignKey
+#     product_content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+#     product_object_id = models.PositiveIntegerField()
+#     product = GenericForeignKey('product_content_type', 'product_object_id')
+#
+#     def __str__(self):
+#         return f"{self.first_name_check} {self.last_name_check}"
+#
+#     class Meta:
+#         verbose_name = "Checkout Details"
+#         verbose_name_plural = "Checkout Details"
 
 
 class Profile(models.Model):
@@ -327,7 +394,6 @@ class DrywallService(models.Model):
         verbose_name_plural = "DrywallService"
 
 
-
 class Soundproofing(models.Model):
     name = models.CharField(max_length=100, verbose_name='Name')
     description = models.TextField(verbose_name='Description')
@@ -375,7 +441,6 @@ class SoundproofingService(models.Model):
         verbose_name_plural = "SoundproofingService"
 
 
-
 class Wallpaper(models.Model):
     name = models.CharField(max_length=100, verbose_name='Name')
     description = models.TextField(verbose_name='Description')
@@ -421,7 +486,6 @@ class WallpaperService(models.Model):
     class Meta:
         verbose_name = "WallpaperService"
         verbose_name_plural = "WallpaperService"
-
 
 
 class Backsplash(models.Model):
@@ -730,3 +794,30 @@ class Advertisement(models.Model):
     class Meta:
         verbose_name = "Advertisement"
         verbose_name_plural = "Advertisement"
+
+
+# class CheckoutSession(models.Model):
+#     product = models.ForeignKey('Product', on_delete=models.CASCADE)  # Связь с продуктом
+#     session_id = models.CharField(max_length=255)  # ID сессии Stripe
+#     created_at = models.DateTimeField(auto_now_add=True)  # Время создания сессии
+#
+#     def __str__(self):
+#         return f"CheckoutSession for {self.product.name} - {self.session_id}"
+
+
+class CheckoutSession(models.Model):
+    product = models.ForeignKey('Product', on_delete=models.CASCADE)  # Связь с продуктом
+    session_id = models.CharField(max_length=255, unique=True)  # Уникальный ID сессии Stripe
+    user_email = models.EmailField(max_length=255, null=True)  # Электронная почта пользователя
+    last_name_check = models.CharField(max_length=100, null=True)  # Фамилия пользователя
+    street_address = models.CharField(max_length=255, null=True)  # Улица и номер дома
+    town_city = models.CharField(max_length=100, null=True)  # Город
+    phone_number = models.CharField(max_length=15, null=True)  # Номер телефона
+    order_notes = models.TextField(blank=True)  # Примечания к заказу
+    date = models.DateField(default=timezone.now)  # Дата заказа (с значением по умолчанию)
+    price_check = models.DecimalField(max_digits=10, decimal_places=2, null=True)  # Цена продукта
+    discount_check = models.DecimalField(max_digits=10, decimal_places=2, null=True)  # Скидка на продукт
+    created_at = models.DateTimeField(auto_now_add=True)  # Время создания сессии
+
+    def __str__(self):
+        return f"CheckoutSession for {self.product.name} - {self.session_id}"

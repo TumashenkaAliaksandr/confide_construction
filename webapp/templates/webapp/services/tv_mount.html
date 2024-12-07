@@ -67,7 +67,7 @@
                                             <br></h4>
                                     </div>
                                     <div class="product-details_short-description mar-top-30">
-                                        <h6>The Main Advantages of Using a Ceiling Fan in Your Home:</h6>
+                                        <h6>{{ main_tv.additional_description }}</h6>
                                         <p>{{ main_tv.advantages }}</p>
                                     </div>
 
@@ -94,10 +94,12 @@
                                     <span class="tagged_as">Power Source: <a href="#" rel="tag">{{ main_tv.power_source }}</a></span>
 
                                         {% if checkout_session %}
-                                            <form action="{% url 'webapp:checkout' %}" method="POST">
+                                            <form action="{% url 'webapp:checkout' %}?product_id={{ main_tv.id }}" method="POST">
                                                 {% csrf_token %}
                                                 <input type="hidden" name="session_id"
                                                        value="{{ checkout_session.sessionId }}">
+                                                <input type="hidden" name="discount_check" value="{{ main_tv.discount }}">
+                                                <input type="hidden" name="name" value="{{ main_tv.discount }}">
                                                 <button class="mt_btn_yellow mt_btn_yellow_position" type="submit">Order By</button>
                                             </form>
                                         {% else %}

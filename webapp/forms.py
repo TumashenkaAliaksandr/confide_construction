@@ -12,22 +12,61 @@ class CallbackForm(forms.Form):
     phone = forms.CharField(max_length=20)
 
 
+# class CheckoutForm(forms.ModelForm):
+#     date = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date', 'lang': 'en-us'}))
+#
+#     # Валидатор для поля price_check
+#     price_check = forms.CharField(max_length=100, validators=[RegexValidator(
+#         r'^\d+(\.\d{1,2})?$', 'Введите корректное числовое значение'
+#     )])
+#
+#     # Поля из модели Disposal
+#     discount = forms.DecimalField(max_digits=10, decimal_places=2, required=False)
+#     price = forms.DecimalField(max_digits=10, decimal_places=2, required=False)
+#
+#     class Meta:
+#         model = CheckoutDetails
+#         fields = [
+#             # 'first_name_check',
+#             'last_name_check',
+#             'street_address',
+#             'town_city',
+#             'phone_number',
+#             'date',
+#             'email',
+#             'order_notes',
+#             'price_check',
+#             'discount',
+#             'price'
+#         ]
+#
+#     def __init__(self, *args, **kwargs):
+#         # Получаем объект Disposal, если он передан
+#         self.disposal = kwargs.pop('disposal', None)
+#         super().__init__(*args, **kwargs)
+#
+#         # Если объект Disposal передан, устанавливаем значения полей discount и price
+#         if self.disposal:
+#             self.fields['discount'].initial = self.disposal.discount
+#             self.fields['price'].initial = self.disposal.price
+
+
 class CheckoutForm(forms.ModelForm):
-    date = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date', 'lang': 'en-us'}))
+    date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'lang': 'en-us'}))
 
-    # Валидатор для поля price_check
-    price_check = forms.CharField(max_length=100, validators=[RegexValidator(
-        r'^\d+(\.\d{1,2})?$', 'Введите корректное числовое значение'
-    )])
+    discount_check = forms.DecimalField(widget=forms.HiddenInput(), required=False)
+    price_check = forms.DecimalField(widget=forms.HiddenInput(), required=False)
+    name_check = forms.CharField(widget=forms.HiddenInput(), required=False)
 
-    # Поля из модели Disposal
-    discount = forms.DecimalField(max_digits=10, decimal_places=2, required=False)
-    price = forms.DecimalField(max_digits=10, decimal_places=2, required=False)
+    product_content_type = forms.ModelChoiceField(
+        queryset=ContentType.objects.all(),
+        widget=forms.HiddenInput()
+    )
+    product_object_id = forms.IntegerField(widget=forms.HiddenInput())
 
     class Meta:
         model = CheckoutDetails
         fields = [
-            # 'first_name_check',
             'last_name_check',
             'street_address',
             'town_city',
@@ -35,20 +74,27 @@ class CheckoutForm(forms.ModelForm):
             'date',
             'email',
             'order_notes',
+            'discount_check',
             'price_check',
-            'discount',
-            'price'
+            'name_check',
+            'product_content_type',
+            'product_object_id',
         ]
 
     def __init__(self, *args, **kwargs):
-        # Получаем объект Disposal, если он передан
-        self.disposal = kwargs.pop('disposal', None)
+        product = kwargs.pop('product', None)
         super().__init__(*args, **kwargs)
 
-        # Если объект Disposal передан, устанавливаем значения полей discount и price
-        if self.disposal:
-            self.fields['discount'].initial = self.disposal.discount
-            self.fields['price'].initial = self.disposal.price
+        if product:
+            self.fields['discount_check'].initial = product.discount
+            self.fields['price_check'].initial = product.price
+            self.fields['name_check'].initial = product.name
+
+            # Отладочные сообщения для проверки значений
+            print(f"Initializing CheckoutForm with product: {product.name}")
+            print(f"Discount set to: {self.fields['discount_check'].initial}")
+            print(f"Price set to: {self.fields['price_check'].initial}")
+            print(f"Name set to: {self.fields['name_check'].initial}")
 
 
 class RegistrationForm(forms.ModelForm):
