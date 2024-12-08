@@ -141,7 +141,7 @@
             </div>
 
             <div class="row slider-shop">
-                {% for main_sl_cart_prod in main_serv %}
+                {% for main_sl_cart_prod in slider_product %}
                     <div class="col-md-3 col-xs-12">
                         <div class="rt-product-wrapper">
                             <div class="product-thumbnail-wrapper">
@@ -153,18 +153,18 @@
                             </div>
                             <div class="rt-product-meta-wrapper">
                                 <h3 class="product_title">
-                                    <a href="store-detail.html">{{ main_sl_cart_prod.name }}</a>
+                                    <a href="{% url 'webapp:services_with_slug' main_sl_cart_prod.slug %}">{{ main_sl_cart_prod.name }}</a>
                                 </h3>
                                 <div class="rt-cartprice-wrapper">
                                 <span class="price mar-bottom-20">
                                     <ins>
                                         <span class="rrt-price-amount">
-                                            <span>$</span>{{ main_sl_cart_prod.price }}
+                                            <span>$</span>{{ main_sl_cart_prod.discount }}
                                         </span>
                                     </ins>
                                 </span>
                                     <div class="button">
-                                        <a href="{{ main_sl_cart_prod.link }}" class="mt_btn_yellow">Go to service</a>
+                                        <a href="{% url 'webapp:services_with_slug' main_sl_cart_prod.slug %}" class="mt_btn_yellow">Go to service</a>
                                     </div>
                                 </div>
                             </div>

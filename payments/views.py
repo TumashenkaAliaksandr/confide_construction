@@ -78,10 +78,11 @@ class HomePageView(TemplateView):
         email = request.POST.get('email')
         date_check = request.POST.get('date')
         discount_price = request.POST.get('discount_check')
+        name_product = request.POST.get('name_check')
 
         print(
             f"83 string | Received data: {last_name}, {street_address}, {town_city}, {phone_number}, {email}, {description}, {date_check}, "
-            f"{discount_price}")
+            f"{discount_price} {name_product}")
 
         # Получаем ID продукта из формы
         product_id = request.POST.get('product_object_id')  # Получаем ID выбранного продукта
