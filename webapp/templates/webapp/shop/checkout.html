@@ -103,6 +103,7 @@
 
                             <!-- Измените тип кнопки на submit -->
                             <button type="button" id="placeOrderBtn" onclick="goToCheck({{ product.id }})" class="btn mt_btn_yellow_three">GO TO CHECK</button>
+{#                            <button type="submit" class="btn mt_btn_yellow_three">GO TO CHECK</button>#}
 
                         </div>
                     </form>
@@ -114,14 +115,29 @@
     <!-- End checkout -->
 
     <script>
-
         function goToCheck(productId) {
-            const url = `/payments/?product_id=${productId}`;
+            // Отправляем форму
             document.getElementById('checkout-form').submit();
-            window.location.href = url;
-        }
 
+            // Переходим на страницу через 100 мс (или другой интервал)
+            setTimeout(() => {
+                const url = `/payments/?product_id=${productId}`;
+                window.location.href = url;
+            }, 100); // Задержка в 100 миллисекунд
+        }
     </script>
+
+
+{##}
+{#    <script>#}
+{##}
+{#        function goToCheck(productId) {#}
+{#            const url = `/payments/?product_id=${productId}`;#}
+{#            document.getElementById('checkout-form').submit();#}
+{#            window.location.href = url;#}
+{#        }#}
+{##}
+{#    </script>#}
 
 
 
