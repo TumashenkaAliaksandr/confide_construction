@@ -413,10 +413,12 @@ def checkout(request):
     # Общие данные
     news = BlogNews.objects.all()
     main_serv = Services.objects.all()
+    partner = Recommended.objects.all()
+    slider_product = Product.objects.all()
 
     # Получаем ID продукта из GET-запроса
     product_id = request.GET.get('product_id')
-    print('product id:', product_id)
+    print('419 string | product id:', product_id)
     if not product_id:
         # Если нет ID продукта, перенаправляем на страницу ошибки
         return redirect('webapp:order_error')
@@ -424,6 +426,7 @@ def checkout(request):
     try:
         # Получаем продукт по ID
         product = Product.objects.get(id=product_id)
+        print('429 string | More product id:', product_id)
     except Product.DoesNotExist:
         # Если продукт не найден, перенаправляем на страницу ошибки
         return redirect('webapp:order_error')
@@ -436,9 +439,11 @@ def checkout(request):
         'news': news,
         'main_serv': main_serv,
         'product': product,
+        'slider_product': slider_product,
         'form': form,  # Передаем форму
         'discount_check': product.discount,
         'price': product.price,
+        'partner': partner,
     }
 
     # Рендерим страницу чекаута
