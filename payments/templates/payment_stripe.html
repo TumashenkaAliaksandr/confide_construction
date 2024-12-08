@@ -41,6 +41,9 @@
                     <div class="row">
                         {% csrf_token %}
                         <input type="hidden" name="product_object_id" value="{{ product_id }}">
+                        <input type="hidden" name="name_check" value="{{ product.name }}">
+                        <input type="hidden" name="price_check" value="{{ product.price }}">
+                        <input type="hidden" name="discount_check" value="{{ product.discount }}">
                         <!-- Передаем ID продукта -->
                         <div class="order-list">
                             <table class="shop_table rt-checkout-review-order-table">
