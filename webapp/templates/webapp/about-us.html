@@ -154,7 +154,7 @@
                         <div class="box text-center">
                             <img src="{{ slider.image.url }}" class="img-fixed-size-two" alt="services-1">
                             <div class="box-content">
-                                <h3><a href="{{ slider.link }}">{{ slider.name }}</a></h3>
+                                <h3><a href="{% url 'webapp:services_with_slug' slider.slug %}">{{ slider.name }}</a></h3>
                             </div>
                         </div>
                     </div>

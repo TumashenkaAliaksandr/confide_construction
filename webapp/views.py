@@ -80,7 +80,7 @@ def lost_password(request):
 def about(request):
     assessment = Assessment.objects.all()
     partner = Recommended.objects.all()
-    servis_sliders = ServicesSlider.objects.all()
+    servis_sliders = Product.objects.all()
     news = BlogNews.objects.all()
 
     context = {
@@ -117,8 +117,6 @@ def contacts(request):
 
 def backsplash(request):
     """Backsplash Constract"""
-    back_sp = Backsplash.objects.all()
-    back_spl_serv = BacksplashService.objects.all()
     main_serv = Services.objects.all()
     news = BlogNews.objects.all()
 
@@ -128,8 +126,6 @@ def backsplash(request):
 
 def drywall(request):
     """Drywall Constract"""
-    dry_obj = Drywall.objects.all()
-    dry_ser = DrywallService.objects.all()
     main_serv = Services.objects.all()
     news = BlogNews.objects.all()
 
@@ -139,9 +135,6 @@ def drywall(request):
 
 def disposal(request):
     """Disposal Constract"""
-    disp_obj = Disposal.objects.all()
-    disposal = Disposal.objects.get(pk=1)
-    disp_serv = DisposalService.objects.all()
     main_serv = Services.objects.all()
     news = BlogNews.objects.all()
     assessment = Assessment.objects.all()
@@ -155,8 +148,6 @@ def disposal(request):
 
 def ceiling_fan(request):
     """Disposal Constract"""
-    cailing_obj = CeilingFan.objects.all()
-    cailing = CeilingFan.objects.get(pk=1)
     main_serv = Services.objects.all()
     news = BlogNews.objects.all()
     assessment = Assessment.objects.all()
@@ -170,8 +161,6 @@ def ceiling_fan(request):
 
 def electricalworks(request):
     """Electricalworks Constract"""
-    electr_obj = Electrical.objects.all()
-    electr_serv = ElectricalService.objects.all()
     main_serv = Services.objects.all()
     news = BlogNews.objects.all()
 
@@ -181,8 +170,6 @@ def electricalworks(request):
 
 def handyman(request):
     """Handyman Constract"""
-    handyman_obj = Handyman.objects.all()
-    handy_serv = HandymanService.objects.all()
     main_serv = Services.objects.all()
     news = BlogNews.objects.all()
 
@@ -194,7 +181,6 @@ def tv_mount(request):
     """Tv Mount Constract"""
 
     tv_obj = Product.objects.all()
-    mount = TVMount.objects.get(pk=1)
     main_serv = Services.objects.all()
     news = BlogNews.objects.all()
     assessment = Assessment.objects.all()
@@ -208,9 +194,6 @@ def tv_mount(request):
 
 def wallpaper(request):
     """Wallpaper Constract"""
-
-    wallpap_obj = Wallpaper.objects.all()
-    wallpap_serv = WallpaperService.objects.all()
     main_serv = Services.objects.all()
     news = BlogNews.objects.all()
 
@@ -221,8 +204,6 @@ def wallpaper(request):
 
 def soundproofing(request):
     """Soundproofing Constract"""
-    soundproof_obj = Soundproofing.objects.all()
-    soundproof_serv = SoundproofingService.objects.all()
     main_serv = Services.objects.all()
     news = BlogNews.objects.all()
 
@@ -232,8 +213,6 @@ def soundproofing(request):
 
 def furniture(request):
     """Furniture Assembly Constract"""
-    furniture_obj = Furniture.objects.all()
-    furnitur_serv = FurnitureService.objects.all()
     main_serv = Services.objects.all()
     news = BlogNews.objects.all()
 
@@ -244,8 +223,6 @@ def furniture(request):
 
 def painting(request):
     """ Painting Constract"""
-    painting_obj = Painting.objects.all()
-    paint_serv = PaintingService.objects.all()
     main_serv = Services.objects.all()
     news = BlogNews.objects.all()
 
