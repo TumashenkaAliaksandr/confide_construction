@@ -42,7 +42,6 @@
                         {% csrf_token %}
                         <input type="hidden" name="product_object_id" value="{{ product_id }}">
                         <input type="hidden" name="name_check" value="{{ product.name }}">
-                        <input type="hidden" name="price_check" value="{{ product.price }}">
                         <input type="hidden" name="discount_check" value="{{ product.discount }}">
                         <!-- Передаем ID продукта -->
                         <div class="order-list">
@@ -84,7 +83,7 @@
                                     </td>
                                 </tr>
                                 <tr class="order-total">
-                                    <th>Order Notes:</th>
+                                    <th>Your Mail:</th>
                                     <td><strong><span
                                             class="rt-Price-amount">{{ checkout_details.email }}</span></strong>
                                     </td>

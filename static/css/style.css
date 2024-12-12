@@ -3567,7 +3567,17 @@ a.checkout-link {
         padding: 0;
         height: 7px;
     }
+    .mobile-product-name-display-none{
+        display: none;
+    }
 }
+/* Скрыть элемент .product-name-display-none только на десктопах */
+@media (min-width: 769px) { /* Скрытие для экранов шириной 769 пикселей и больше */
+    .product-name-display-none {
+        display: none;
+    }
+}
+
 
 /* Для планшетов с шириной экрана от 768px до 1024px */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
@@ -3586,6 +3596,9 @@ a.checkout-link {
 @media (min-width: 823px) {
     .slider-mobile {
         display: none; /* Скрывает элемент на мобильных устройствах */
+    }
+    .mobile-name-display-none{
+        display: none;
     }
 }
 
@@ -3809,6 +3822,15 @@ a.checkout-link {
 
 @media(max-width: 359px){
   .caption_slide1{top: 12%;}
+    .mobile-product-name-display-none{
+        display: none;
+    }
+}
+
+@media(max-width: 767px){
+    .mobile-product-name-display-none{
+        display: none;
+    }
 }
 /*------------------------------------------------------*/
 /* ANIMATION EFFECTS
@@ -4872,14 +4894,14 @@ table.shop_table.rt-checkout-review-order-table thead, table.shop_table.rt-check
   background: #fbfbfb;
 }
 
-.checkout-place-order button{margin:15px 0 0;}
+.checkout-place-order button{margin:15px 2% 0;}
 
 /* Стили для кнопки "Back to Checkout" */
 .back-to-checkout-btn {
     cursor: pointer;
     position: relative; /* Устанавливаем позицию как относительную */
     top: -58px; /* Перемещаем кнопку вверх на 20px */
-    left: 0%;
+    left: 2%;
 }
 
 
@@ -4888,7 +4910,7 @@ table.shop_table.rt-checkout-review-order-table thead, table.shop_table.rt-check
     cursor: pointer;
     position: relative; /* Устанавливаем позицию как относительную */
     /*top: 20px; !* Перемещаем кнопку вверх на 20px *!*/
-    left: 0%;
+    left: 2%;
 }
 }
 
