@@ -34,7 +34,6 @@
                         {% csrf_token %}
                         <input type="hidden" name="product_object_id" value="{{ product.id }}">
                         <input type="hidden" name="name_check" value="{{ product.name }}">
-                        <input type="hidden" name="price_check" value="{{ product.price }}">
                         <input type="hidden" name="discount_check" value="{{ product.discount }}">
 
                         <div class="row">
@@ -42,6 +41,13 @@
                                 <div class="checkout-billing">
                                     <div class="row">
                                         <div class="col-sm-6 col-xs-12">
+                                            <div class="title">
+                                                <div class="form-group product-name-display-none">
+                                                    <label>Name of the service and price: </label>
+                                                    <span class="form-control-static"><br>{{ product.name }} {{ product.discount|floatformat:0 }}$</span>
+                                                    <!-- Отображение дисконта -->
+                                                </div>
+                                            </div>
                                             <div class="form-group">
                                                 <label>Name: <abbr class="required" title="required">*</abbr></label>
                                                 <input type="text" name="last_name_check" value="{{ current_name }}"
@@ -52,8 +58,8 @@
                                                                         title="required">*</abbr></label>
                                                 <input type="text" name="town_city" class="form-control">
                                             </div>
-                                            <div class="slider-container">
-                                                <div class="form-group">
+                                            <div class="title">
+                                                <div class="form-group mobile-product-name-display-none">
                                                     <label>Name of the service and price: </label>
                                                     <span class="form-control-static"><br>{{ product.name }} {{ product.discount|floatformat:0 }}$</span>
                                                     <!-- Отображение дисконта -->
@@ -113,19 +119,40 @@
         </div>
     </section>
     <!-- End checkout -->
-
     <script>
         function goToCheck(productId) {
-            // Отправляем форму
-            document.getElementById('checkout-form').submit();
+            // Получаем элемент формы
+            const form = document.getElementById('checkout-form');
 
-            // Переходим на страницу через 100 мс (или другой интервал)
-            setTimeout(() => {
-                const url = `/payments/?product_id=${productId}`;
-                window.location.href = url;
-            }, 100); // Задержка в 100 миллисекунд
+            // Проверяем, что форма заполнена корректно
+            if (form.checkValidity()) {
+                // Отправляем форму
+                form.submit();
+
+                // Переходим на страницу через 150 мс (или другой интервал) после отправки
+                setTimeout(() => {
+                    const url = `/payments/?product_id=${productId}`;
+                    window.location.href = url;
+                }, 50); // Задержка в 50 миллисекунд
+            } else {
+                // Если форма невалидна, показываем сообщение об ошибке
+                form.reportValidity(); // Показывает стандартные сообщения об ошибках для полей формы
+            }
         }
     </script>
+
+{#    <script>#}
+{#        function goToCheck(productId) {#}
+{#            // Отправляем форму#}
+{#            document.getElementById('checkout-form').submit();#}
+{##}
+{#            // Переходим на страницу через 100 мс (или другой интервал)#}
+{#            setTimeout(() => {#}
+{#                const url = `/payments/?product_id=${productId}`;#}
+{#                window.location.href = url;#}
+{#            }, 150); // Задержка в 150 миллисекунд#}
+{#        }#}
+{#    </script>#}
 
 
 {##}
