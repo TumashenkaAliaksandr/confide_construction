@@ -35,6 +35,8 @@
                         <input type="hidden" name="product_object_id" value="{{ product.id }}">
                         <input type="hidden" name="name_check" value="{{ product.name }}">
                         <input type="hidden" name="discount_check" value="{{ product.discount }}">
+                        <input type="hidden" name="total_price" id="total-price-input">
+                        <input type="hidden" name="quantity" id="quantity-input-hidden">
 
                         <div class="row">
                             <div class="col-sm-6 col-xs-12">
@@ -45,7 +47,13 @@
                                                 <div class="form-group product-name-display-none">
                                                     <label>Name of the service and price: </label>
                                                     <span class="form-control-static"><br>{{ product.name }} {{ product.discount|floatformat:0 }}$</span>
-                                                    <!-- Отображение дисконта -->
+                                                    <!-- Здесь мы заменяем ввод количества на отображение итоговой цены -->
+                                                    <label>Quantity: <abbr class="required"
+                                                                           title="required">*</abbr></label>
+                                                    <span id="final-quantity-display">1</span>
+                                                    <!-- Отображаем количество -->
+                                                    <label>Total Price: </label>
+                                                    <span id="final-price-display">$0.00</span>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -108,17 +116,19 @@
                             <input type="hidden" name="session_id" value="{{ checkout_session.sessionId }}">
 
                             <!-- Измените тип кнопки на submit -->
-                            <button type="button" id="placeOrderBtn" onclick="goToCheck({{ product.id }})" class="btn mt_btn_yellow_three">GO TO CHECK</button>
+                            <button type="button" id="placeOrderBtn" onclick="goToCheck({{ product.id }})" class="btn mt_btn_yellow_three">Confirm and Pay</button>
 {#                            <button type="submit" class="btn mt_btn_yellow_three">GO TO CHECK</button>#}
 
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
     </section>
     <!-- End checkout -->
+
+
+
     <script>
         function goToCheck(productId) {
             // Получаем элемент формы
@@ -155,16 +165,16 @@
 {#    </script>#}
 
 
-{##}
-{#    <script>#}
-{##}
-{#        function goToCheck(productId) {#}
-{#            const url = `/payments/?product_id=${productId}`;#}
-{#            document.getElementById('checkout-form').submit();#}
-{#            window.location.href = url;#}
-{#        }#}
-{##}
-{#    </script>#}
+
+    <script>
+
+        function goToCheck(productId) {
+            const url = `/payments/?product_id=${productId}`;
+            document.getElementById('checkout-form').submit();
+            window.location.href = url;
+        }
+
+    </script>
 
 
 
