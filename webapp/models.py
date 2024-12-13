@@ -113,6 +113,8 @@ class Product(models.Model):
     flag_2 = models.BooleanField(default=False)
     flag_3 = models.BooleanField(default=False)
 
+    show_quantity = models.BooleanField(default=False)
+
     class Meta:
         ordering = ('name',)
         verbose_name = 'Продукт'
