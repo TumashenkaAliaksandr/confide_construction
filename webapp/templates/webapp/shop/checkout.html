@@ -32,30 +32,33 @@
                     <h4 class="mar-bottom-20">Fill out the form to pay for the service</h4>
                     <form id="checkout-form" method="post" action="{% url 'payments' %}?product_id={{ product.id }}">
                         {% csrf_token %}
-                        <input type="hidden" name="product_object_id" value="{{ product.id }}">
                         <input type="hidden" name="name_check" value="{{ product.name }}">
                         <input type="hidden" name="discount_check" value="{{ product.discount }}">
-                        <input type="hidden" name="total_price" id="total-price-input">
-                        <input type="hidden" name="quantity" id="quantity-input-hidden">
+{#                        <input type="hidden" name="total_price" id="total-price-input">#}
+{#                        <input type="hidden" name="quantity" id="quantity-input-hidden">#}
 
                         <div class="row">
                             <div class="col-sm-6 col-xs-12">
                                 <div class="checkout-billing">
                                     <div class="row">
-                                        <div class="col-sm-6 col-xs-12">
+                                        <div class="col-xs-12">
                                             <div class="title">
                                                 <div class="form-group product-name-display-none">
                                                     <label>Name of the service and price: </label>
                                                     <span class="form-control-static"><br>{{ product.name }} {{ product.discount|floatformat:0 }}$</span>
                                                     <!-- Здесь мы заменяем ввод количества на отображение итоговой цены -->
-                                                    <label>Quantity: <abbr class="required"
-                                                                           title="required">*</abbr></label>
-                                                    <span id="final-quantity-display">1</span>
-                                                    <!-- Отображаем количество -->
-                                                    <label>Total Price: </label>
-                                                    <span id="final-price-display">$0.00</span>
+                                                    {#                                                    <label>Quantity: <abbr class="required"#}
+                                                    {#                                                                           title="required">*</abbr></label>#}
+                                                    {#                                                    <span id="final-quantity-display">1</span>#}
+                                                    {#                                                    <!-- Отображаем количество -->#}
+                                                    {#                                                    <label>Total Price: </label>#}
+                                                    {#                                                    <span id="final-price-display">$0.00</span>#}
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <label>Name: <abbr class="required" title="required">*</abbr></label>
                                                 <input type="text" name="last_name_check" value="{{ current_name }}"
@@ -66,13 +69,13 @@
                                                                         title="required">*</abbr></label>
                                                 <input type="text" name="town_city" class="form-control">
                                             </div>
-                                            <div class="title">
-                                                <div class="form-group mobile-product-name-display-none">
-                                                    <label>Name of the service and price: </label>
-                                                    <span class="form-control-static"><br>{{ product.name }} {{ product.discount|floatformat:0 }}$</span>
-                                                    <!-- Отображение дисконта -->
-                                                </div>
-                                            </div>
+{#                                            <div class="title">#}
+{#                                                <div class="form-group mobile-product-name-display-none">#}
+{#                                                    <label>Name of the service and price: </label>#}
+{#                                                    <span class="form-control-static"><br>{{ product.name }} {{ product.discount|floatformat:0 }}$</span>#}
+{#                                                    <!-- Отображение дисконта -->#}
+{#                                                </div>#}
+{#                                            </div>#}
                                         </div>
                                         <div class="col-sm-6 col-xs-12">
                                             <div class="form-group">
@@ -114,7 +117,7 @@
                                 </div>
                             </div>
                             <input type="hidden" name="session_id" value="{{ checkout_session.sessionId }}">
-
+                            <input type="hidden" name="product_object_id" value="{{ product.id }}">
                             <!-- Измените тип кнопки на submit -->
                             <button type="button" id="placeOrderBtn" onclick="goToCheck({{ product.id }})" class="btn mt_btn_yellow_three">Confirm and Pay</button>
 {#                            <button type="submit" class="btn mt_btn_yellow_three">GO TO CHECK</button>#}
@@ -160,21 +163,21 @@
 {#            setTimeout(() => {#}
 {#                const url = `/payments/?product_id=${productId}`;#}
 {#                window.location.href = url;#}
-{#            }, 150); // Задержка в 150 миллисекунд#}
+{#            }, 100); // Задержка в 100 миллисекунд#}
 {#        }#}
 {#    </script>#}
 
 
 
-    <script>
-
-        function goToCheck(productId) {
-            const url = `/payments/?product_id=${productId}`;
-            document.getElementById('checkout-form').submit();
-            window.location.href = url;
-        }
-
-    </script>
+{#    <script>#}
+{##}
+{#        function goToCheck(productId) {#}
+{#            const url = `/payments/?product_id=${productId}`;#}
+{#            document.getElementById('checkout-form').submit();#}
+{#            window.location.href = url;#}
+{#        }#}
+{##}
+{#    </script>#}
 
 
 

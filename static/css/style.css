@@ -3572,10 +3572,14 @@ a.checkout-link {
     }
 }
 /* Скрыть элемент .product-name-display-none только на десктопах */
-@media (min-width: 769px) { /* Скрытие для экранов шириной 769 пикселей и больше */
-    .product-name-display-none {
-        display: none;
-    }
+/*@media (min-width: 769px) { !* Скрытие для экранов шириной 769 пикселей и больше *!*/
+/*    .product-name-display-none {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
+
+.product-name-display-none{
+    padding-bottom: 8px;
 }
 
 
