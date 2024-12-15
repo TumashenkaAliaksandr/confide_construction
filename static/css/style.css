@@ -1223,6 +1223,14 @@ section#mt_services_two {
     background: linear-gradient(rgba(252, 246, 246, 0.7), rgba(110, 110, 110, 0.7)), url('../images/cc_space.jpg') center/cover;
     background-attachment: fixed;
 }
+@media (max-width: 768px) {
+  section#mt_services_two {
+    padding: 20px 0 60px; /* Увеличиваем верхний отступ и уменьшаем нижний для мобильных */
+    background: linear-gradient(rgba(252, 246, 246, 0.7), rgba(110, 110, 110, 0.7)), url('../images/cc_space.jpg') center/cover; /* Используем другое изображение для мобильных */
+    background-attachment: scroll; /* Отключаем фиксированное прикрепление для лучшей производительности */
+    background-size: cover; /* Обеспечиваем полное покрытие фона */
+  }
+}
 
 section#mt_services_three {
     padding: 50px 0 90px;
@@ -1230,10 +1238,28 @@ section#mt_services_three {
     background-attachment: fixed;
 }
 
+@media (max-width: 768px) {
+  section#mt_services_three {
+    padding: 30px 0 60px; /* Уменьшаем отступы для мобильных */
+    background: linear-gradient(rgba(245, 245, 220, 1), rgba(110, 110, 110, 0.7)), url('../images/cc_home_repa.jpg') center/cover; /* Используем другое изображение для мобильных */
+    background-attachment: scroll; /* Отключаем фиксированное прикрепление для лучшей производительности */
+    background-size: cover; /* Обеспечиваем полное покрытие фона */
+  }
+}
+
 .mt_services_process {
     padding: 50px 0 90px;
     background: linear-gradient(rgba(255, 255, 244, 1), rgba(239, 239, 239, 0.7)), url('../images/confide_construction_man.jpg') center/cover;
     background-attachment: fixed;
+}
+
+@media (max-width: 768px) {
+    .mt_services_process {
+        padding: 30px 0 60px; /* Уменьшаем отступы для мобильных */
+        background: linear-gradient(rgba(255, 255, 244, 1), rgba(239, 239, 239, 0.7)), url('../images/confide_construction_man.jpg') center/cover; /* Используем другое изображение для мобильных */
+        background-attachment: scroll; /* Отключаем фиксированное прикрепление для лучшей производительности */
+        background-size: cover; /* Обеспечиваем полное покрытие фона */
+    }
 }
 
 section#mt_services_four {

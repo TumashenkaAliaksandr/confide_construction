@@ -132,40 +132,40 @@
 
 
 
-    <script>
-        function goToCheck(productId) {
-            // Получаем элемент формы
-            const form = document.getElementById('checkout-form');
-
-            // Проверяем, что форма заполнена корректно
-            if (form.checkValidity()) {
-                // Отправляем форму
-                form.submit();
-
-                // Переходим на страницу через 150 мс (или другой интервал) после отправки
-                setTimeout(() => {
-                    const url = `/payments/?product_id=${productId}`;
-                    window.location.href = url;
-                }, 50); // Задержка в 50 миллисекунд
-            } else {
-                // Если форма невалидна, показываем сообщение об ошибке
-                form.reportValidity(); // Показывает стандартные сообщения об ошибках для полей формы
-            }
-        }
-    </script>
-
 {#    <script>#}
 {#        function goToCheck(productId) {#}
-{#            // Отправляем форму#}
-{#            document.getElementById('checkout-form').submit();#}
+{#            // Получаем элемент формы#}
+{#            const form = document.getElementById('checkout-form');#}
 {##}
-{#            // Переходим на страницу через 100 мс (или другой интервал)#}
-{#            setTimeout(() => {#}
-{#                const url = `/payments/?product_id=${productId}`;#}
-{#                window.location.href = url;#}
-{#            }, 100); // Задержка в 100 миллисекунд#}
+{#            // Проверяем, что форма заполнена корректно#}
+{#            if (form.checkValidity()) {#}
+{#                // Отправляем форму#}
+{#                form.submit();#}
+{##}
+{#                // Переходим на страницу через 150 мс (или другой интервал) после отправки#}
+{#                setTimeout(() => {#}
+{#                    const url = `/payments/?product_id=${productId}`;#}
+{#                    window.location.href = url;#}
+{#                }, 50); // Задержка в 50 миллисекунд#}
+{#            } else {#}
+{#                // Если форма невалидна, показываем сообщение об ошибке#}
+{#                form.reportValidity(); // Показывает стандартные сообщения об ошибках для полей формы#}
+{#            }#}
 {#        }#}
 {#    </script>#}
+
+    <script>
+        function goToCheck(productId) {
+            // Отправляем форму
+            document.getElementById('checkout-form').submit();
+
+            // Переходим на страницу через 100 мс (или другой интервал)
+            setTimeout(() => {
+                const url = `/payments/?product_id=${productId}`;
+                window.location.href = url;
+            }, 100); // Задержка в 100 миллисекунд
+        }
+    </script>
 
 
 
