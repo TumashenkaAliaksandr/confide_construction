@@ -2555,7 +2555,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
 
   #newsletter:before{width: 100%;}
 
-  #newsletter input[type="submit"]{color: #ffffff; background: #005bea; width: 0; font-size: 16px;}
+  #newsletter input[type="submit"]{color: #ffffff; background: #ffac00; width: 0; font-size: 16px;}
 
 }
 
@@ -3943,7 +3943,7 @@ a.checkout-link {
 }
 
 @media(max-width: 911px){
-  #pagebanner{background-attachment: initial;}
+  #pagebanner{background-attachment: initial; background-position: center;}
 }
 
 @media (max-width: 767px) {
