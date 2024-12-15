@@ -137,8 +137,11 @@
             <div class="row">
                 <div class="col-sm-6 col-xs-12">
                     <div class="news-content">
-                        <h3>ORDER FREE CONSULTATION</h3>
-                        <p class="beige"><b><br>WRITE US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE YOUR
+                        <img src="{% static 'images/cc_favicon8.png' %}" class="img-fixed-size-for-mailform"
+                             alt="Awesome Logo">
+                        <h3 id="consultation-title" class="slide-in">ORDER FREE CONSULTATION</h3>
+                        <!-- Добавлен класс slide-in -->
+                        <p class="beige"><b>WRITE US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE YOUR
                             LIFESTYLE DREAMS.</b></p>
                     </div>
                 </div>
@@ -150,8 +153,8 @@
                             <input type="email" class="mailpoet_text" name="email" title="Email"
                                    placeholder="Please specify your email address.">
                             <input type="text" name="description" placeholder="Description Service">
-                            <div class="button">
-                                <input type="submit" class="mailpoet_submit" value="Free Quote">
+                            <div class="button button-mail">
+                                <input type="submit" class="button mailpoet_submit" value="Free Quote">
                             </div>
                         </form>
                     </div>
