@@ -395,7 +395,7 @@ def checkout(request):
 
     # Получаем ID продукта из GET-запроса
     product_id = request.GET.get('product_id')
-    print('419 string | product id:', product_id)
+    print('498 string | product id:', product_id)
     if not product_id:
         # Если нет ID продукта, перенаправляем на страницу ошибки
         return redirect('webapp:order_error')
@@ -403,7 +403,7 @@ def checkout(request):
     try:
         # Получаем продукт по ID
         product = Product.objects.get(id=product_id)
-        print('429 string | More product id:', product_id)
+        print('406 string | More product id:', product_id)
     except Product.DoesNotExist:
         # Если продукт не найден, перенаправляем на страницу ошибки
         return redirect('webapp:order_error')
@@ -489,7 +489,7 @@ def process_payment(request):
             email = request.POST.get('email')
             date_check = request.POST.get('date')
             product_id = request.POST.get('product_object_id')
-            # session_id = request.POST.get('session_id')  # Получаем ID сессии
+            session_id = request.POST.get('session_id')  # Получаем ID сессии
 
 
             # Выводим все данные в консоль
@@ -501,7 +501,7 @@ def process_payment(request):
             print(f"Email: {email}")
             print(f"Date: {date_check}")
             print(f"Product ID: {product_id}")
-            # print(f"Session ID: {session_id}")
+            print(f"Session ID: {session_id}")
 
             # Получаем конкретный продукт по ID
             try:

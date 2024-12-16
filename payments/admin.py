@@ -6,19 +6,25 @@ from django.contrib import admin
 
 
 @admin.register(CheckoutDetails)
-class TicksAdmin(admin.ModelAdmin):
+class CheckoutDetailsAdmin(admin.ModelAdmin):
     form = CheckoutForm
+    list_display = ('last_name_check', 'date')  # Укажите необходимые поля для отображения в списке
 
-    # Кастомное поле для отображения очищенного текста
-    def clean_last_name(self, obj):
-        return strip_tags(obj.last_name_check)
+    # Указываем поля, которые будут только для чтения
+    readonly_fields = ('price_check', 'name_check')
 
-    clean_last_name.short_description = 'Last Name'
+    def get_readonly_fields(self, request, obj=None):
+        # Вы можете добавить дополнительную логику для определения, какие поля делать только для чтения
+        return super().get_readonly_fields(request, obj)
 
-    def clean_price_check(self, obj):
-        return strip_tags(obj.price_check)
+    def price_check(self, obj):
+        return obj.price_check  # Возвращаем значение цены
 
-    clean_price_check.short_description = 'Product Price'
+    def name_check(self, obj):
+        return obj.name_check  # Возвращаем название продукта
+
+    price_check.short_description = 'Product Price'  # Заголовок колонки
+    name_check.short_description = 'Product Name'  # Заголовок колонки
 
 
 class ProductAdmin(admin.ModelAdmin):
