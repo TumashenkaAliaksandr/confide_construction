@@ -90,11 +90,13 @@ class CheckoutForm(forms.ModelForm):
             self.fields['price_check'].initial = product.price
             self.fields['name_check'].initial = product.name
 
+
             # Отладочные сообщения для проверки значений
             print(f"Initializing CheckoutForm with product: {product.name}")
             print(f"Discount set to: {self.fields['discount_check'].initial}")
             print(f"Price set to: {self.fields['price_check'].initial}")
             print(f"Name set to: {self.fields['name_check'].initial}")
+    print('Id:', product_object_id)
 
 
 class RegistrationForm(forms.ModelForm):

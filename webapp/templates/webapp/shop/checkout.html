@@ -32,10 +32,10 @@
                     <h4 class="mar-bottom-20">Fill out the form to pay for the service</h4>
                     <form id="checkout-form" method="post" action="{% url 'payments' %}?product_id={{ product.id }}">
                         {% csrf_token %}
+                        <input type="hidden" name="product_object_id" value="{{ product.id }}">
+                        <!-- Используйте правильный product.id -->
                         <input type="hidden" name="name_check" value="{{ product.name }}">
                         <input type="hidden" name="discount_check" value="{{ product.discount }}">
-{#                        <input type="hidden" name="total_price" id="total-price-input">#}
-{#                        <input type="hidden" name="quantity" id="quantity-input-hidden">#}
 
                         <div class="row">
                             <div class="col-sm-6 col-xs-12">
@@ -43,16 +43,9 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div class="title">
-                                                <div class="form-group product-name-display-none">
+                                                <div class="form-group product-name-display">
                                                     <label>Name of the service and price: </label>
                                                     <span class="form-control-static"><br>{{ product.name }} {{ product.discount|floatformat:0 }}$</span>
-                                                    <!-- Здесь мы заменяем ввод количества на отображение итоговой цены -->
-                                                    {#                                                    <label>Quantity: <abbr class="required"#}
-                                                    {#                                                                           title="required">*</abbr></label>#}
-                                                    {#                                                    <span id="final-quantity-display">1</span>#}
-                                                    {#                                                    <!-- Отображаем количество -->#}
-                                                    {#                                                    <label>Total Price: </label>#}
-                                                    {#                                                    <span id="final-price-display">$0.00</span>#}
                                                 </div>
                                             </div>
                                         </div>
@@ -69,13 +62,6 @@
                                                                         title="required">*</abbr></label>
                                                 <input type="text" name="town_city" class="form-control">
                                             </div>
-{#                                            <div class="title">#}
-{#                                                <div class="form-group mobile-product-name-display-none">#}
-{#                                                    <label>Name of the service and price: </label>#}
-{#                                                    <span class="form-control-static"><br>{{ product.name }} {{ product.discount|floatformat:0 }}$</span>#}
-{#                                                    <!-- Отображение дисконта -->#}
-{#                                                </div>#}
-{#                                            </div>#}
                                         </div>
                                         <div class="col-sm-6 col-xs-12">
                                             <div class="form-group">
@@ -116,11 +102,15 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Убедитесь, что это поле не дублируется -->
+                            <!-- Убедитесь, что session_id передается правильно -->
                             <input type="hidden" name="session_id" value="{{ checkout_session.sessionId }}">
-                            <input type="hidden" name="product_object_id" value="{{ product.id }}">
-                            <!-- Измените тип кнопки на submit -->
-                            <button type="button" id="placeOrderBtn" onclick="goToCheck({{ product.id }})" class="btn mt_btn_yellow_three">Confirm and Pay</button>
-{#                            <button type="submit" class="btn mt_btn_yellow_three">GO TO CHECK</button>#}
+
+                            <!-- Кнопка отправки формы -->
+                            <button type="button" id="placeOrderBtn" onclick="goToCheck({{ product.id }})"
+                                    class="btn mt_btn_yellow_three">Confirm and Pay
+                            </button>
 
                         </div>
                     </form>
@@ -131,41 +121,65 @@
     <!-- End checkout -->
 
 
+{##}
+{#    <script>#}
+{#        function goToCheck(productId) {#}
+{#            // Получаем элемент формы#}
+{#            const form = document.getElementById('checkout-form');#}
+{##}
+{#            // Проверяем, что форма заполнена корректно#}
+{#            if (form.checkValidity()) {#}
+{#                // Отправляем форму#}
+{#                form.submit();#}
+{##}
+{#                // Переходим на страницу через 150 мс (или другой интервал) после отправки#}
+{#                setTimeout(() => {#}
+{#                    const url = `/payments/?product_id=${productId}`;#}
+{#                    window.location.href = url;#}
+{#                }, 50); // Задержка в 50 миллисекунд#}
+{#            } else {#}
+{#                // Если форма невалидна, показываем сообщение об ошибке#}
+{#                form.reportValidity(); // Показывает стандартные сообщения об ошибках для полей формы#}
+{#            }#}
+{#        }#}
+{#    </script>#}
+
 
     <script>
         function goToCheck(productId) {
-            // Получаем элемент формы
-            const form = document.getElementById('checkout-form');
+            // Отправляем форму
+            document.getElementById('checkout-form').submit();
 
-            // Проверяем, что форма заполнена корректно
-            if (form.checkValidity()) {
-                // Отправляем форму
-                form.submit();
-
-                // Переходим на страницу через 150 мс (или другой интервал) после отправки
-                setTimeout(() => {
-                    const url = `/payments/?product_id=${productId}`;
-                    window.location.href = url;
-                }, 50); // Задержка в 50 миллисекунд
-            } else {
-                // Если форма невалидна, показываем сообщение об ошибке
-                form.reportValidity(); // Показывает стандартные сообщения об ошибках для полей формы
-            }
+            // Переходим на страницу через 100 мс (или другой интервал)
+            setTimeout(() => {
+                const url = `/payments/?product_id=${productId}`;
+                window.location.href = url;
+            }, 100); // Задержка в 100 миллисекунд
         }
     </script>
 
 {#    <script>#}
 {#        function goToCheck(productId) {#}
-{#            // Отправляем форму#}
-{#            document.getElementById('checkout-form').submit();#}
+{#            const form = document.getElementById('checkout-form');#}
 {##}
-{#            // Переходим на страницу через 100 мс (или другой интервал)#}
-{#            setTimeout(() => {#}
-{#                const url = `/payments/?product_id=${productId}`;#}
-{#                window.location.href = url;#}
-{#            }, 100); // Задержка в 100 миллисекунд#}
+{#            // Отладочные сообщения#}
+{#            console.log("Product ID before submit:", productId);#}
+{#            console.log("Form data:", Array.from(new FormData(form)).reduce((acc, [key, value]) => ({#}
+{#                ...acc,#}
+{#                [key]: value#}
+{#            }), {}));#}
+{##}
+{#            // Проверка наличия productId#}
+{#            if (!productId) {#}
+{#                console.error("Product ID is missing."); // Сообщение об ошибке#}
+{#                return; // Прерываем выполнение функции, если ID отсутствует#}
+{#            }#}
+{##}
+{#            // Отправляем форму#}
+{#            form.submit();#}
 {#        }#}
 {#    </script>#}
+
 
 
 

@@ -21,38 +21,40 @@ from webapp.models import *
 class HomePageView(TemplateView):
     template_name = 'payment_stripe.html'
 
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['main_serv'] = Services.objects.all()
         context['news'] = BlogNews.objects.all()
 
+
         # Получаем ID продукта из GET-запроса
         product_id = self.request.GET.get('product_id')
-        print(f"31 string | Product ID from GET request: {product_id}")  # Отладочный вывод
+        print(f"32 string | Product ID from GET request: {product_id}")  # Отладочный вывод
 
         if product_id:
             try:
                 product = Product.objects.get(id=product_id)  # Получаем конкретный продукт по ID
-                print(f"36 string | Product found: {product.name}")  # Отладочный вывод
+                print(f"37 string | Product found: {product.name}")  # Отладочный вывод
 
                 # Проверяем цену и скидку продукта
                 if product.price is not None:
                     context['price'] = float(product.price)  # Преобразуем Decimal в float
-                    print(f"41 string | Price This found: {context['price']}")
+                    print(f"42 string | Price This found: {context['price']}")
                 else:
                     context['price'] = 0.00  # Устанавливаем значение по умолчанию
                     print("Product price is None, setting to default 0.00")
 
                 if product.discount is not None:
                     context['discount'] = float(product.discount)  # Преобразуем Decimal в float
-                    print(f"48 string | Discount found: {context['discount']}")
+                    print(f"49 string | Discount found: {context['discount']}")
                 else:
                     context['discount'] = 0.00  # Устанавливаем значение по умолчанию
                     print("Product discount is None, setting to default 0.00")
 
                 context['product_name'] = product.name  # Добавляем имя продукта
                 context['product_id'] = product.id  # Добавляем ID продукта в контекст
-                print(f"55 string | Product ID: {context['product_id']}")
+                print(f"56 string | Product ID: {context['product_id']}")
 
             except Product.DoesNotExist:
                 print("Product does not exist.")  # Отладочный вывод
@@ -63,7 +65,7 @@ class HomePageView(TemplateView):
             '-id').first()  # Используем id для получения последнего заказа
         if last_checkout_details:
             context['checkout_details'] = last_checkout_details  # Добавляем последние детали заказа в контекст
-            print(f"66 string | Last checkout details found: {last_checkout_details}")
+            print(f"67 string | Last checkout details found: {last_checkout_details}")
         else:
             context['checkout_details'] = None  # Если деталей нет, устанавливаем None
 
@@ -79,14 +81,15 @@ class HomePageView(TemplateView):
         date_check = request.POST.get('date')
         discount_price = request.POST.get('discount_check')
         name_product = request.POST.get('name_check')
+        id_product = request.POST.get('product_object_id')
 
         print(
             f"83 string | Received data: {last_name}, {street_address}, {town_city}, {phone_number}, {email}, {description}, {date_check}, "
-            f"{discount_price} {name_product}")
+            f"{discount_price} {name_product} {id_product}")
 
         # Получаем ID продукта из формы
         product_id = request.POST.get('product_object_id')  # Получаем ID выбранного продукта
-        print(f"88 string | Product ID from POST request: {product_id}")  # Отладочное сообщение
+        print(f"90 string | Product ID from POST request: {product_id}")  # Отладочное сообщение
 
         if product_id:
             try:
@@ -120,7 +123,8 @@ class HomePageView(TemplateView):
                     )
                     print("118 string | CheckoutDetails object created successfully:", checkout_details.product_content_type.id, checkout_details.product)
 
-                    return HttpResponseRedirect(reverse('payments'))
+                    # Перенаправление на payments с параметром product_id
+                    return HttpResponseRedirect(f"{reverse('payments')}?product_id={product_id}")
 
                 except Exception as e:
                     print(f"Error creating CheckoutDetails: {e}")
@@ -193,7 +197,7 @@ def create_checkout_session(request):
 
         # Получаем ID продукта из GET-запроса
         product_id = request.GET.get('product_id')
-        print(f"193 string | Product ID from GET request: {product_id}")  # Отладочный вывод
+        print(f"198 string | Product ID from GET request: {product_id}")  # Отладочный вывод
 
         if product_id:
             try:
