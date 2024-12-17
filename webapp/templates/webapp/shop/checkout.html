@@ -108,9 +108,13 @@
                             <input type="hidden" name="session_id" value="{{ checkout_session.sessionId }}">
 
                             <!-- Кнопка отправки формы -->
-                            <button type="button" id="placeOrderBtn" onclick="goToCheck({{ product.id }})"
-                                    class="btn mt_btn_yellow_three">Confirm and Pay
+{#                            <button type="button" id="placeOrderBtn" onclick="goToCheck({{ product.id }})"#}
+{#                                    class="btn mt_btn_yellow_three">Confirm and Pay#}
+{#                            </button>#}
+                            <button type="submit" id="placeOrderBtn" class="btn mt_btn_yellow_three">
+                                Confirm and Pay
                             </button>
+
 
                         </div>
                     </form>
@@ -147,14 +151,20 @@
 
     <script>
         function goToCheck(productId) {
-            // Отправляем форму
-            document.getElementById('checkout-form').submit();
 
-            // Переходим на страницу через 100 мс (или другой интервал)
-            setTimeout(() => {
-                const url = `/payments/?product_id=${productId}`;
-                window.location.href = url;
-            }, 100); // Задержка в 100 миллисекунд
+            document.getElementById('placeOrderBtn').addEventListener('click', function () {
+                const form = document.getElementById('checkout-form');
+                form.submit();  // Отправляем форму
+            });
+
+            // Отправляем форму
+            {#document.getElementById('checkout-form').submit();#}
+            {##}
+            {#// Переходим на страницу через 100 мс (или другой интервал)#}
+            {#setTimeout(() => {#}
+            {#    const url = `/payments/?product_id=${productId}`;#}
+            {#    window.location.href = url;#}
+            {#, 100); // Задержка в 100 миллисекунд#}
         }
     </script>
 
