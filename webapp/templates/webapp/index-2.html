@@ -30,7 +30,7 @@
                                 class="img-fixed-size-for-disposal-main" loading="lazy">
                         </a>
                     </div>
-                    <a href="https://dchomefix.co/services/disposal" class="mt_btn_yellow">Restore</a>
+                    <a href="https://dchomefix.co/services/disposal" class="mt_btn_yellow">Get to service</a>
                 </div>
             </div>
         </div>
@@ -50,7 +50,9 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="about-img">
+                            <a href="https://dchomefix.co/services/ceiling-fan/">
                             <img src="{% static 'images/cc_ceiling_fan_two.png' %}" alt="TV Mount Image">
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
@@ -59,9 +61,9 @@
                             <h2 class="mar-bottom-30 custom-h2">Choose your own Ceiling Fan <br> Select an individual plan
                             </h2>
                             <h5 class="mar-bottom-40 custom-margin">Book a free consultation or pay now. Click to
-                                Go  <i class="fa fa-get-pocket"></i></h5>
+                                Get  <i class="fa fa-get-pocket"></i></h5>
                             <div class="text-right mt-3">
-                                <a href="https://dchomefix.co/services/ceiling-fan/" class="btn mt_btn_yellow">Restore</a>
+                                <a href="https://dchomefix.co/services/ceiling-fan/" class="btn mt_btn_yellow">Get to service ></a>
                             </div>
                         </div>
                     </div>
@@ -83,13 +85,15 @@
                             <h2 class="mar-bottom-30 custom-h2">Approach to each client <br> Select an individual plan
                             </h2>
                             <h5 class="mar-bottom-40 custom-margin">Book a free consultation or pay now
-                                Click to Go  <i class="fa fa-get-pocket"></i></h5>
-                            <a href="https://dchomefix.co/services/tv-mount/" class="btn mt_btn_yellow">Restore</a>
+                                Click to Get  <i class="fa fa-get-pocket"></i></h5>
+                            <a href="https://dchomefix.co/services/tv-mount/" class="btn mt_btn_yellow">Get to service ></a>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div class="about-img">
-                            <img src="{% static 'images/tv_mount_banner.png' %}">
+                            <a href="https://dchomefix.co/services/tv-mount/">
+                                <img src="{% static 'images/tv_mount_banner.png' %}" alt="TV Mount Service">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -117,11 +121,15 @@
                     <div class="col-md-3 col-sm-6 col-xs-6">
                         <div class="box mar-bottom-30 text-center text_products">
                             {% if main_product.image %}
+                                <a href="{% url 'webapp:services_with_slug' main_product.slug %}">
                                 <img src="{{ main_product.image.url }}" class="img-fixed-size"
                                      alt="{{ main_product.name }}">
+                                </a>
                             {% else %}
+                                <a href="{% url 'webapp:services_with_slug' main_product.slug %}">
                                 <img src="{% static 'images/cc_hacker.jpg' %}" class="img-fixed-size"
                                      alt="Default product image">
+                                </a>
                             {% endif %}
                             <div class="box-content">
                                 <h3>
@@ -345,38 +353,38 @@
     </section>
     <!--* End Step Services*-->
 
-    <!--*Newsletter*-->
-    <div id="newsletter">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-xs-12">
-                    <div class="news-content">
-                        <img src="{% static 'images/cc_favicon8.png' %}" class="img-fixed-size-for-mailform"
-                             alt="Awesome Logo">
-                        <h3 id="consultation-title" class="slide-in">ORDER FREE CONSULTATION</h3>
-                        <!-- Добавлен класс slide-in -->
-                        <p class="beige"><b>WRITE US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE YOUR
-                            LIFESTYLE DREAMS.</b></p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xs-12">
-                    <div class="mailpoet_form">
-                        <form target="_self" method="post" action="{% url 'webapp:contacts' %}" novalidate="">
-                            {% csrf_token %}
-                            <input type="text" name="name" placeholder="Your Name">
-                            <input type="email" class="mailpoet_text" name="email" title="Email"
-                                   placeholder="Please specify your email address.">
-                            <input type="text" name="description" placeholder="Description Service">
-                            <div class="button button-mail">
-                                <input type="submit" class="button mailpoet_submit" value="Free Quote">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--*End Newsletter*-->
+{#    <!--*Newsletter*-->#}
+{#    <div id="newsletter">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-sm-6 col-xs-12">#}
+{#                    <div class="news-content">#}
+{#                        <img src="{% static 'images/cc_favicon8.png' %}" class="img-fixed-size-for-mailform"#}
+{#                             alt="Awesome Logo">#}
+{#                        <h3 id="consultation-title" class="slide-in">ORDER FREE CONSULTATION</h3>#}
+{#                        <!-- Добавлен класс slide-in -->#}
+{#                        <p class="beige"><b>WRITE US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE YOUR#}
+{#                            LIFESTYLE DREAMS.</b></p>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-sm-6 col-xs-12">#}
+{#                    <div class="mailpoet_form">#}
+{#                        <form target="_self" method="post" action="{% url 'webapp:contacts' %}" novalidate="">#}
+{#                            {% csrf_token %}#}
+{#                            <input type="text" name="name" placeholder="Your Name">#}
+{#                            <input type="email" class="mailpoet_text" name="email" title="Email"#}
+{#                                   placeholder="Please specify your email address.">#}
+{#                            <input type="text" name="description" placeholder="Description Service">#}
+{#                            <div class="button button-mail">#}
+{#                                <input type="submit" class="button mailpoet_submit" value="Free Quote">#}
+{#                            </div>#}
+{#                        </form>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <!--*End Newsletter*-->#}
 
 {#    <!--* Testimonial*-->#}
 {#    <section id="mt_faq-testi">#}
@@ -464,6 +472,85 @@
 {#        </div>#}
 {#    </section>#}
 {#    <!--* End Blog*-->#}
+    <!--* Services*-->
+{#    <section id="mt_services" class="services_one">#}
+{#        <div class="container">#}
+{##}
+{#            <!--*Newsletter*-->#}
+{#            <div id="newsletter">#}
+{#                <div class="container">#}
+{#                    <div class="row">#}
+{#                        <div class="col-xs-12">#}
+{#                            <div class="news-content">#}
+{#                                <h3>ORDER FREE CONSULTATION</h3>#}
+{#                                <p class="beige">#}
+{#                                    <b>WRITE US TODAY FOR A FREE CONSULTATION.</b>#}
+{#                                </p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="col-xs-12">#}
+{#                            <div class="mailpoet_form">#}
+{#                                <form target="_self" method="post" action="{% url 'webapp:contacts' %}" novalidate="">#}
+{#                                    {% csrf_token %}#}
+{##}
+{#                                    <!-- Поле для Зип кода -->#}
+{#                                    <input type="text" class="mailpoet_text" name="zip_code" placeholder="ZIP Code" required>#}
+{##}
+{#                                    <!-- Поле для описания услуги -->#}
+{#                                    <input type="text" class="mailpoet_text" name="description" placeholder="Description Service" required>#}
+{##}
+{#                                    <!-- Поле для выбора количества часов -->#}
+{#                                    <label for="hours"><h5>How many hours would you like to book?</h5></label>#}
+{#                                    <select class="mailpoet_text"name="hours" id="hours" required>#}
+{#                                        <option value="" disabled selected>Select Hours</option>#}
+{#                                        {% for hour in "123456789"|make_list %}#}
+{#                                            <option value="{{ forloop.counter }}">{{ forloop.counter }}#}
+{#                                                Hour{{ forloop.counter|pluralize }}</option>#}
+{#                                        {% endfor %}#}
+{#                                    </select>#}
+{##}
+{#                                    <!-- Поле для выбора даты -->#}
+{#                                    <label for="date"><h5>When would you like a Pro to come?</h5></label>#}
+{#                                    <input type="date" class="mailpoet_text" name="date" id="date" required>#}
+{##}
+{#                                    <!-- Поле для выбора времени с выпадающим списком -->#}
+{#                                    <label class="mailpoet_text" for="time"><h5>At what time?</h5></label>#}
+{#                                    <select name="time" id="time" required>#}
+{#                                        <option class="mailpoet_text" value="" disabled selected>Select Time</option>#}
+{#                                        {% for hour in "123456789101112"|make_list %}#}
+{#                                            <option value="{{ forloop.counter }}:00 AM">{{ forloop.counter }}:00 AM#}
+{#                                            </option>#}
+{#                                            <option value="{{ forloop.counter }}:30 AM">{{ forloop.counter }}:30 AM#}
+{#                                            </option>#}
+{#                                            <option value="{{ forloop.counter }}:00 PM">{{ forloop.counter }}:00 PM#}
+{#                                            </option>#}
+{#                                            <option value="{{ forloop.counter }}:30 PM">{{ forloop.counter }}:30 PM#}
+{#                                            </option>#}
+{#                                        {% endfor %}#}
+{#                                    </select>#}
+{##}
+{#                                    <!-- Поле для электронной почты -->#}
+{#                                    <input type="email" class="mailpoet_text" name="email"#}
+{#                                           placeholder="Your Email Address" required>#}
+{##}
+{#                                    <!-- Поле для телефона -->#}
+{#                                    <input type="tel" class="mailpoet_text" name="phone" placeholder="Your Phone Number" required>#}
+{##}
+{#                                    <!-- Кнопка отправки -->#}
+{#                                    <div class="button button-mail">#}
+{#                                        <input type="submit" class="mailpoet_submit" value="Get a Price">#}
+{#                                    </div>#}
+{#                                </form>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <!--*End Newsletter*-->#}
+{#        </div>#}
+{#    </section>#}
+{#    <!--*End Newsletter*-->#}
+
 
 
 {% endblock %}

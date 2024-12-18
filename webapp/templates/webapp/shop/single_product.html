@@ -33,12 +33,129 @@
     </div>
     <!-- End breadcrumb -->
 
-    <!-- Store Detail -->
-    <section id="store-detail" class="store-detail">
+{#    <!-- Store Detail -->#}
+{#    <section id="store-detail" class="store-detail">#}
+{#        <div class="container">#}
+{#            <div class="single-product-content">#}
+{#                <div class="row">#}
+{#                    <div class="col-sm-6">#}
+{#                        <div class="thumbnail-images">#}
+{#                            <div class="slider slider-store">#}
+{#                                {% if product.image %}#}
+{#                                    <div>#}
+{#                                        <img src="{{ product.image.url }}" alt="{{ product.name }}"#}
+{#                                             class="img-fixed-size-four">#}
+{#                                    </div>#}
+{#                                {% else %}#}
+{#                                    <p>No images available for this product.</p>#}
+{#                                {% endif %}#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                    <div class="col-sm-6">#}
+{#                        <div class="single-product-summary">#}
+{#                            <div class="entry-summary">#}
+{#                                <h2 class="single-product-title">{{ product.name }}</h2>#}
+{#                                <div class="rt-product-meta-wrapper">#}
+{#                                <span class="price">#}
+{#                                    {% if product.discount > 0 %}#}
+{#                                        <del>#}
+{#                                            <span class="rt-price-amount"><span>$</span>{{ product.price }}</span>#}
+{#                                        </del>#}
+{#                                    {% endif %}#}
+{#                                    <ins>#}
+{#                                        <span class="rt-price-amount"><span>$</span>{{ product.discount }}</span>#}
+{#                                    </ins>#}
+{#                                      <ins>#}
+{#                                          <span class="rt-price-amount">#}
+{#                                              <span>$</span><span id="total-price">{{ product.discount }}</span>#}
+{#                                          </span>#}
+{#                                      </ins>#}
+{#                                </span>#}
+{#                                </div>#}
+{##}
+{#                                <div class="product-details_short-description mar-top-30">#}
+{#                                    <h4>Description:</h4>#}
+{#                                    <p>{{ product.description }}</p>#}
+{#                                </div>#}
+{##}
+{#                                {% if product.additional_description %}#}
+{#                                    <div class="product-details_short-description mar-top-30">#}
+{#                                        <h6>Additional Information:</h6>#}
+{#                                        <p>{{ product.additional_description }}</p>#}
+{#                                    </div>#}
+{#                                {% endif %}#}
+{##}
+{#                                {% if product.show_quantity %}#}
+{#                                <div class="quantity-buttons">#}
+{#                                    <label class="screen-reader-text">Quantity</label>#}
+{#                                    <input type="number" class="quantity-input" name="quantity" min="1" max="100"#}
+{#                                           placeholder="No." value="1" id="quantity-input">#}
+{#                                </div>#}
+{#                                {% endif %}#}
+{##}
+{#                                <div class="product_meta mar-top-30">#}
+{#                                    <span class="sku_wrapper">Brand: <span class="sku">{{ product.brand }}</span></span>#}
+{#                                    {% if product.color %}#}
+{#                                        <span class="tagged_as">Color: <a href="#"#}
+{#                                                                          rel="tag">{{ product.color }}</a></span>#}
+{#                                    {% endif %}#}
+{#                                    {% if product.power_source %}#}
+{#                                        <span class="tagged_as">Power Source: {{ product.power_source }}</span>#}
+{#                                    {% endif %}#}
+{##}
+{#                                    {% if checkout_session %}#}
+{#                                        <form action="{% url 'webapp:checkout' %}?product_id={{ product.id }}"#}
+{#                                              method="POST">#}
+{#                                            {% csrf_token %}#}
+{#                                            <input type="hidden" name="session_id"#}
+{#                                                   value="{{ checkout_session.sessionId }}">#}
+{#                                            <input type="hidden" name="discount_check" value="{{ product.discount }}">#}
+{#                                            <button class="mt_btn_yellow mt_btn_yellow_position" type="submit">Order#}
+{#                                                By#}
+{#                                            </button>#}
+{#                                        </form>#}
+{#                                    {% else %}#}
+{#                                        <p>Error creating checkout session</p>#}
+{#                                    {% endif %}#}
+{##}
+{#                                    {% if checkout_session %}#}
+{#                                        <form action="{% url 'webapp:checkout' %}?product_id={{ product.id }}"#}
+{#                                              method="POST" id="checkout-form">#}
+{#                                            {% csrf_token %}#}
+{#                                            <input type="hidden" name="session_id"#}
+{#                                                   value="{{ checkout_session.sessionId }}">#}
+{#                                            <input type="hidden" name="discount_check" value="{{ product.discount }}">#}
+{#                                            <input type="hidden" name="total_price" id="total-price-input">#}
+{#                                            <input type="hidden" name="quantity" id="quantity-input-hidden">#}
+{#                                            <!-- Скрытое поле для общей цены -->#}
+{#                                            <button class="mt_btn_yellow mt_btn_yellow_position" id="goToCheckoutBtn" type="submit">Proceed to Checkout#}
+{#                                            </button>#}
+{#                                            <!-- Кнопка для перехода на страницу оформления заказа -->#}
+{#                                            <button type="button" id="goToCheckoutBtn">Go to Checkout</button>#}
+{#                                        </form>#}
+{#                                    {% else %}#}
+{#                                        <p>Error creating checkout session</p>#}
+{#                                    {% endif %}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    <br>#}
+{#    <br>#}
+{#    </section>#}
+{#    <!-- /End Store Detail -->#}
+
+
+    <!--* Mail Order Services *-->
+    <section id="mt_services" class="services_one">
         <div class="container">
-            <div class="single-product-content">
-                <div class="row">
-                    <div class="col-sm-6">
+            <div class="row forms-wrapper">
+            <div class="col-sm-7">
                         <div class="thumbnail-images">
                             <div class="slider slider-store">
                                 {% if product.image %}
@@ -51,14 +168,11 @@
                                 {% endif %}
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-sm-6">
                         <div class="single-product-summary">
                             <div class="entry-summary">
                                 <h2 class="single-product-title">{{ product.name }}</h2>
-                                <div class="rt-product-meta-wrapper">
-                                <span class="price">
+                                 <span class="price">
+                                 <p>Price:</p>
                                     {% if product.discount > 0 %}
                                         <del>
                                             <span class="rt-price-amount"><span>$</span>{{ product.price }}</span>
@@ -73,15 +187,14 @@
                                           </span>
                                       </ins>
                                 </span>
-                                </div>
 
-                                <div class="product-details_short-description mar-top-30">
+                                <div class="product-details_short-description mar-top-25">
                                     <h4>Description:</h4>
                                     <p>{{ product.description }}</p>
                                 </div>
 
                                 {% if product.additional_description %}
-                                    <div class="product-details_short-description mar-top-30">
+                                    <div class="product-details_short-description mar-top-25">
                                         <h6>Additional Information:</h6>
                                         <p>{{ product.additional_description }}</p>
                                     </div>
@@ -95,8 +208,10 @@
                                 </div>
                                 {% endif %}
 
-                                <div class="product_meta mar-top-30">
+                                <div class="product_meta mar-top-25">
+                                    {% if product.brand %}
                                     <span class="sku_wrapper">Brand: <span class="sku">{{ product.brand }}</span></span>
+                                    {% endif %}
                                     {% if product.color %}
                                         <span class="tagged_as">Color: <a href="#"
                                                                           rel="tag">{{ product.color }}</a></span>
@@ -142,13 +257,90 @@
                             </div>
                         </div>
                     </div>
+                <div class="col-sm-4"></div>
+                <!--*Mail Order *-->
+                <div id="newsletter">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="news-content">
+                                    <h2 class="single-product-title">{{ product.name }}</h2>
+{#                                    <h3>ORDER CONSULTATION</h3>#}
+                                    <p class="beige">
+                                        <b>WRITE US TODAY FOR CONSULTATION.</b>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="mailpoet_form">
+                                    <form target="_self" method="post" action="{% url 'webapp:contacts' %}"
+                                          novalidate="">
+                                        {% csrf_token %}
+
+                                        <!-- Поле для Зип кода -->
+                                        <input type="text" class="mailpoet_text" name="zip_code" placeholder="ZIP Code"
+                                               required>
+                                        <label for="hours"><h5>Tell us about the job</h5></label>
+                                        <!-- Поле для описания услуги -->
+                                        <input type="text" class="mailpoet_text" name="description"
+                                               placeholder="Please describe the job in detail.(required)" required>
+
+                                        <!-- Поле для выбора количества часов -->
+                                        <label for="hours"><h5>How many hours would you like to book?</h5></label>
+                                        <select class="mailpoet_text" name="hours" id="hours" required>
+                                            <option value="" disabled selected>Select Hours</option>
+                                            {% for hour in "123456789"|make_list %}
+                                                <option value="{{ forloop.counter }}">{{ forloop.counter }}
+                                                    Hour{{ forloop.counter|pluralize }}</option>
+                                            {% endfor %}
+                                        </select>
+
+                                        <!-- Поле для выбора даты -->
+                                        <label for="date"><h5>When would you like a Pro to come?</h5></label>
+                                        <input type="date" class="mailpoet_text" name="date" id="date" required>
+
+                                        <!-- Поле для выбора времени с выпадающим списком -->
+                                        <label class="mailpoet_text" for="time"><h5>At what time?</h5></label>
+                                        <select name="time" id="time" required>
+                                            <option class="mailpoet_text" value="" disabled selected>Select Time
+                                            </option>
+                                            {% for hour in "123456789101112"|make_list %}
+                                                <option value="{{ forloop.counter }}:00 AM">{{ forloop.counter }}:00 AM
+                                                </option>
+                                                <option value="{{ forloop.counter }}:30 AM">{{ forloop.counter }}:30 AM
+                                                </option>
+                                                <option value="{{ forloop.counter }}:00 PM">{{ forloop.counter }}:00 PM
+                                                </option>
+                                                <option value="{{ forloop.counter }}:30 PM">{{ forloop.counter }}:30 PM
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+
+                                        <!-- Поле для электронной почты -->
+                                        <input type="email" class="mailpoet_text" name="email"
+                                               placeholder="Email Address" required>
+
+                                        <!-- Поле для телефона -->
+                                        <input type="tel" class="mailpoet_text" name="phone"
+                                               placeholder="Phone Number"
+                                               required>
+
+                                        <!-- Кнопка отправки -->
+                                        <div class="button button-mail">
+                                            <input type="submit" class="mailpoet_submit" value="Get a Price">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <!--*End Mail Order *-->
             </div>
         </div>
-    <br>
-    <br>
     </section>
-    <!-- /End Store Detail -->
+    <!--* End Mail Order Services *-->
+
 
     <script>
         // Получаем элементы
@@ -190,39 +382,6 @@
         }
     </script>
 
-
-    <!--*Newsletter*-->
-    <div id="newsletter">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-xs-12">
-                    <div class="news-content">
-                        <img src="{% static 'images/cc_favicon8.png' %}" class="img-fixed-size-for-mailform"
-                             alt="Awesome Logo">
-                        <h3 id="consultation-title" class="slide-in">ORDER FREE CONSULTATION</h3>
-                        <!-- Добавлен класс slide-in -->
-                        <p class="beige"><b>WRITE US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE YOUR
-                            LIFESTYLE DREAMS.</b></p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xs-12">
-                    <div class="mailpoet_form">
-                        <form target="_self" method="post" action="{% url 'webapp:contacts' %}" novalidate="">
-                            {% csrf_token %}
-                            <input type="text" name="name" placeholder="Your Name">
-                            <input type="email" class="mailpoet_text" name="email" title="Email"
-                                   placeholder="Please specify your email address.">
-                            <input type="text" name="description" placeholder="Description Service">
-                            <div class="button button-mail">
-                                <input type="submit" class="button mailpoet_submit" value="Free Quote">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--*End Newsletter*-->
 
 
 {% endblock %}

@@ -1360,7 +1360,7 @@ section#mt_services_five {
 /*services style 1*/
 
 section#mt_services.services_one{
-  padding: 75px 0 15px;
+  padding: 65px 0 15px;
 }
 
 @media (max-width: 767px) { /* Ширина экрана 767 пикселей и меньше */
@@ -2460,181 +2460,209 @@ section#mt_faq-testi .section_heading{padding: 0;}
 /*         Newsletter         */
 /* ====================== */
 
-#newsletter{
-    padding: 21px 0 21px;
-    background: #f1f1f1;
+/* Базовый стиль для десктопа остается без изменений */
+#newsletter {
+    padding: 21px 0;
+    background: rgba(241, 241, 241, 0.9);
     position: relative;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* добавляем тень */
-  }
-
-#newsletter:before {
-  background: #e1e1e1;
-  content: '';
-  height: 100%;
-  width: 55%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-right: 5px solid #ffb620;
-  opacity: 0.9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+    width: 38%;
+    left: 3%;
 }
 
+#newsletter h5 {
+    font-size: 15px;
+    color: #122b40;
+    padding-top: 10px;
+    margin-left: 9px;
+}
+.services_one{
+    padding: 8px;
+    padding-left: 90px;
+}
 #newsletter .mailpoet_form {
-    margin-top: 5px;
-    margin-right: 15px;
-    position: initial;
-    overflow:hidden;
-    background: #fff;
-    height: 27%;
-    box-shadow: 1px 4px 5px #222;
-}
-
-@media (max-width: 736px) {
-    #newsletter .mailpoet_form {
-        margin-top: 5px;
-        position: relative;
-        overflow: hidden;
-        background: #fff;
-        height: 26.5%;
-        top: 0px;
-        width: 98.5%;
-    }
-}
-
-@media (max-width: 667px) {
-  #newsletter .mailpoet_form {
-    margin-top: 5px;
+    margin-top: 21px;
     position: relative;
-    overflow: hidden;
     background: #fff;
-    height: 30%;
-    top: 0px;
-    width: 98.5%;
-  }
-}
-
-@media (max-width: 320px) {
-    #newsletter .mailpoet_form {
-        margin-top: 5px;
-        position: relative;
-        overflow: hidden;
-        background: #fff;
-        height: 35.5%;
-        top: 0px;
-        width: 100%;
-    }
-}
-
-.mailpoet_submit {
-    position: absolute; /* Делаем кнопку абсолютно позиционированной */
-    bottom: 0; /* Располагаем кнопку внизу контейнера формы */
-}
-
-.button-mail{
-    padding-top: 9%;
+    height: auto;
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: calc(100% - 0px);
+    padding: 15px;
 }
 
 .description-form {
     font-size: 14px;
     font-weight: 300;
     background-color: #fff;
-    border: 1px solid #eee;
-    border-radius: 0px;
-    padding: 10px 20px 0%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
     width: 100%;
     color: #444444;
     margin-bottom: 15px;
     font-family: 'Roboto', sans-serif;
-    height: 50px;
-    box-shadow: none;
-    margin-bottom: 0px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 #newsletter .mailpoet_form input.mailpoet_text {
-    border: none;
-    padding: 16px 142px 16px 25px;
-    margin: 0;
-    border-radius: 0;
-    background: transparent;
+    border: 1px solid #ccc;
+    padding: 16px 25px;
+    border-radius: 8px;
+    background: #fafafa;
     height: 50px;
+    width: 100%;
+    transition: box-shadow 0.3s ease;
+    margin-top: 8px;
 }
 
 #newsletter input[type="submit"] {
-  border: none;
-  background: #ffb620;
-  position: absolute;
-  /*top: 0px;*/
-  right: 0px;
-  color: #fff;
-  margin: 0;
-  padding: 13px 20px 12px;
-  border-radius: 0;
-  width: 93%;
-  transition: background-color 0.3s;
-  left: 13px;
-  bottom: 0;
+    border: none;
+    background: #06b0e4;
+    color: #fff;
+    margin-top: 54px;
+    padding: 13px 20px;
+    border-radius: 8px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
 
+#newsletter input[type="submit"]:hover {
+    background-color: #ffa500;
+}
+
+#newsletter .mailpoet_form input.mailpoet_text:focus {
+    outline: none;
+    border-color: #ffb620;
+    box-shadow: 0 0 8px rgba(255, 182, 32, 0.5); /* подсветка при фокусе */
+}
+
+#newsletter select:focus {
+    outline: none;
+    border-color: #ffb620;
+    box-shadow: 0 0 8px rgba(255, 182, 32, 0.5); /* подсветка при фокусе */
+}
+#newsletter select {
+    border: 1px solid #ccc;
+    padding: 16px 25px;
+    margin: 0;
+    border-radius: 8px; /* скругление углов */
+    background: #fafafa;
+    height: 50px;
+    width: 100%;
+    font-size: 14px;
+    color: #444;
+    font-family: 'Roboto', sans-serif;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1); /* внутренняя тень */
+    appearance: none; /* убираем стандартный вид браузера */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23444" width="18px" height="18px"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 18px;
+    cursor: pointer;
 }
 
 
-@media (max-width:736px){
+.news-content p {
+    color: #333;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-align: center;
+    background-color: #e3e3e3;
+    padding: 15px;
+    border-radius: 10px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
 
-  #newsletter:before{width: 100%;}
+.news-content h2 {
+  color: #0d2d1a;
+  font-size: 30px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 15px 15px 10px;
+  text-align: center;
+  transition: all 500ms ease;
+}
 
-  #newsletter input[type="submit"]{color: #ffffff; background: #ffac00; width: 0; font-size: 16px;}
+/* Стиль для адаптации на мобильных устройствах */
+@media (max-width: 768px) {
+    #newsletter {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%; /* Растягиваем на всю ширину */
+        padding: 15px; /* Уменьшаем отступы */
+    }
 
+    #newsletter h5 {
+        font-size: 13px;
+        text-align: center;
+        margin-left: 0;
+    }
+
+    #newsletter .mailpoet_form {
+        width: 100%; /* Полная ширина формы */
+    }
+
+    .description-form {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    #newsletter input[type="submit"] {
+        font-size: 14px;
+        padding: 10px;
+        width: 100%; /* Полная ширина кнопки */
+    }
+
+    #newsletter .news-content {
+        text-align: center;
+        width: 100%; /* Полная ширина блока */
+    }
+
+    .news-content h2 {
+        font-size: 24px;
+    }
+
+    .news-content p {
+        font-size: 14px;
+        padding: 10px;
+    }
 }
 
 @media (max-width: 480px) {
-    #newsletter input[type="submit"] {
-        width: 100%;
-        position: absolute;
-        height: 25%;
+    #newsletter {
+        padding: 10px; /* Уменьшаем общий отступ */
         left: 0;
     }
 
-  #newsletter .news-content{text-align: center;}
+    #newsletter .mailpoet_form input.mailpoet_text {
+        padding: 12px 15px; /* Уменьшаем внутренние отступы */
+    }
 
-  #newsletter .mailpoet_form input.mailpoet_text {
-    padding: 16px 25px 16px 25px;
-  }
+    #newsletter input[type="submit"] {
+        font-size: 12px;
+        padding: 8px;
+        margin-top: 0px;
+    }
+
+    .news-content h2 {
+        font-size: 20px;
+    }
+
+    .news-content p {
+        font-size: 12px;
+    }
 }
 
-.news-content h2{
-  color: #0d2d1a;
-  font-size: 30px;
-  text-transform: uppercase;
-  font-weight: 700;
-  margin: 30px 15px 0px;
-  transition: all 500ms ease;
-}
-
-@media (max-width:736px){
-  .news-content h2{
-  color: #0d2d1a;
-  font-size: 30px;
-  text-transform: uppercase;
-  font-weight: 700;
-  margin: 0px 0 10px;
-  transition: all 500ms ease;
-}
-}
-.news-content p {
-  color: beige; /* Цвет текста */
-  font-size: 17px; /* Размер шрифта */
-  text-transform: uppercase; /* Преобразование текста в верхний регистр */
-  font-weight: 700; /* Жирность шрифта */
-  margin: 0 0 13px; /* Отступы */
-  transition: all 500ms ease; /* Плавные переходы */
-  background-color: #e3e3e3; /* Цвет фона */
-    letter-spacing: 1.2px;
-  text-shadow:
-    1px 1px 0 #444444,  /* Верхний светлый тень */
-    -1px -1px 0 #444444, /* Нижний светлый тень */
-    1px -1px 0 #444444,  /* Левый светлый тень */
-    -1px 1px 0 #444444,  /* Правый светлый тень */
-    2px 2px 2px rgba(0, 0, 0, 0.1); /* Обычная тень */
-}
 
 
 @keyframes slideIn {
@@ -2682,6 +2710,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
     color: #ffb620; /* Цвет текста */
     letter-spacing: 2.5px; /* Расстояние между буквами */
     font-weight: 400; /* Средняя жирность шрифта */
+    text-align: center;
 }
 
 
@@ -2714,7 +2743,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
 }
 
 #newsletter input[type="submit"]:hover {
-    background-color: #06b0e4; /* изменяем цвет при наведении */
+    background-color: #a6a5a4; /* изменяем цвет при наведении */
 }
 
 
@@ -3737,10 +3766,11 @@ a.checkout-link {
     text-decoration: none;
     border: 2px solid #ffac00;
     transition: all 0.5s ease;
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 5%;
+    padding-right: 5%;
     float: right;
     margin-top: -50px;
+    margin-right: 11.5%;
 }
 
 @media (max-width: 640px) {
@@ -3774,7 +3804,7 @@ a.checkout-link {
         text-decoration: none;
         border: 2px solid #ffac00;
         transition: all 0.5s ease;
-        margin: 10px 0; /* Отступ для iPhone 5 */
+        margin: 35px 0; /* Отступ для iPhone 5 */
         /*display: none;*/
         width: auto;
     }
@@ -4613,7 +4643,7 @@ h3.product_title{margin: 10px 0; font-size: 18px; }
     vertical-align: middle;
 }
 
-.single-product-summary .product-details_short-description p{margin-bottom: 0;}
+.single-product-summary .product-details_short-description p{margin-bottom: 0; padding-right: 31px;}
 
 .single-product-summary form.cart {
     position: relative;
@@ -5939,7 +5969,7 @@ p.lt-pswrd{margin-bottom: 20px;}
   .industry .mt_testimonial .slick-prev, .industry .mt_testimonial .slick-next{left: inherit; bottom: 0px; right: 25px;}
 
   .industry .mt_testimonial .slick-prev{right: 90px;}
-  .button-mail {padding-top: 20%;}
+  .button-mail {padding-top: 13%;}
 }
 
 @media(max-width: 359px){
