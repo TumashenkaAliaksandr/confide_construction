@@ -3,7 +3,7 @@ from .models import *
 from django.contrib.auth.password_validation import validate_password
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.validators import RegexValidator
 
 
@@ -121,54 +121,167 @@ class RegistrationForm(forms.ModelForm):
         return password
 
 
+# class ContactForm(forms.Form):
+#     name = forms.CharField(
+#         min_length=2,
+#         widget=forms.TextInput(
+#             attrs={'placeholder': 'Your name'}
+#         )
+#     )
+#
+#     email = forms.EmailField(
+#         widget=forms.EmailInput(
+#             attrs={'placeholder': 'Your email'}
+#         )
+#     )
+#
+#     message = forms.CharField(
+#         min_length=20,
+#         widget=forms.Textarea(
+#             attrs={'placeholder': 'Message', 'cols': 30, 'rows': 5}
+#         )
+#     )
 class ContactForm(forms.Form):
-    name = forms.CharField(
+    first_name = forms.CharField(
         min_length=2,
+        max_length=30,  # Установим максимальную длину
         widget=forms.TextInput(
-            attrs={'placeholder': 'Your name'}
-        )
+            attrs={'placeholder': 'First Name', 'class': 'mailpoet_text'}
+        ),
+        label="First Name"
+    )
+
+    last_name = forms.CharField(
+        min_length=2,
+        max_length=30,  # Установим максимальную длину
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Last Name', 'class': 'mailpoet_text'}
+        ),
+        label="Last Name"
+    )
+
+    zip_code = forms.CharField(
+        max_length=10,
+        widget=forms.TextInput(
+            attrs={'placeholder': 'ZIP Code', 'class': 'mailpoet_text'}
+        ),
+        label="ZIP Code"
+    )
+
+    description = forms.CharField(
+        min_length=10,
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Please describe the job in detail.', 'class': 'mailpoet_text'}
+        ),
+        label="Job Description"
+    )
+
+    hours = forms.ChoiceField(
+        choices=[(str(i), f"{i} Hour{'s' if i > 1 else ''}") for i in range(1, 10)],
+        widget=forms.Select(attrs={'class': 'mailpoet_text'}),
+        label="How many hours would you like to book?"
+    )
+
+    date = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date', 'class': 'mailpoet_text'}),
+        label="When would you like a Pro to come?"
+    )
+
+    time = forms.ChoiceField(
+        choices=[(f"{i}:00 AM", f"{i}:00 AM") for i in range(1, 13)] +
+                [(f"{i}:30 AM", f"{i}:30 AM") for i in range(1, 13)] +
+                [(f"{i}:00 PM", f"{i}:00 PM") for i in range(1, 13)] +
+                [(f"{i}:30 PM", f"{i}:30 PM") for i in range(1, 13)],
+        widget=forms.Select(attrs={'class': 'mailpoet_text'}),
+        label="At what time?"
     )
 
     email = forms.EmailField(
         widget=forms.EmailInput(
-            attrs={'placeholder': 'Your email'}
-        )
+            attrs={'placeholder': 'Your email', 'class': 'mailpoet_text'}
+        ),
+        label="Email Address"
     )
 
-    message = forms.CharField(
-        min_length=20,
-        widget=forms.Textarea(
-            attrs={'placeholder': 'Message', 'cols': 30, 'rows': 5}
-        )
+    phone = forms.CharField(
+        max_length=15,
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Phone Number (e.g. 123-456-7890)', 'class': 'mailpoet_text'}
+        ),
+        label="Phone Number"
     )
 
 
 def contact(request):
-    context = {}
-
     if request.method == 'POST':
+        # Создание формы с данными из POST-запроса
         form = ContactForm(request.POST)
         if form.is_valid():
             # Обработка отправки формы
-            name = form.cleaned_data['name']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            zip_code = form.cleaned_data['zip_code']
+            description = form.cleaned_data['description']
+            hours = form.cleaned_data['hours']
+            date = form.cleaned_data['date']
+            time = form.cleaned_data['time']
             email = form.cleaned_data['email']
-            message = form.cleaned_data['message']
+            phone = form.cleaned_data['phone']
+
+            # Формирование сообщения
+            message = (
+                f'Имя: {first_name} {last_name}\n'
+                f'ZIP Код: {zip_code}\n'
+                f'Описание работы: {description}\n'
+                f'Количество часов: {hours}\n'
+                f'Дата визита: {date}\n'
+                f'Время визита: {time}\n'
+                f'Email: {email}\n'
+                f'Телефон: {phone}'
+            )
 
             # Отправка письма
             send_mail(
-                'Feedback from your website',
-                f'Name: {name}\nEmail: {email}\nMessage: {message}',
-                'tumashenkaaliaksandr@gmail.com',  # Отправитель
-                ['recipient@example.com'],  # Получатель
+                'Request for consultation from the website',
+                message,
+                'recipient@example.com',  # Укажите свой адрес электронной почты
+                ['confideco@gmail.com'],  # Получатель
                 fail_silently=False,
             )
 
-            return HttpResponseRedirect('')  # Перенаправление на страницу "Спасибо"
+            return redirect('success_page')  # Перенаправление на страницу "Спасибо"
     else:
         form = ContactForm()
 
-    context['form'] = form
-    return render(request, 'webapp/contact-us-1.html', context=context)
+    return render(request, 'webapp/contact-us-1.html', {'form': form})
+
+
+# def contact(request):
+#     context = {}
+#
+#     if request.method == 'POST':
+#         form = ContactForm(request.POST)
+#         if form.is_valid():
+#             # Обработка отправки формы
+#             name = form.cleaned_data['name']
+#             email = form.cleaned_data['email']
+#             message = form.cleaned_data['message']
+#
+#             # Отправка письма
+#             send_mail(
+#                 'Feedback from your website',
+#                 f'Name: {name}\nEmail: {email}\nMessage: {message}',
+#                 'tumashenkaaliaksandr@gmail.com',  # Отправитель
+#                 ['Badminton500@inbox.lv'],  # Получатель
+#                 fail_silently=False,
+#             )
+#
+#             return HttpResponseRedirect('')  # Перенаправление на страницу "Спасибо"
+#     else:
+#         form = ContactForm()
+#
+#     context['form'] = form
+#     return render(request, 'webapp/contact-us-1.html', context=context)
 
 
 class PhotoForm(forms.ModelForm):

@@ -2471,8 +2471,8 @@ section#mt_faq-testi .section_heading{padding: 0;}
     flex-wrap: wrap;
     gap: 15px;
     justify-content: space-between;
-    width: 38%;
-    left: 3%;
+    width: 35%;
+    left: 5%;
 }
 
 #newsletter h5 {
@@ -2518,7 +2518,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
     height: 50px;
     width: 100%;
     transition: box-shadow 0.3s ease;
-    margin-top: 8px;
+    /*margin-top: 8px;*/
 }
 
 #newsletter input[type="submit"] {
@@ -2573,7 +2573,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
 
 .news-content p {
     color: #333;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 700;
     letter-spacing: 1.2px;
     text-align: center;
