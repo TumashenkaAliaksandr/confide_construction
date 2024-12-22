@@ -265,7 +265,6 @@
                             <div class="col-xs-12">
                                 <div class="news-content">
                                     <h2 class="single-product-title">{{ product.name }}</h2>
-{#                                    <h3>ORDER CONSULTATION</h3>#}
                                     <p class="beige">
                                         <b>WRITE US TODAY FOR CONSULTATION.</b>
                                     </p>
@@ -277,13 +276,25 @@
                                           novalidate="">
                                         {% csrf_token %}
 
+                                        <!-- Поле для Имени -->
+                                        <label for="first_name"><h5>First Name</h5></label>
+                                        <input type="text" class="mailpoet_text" name="first_name" id="first_name"
+                                               placeholder="First Name" required>
+
+                                        <!-- Поле для Фамилии -->
+                                        <label for="last_name"><h5>Last Name</h5></label>
+                                        <input type="text" class="mailpoet_text" name="last_name" id="last_name"
+                                               placeholder="Last Name" required>
+
                                         <!-- Поле для Зип кода -->
-                                        <input type="text" class="mailpoet_text" name="zip_code" placeholder="ZIP Code"
-                                               required>
-                                        <label for="hours"><h5>Tell us about the job</h5></label>
+                                        <label for="zip_code"><h5>ZIP Code</h5></label>
+                                        <input type="text" class="mailpoet_text" name="zip_code" id="zip_code"
+                                               placeholder="ZIP Code" required>
+
                                         <!-- Поле для описания услуги -->
-                                        <input type="text" class="mailpoet_text" name="description"
-                                               placeholder="Please describe the job in detail.(required)" required>
+                                        <label for="description"><h5>Tell us about the job</h5></label>
+                                        <input type="text" class="mailpoet_text" name="description" id="description"
+                                               placeholder="Please describe the job in detail. (required)" required>
 
                                         <!-- Поле для выбора количества часов -->
                                         <label for="hours"><h5>How many hours would you like to book?</h5></label>
@@ -300,34 +311,38 @@
                                         <input type="date" class="mailpoet_text" name="date" id="date" required>
 
                                         <!-- Поле для выбора времени с выпадающим списком -->
-                                        <label class="mailpoet_text" for="time"><h5>At what time?</h5></label>
+                                        <label for="time"><h5>At what time?</h5></label>
                                         <select name="time" id="time" required>
-                                            <option class="mailpoet_text" value="" disabled selected>Select Time
-                                            </option>
+                                            <option value="" disabled selected>Select Time</option>
                                             {% for hour in "123456789101112"|make_list %}
-                                                <option value="{{ forloop.counter }}:00 AM">{{ forloop.counter }}:00 AM
+                                                <option value="{{ forloop.counter }}:00 AM">{{ forloop.counter }}:00
+                                                    AM
                                                 </option>
-                                                <option value="{{ forloop.counter }}:30 AM">{{ forloop.counter }}:30 AM
+                                                <option value="{{ forloop.counter }}:30 AM">{{ forloop.counter }}:30
+                                                    AM
                                                 </option>
-                                                <option value="{{ forloop.counter }}:00 PM">{{ forloop.counter }}:00 PM
+                                                <option value="{{ forloop.counter }}:00 PM">{{ forloop.counter }}:00
+                                                    PM
                                                 </option>
-                                                <option value="{{ forloop.counter }}:30 PM">{{ forloop.counter }}:30 PM
+                                                <option value="{{ forloop.counter }}:30 PM">{{ forloop.counter }}:30
+                                                    PM
                                                 </option>
                                             {% endfor %}
                                         </select>
 
                                         <!-- Поле для электронной почты -->
-                                        <input type="email" class="mailpoet_text" name="email"
+                                        <label for="email"><h5>Email Address</h5></label>
+                                        <input type="email" class="mailpoet_text" name="email" id="email"
                                                placeholder="Email Address" required>
 
                                         <!-- Поле для телефона -->
-                                        <input type="tel" class="mailpoet_text" name="phone"
-                                               placeholder="Phone Number"
-                                               required>
+                                        <label for="phone"><h5>Phone Number (e.g. 123-456-7890)</h5></label>
+                                        <input type="tel" class="mailpoet_text" name="phone" id="phone"
+                                               placeholder="Phone Number (e.g. 123-456-7890)" required>
 
                                         <!-- Кнопка отправки -->
                                         <div class="button button-mail">
-                                            <input type="submit" class="mailpoet_submit" value="Get a Price">
+                                            <input type="submit" class="mailpoet_submit" value="Get a Consultations">
                                         </div>
                                     </form>
                                 </div>
@@ -336,6 +351,7 @@
                     </div>
                 </div>
                 <!--*End Mail Order *-->
+
             </div>
         </div>
     </section>

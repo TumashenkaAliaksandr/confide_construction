@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 # from stripe.api_resources.product import Product
 from django.shortcuts import get_object_or_404
-
+from django.template.loader import render_to_string
 from blog.models import BlogNews
 from webapp.models import *
 from django.core.mail import send_mail
@@ -13,7 +13,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
-from .forms import RegistrationForm
+from .forms import RegistrationForm, ContactForm
 from .forms import CheckoutForm
 from django.views.generic.detail import DetailView
 from django.views.generic import UpdateView
@@ -95,24 +95,82 @@ def about(request):
 def contacts(request):
     news = BlogNews.objects.all()
     if request.method == 'POST':
-        name = request.POST.get('name')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
         email = request.POST.get('email')
         description = request.POST.get('description')
+        zip_code = request.POST.get('zip_code')
+        hours = request.POST.get('hours')
+        date = request.POST.get('date')
+        time = request.POST.get('time')
+        phone = request.POST.get('phone')
 
         if email and description:
+            # Генерация HTML-содержимого из шаблона
+            message = render_to_string('webapp/forms/email_template.html', {
+                'first_name': first_name,
+                'last_name': last_name,
+                'zip_code': zip_code,
+                'description': description,
+                'hours': hours,
+                'date': date,
+                'time': time,
+                'email': email,
+                'phone': phone,
+            })
+
+            # Отправка письма
             send_mail(
-                subject='Message from your website',
-                message=f'Name: {name}\nEmail: {email}\nMessage: {description}',
+                subject='Request for consultation from the website',  #Запрос на консультацию
+                message='',
                 from_email='tumashenkaaliaksandr@gmail.com',
-                recipient_list=['Badminton500@inbox.lv'],  # Замените на ваш адрес получателя
+                recipient_list=['confideco@gmail.com'],  # Замените на ваш адрес получателя
                 fail_silently=False,
+                html_message=message  # Указываем HTML-содержимое
             )
 
             return render(request, 'webapp/register/success.html')  # Шаблон для страницы успешной отправки
+
     context = {
         'news': news,
     }
     return render(request, 'webapp/contact-us-1.html', context=context)  # Шаблон с формой обратной связи
+
+# def contacts(request):
+#     news = BlogNews.objects.all()
+#     if request.method == 'POST':
+#         first_name = request.POST.get('first_name')
+#         name = request.POST.get('last_name')
+#         email = request.POST.get('email')
+#         description = request.POST.get('description')
+#         zip_code = request.POST.get('zip_code')
+#         hours = request.POST.get('hours')
+#         date = request.POST.get('date')
+#         time = request.POST.get('time')
+#         phone = request.POST.get('phone')
+#
+#         if email and description:
+#             send_mail(
+#                 subject='Message from your website',
+#                 message=f'First Name: {first_name}\n'
+#                         f'Last Name: {name}\n'
+#                         f'Zip Code: {zip_code}\n'
+#                         f'Description: {description}\n'
+#                         f'Date of Visit: {date}\n'
+#                         f'Number of Hours: {hours}\n'
+#                         f'At what time: {time}\n'
+#                         f'Email: {email}\n'
+#                         f'Phone: {phone}\n',
+#                 from_email='tumashenkaaliaksandr@gmail.com',
+#                 recipient_list=['Badminton500@inbox.lv'],  # Замените на ваш адрес получателя
+#                 fail_silently=False,
+#             )
+#
+#             return render(request, 'webapp/register/success.html')  # Шаблон для страницы успешной отправки
+#     context = {
+#         'news': news,
+#     }
+#     return render(request, 'webapp/contact-us-1.html', context=context)  # Шаблон с формой обратной связи
 
 
 def backsplash(request):
