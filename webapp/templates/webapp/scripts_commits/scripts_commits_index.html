@@ -1,0 +1,403 @@
+    <!--* Services*-->
+{#    <section id="mt_services">#}
+{#        <div class="container wow slideInLeft">#}
+{#            <div class="row">#}
+{#                <div class="col-xs-12">#}
+{#                    <!-- section title -->#}
+{#                    <div class="section_heading">#}
+{#                        <h2 class="section_title">#}
+{#                            <span>OUR SERVICES</span>#}
+{#                        </h2>#}
+{#                        <p class="heading_txt"><b>We offer a range of services in the field of repair and construction.</b></p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                {% for main_serv in serv|slice:":8" %}#}
+{#                    <div class="col-md-3 col-sm-6-6 col-xs-6">#}
+{#                        <div class="box mar-bottom-30 text-center">#}
+{#                            <img src="{{ main_serv.image.url }}" class="img-fixed-size">#}
+{#                            <div class="box-content">#}
+{#                                <h3><a href="{{ main_serv.link }}">{{ main_serv.name }}</a></h3>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    {% if forloop.counter|divisibleby:4 %} {# Закрываем текущий ряд после каждой третьей модели #}
+{#                        </div>#}
+{#                        <div class="row">#}
+{#                    {% endif %}#}
+{#                {% endfor %}#}
+{#                </div>#}
+{#        </div>#}
+{#    </section>#}
+    <!--* End Services*-->
+
+
+{#    <!--* Step Services*-->#}
+{#    <section id="mt_services_three" class="services_two">#}
+{#        <div class="container">#}
+{##}
+{#            <div class="row">#}
+{#                <div class="col-xs-12">#}
+{#                    <!-- section title -->#}
+{#                    <div class="section_heading">#}
+{#                        <h2 class="section_title">#}
+{#                            <span>THE ORDERING PROCESS</span>#}
+{#                        </h2>#}
+{#                        <p class="heading_txt"><b>Steps of our process</b></p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <div class="services-chain">#}
+{#                <div class="row">#}
+{#                    <div class="col-md-4 col-sm-12">#}
+{#                        <div class="box text-center transparent-background">#}
+{#                            <div class="box-content fa fa-phone">#}
+{#                                <h3><a href="tel:+17033445671"> PHONE CALL</a></h3>#}
+{#                                <p><b>To contact us please use the contact <br>form or just make a call.</b></p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-4 col-sm-6 col-xs-12">#}
+{#                        <div class="box text-center transparent-background">#}
+{#                            <div class="box-content fa fa-dollar">#}
+{#                                <h3><a href="#"> FREE ESTIMATE</a></h3>#}
+{#                                <p><b>Our professional comes to you <br>for a free estimate.</b></p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-4 col-sm-6 col-xs-12">#}
+{#                        <div class="box text-center transparent-background">#}
+{#                            <div class="box-content fa fa-wrench">#}
+{#                                <h3><a href="#"> WORK & RESULT</a></h3>#}
+{#                                <p><b>We get the work done and you enjoy the result <br>No money upfront until the work is well done.</b></p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#        </div>#}
+{#    </section>#}
+{#    <!--* End Step Services*-->#}
+
+{#    <!--*Newsletter*-->#}
+{#    <div id="newsletter">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-sm-6 col-xs-12">#}
+{#                    <div class="news-content">#}
+{#                        <img src="{% static 'images/cc_favicon8.png' %}" class="img-fixed-size-for-mailform"#}
+{#                             alt="Awesome Logo">#}
+{#                        <h3 id="consultation-title" class="slide-in">ORDER FREE CONSULTATION</h3>#}
+{#                        <!-- Добавлен класс slide-in -->#}
+{#                        <p class="beige"><b>WRITE US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE YOUR#}
+{#                            LIFESTYLE DREAMS.</b></p>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-sm-6 col-xs-12">#}
+{#                    <div class="mailpoet_form">#}
+{#                        <form target="_self" method="post" action="{% url 'webapp:contacts' %}" novalidate="">#}
+{#                            {% csrf_token %}#}
+{#                            <input type="text" name="name" placeholder="Your Name">#}
+{#                            <input type="email" class="mailpoet_text" name="email" title="Email"#}
+{#                                   placeholder="Please specify your email address.">#}
+{#                            <input type="text" name="description" placeholder="Description Service">#}
+{#                            <div class="button button-mail">#}
+{#                                <input type="submit" class="button mailpoet_submit" value="Free Quote">#}
+{#                            </div>#}
+{#                        </form>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <!--*End Newsletter*-->#}
+
+{#    <!--* Testimonial*-->#}
+{#    <section id="mt_faq-testi">#}
+{#        <div class="container wow slideInLeft">#}
+{#            <div class="row">#}
+{#                <div class="col-xs-12">#}
+{#                    <!-- section title -->#}
+{#                    <div class="section_heading">#}
+{#                        <h2 class="section_title">#}
+{#                            <span>What Say Our Client</span>#}
+{#                        </h2>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <div class="mt_testimonial">#}
+{#                <div class="row slider-testi1">#}
+{#                    {% for main_review in people %}#}
+{#                    <div class="col-xs-12">#}
+{#                        <div class="testimonial_main">#}
+{#                            <p class="mar-bottom-30">{{ main_review.text }}</p>#}
+{#                            <div class="client-pic"><img src="{{ main_review.photo.url }}" class="img-fixed-size" alt=""></div>#}
+{#                            <h4>#}
+{#                                <a href="#">{{ main_review.author }}</a>#}
+{#                                <span>MD of Nicolos</span>#}
+{#                            </h4>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+{#    <!--* EndTestimonial*-->#}
+
+{#    <!--* Blog*-->#}
+{#    <section id="mt_blog" class="light-bg">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-xs-12">#}
+{#                    <!-- section title -->#}
+{#                    <div class="section_heading">#}
+{#                        <h2 class="section_title">#}
+{#                            <span>Latest Blog</span>#}
+{#                        </h2>#}
+{#                        <p class="heading_txt"><b>Professional service from ConfideCo company</b></p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="blog_post_inner">#}
+{#                <div class="row">#}
+{#                    {% for main_blog in news|slice:":3" %}#}
+{#                    <div class="col-md-4 col-sm-12 wow slideInDown" data-wow-delay=".2s">#}
+{#                        <div class="blog-post-inner_wrapper">#}
+{#                            <div class="blog-post-image">#}
+{#                                <div class="blog_cat">Confide Construction</div>#}
+{#                                <div class="img">#}
+{#                                    <img src="{{ main_blog.photo.url }}" class="img-fixed-size-six" alt="image"/>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="post-detail_container">#}
+{#                                <div class="post-content">#}
+{#                                    <p class="post-date text-uppercase mar-bottom-10"><a href="#"><i#}
+{#                                            class="fa fa-calendar"></i> {{ main_blog.pub_date }}</a></p>#}
+{#                                    <h3 class="post-title text-uppercase">#}
+{#                                        <a href="{% url 'blog:single' pk=main_blog.id %}">{{ main_blog.title }} </a>#}
+{#                                    </h3>#}
+{#                                    <p class="post-excerpt"> {{ main_blog.description_small|safe }} </p>#}
+{#                                </div>#}
+{#                                <div class="post-author">#}
+{#                                    <span class="pull-left author-list">#}
+{#                                        <img src="{{ main_blog.author_photo.url }}" alt="author"> <a#}
+{#                                            href="#">{{ main_blog.author }}</a>#}
+{#                                    </span>#}
+{#                                    <span class="pull-right comments-list pad-top-5">#}
+{#                                        <i class="fa fa-book"></i> <a href="{% url 'blog:single' pk=main_blog.id %}">to read</a>#}
+{#                                    </span>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+{#    <!--* End Blog*-->#}
+    <!--* Services*-->
+{#    <section id="mt_services" class="services_one">#}
+{#        <div class="container">#}
+{##}
+{#            <!--*Newsletter*-->#}
+{#            <div id="newsletter">#}
+{#                <div class="container">#}
+{#                    <div class="row">#}
+{#                        <div class="col-xs-12">#}
+{#                            <div class="news-content">#}
+{#                                <h3>ORDER FREE CONSULTATION</h3>#}
+{#                                <p class="beige">#}
+{#                                    <b>WRITE US TODAY FOR A FREE CONSULTATION.</b>#}
+{#                                </p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="col-xs-12">#}
+{#                            <div class="mailpoet_form">#}
+{#                                <form target="_self" method="post" action="{% url 'webapp:contacts' %}" novalidate="">#}
+{#                                    {% csrf_token %}#}
+{##}
+{#                                    <!-- Поле для Зип кода -->#}
+{#                                    <input type="text" class="mailpoet_text" name="zip_code" placeholder="ZIP Code" required>#}
+{##}
+{#                                    <!-- Поле для описания услуги -->#}
+{#                                    <input type="text" class="mailpoet_text" name="description" placeholder="Description Service" required>#}
+{##}
+{#                                    <!-- Поле для выбора количества часов -->#}
+{#                                    <label for="hours"><h5>How many hours would you like to book?</h5></label>#}
+{#                                    <select class="mailpoet_text"name="hours" id="hours" required>#}
+{#                                        <option value="" disabled selected>Select Hours</option>#}
+{#                                        {% for hour in "123456789"|make_list %}#}
+{#                                            <option value="{{ forloop.counter }}">{{ forloop.counter }}#}
+{#                                                Hour{{ forloop.counter|pluralize }}</option>#}
+{#                                        {% endfor %}#}
+{#                                    </select>#}
+{##}
+{#                                    <!-- Поле для выбора даты -->#}
+{#                                    <label for="date"><h5>When would you like a Pro to come?</h5></label>#}
+{#                                    <input type="date" class="mailpoet_text" name="date" id="date" required>#}
+{##}
+{#                                    <!-- Поле для выбора времени с выпадающим списком -->#}
+{#                                    <label class="mailpoet_text" for="time"><h5>At what time?</h5></label>#}
+{#                                    <select name="time" id="time" required>#}
+{#                                        <option class="mailpoet_text" value="" disabled selected>Select Time</option>#}
+{#                                        {% for hour in "123456789101112"|make_list %}#}
+{#                                            <option value="{{ forloop.counter }}:00 AM">{{ forloop.counter }}:00 AM#}
+{#                                            </option>#}
+{#                                            <option value="{{ forloop.counter }}:30 AM">{{ forloop.counter }}:30 AM#}
+{#                                            </option>#}
+{#                                            <option value="{{ forloop.counter }}:00 PM">{{ forloop.counter }}:00 PM#}
+{#                                            </option>#}
+{#                                            <option value="{{ forloop.counter }}:30 PM">{{ forloop.counter }}:30 PM#}
+{#                                            </option>#}
+{#                                        {% endfor %}#}
+{#                                    </select>#}
+{##}
+{#                                    <!-- Поле для электронной почты -->#}
+{#                                    <input type="email" class="mailpoet_text" name="email"#}
+{#                                           placeholder="Your Email Address" required>#}
+{##}
+{#                                    <!-- Поле для телефона -->#}
+{#                                    <input type="tel" class="mailpoet_text" name="phone" placeholder="Your Phone Number" required>#}
+{##}
+{#                                    <!-- Кнопка отправки -->#}
+{#                                    <div class="button button-mail">#}
+{#                                        <input type="submit" class="mailpoet_submit" value="Get a Price">#}
+{#                                    </div>#}
+{#                                </form>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <!--*End Newsletter*-->#}
+{#        </div>#}
+{#    </section>#}
+{#    <!--*End Newsletter*-->#}
+
+
+
+{#    <!--* Choose Us*-->#}
+{#    <section id="choose_us" class="choose_us mt_services_process">#}
+{#        <div class="container">#}
+{##}
+{#            <div class="row">#}
+{#                <div class="col-xs-12">#}
+{#                    <!-- section title -->#}
+{#                    <div class="section_heading">#}
+{#                        <h2 class="section_title wow slideInLeft">#}
+{#                            <span>Our Special Services</span>#}
+{#                        </h2>#}
+{#                        <p class="heading_txt"><b>The Confide.Co company was founded in 2008.</b></p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <div class="row">#}
+{#                <div class="col-md-5 col-sm-12 col-xs-12 mission-image">#}
+{#                    <div class="choose-image"><img src="{% static 'images/pic1.png' %}" alt="mission-image"></div>#}
+{#                </div>#}
+{#                <div class="col-md-7 col-sm-12 col-xs-12  wow slideInRight mission-list">#}
+{##}
+{#                    <div class="row">#}
+{#                        <div class="col-sm-6">#}
+{#                            <div class="choose-list mar-bottom-30">#}
+{#                                <i class="fa fa-users"></i>#}
+{#                                <h3>Team Of Professional</h3>#}
+{#                                <p>More than 10 years we do minor and major repairs of any kinds of premises.</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                        <div class="col-sm-6">#}
+{#                            <div class="choose-list mar-bottom-30">#}
+{#                                <i class="fa fa-paint-brush"></i>#}
+{#                                <h3>Full Of Services</h3>#}
+{#                                <p>We reliable partner providing top-notch services to meet all your needs.</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                        <div class="col-sm-6">#}
+{#                            <div class="choose-list mar-bottom-30">#}
+{#                                <i class="fa fa-phone"></i>#}
+{#                                <h3>Support</h3>#}
+{#                                <p>Our support team is your partner, ready to assist and guide you towards success.</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                        <div class="col-sm-6">#}
+{#                            <div class="choose-list mar-bottom-30">#}
+{#                                <i class="fa fa-cogs"></i>#}
+{#                                <h3>Unique Technology</h3>#}
+{#                                <p>We utilize only the most cutting-edge technologies to deliver our services</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                        <div class="col-sm-6">#}
+{#                            <div class="choose-list">#}
+{#                                <i class="fa fa-building"></i>#}
+{#                                <h3>Attractive Building</h3>#}
+{#                                <p>Experience innovation and quality like never before with Confide.Co, where form meets function in perfect harmony.</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                        <div class="col-sm-6">#}
+{#                            <div class="choose-list">#}
+{#                                <i class="fa fa-picture-o"></i>#}
+{#                                <h3>Perfect Interior</h3>#}
+{#                                <p>We turn your spaces into captivating masterpieces, creating a perfect blend of aesthetics and functionality.</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+{#    <!--* End choose us*-->#}
+
+{#    <!--* Fun And Facts*-->#}
+{#    <section id="mt_fun">#}
+{#        <div class="container wow slideInDown">#}
+{#            <div class="row">#}
+{#                <div class="col-md-3 col-sm-12">#}
+{#                    <div class="fun-content">#}
+{#                        <span class="mar-bottom-15">EXPERTS IN FIELD</span>#}
+{#                        <h2 class="mar-bottom-0">Design Startup Movement</h2>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-md-9 col-sm-12">#}
+{#                    <div class="row facts_row">#}
+{#                        <div class="col-md-3 col-sm-3 col-xs-6 facts_col">#}
+{#                            <div class="fun-facts_wrapper text-center">#}
+{#                                <p class="fun-facts_title mar-bottom-30"><b> Years of Experience </b></p>#}
+{#                                <p class="fun-facts_figure timer" data-to="18" data-speed="3000"></p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="col-md-3 col-sm-3 col-xs-6 facts_col">#}
+{#                            <div class="fun-facts_wrapper text-center">#}
+{#                                <p class="fun-facts_title mar-bottom-30"><b> Happy Clients </b></p>#}
+{#                                <p class="fun-facts_figure timer" data-to="520" data-speed="3000"></p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="col-md-3 col-sm-3 col-xs-6 facts_col">#}
+{#                            <div class="fun-facts_wrapper text-center">#}
+{#                                <p class="fun-facts_title mar-bottom-30"><b> Projects Completed </b></p>#}
+{#                                <p class="fun-facts_figure timer" data-to="850" data-speed="3000"></p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="col-md-3 col-sm-3 col-xs-6 facts_col">#}
+{#                            <div class="fun-facts_wrapper text-center">#}
+{#                                <p class="fun-facts_title mar-bottom-30"><b> Comments </b></p>#}
+{#                                <p class="fun-facts_figure timer" data-to="950" data-speed="3000"></p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+{#    <!--* End Fun And Facts*-->#}

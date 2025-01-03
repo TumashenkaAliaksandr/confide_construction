@@ -90,6 +90,23 @@ class Callback(models.Model):
         return self.name
 
 
+class Category(models.Model):
+    """Категории продуктов"""
+    name = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True, null=True)
+    image = models.ImageField(upload_to='categories/', blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('category_detail', kwargs={'slug': self.slug})
+
+
 class Product(models.Model):
     """Продукты в каталоге"""
     name = models.CharField(max_length=200, db_index=True)
@@ -107,6 +124,9 @@ class Product(models.Model):
     material_up = models.CharField(max_length=100, blank=True)  # Верхний материал
     power_source = models.CharField(max_length=100, blank=True)  # Источник питания
     material = models.CharField(max_length=100, blank=True)  # Материал
+
+    # Связь с категориями (несколько категорий для одного продукта)
+    categories = models.ManyToManyField(Category, related_name='products')
 
     # Новые поля для флагов
     flag_1 = models.BooleanField(default=False)

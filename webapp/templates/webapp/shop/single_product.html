@@ -173,11 +173,11 @@
                                 <h2 class="single-product-title">{{ product.name }}</h2>
                                  <span class="price">
                                  <p>Price:</p>
-                                    {% if product.discount > 0 %}
-                                        <del>
-                                            <span class="rt-price-amount"><span>$</span>{{ product.price }}</span>
-                                        </del>
-                                    {% endif %}
+{#                                    {% if product.discount > 0 %}#}
+{#                                        <del>#}
+{#                                            <span class="rt-price-amount"><span>$</span>{{ product.price }}</span>#}
+{#                                        </del>#}
+{#                                    {% endif %}#}
 {#                                    <ins>#}
 {#                                        <span class="rt-price-amount"><span>$</span>{{ product.discount }}</span>#}
 {#                                    </ins>#}
@@ -212,6 +212,9 @@
                                     {% if product.brand %}
                                     <span class="sku_wrapper">Brand: <span class="sku">{{ product.brand }}</span></span>
                                     {% endif %}
+                                    {% if product.material_up %}
+                                    <span class="sku_wrapper">Material: <span class="sku">{{ product.material_up }}</span></span>
+                                    {% endif %}
                                     {% if product.color %}
                                         <span class="tagged_as">Color: <a href="#"
                                                                           rel="tag">{{ product.color }}</a></span>
@@ -219,6 +222,7 @@
                                     {% if product.power_source %}
                                         <span class="tagged_as">Power Source: {{ product.power_source }}</span>
                                     {% endif %}
+
 
 {#                                    {% if checkout_session %}#}
 {#                                        <form action="{% url 'webapp:checkout' %}?product_id={{ product.id }}"#}

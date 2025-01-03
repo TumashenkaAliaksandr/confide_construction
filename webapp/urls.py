@@ -13,6 +13,7 @@ urlpatterns = [
     path('services/', services, name='services'),  # Паттерн без slug
     path('services/<slug:slug>/', single_product, name='services_with_slug'),
     path('product/<slug:slug>/', product_detail, name='product_detail'),
+    path('category/<slug:slug>/', CategoryDetailView.as_view(), name='category_detail'),
     path('backsplash/', backsplash, name='backsplash'),
     path('drywall/', drywall, name='drywall'),
     path('disposal/', disposal, name='disposal'),

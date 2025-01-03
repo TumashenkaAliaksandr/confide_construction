@@ -1058,7 +1058,7 @@ section#choose_us.about_choose_us {
 @media screen and (max-width: 767px) {
     .img-fixed-size {
         width: 100%; /* Установите желаемую ширину */
-        height: 150px; /* Установите желаемую высоту */
+        height: 100px; /* Установите желаемую высоту */
         object-fit: cover; /* Этот свойство сохраняет соотношение сторон и обрезает изображение по нужным размерам */
     }
 
@@ -1294,14 +1294,31 @@ section#mt_services_five {
     -ms-transition: all 0.5s ease;
     box-shadow: 0px 0px 25px 0px rgba(122, 122, 122, 0.1);
     border: 1px solid #f1f1f1;
-    margin: 10px 0;
+    margin: 10px;
 }
+
+.box-categories {
+    padding: 0;
+    background: #FFFFFF;
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    box-shadow: 0px 0px 25px 0px rgba(122, 122, 122, 0.1);
+    border: 1px solid #f1f1f1;
+    margin: 10px 19px 10px;
+    border-radius: 80px;
+    width: 45%;
+}
+
 
 /* Медиазапрос для изменения стилей на более узких экранах */
 @media screen and (min-width: 768px) {
   .box .item {
     flex: 1 1 calc(50% - 10px); /* Два элемента в строке */
   }
+
 }
 
 @media screen and (min-width: 1200px) {
@@ -1322,7 +1339,7 @@ section#mt_services_five {
 
 .box:after {
     content: '';
-    background: #ffac00;
+    /*background: #ffac00;*/
     width: 0;
     height: 2px;
     bottom: 0;
@@ -1336,7 +1353,7 @@ section#mt_services_five {
     width: 100%;
 }
 
-.box .box-content{padding:20px 20px;}
+.box .box-content{padding:13px 13px;}
 
 @media(max-width: 735px){
     .box .box-content{padding:15px 15px;}
@@ -1376,7 +1393,7 @@ section#mt_services.services_one{
 
 /*services style 2*/
 
-section#mt_services.services_two{padding-top: 75px;}
+section#mt_services.services_two{padding-top: 35px;}
 
 section#mt_services.services_two .section_heading{
   padding-right: 0;
@@ -1502,6 +1519,27 @@ section#mt_services.services_two .services_listing .section_heading{
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   #mt_services .box {margin-bottom: 30px; }
+
+    .text-left {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .box-categories {
+        padding: 0;
+        background: #FFFFFF;
+        /*background-color: rgb(255, 255, 255);*/
+        transition: all 0.5s ease;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        -ms-transition: all 0.5s ease;
+        box-shadow: 0px 0px 25px 0px rgba(122, 122, 122, 0.1);
+        border: 1px solid #f1f1f1;
+        margin: auto;
+        border-radius: 80px;
+        width: 35%;
+    }
 }
 
 /* Для мобильных устройств */
@@ -1510,13 +1548,22 @@ section#mt_services.services_two .services_listing .section_heading{
     white-space: nowrap; /* Это свойство предотвращает перенос текста на новую строку */
     overflow: hidden; /* Обрезает текст, который выходит за пределы блока */
     /*text-overflow: ellipsis; !* Добавляет многоточие в конце обрезанного текста *!*/
-    font-size: 13px;
+    font-size: 11.4px;
   }
 }
 
 @media (max-width: 736px){
-  #mt_services .box{margin-bottom: 10px;}
+  #mt_services_prod .box{margin: 5px -7px 10px;}
 }
+@media (max-width: 736px){
+  #mt_services .box{margin: 5px 33px 10px;}
+}
+@media (max-width: 768px) {
+    section#mt_services_prod {
+        padding: 21px 0; background-color: beige;/* Измените на нужные вам значения для мобильных устройств */
+    }
+}
+section#mt_services_prod {padding:35px 0 55px; background-color: beige;}
 
 @media (max-width: 639px){
   #mt_services .col-md-4.col-sm-6.col-xs-6{width: 100%;}
@@ -1695,6 +1742,27 @@ section#mt_project .project-button a:hover{
   section#mt_project .project-image.project-big p{
     font-size: 13px;
   }
+
+    .text-left {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .box-categories {
+        padding: 0;
+        background: #FFFFFF;
+        /*background-color: rgb(255, 255, 255);*/
+        transition: all 0.5s ease;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        -ms-transition: all 0.5s ease;
+        box-shadow: 0px 0px 25px 0px rgba(122, 122, 122, 0.1);
+        border: 1px solid #f1f1f1;
+        margin: auto;
+        border-radius: 80px;
+        width: 55%;
+    }
 }
 
 .modal.in .modal-dialog{margin: 2% auto; overflow: hidden;}
@@ -3770,7 +3838,7 @@ a.checkout-link {
     padding-right: 5%;
     float: right;
     margin-top: -50px;
-    margin-right: 11.5%;
+    margin-right: 0;
 }
 
 @media (max-width: 640px) {
@@ -3795,7 +3863,7 @@ a.checkout-link {
 
 @media (max-width: 568px) {
     .mt_btn_yellow {
-        padding: 10px 20px;
+        padding: 7px 19px;
         background: #ffac00;
         font-size: 15px;
         border-radius: 5px;
@@ -3804,7 +3872,7 @@ a.checkout-link {
         text-decoration: none;
         border: 2px solid #ffac00;
         transition: all 0.5s ease;
-        margin: 35px 0; /* Отступ для iPhone 5 */
+        margin: 10px 0; /* Отступ для iPhone 5 */
         /*display: none;*/
         width: auto;
     }
@@ -4137,8 +4205,8 @@ a.checkout-link {
 }
 
 .main_disposal {
-  width: 205%;
-  height: 555px;
+  width: 207%;
+  height: 310px;
   border: 2px solid #adadad;
   box-shadow: 0 0 10px rgb(183, 183, 183);
 }
