@@ -1,0 +1,75 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <!-- pagebanner -->
+    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'images/cc_work_tools.jpg' %}{% endif %}'); background-size: cover;">
+        <div class="page-title">
+            <h2 class="white text-center">{{ category.name }}</h2>
+        </div>
+    </section>
+    <!-- End Pagebanner -->
+
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb-main">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="{% url 'webapp:home' %}"><i class="fa fa-home"></i></a></li>
+                <li class="active">Category {{ category.name }}</li>
+            </ul>
+        </div>
+    </div>
+    <!-- End breadcrumb -->
+
+    <!--* Products*-->
+    <section id="mt_services_prod">
+        <div class="container wow slideInLeft">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="section_heading">
+                        <h2 class="section_title">
+                            Popular {{ category.name }}
+                        </h2>
+                        <p class="heading_txt">We offer a range of products in the field of repair and construction.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for main_product in products %}
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="box mar-bottom-30 text-center text_products">
+                            {% if main_product.image %}
+                                <a href="{% url 'webapp:services_with_slug' main_product.slug %}">
+                                    <img src="{{ main_product.image.url }}" class="img-fixed-size"
+                                         alt="{{ main_product.name }}">
+                                </a>
+                            {% else %}
+                                <a href="{% url 'webapp:services_with_slug' main_product.slug %}">
+                                    <img src="{% static 'images/cc_hacker.jpg' %}" class="img-fixed-size"
+                                         alt="Default product image">
+                                </a>
+                            {% endif %}
+                            <div class="box-content">
+                                <h3>
+                                    <a href="{% url 'webapp:services_with_slug' main_product.slug %}">{{ main_product.name }}</a>
+                                </h3>
+                                <span class="price">${{ main_product.price }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if forloop.counter|divisibleby:4 and not forloop.last %}
+                        </div>
+                        <div class="row">
+                    {% endif %}
+                {% endfor %}
+                </div>
+        </div>
+    </section>
+    <!--* End Products*-->
+
+{% endblock %}
+

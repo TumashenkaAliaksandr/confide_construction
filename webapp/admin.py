@@ -60,3 +60,13 @@ class ReviewAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Review, ReviewAdmin)
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name',)  # Поля, которые будут отображаться в списке
+    search_fields = ('name',)  # Поля, по которым можно будет искать
+    ordering = ('name',)  # Сортировка по имени
+
+
+# Регистрация модели Category с настройками админки
+admin.site.register(Category, CategoryAdmin)

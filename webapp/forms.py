@@ -244,8 +244,8 @@ def contact(request):
             send_mail(
                 'Request for consultation from the website',
                 message,
-                'recipient@example.com',  # Укажите свой адрес электронной почты
-                ['confideco@gmail.com'],  # Получатель
+                'confideconstruction@gmail.com',  # Укажите свой адрес электронной почты
+                ['sreda01@gmail.com'],  # Получатель
                 fail_silently=False,
             )
 

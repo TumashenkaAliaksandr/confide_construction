@@ -38,6 +38,7 @@ def index(request):
     news = BlogNews.objects.all()
     product = Product.objects.all()
     products_with_flag_1 = Product.objects.filter(flag_1=True)
+    categories = Category.objects.all()
 
     context = locals()
     return render(request, 'webapp/index-2.html', context)
@@ -65,6 +66,16 @@ def shop(request):
 
     context = locals()
     return render(request, 'webapp/shop/shop.html', context=context)
+
+
+class CategoryDetailView(DetailView):
+    model = Category
+    template_name = 'webapp/shop/single_category.html'  # Укажите путь к вашему шаблону
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['products'] = Product.objects.filter(categories=self.object)  # Фильтрация продуктов по категории
+        return context
 
 
 def lost_password(request):
@@ -123,8 +134,8 @@ def contacts(request):
             send_mail(
                 subject='Request for consultation from the website',  #Запрос на консультацию
                 message='',
-                from_email='tumashenkaaliaksandr@gmail.com',
-                recipient_list=['confideco@gmail.com'],  # Замените на ваш адрес получателя
+                from_email='confideconstruction@gmail.com',
+                recipient_list=['sreda01@gmail.com'],  # Замените на ваш адрес получателя
                 fail_silently=False,
                 html_message=message  # Указываем HTML-содержимое
             )
