@@ -690,7 +690,7 @@ div#home-banner:before {
     position: absolute;
     top: 0;
     left: 0;
-    background:-webkit-linear-gradient(top, #000000 55%, #ffac00);
+    background:linear-gradient(to bottom, #000000 55%, #ffac00);
     height: 100%;
     width: 100%;
 }
@@ -1307,7 +1307,7 @@ section#mt_services_five {
     -ms-transition: all 0.5s ease;
     box-shadow: 0px 0px 25px 0px rgba(122, 122, 122, 0.1);
     border: 1px solid #f1f1f1;
-    margin: 10px 19px 10px;
+    margin: 10px 21px 10px;
     border-radius: 80px;
     width: 45%;
 }
@@ -2668,6 +2668,11 @@ section#mt_faq-testi .section_heading{padding: 0;}
         gap: 10px;
         width: 100%; /* Растягиваем на всю ширину */
         padding: 15px; /* Уменьшаем отступы */
+    }
+
+    #newsletter {
+        background: none;
+        box-shadow: none;
     }
 
     #newsletter h5 {
@@ -5769,7 +5774,7 @@ p.lt-pswrd{margin-bottom: 20px;}
     position: absolute;
     top: 0;
     left: 0;
-    background: -webkit-linear-gradient(top, #0000006e 55%, #ffac00a6);
+    background: linear-gradient(to bottom, #0000006e 55%, #ffac00a6);
     height: 100%;
     width: 100%;
     z-index: 1;
