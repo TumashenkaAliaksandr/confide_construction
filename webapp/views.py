@@ -424,9 +424,10 @@ def registerdone(request):
     return render(request, 'webapp/register/register_done.html')
 
 
-def error(request):
+def error404(request, exception):
     """Error page Constract """
-    return render(request, 'webapp/error.html')
+    return render(request, f'{settings.ERRORS_TEMPLATE_PATH}/error.html', status=404)
+    # return render(request, 'webapp/error.html')
 
 
 # @login_required(login_url='/login/')

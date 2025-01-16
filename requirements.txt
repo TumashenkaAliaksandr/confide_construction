@@ -18,3 +18,5 @@ stripe==5.5.0
 typing_extensions==4.8.0
 tzdata==2023.3
 urllib3==2.0.6
+django-analytical == 3.1.0
+django-seo == 0.3.5
