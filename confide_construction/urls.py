@@ -14,15 +14,30 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import handler404
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.generic import TemplateView
+from django.contrib.sitemaps.views import sitemap
 
+from confide_construction.sitemaps import ProductSitemap, ServicesSitemap
+from webapp.views import error404
+
+
+sitemaps = {
+    'products': ProductSitemap,
+    'services': ServicesSitemap,
+}
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('webapp.urls')),
     path('', include('blog.urls')),
     path('payments/', include('payments.urls')),  # new
     re_path(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
+    re_path(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 
 ]
+
+handler404 = error404
+# handler404 = 'confide_construction.views.error404'
+# handler500 = 'confide_construction.views.error500'

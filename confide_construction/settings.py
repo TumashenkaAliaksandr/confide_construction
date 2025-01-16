@@ -39,11 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'analytical',
     'webapp',
     'blog',
     'bootstrap4',
     'ckeditor',
     'payments.apps.PaymentsConfig',
+    # 'django_seo-0.3.5.dist-info'
 ]
 
 MIDDLEWARE = [
@@ -179,3 +183,6 @@ STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
 print(STRIPE_PUBLISHABLE_KEY)
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
 # STRIPE_API_VERSION = config('STRIPE_API_VERSION')
+SITE_ID = 1
+GOOGLE_ANALYTICS_GTAG_PROPERTY_ID = ''
+ERRORS_TEMPLATE_PATH = '../webapp/templates/webapp/errors'

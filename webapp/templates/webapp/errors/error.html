@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <!-- pagebanner -->
+    <section id="pagebanner">
+        <div class="page-title">
+            <h2 class="white text-center">Error 404</h2>
+        </div>
+    </section>
+    <!-- End Pagebanner -->
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb-main">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="{% url 'webapp:home' %}"><i class="fa fa-home"></i></a></li>
+                <li><a href="{% url 'webapp:home' %}">Erorr</a></li>
+                <li class="active">Error 404</li>
+            </ul>
+        </div>
+    </div><!-- End breadcrumb -->
+
+    <!--* error Section*=-->
+    <section id="error" class="">
+        <div class="container">
+            <div class="notfound text-center">
+                <div class="notfound-404">
+                    <div></div>
+                    <h1 class="white">404</h1>
+                </div>
+                <h2 class="text-uppercase">Page not found</h2>
+                <p class="mar-top-20">The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
+                <a href="{% url 'webapp:home' %}" class="mt_btn_yellow mar-top-20">home page</a>
+            </div>
+        </div>
+    </section>
+    <!--* End error Section*=-->
+
+
+{% endblock %}
