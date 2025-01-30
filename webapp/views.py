@@ -6,14 +6,14 @@ from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from blog.models import BlogNews
 from webapp.models import *
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMultiAlternatives
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
-from .forms import RegistrationForm, ContactForm
+from .forms import RegistrationForm, ContactForm, InvoiceForm
 from .forms import CheckoutForm
 from django.views.generic.detail import DetailView
 from django.views.generic import UpdateView
@@ -742,4 +742,33 @@ def single_product(request, slug):
         'current_name': request.user.first_name if request.user.is_authenticated else '',  # Пример получения имени
     }
     return render(request, 'webapp/shop/single_product.html', context=context)
+
+
+def send_invoice(request):
+    if request.method == 'POST':
+        form = InvoiceForm(request.POST)
+        if form.is_valid():
+            invoice = form.save()  # Сохраняем инвойс в базе данных
+
+            # Создание содержимого письма с использованием шаблона
+            subject = f"Invoice #{invoice.id} from Confide Construction"
+            html_content = render_to_string('webapp/forms/invoices_mail.html', {
+                'client_name': invoice.client_name,
+                'client_email': invoice.client_email,
+                'description': invoice.description,
+                'amount': invoice.amount,
+                'invoice_link': invoice.invoice_link,
+                'created_at': invoice.created_at.strftime('%Y-%m-%d'),  # Форматирование даты
+            })
+
+            # Создание и отправка письма
+            email = EmailMultiAlternatives(subject, '', 'Badminton500@inbox.lv', [invoice.client_email])
+            email.attach_alternative(html_content, "text/html")
+            email.send()
+
+            return redirect('webapp:success')  # Перенаправление на страницу успеха
+    else:
+        form = InvoiceForm()
+
+    return render(request, 'webapp/invoices/invoice.html', {'form': form})
 
