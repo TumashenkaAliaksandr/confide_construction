@@ -190,7 +190,7 @@ background-color: #FFFFFF !important;
 .header-search {
     position: relative;
     float: right;
-    margin: 0px;
+    margin: 0;
     top: 15px;
 }
 
@@ -206,7 +206,7 @@ background-color: #FFFFFF !important;
     z-index: 2;
     top: 61px;
     background: rgba(255, 255, 255, 0.05);
-    border-width: 0px 1px 1px;
+    border-width: 0 1px 1px;
     border-color: rgba(255, 255, 255, 0.07);
     border-style: solid;
     padding: 10px;
@@ -219,7 +219,7 @@ background-color: #FFFFFF !important;
 .header-search .searchform {
     width: 430px;
     max-width: 100%;
-    margin: 0px auto;
+    margin: 0 auto;
 }
 
 .header-search form.search-form {
@@ -229,7 +229,7 @@ background-color: #FFFFFF !important;
 
 .header-search input.search-field {
     width: 100%;
-    margin-bottom: 0px;
+    margin-bottom: 0;
     color: rgb(255, 255, 255);
     border-width: 5px;
     border-style: solid;
@@ -245,8 +245,8 @@ background-color: #FFFFFF !important;
     top: -3px;
     right: -1px;
     font-size: 14px;
-    margin: 0px;
-    border-radius: 0px;
+    margin: 0;
+    border-radius: 0;
     color: #fff;
 }
 
@@ -266,8 +266,8 @@ background-color: #FFFFFF !important;
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 
   .navbar.navbar-default .navbar-header {
-    margin-bottom: 0px;
-    margin-top: 0px;
+    margin-bottom: 0;
+    margin-top: 0;
     display: inline-block;
   }
 
@@ -391,12 +391,12 @@ background-color: #FFFFFF !important;
 @media only screen and (max-width: 360px) {
   .navbar.navbar-default.reveal-menu-home.sticky-nav .logo a img,
   .sticky-nav-white .logo a img {
-    margin-top: 0px;
+    margin-top: 0;
     width: 150px;
   }
 
     .reveal-menu-home .logo a img {
-        margin-top: 0px;
+        margin-top: 0;
         width: 150px;
     }
 
@@ -1052,7 +1052,7 @@ section#choose_us.about_choose_us {
 }
 
 .text_products h3 {
-  font-size: 17px;
+  font-size: 13px;
 }
 
 @media screen and (max-width: 767px) {
@@ -1466,7 +1466,10 @@ section#mt_services.services_two .services_listing .section_heading{
     background-color: #ffac00;
 }
 
-
+.image-invoice {
+    padding-left: 50px;
+    margin-top: 100px;
+}
 
 /*innerpages*/
 

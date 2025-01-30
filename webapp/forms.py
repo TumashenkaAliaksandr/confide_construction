@@ -288,3 +288,13 @@ class PhotoForm(forms.ModelForm):
     class Meta:
         model = User_Photo
         fields = ['image']
+
+
+class InvoiceForm(forms.ModelForm):
+    class Meta:
+        model = Invoice
+        fields = ['client_name', 'client_email', 'amount', 'description', 'invoice_link']
+        widgets = {
+            'invoice_link': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Enter invoice link'}),
+        }
+

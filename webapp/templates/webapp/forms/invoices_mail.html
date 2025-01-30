@@ -1,0 +1,19 @@
+<!-- email_template.html -->
+<html>
+    <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+        <div style="max-width: 650px; margin: auto; background: beige; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+            <h2 style="color: #333;">📌 Confide Construction<br><br>Invoice Details</h2>
+            <br>
+            <p><strong>「 Your Name 」:</strong> {{ client_name }}</p>
+{#            <p><strong>「 Your Email 」:</strong> {{ client_email }}</p><br>#}
+            <p><strong>📋 Description jobs:</strong> {{ description }}</p>
+            <p><strong>💰 Amount Due:</strong> ${{ amount }}</p>
+            <p><strong>🔗 Invoice Link:</strong> <a href="{{ invoice_link }}">{{ invoice_link }}</a></p>
+            <p>────⋆⋅☆⋅⋆──</p>
+            <p><strong>📅 Date Issued:</strong> {{ created_at }}</p>
+            <p>────⋆⋅☆⋅⋆──</p>
+            <p><br>ᵗᑋᵃᐢᵏ ᵞᵒᵘ*</p>
+            <i>This mail send from website https://dchomefix.co ®</i>
+        </div>
+    </body>
+</html>

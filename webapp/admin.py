@@ -70,3 +70,13 @@ class CategoryAdmin(admin.ModelAdmin):
 
 # Регистрация модели Category с настройками админки
 admin.site.register(Category, CategoryAdmin)
+
+
+class InvoiceAdmin(admin.ModelAdmin):
+    list_display = ('client_name', 'client_email', 'amount', 'created_at', 'invoice_link')  # Поле ссылки добавлено
+    search_fields = ('client_name', 'client_email')  # Поля для поиска
+    list_filter = ('created_at',)  # Фильтрация по дате создания
+    readonly_fields = ('created_at',)  # Поле даты только для чтения
+
+# Регистрация модели Invoice с настройками админки
+admin.site.register(Invoice, InvoiceAdmin)
