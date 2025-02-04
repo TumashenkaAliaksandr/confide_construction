@@ -732,9 +732,6 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 # Настройка логирования
 logger = logging.getLogger(__name__)
 
-from django.template.loader import render_to_string
-from django.core.mail import EmailMultiAlternatives
-
 
 def success(request):
     session_id = request.GET.get('session_id')
@@ -800,6 +797,18 @@ def success(request):
             email.attach_alternative(email_content, "text/html")  # Добавляем HTML-содержимое
             email.send(fail_silently=False)
             print("✅ Письмо успешно отправлено!")
+
+            # Отправка письма на почту компании
+            company_email = 'sreda01@gmail.com'  # Замените на реальный адрес компании
+            company_notification = EmailMultiAlternatives(
+                subject='New Payment Received!',
+                body='A new payment has been successfully completed.\n\n' + email_content,
+                from_email='Badminton500@inbox.lv',
+                to=[company_email],
+            )
+            company_notification.attach_alternative(email_content, "text/html")  # Добавляем HTML-содержимое
+            company_notification.send(fail_silently=False)
+            print("✅ Письмо компании успешно отправлено!")
         except Exception as e:
             print(f"❌ Ошибка при отправке письма: {e}")
 
