@@ -4072,6 +4072,15 @@ a.checkout-link {
   padding-top: 120px;
   position: relative;
   z-index: 1;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.95);
+}
+#pagebanner .page-title h2{
+  font-weight: 700;
+  color: #110729;
+  font-family: "Microsoft New Tai Lue", sans-serif;
+  margin-top: 0;
+  line-height: 1.5;
+  color: beige!important;
 }
 
 @media(max-width: 911px){
