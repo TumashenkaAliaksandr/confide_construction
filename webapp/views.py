@@ -26,7 +26,7 @@ import stripe
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from payments.views import create_checkout_session
-
+import logging
 
 def index(request):
     """Main, index constr"""
@@ -639,7 +639,8 @@ def process_payment(request):
 
                     # Отладочный принт о том, что данные записались
                     print("Data saved successfully for CheckoutDetails and CheckoutSession.")
-
+                    # Сохраняем email в сессии для использования на странице успеха
+                    request.session['user_email'] = email
                     return JsonResponse({'success': True})  # Возвращаем успешный ответ в формате JSON
 
                 except Exception as e:
@@ -724,9 +725,90 @@ def comingsoon(request):
     return render(request, 'webapp/comingsoon.html')
 
 
+
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
+# Настройка логирования
+logger = logging.getLogger(__name__)
+
+from django.template.loader import render_to_string
+from django.core.mail import EmailMultiAlternatives
+
+
 def success(request):
-    """Success page Constract """
+    session_id = request.GET.get('session_id')
+
+    if not session_id:
+        print("❌ Ошибка: session_id отсутствует в GET-параметрах")
+        return render(request, 'webapp/register/success.html')
+
+    print(f"✅ Получен session_id: {session_id}")
+
+    try:
+        # Получаем данные сессии из Stripe
+        session = stripe.checkout.Session.retrieve(session_id)
+        print(f"✅ Данные сессии Stripe: {session}")
+
+        user_email = session['customer_details']['email']
+
+        if not user_email:
+            print("❌ Ошибка: email не найден в данных сессии Stripe")
+            return render(request, 'webapp/register/success.html')
+
+    except Exception as e:
+        print(f"❌ Ошибка при получении сессии Stripe: {e}")
+        return render(request, 'webapp/register/success.html')
+
+    try:
+        payment = CheckoutDetails.objects.filter(email=user_email).last()
+
+        if not payment:
+            print("❌ Ошибка: не найден платеж с таким email")
+            return render(request, 'webapp/register/success.html')
+
+        print(f"✅ Найден платеж для email пользователя: {payment.email}")
+
+    except Exception as e:
+        print(f"❌ Ошибка при обработке платежа: {e}")
+        return render(request, 'webapp/register/success.html')
+
+    # Подготовка данных для шаблона
+    context = {
+        # 'first_name': payment.last_name_check,  # Убедитесь, что это правильное поле
+        'last_name': payment.last_name_check,
+        'name_check': payment.name_check,
+        'description': payment.order_notes,
+        'date': payment.date,
+        'discount_check': payment.discount_check,
+        'email': user_email,
+        'phone': payment.phone_number,
+    }
+
+    # Генерация HTML-содержимого письма
+    email_content = render_to_string('webapp/forms/success_email.html', context)
+
+    # Отправка письма пользователю
+    if user_email:
+        try:
+            email = EmailMultiAlternatives(
+                subject='Your payment has been successfully completed!',
+                body='Thank you for your payment!\nYour order has been processed.',
+                from_email='Badminton500@inbox.lv',
+                to=[user_email],
+            )
+            email.attach_alternative(email_content, "text/html")  # Добавляем HTML-содержимое
+            email.send(fail_silently=False)
+            print("✅ Письмо успешно отправлено!")
+        except Exception as e:
+            print(f"❌ Ошибка при отправке письма: {e}")
+
     return render(request, 'webapp/register/success.html')
+
+
+# def success(request):
+#     """Success page Constract """
+#     return render(request, 'webapp/register/success.html')
 
 
 def single_product(request, slug):
