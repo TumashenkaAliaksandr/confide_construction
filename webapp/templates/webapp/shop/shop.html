@@ -7,7 +7,7 @@
     <!-- pagebanner -->
     <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'images/cc_shop.jpg' %}{% endif %}');">
         <div class="page-title">
-            <h2 class="white text-center">Our Shop</h2>
+            <h2 class="white text-center">Specialist search..</h2>
         </div>
     </section>
     <!-- End Pagebanner -->
@@ -17,113 +17,72 @@
         <div class="container">
             <ul class="breadcrumb">
                 <li><a href="{% url 'webapp:home' %}"><i class="fa fa-home"></i></a></li>
-                <li class="active">our Shop</li>
+                <li class="active">Find top-rated</li>
             </ul>
         </div>
     </div><!-- End breadcrumb -->
-    
-    <!-- store -->
-    <section id="our_store" class="our_store">
+
+    <!--* Category *-->
+    <section id="mt_services" class="services_two">
         <div class="container">
+            <div class="search-container">
+                <h2>Find top-rated service pros for your project!</h2>
+                <form action="/search" method="GET">
+                    <input type="text" name="q" placeholder="🔍 What service do you need?" class="search-input">
+                    <button type="submit" class="search-button">Find Pros</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section id="mt_services" class="services_two">
+        <div class="container">
+
             <div class="row">
                 <div class="col-xs-12">
                     <!-- section title -->
                     <div class="section_heading">
                         <h2 class="section_title">
-                            <span>OUR SERVICES</span>
-                        </h2>
-                        <p class="heading_txt">We offer a range of services in the field of repair and construction.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                {% for main_shop in services_shop %}
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="rt-product-wrapper">
-                        <div class="product-thumbnail-wrapper">
-                                <div class="product-image">
-                                    <img src="{{ main_shop.image.url }}" class="img-fixed-size" alt="product-list">
-                                </div>
-                            <div class="product-label"><span class="onsale">Sale</span></div>
-                        </div>
-                        <div class="rt-product-meta-wrapper">
-                            <h3 class="product_title">
-                                <a href="{{ main_shop.link }}">{{ main_shop.name }}</a>
-                            </h3>
-                            <div class="rt-cartprice-wrapper">
-                                <div class="button">
-                                    <a href="{{ main_shop.link }}" class="mt_btn_yellow_two">Go to service</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-
-{#            <div class="row"><!-- pagination -->#}
-{#                <div class="col-md-12">#}
-{#                    <div class="pagination-div text-center">#}
-{#                        <ul class="pagination">#}
-{#                            <li class="prev">#}
-{#                                <a href="#"> <i class="fa fa-angle-double-left"></i> </a>#}
-{#                            </li>#}
-{#                            <li>#}
-{#                                <a href="#">1</a>#}
-{#                            </li>#}
-{#                            <li class="active">#}
-{#                                <a href="#">2</a>#}
-{#                            </li>#}
-{#                            <li>#}
-{#                                <a href="#">3</a>#}
-{#                            </li>#}
-{#                            <li>#}
-{#                                <a href="#">...</a>#}
-{#                            </li>#}
-{#                            <li>#}
-{#                                <a href="#">10</a>#}
-{#                            </li>#}
-{#                            <li class="next">#}
-{#                                <a href="#"> <i class="fa fa-angle-double-right"></i> </a>#}
-{#                            </li>#}
-{#                        </ul>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div><!-- End pagination -->#}
-        </div>
-    </section>
-    <!-- End store -->
-
-    <!--* Partner*-->
-    <section id="const-team" class="const-team">
-        <div class="container wow slideInRight">
-            <div class="my_row">
-                <div class="col-md-6 col-sm-13">
-                    <!-- section title -->
-                    <div class="section_heading">
-                        <h2 class="section_title">
-                            <span>We are recommended by</span>
+                            <span><i class="fa fa-star-o"></i> Browse by category</span>
                         </h2>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-10">
-                    <div class="row slider-team1">
-                        {% for recomended in partner %}
-                            <div class="col-md-4 item1">
-                                <div class="team_member1">
-                                    <a href="{{ recomended.link }}">
-                                        <img src="{{ recomended.image.url }}"
-                                             class="testimonial_main img-fixed-size-four" alt="team">
-                                    </a>
+            </div>
+            <div class="container">
+                <div class="row">
+                    {% for category in categories %}
+                        <div class="col-md-2 col-sm-6 col-xs-6">
+                            <div class="box box-categories text-center transparent-background">
+                                <div class="box-content">
+                                    <a href="{% url 'webapp:category_detail' category.slug %}"
+                                       class="category-link"><img src="{{ category.image.url }}"
+                                                                  alt="{{ category.name }}"></a>
                                 </div>
                             </div>
-                        {% endfor %}
-                    </div>
+                            <div class="text-left">
+                                <a href="{% url 'webapp:category_detail' category.slug %}"
+                                   class="category-link">
+                                    <p>{{ category.name }}</p>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
+        <!--* End Category *-->
     </section>
-    <!--* End partner*-->
+    <section id="mt_services" class="services_two">
+        <div class="container">
+            <div class="service-pro-search">
+                <h4 class="service-pro-title">Are You a Home Improvement or Service Pro?</h4>
+                <form action="/learn-more" method="GET" class="service-pro-form">
+                    <input type="text" name="q" placeholder="Find out how HomeAdvisor can help your business."
+                            class="service-pro-input"/>
+                    <button type="submit" class="service-pro-button">Learn More</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
 
 {% endblock %}
