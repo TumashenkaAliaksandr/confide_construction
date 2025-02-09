@@ -120,7 +120,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': 'confide_construction/debug.log',  # Укажите путь к файлу
+            'filename': 'confide_construction/debug.log',  # Укажите путь к файлу/home/uncledrew/confide_construction/debug.log
         },
     },
     'loggers': {
