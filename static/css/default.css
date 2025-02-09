@@ -623,8 +623,8 @@ input[type="submit"] {
 input[type="submit"]:hover,
 input[type="submit"]:focus {
   color: #fff !important;
-  background-color: #ffbb2e;
-  border-color: #ffbb2e;
+  background-color: #4CAF50;
+  border-color: #4CAF50;
   transition: all 0.5s ease;
   text-shadow: initial;
   text-decoration: none; 
