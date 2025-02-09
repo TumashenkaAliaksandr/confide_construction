@@ -63,6 +63,7 @@ def shop(request):
     services_shop = Services.objects.all()
     news = BlogNews.objects.all()
     partner = Recommended.objects.all()
+    categories = Category.objects.all()
 
     context = locals()
     return render(request, 'webapp/shop/shop.html', context=context)

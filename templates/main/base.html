@@ -63,7 +63,8 @@
                         <ul>
                             <li><i class="fa fa-phone"></i> Phone: <a href="tel:+17033445671" style="color: white;">+1 (703) 344-5671</a></li>
                             <li><i class="fa fa-envelope"></i> Email: <a href="mailto:confideco@gmail.com" style="color: white;">confideco@gmail.com</a>
-                            </li>
+                            <li {% if request.resolver_match.url_name == 'about' %}class="active"{% endif %}><a href="{% url 'webapp:about' %}" style="color: white;"><i class="fa fa-bank"></i> Company</a></li>
+                            <li {% if request.resolver_match.url_name == 'about' %}class="active"{% endif %}><a href="{% url 'webapp:about' %}" style="color: white;"><i class="fa fa-flag"></i> Start a Project</a></li>
                         </ul>
                     </div>
                     <div class="top-bar-right pull-right">
@@ -166,19 +167,7 @@
 {#                                </li>#}
                             </ul>
                         </li>
-
-                        <li {% if request.resolver_match.url_name == 'about' %}class="active"{% endif %}><a href="{% url 'webapp:about' %}">Company</a></li>
-{#                        <li {% if request.resolver_match.url_name in "[ 'process_payment', 'my_account', 'shop', 'checkout']" %}class="active"{% endif %}><a href="{% url 'webapp:shop' %}">Shopping</a>#}
-{#                            <ul>#}
-{#                                <li {% if request.resolver_match.url_name == 'my_account' %}class="active"{% endif %}><a href="{% url 'webapp:my_account' %}">My Account</a></li>#}
-{#                                <li {% if request.resolver_match.url_name == 'checkout' %}class="active"{% endif %}><a href="{% url 'webapp:checkout' %}">Checkout</a></li>#}
-{#                                <li {% if request.resolver_match.url_name == 'process_payment' %}class="active"{% endif %}><a href="{% url 'webapp:process_payment' %}">Cart</a></li>#}
-{#                            </ul>#}
-{#                        </li>#}
-{#                        <li>#}
-{#                            <li {% if request.resolver_match.url_name in "['blog', 'single']" %}class="active"{% endif %}><a href="{% url 'blog:blog' %}">Blog</a></li>#}
-{#                        </li>#}
-{#                        <li {% if request.resolver_match.url_name == 'contacts' %}class="active"{% endif %}><a href="{% url 'webapp:contacts' %}">Contacts</a></li>#}
+                        <li {% if request.resolver_match.url_name == 'join-our-pro-network' %}class="active"{% endif %}><a href="{% url 'webapp:shop' %}">Join Our Pro Network</a></li>
                         <li>
                             <div class="header-search">
                                 <a href="{% url 'webapp:search' %}" class="search-icon"><i class="fa fa-search"></i></a>
