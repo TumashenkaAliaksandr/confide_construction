@@ -791,7 +791,7 @@ def success(request):
             email = EmailMultiAlternatives(
                 subject='Your payment has been successfully completed!',
                 body='Thank you for your payment!\nYour order has been processed.',
-                from_email='Badminton500@inbox.lv',
+                from_email='confideco@gmail.com',
                 to=[user_email],
             )
             email.attach_alternative(email_content, "text/html")  # Добавляем HTML-содержимое
@@ -803,7 +803,7 @@ def success(request):
             company_notification = EmailMultiAlternatives(
                 subject='New Payment Received!',
                 body='A new payment has been successfully completed.\n\n' + email_content,
-                from_email='Badminton500@inbox.lv',
+                from_email='confideco@gmail.com',
                 to=[company_email],
             )
             company_notification.attach_alternative(email_content, "text/html")  # Добавляем HTML-содержимое
