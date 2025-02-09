@@ -7,7 +7,7 @@
     <!-- pagebanner -->
     <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'images/cc_shop.jpg' %}{% endif %}');">
         <div class="page-title">
-            <h2 class="white text-center">Find top-rated service pros for your project!</h2>
+            <h2 class="white text-center">Specialist search..</h2>
         </div>
     </section>
     <!-- End Pagebanner -->
@@ -23,6 +23,17 @@
     </div><!-- End breadcrumb -->
 
     <!--* Category *-->
+    <section id="mt_services" class="services_two">
+        <div class="container">
+            <div class="search-container">
+                <h2>Find top-rated service pros for your project!</h2>
+                <form action="/search" method="GET">
+                    <input type="text" name="q" placeholder="🔍 What service do you need?" class="search-input">
+                    <button type="submit" class="search-button">Find Pros</button>
+                </form>
+            </div>
+        </div>
+    </section>
     <section id="mt_services" class="services_two">
         <div class="container">
 
@@ -43,7 +54,8 @@
                             <div class="box box-categories text-center transparent-background">
                                 <div class="box-content">
                                     <a href="{% url 'webapp:category_detail' category.slug %}"
-                                       class="category-link"><img src="{{ category.image.url }}" alt="{{ category.name }}"></a>
+                                       class="category-link"><img src="{{ category.image.url }}"
+                                                                  alt="{{ category.name }}"></a>
                                 </div>
                             </div>
                             <div class="text-left">
@@ -57,12 +69,20 @@
                 </div>
             </div>
         </div>
+        <!--* End Category *-->
     </section>
-    <!--* End Category *-->
-
-
-{#Are You a Home Improvement or Service Pro?#}
-{#Find out how HomeAdvisor can help your business.#}
+    <section id="mt_services" class="services_two">
+        <div class="container">
+            <div class="service-pro-search">
+                <h4 class="service-pro-title">Are You a Home Improvement or Service Pro?</h4>
+                <form action="/learn-more" method="GET" class="service-pro-form">
+                    <input type="text" name="q" placeholder="Find out how HomeAdvisor can help your business."
+                            class="service-pro-input"/>
+                    <button type="submit" class="service-pro-button">Learn More</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
 
 {% endblock %}

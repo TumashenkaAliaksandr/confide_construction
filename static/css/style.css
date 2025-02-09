@@ -6146,3 +6146,120 @@ p.lt-pswrd{margin-bottom: 20px;}
 .cailing-fan h2 {
     font-size: 23px;
 }
+
+
+.search-container {
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ccc; /* Optional border */
+  border-radius: 5px; /* Optional rounded corners */
+  margin-bottom: 20px;
+}
+
+.search-input {
+  padding: 10px;
+  width: 70%;
+  max-width: 400px; /* Adjust as needed */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.search-button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.search-button:hover {
+  background-color: #3e8e41;
+}
+
+/* Basic responsive adjustments */
+@media (max-width: 600px) {
+  .search-input {
+    width: 90%;
+    margin-bottom: 10px;
+  }
+}
+
+/* Move styles that apply to the container and potentially other elements
+   OUTSIDE of this specific block to your main stylesheet */
+
+#mt_services .service-pro-search {
+  display: flex; /* For horizontal alignment */
+  align-items: center; /* Vertical alignment */
+  padding: 20px;
+  border: 1px solid #ccc; /* Optional border */
+  border-radius: 5px; /* Optional rounded corners */
+  margin-bottom: 20px;
+}
+
+#mt_services .service-pro-search h4 {
+    font-size: 20px;
+}
+
+#mt_services .service-pro-title {
+  text-align: left; /* Align title to the left */
+  margin-right: 20px; /* Space between title and form */
+  flex-basis: 30%; /* Adjust as needed */
+}
+
+#mt_services .service-pro-form {
+  flex-grow: 1; /* Allows the form to take up remaining space */
+  display: flex; /* Ensure form elements are inline */
+  align-items: center; /* Vertically center form elements */
+}
+
+#mt_services .service-pro-input {
+  padding: 10px;
+  width: 70%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+#mt_services .service-pro-button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap; /* Prevent the button text from wrapping */
+    font-size: 17px;
+}
+
+#mt_services .service-pro-button:hover {
+  background-color: #3e8e41;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #mt_services .service-pro-search {
+    flex-direction: column; /* Stack title and form vertically */
+    align-items: stretch; /* Stretch items to full width */
+  }
+
+  #mt_services .service-pro-title {
+    text-align: center;
+    margin-bottom: 10px;
+    margin-right: 0;
+    flex-basis: auto;
+  }
+
+  #mt_services .service-pro-form {
+    flex-direction: column;
+  }
+
+  #mt_services .service-pro-input {
+    width: 100%;
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+}
