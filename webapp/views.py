@@ -53,6 +53,7 @@ def services(request):
     sl_serv = Services.objects.all()
     news = BlogNews.objects.all()
     product = Product.objects.all()
+    categories = Category.objects.all()
 
     context = locals()
     return render(request, 'webapp/services/services.html', context)
@@ -71,11 +72,15 @@ def shop(request):
 
 class CategoryDetailView(DetailView):
     model = Category
-    template_name = 'webapp/shop/single_category.html'  # Укажите путь к вашему шаблону
+    template_name = 'webapp/shop/single_category.html'
+    context_object_name = 'category'  # Optional: Use 'category' instead of 'object'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['products'] = Product.objects.filter(categories=self.object)  # Фильтрация продуктов по категории
+        category = self.get_object()  # Get the category object
+        context['products'] = Product.objects.filter(categories=category)  # Filter products by category
+        context['categories'] = Category.objects.all() #get the category
+
         return context
 
 
@@ -94,12 +99,14 @@ def about(request):
     partner = Recommended.objects.all()
     servis_sliders = Product.objects.all()
     news = BlogNews.objects.all()
+    categories = Category.objects.all()
 
     context = {
         'assessment': assessment,
         'partner': partner,
         'servis_sliders': servis_sliders,
         'news': news,
+        'categories': categories,
     }
     return render(request, 'webapp/about-us.html', context=context)
 
@@ -684,12 +691,14 @@ def base(request, slug):
     news_blog_main = BlogNews.objects.all()
     products = Product.objects.all()
     product = get_object_or_404(Product, slug=slug)
+    categories = Category.objects.all()
 
     context = {
         # 'news': news,
         'news_blog_main': news_blog_main,
         'products': products,
         'product': product,
+        'categories': categories,
     }
 
     return render(request, 'main/base.html', context=context)

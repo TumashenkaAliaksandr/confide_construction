@@ -168,9 +168,8 @@
         <div class="container">
             <div class="service-pro-search">
                 <h4 class="service-pro-title">Are You a Home Improvement or Service Pro?</h4>
-                <form action="/learn-more" method="GET" class="service-pro-form">
-                    <input type="text" name="q" placeholder="Find out how HomeAdvisor can help your business."
-                           class="service-pro-input"/>
+                <form action="{% url 'webapp:services' %}" method="GET" class="service-pro-form">
+                    <i><p>Find out how ConfideConstruction can help your business.</p></i>
                     <button type="submit" class="service-pro-button">Learn More</button>
                 </form>
             </div>

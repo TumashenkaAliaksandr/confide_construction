@@ -109,62 +109,15 @@
                     <ul class="nav navbar-nav navbar-right" id="responsive-menu">
                         <li {% if request.resolver_match.url_name == 'home' %}class="active"{% endif %}><a
                                 href="{% url 'webapp:home' %}">Home</a></li>
-                        <li {% if request.resolver_match.url_name in "['services', 'Dishwasher-Installation', 'disposal', 'drywall', 'electricalworks', 'handyman', 'painting', 'soundproofing', 'wallpaper', 'furniture-assembly', 'ceiling-fan', 'tv-mount']" %}class="active"{% endif %}>
+                        <li {% if request.resolver_match.url_name == 'webapp:services' %} class="active"{% endif %}>
                             <a href="{% url 'webapp:services' %}">Services <i class="fa fa-angle-down"></i></a>
-{#                            <ul>#}
-{#                                {% for product in products %}#}
-{#                                    <li>#}
-{#                                        {% if product.slug %}#}
-{#                                            <a href="{% url 'webapp:product_detail' product.slug %}">{{ product.name }}</a>#}
-{#                                        {% else %}#}
-{#                                            <span>{{ product.name }} (No link available)</span>#}
-{#                                        {% endif %}#}
-{#                                    </li>#}
-{#                                {% empty %}#}
-{#                                    <li>No products available.</li>  <!-- Сообщение если нет продуктов -->#}
-{#                                {% endfor %}#}
-{#                            </ul>#}
-
                             <ul>
-                                <li {% if request.resolver_match.url_name == 'Dishwasher-Installation' %}class="active"{% endif %}>
-                                    <a href="https://dchomefix.co/services/dishwasher-installation/">Dishwasher Installation</a>
-                                </li>
-                                <li {% if request.resolver_match.url_name == 'disposal' %}class="active"{% endif %}>
-                                    <a href="https://dchomefix.co/services/disposal">Disposal</a>
-                                </li>
-                                <li {% if request.resolver_match.url_name == 'ceiling-fan' %}class="active"{% endif %}>
-                                    <a href="https://dchomefix.co/services/ceiling-fan/">Ceiling Fan</a>
-                                </li>
-{#                                <li {% if request.resolver_match.url_name == 'drywall' %}class="active"{% endif %}>#}
-{#                                    <a href="{% url 'webapp:drywall' %}">Drywall</a>#}
-{#                                </li>#}
-{#                                <li {% if request.resolver_match.url_name == 'electricalworks' %}class="active"{% endif %}>#}
-{#                                    <a href="{% url 'webapp:electricalworks' %}">Electricalworks</a>#}
-{#                                </li>#}
-                                <li {% if request.resolver_match.url_name in "['handyman']" %}class="active"{% endif %}>
-                                    <a href="https://dchomefix.co/services/hvac-maintenance/">HVAC Maintenance</a>
-                                </li>
-                                <li {% if request.resolver_match.url_name == 'tv-mount' %}class="active"{% endif %}>
-                                    <a href="https://dchomefix.co/services/tv-mount/">TV Mount</a>
-                                </li>
-{#                                <li {% if request.resolver_match.url_name == 'painting' %}class="active"{% endif %}>#}
-{#                                    <a href="{% url 'webapp:painting' %}">Painting</a>#}
-{#                                </li>#}
-                                <li {% if request.resolver_match.url_name == 'Well-take-old' %}class="active"{% endif %}>
-                                    <a href="https://dchomefix.co/services/old-dishwasher-pickup/">Old dishwasher pickup</a>
-                                </li>
-{#                                <li {% if request.resolver_match.url_name == 'soundproofing' %}class="active"{% endif %}>#}
-{#                                    <a href="{% url 'webapp:soundproofing' %}">Soundproofing</a>#}
-{#                                </li>#}
-                                <li {% if request.resolver_match.url_name == 'mosquito-net' %}class="active"{% endif %}>
-                                    <a href="https://dchomefix.co/services/mosquito-net/">Mosquito-Net</a>
-                                </li>
-{#                                <li {% if request.resolver_match.url_name == 'wallpaper' %}class="active"{% endif %}>#}
-{#                                    <a href="{% url 'webapp:wallpaper' %}">Wallpaper</a>#}
-{#                                </li>#}
-{#                                <li {% if request.resolver_match.url_name == 'furniture-assembly' %}class="active"{% endif %}>#}
-{#                                    <a href="{% url 'webapp:furniture-assembly' %}">Furniture Assembly</a>#}
-{#                                </li>#}
+                                {% for category in categories %}
+                                    <li {% if request.resolver_match.url_name == 'webapp:category_detail' and request.resolver_match.kwargs.slug == category.slug %}
+                                                class="active"{% endif %}>
+                                        <a href="{% url 'webapp:category_detail' category.slug %}">{{ category.name }}</a>
+                                    </li>
+                                {% endfor %}
                             </ul>
                         </li>
                         <li {% if request.resolver_match.url_name == 'join-our-pro-network' %}class="active"{% endif %}><a href="{% url 'webapp:profiler' %}">Join Our Pro Network</a></li>
