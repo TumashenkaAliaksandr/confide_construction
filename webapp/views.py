@@ -873,3 +873,8 @@ def send_invoice(request):
 
     return render(request, 'webapp/invoices/invoice.html', {'form': form})
 
+
+def basket(request):
+    """Basket view"""
+    return render(request, 'webapp/shop/basket.html')
+
