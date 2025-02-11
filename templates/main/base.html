@@ -120,7 +120,7 @@
                                 {% endfor %}
                             </ul>
                         </li>
-                        <li {% if request.resolver_match.url_name == 'join-our-pro-network' %}class="active"{% endif %}><a href="{% url 'webapp:profiler' %}">Join Our Pro Network</a></li>
+                        <li {% if request.resolver_match.url_name == 'profiler' %}class="active"{% endif %}><a href="{% url 'webapp:profiler' %}">Join Our Pro Network</a></li>
                         <li>
                             <div class="header-search">
                                 <a href="{% url 'webapp:search' %}" class="search-icon"><i class="fa fa-search"></i></a>
