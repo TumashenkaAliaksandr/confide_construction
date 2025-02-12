@@ -1,0 +1,153 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- pagebanner -->
+    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'images/cart_cc.png' %}{% endif %}');">
+        <div class="page-title">
+            <h2 class="white text-center">Specialist search..</h2>
+        </div>
+    </section>
+    <!-- End Pagebanner -->
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb-main">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="{% url 'webapp:home' %}"><i class="fa fa-home"></i></a></li>
+                <li><a href="{% url 'webapp:services' %}">Shop</a></li>
+                <li class="active">My basket</li>
+            </ul>
+        </div>
+    </div><!-- End breadcrumb -->
+
+    <!-- basket -->
+    <section id="basket-main" class="basket-main">
+        <div class="container">
+            <div class="basket-inner">
+                <div class="basket-table-list">
+                    <div class="order-list">
+                        <table class="shop_table rt-checkout-review-order-table">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th class="product-name">Product</th>
+                                <th class="product-price">Price</th>
+                                <th class="product-quantity">Quantity</th>
+                                <th class="product-total">Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in basket_items %}
+                                <tr>
+                                    <td>
+                                        <a href="{% url 'remove_from_basket' item.id %}" class="remove-item"><i
+                                                class="fa fa-times"></i></a>
+                                    </td>
+
+                                    <td class="basket_item">
+                                        <span class="product-thumbnail">
+                                            <img src="{% static 'images/cc_prodict_brcr.png' %}" alt="">
+                                        </span>
+                                        <span class="product-name">{{ item.product.name }}</span>
+                                    </td>
+
+                                    <td>
+                                        <span class="rt-Price-amount"><span>$</span>{{ item.product.price }}</span>
+                                    </td>
+
+                                    <td>
+                                        <span class="quantity-buttons">
+                                            <form method="POST" action="{% url 'update_basket' item.id %}">
+                                                {% csrf_token %}
+                                                <input type="number" class="quantity-input" name="quantity" min="1"
+                                                       max="50" value="{{ item.quantity }}">
+                                                <button type="submit" class="update-quantity">Update</button>
+                                            </form>
+                                        </span>
+                                    </td>
+
+                                    <td class="basket-subtotal">
+                                        <span class="rt-Price-amount"><span>$</span>{{ item.total_price }}</span>
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="5">Your basket is empty.</td>
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <td colspan="6" class="actions">
+                                    <div class="coupon">
+                                        <label for="coupon_code">Coupon:</label>
+                                        <input type="text" name="coupon_code" class="input-text" id="coupon_code"
+                                               placeholder="Coupon code">
+                                        <button type="submit" class="btn btn-red" name="apply_coupon"
+                                                value="Apply coupon">Apply coupon
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="checkout-order">
+                    <h3 class="mar-bottom-20">Basket Totals</h3>
+                    <div class="order-list">
+                        <table class="shop_table rt-checkout-review-order-table">
+                            <thead>
+                            <tr>
+                                <th class="product-name">Product</th>
+                                <th class="product-total">Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in basket_items %}
+                                <tr class="basket_item">
+                                    <td class="product-name">
+                                        {{ item.product.name }} <strong
+                                            class="product-quantity">× {{ item.quantity }}</strong>
+                                    </td>
+                                    <td class="product-total">
+                                        <span class="rt-Price-amount"><span>$</span>{{ item.total_price }}</span>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                            <tfoot>
+                            <tr class="basket-subtotal">
+                                <th>Subtotal</th>
+                                <td><span class="rt-Price-amount"><span>$</span>{{ total_price }}</span></td>
+                            </tr>
+
+                            <tr class="rt-shipping-totals shipping">
+                                <th>Shipping</th>
+                                <td data-title="Shipping">
+                                    Enter your address to view shipping options.
+                                </td>
+                            </tr>
+
+                            <tr class="order-total">
+                                <th>Total</th>
+                                <td><strong><span
+                                        class="rt-Price-amount"><span>$</span>{{ total_price }}</span></strong></td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="checkout-place-order">
+                    <p>Your personal data will be used to process your order, support your experience throughout this
+                        website, and for other purposes described in our <a href="#">privacy policy</a>.</p>
+                    <button type="submit" class="btn mt_btn_yellow">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End basket -->
+
+{% endblock %}

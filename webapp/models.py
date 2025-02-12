@@ -310,3 +310,25 @@ class Invoice(models.Model):
 
     def __str__(self):
         return f"Invoice for {self.client_name} - ${self.amount}"
+
+
+class Basket(models.Model):  # Переименовали Cart в Basket
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Корзина для {self.user.username}"
+
+    def total_price(self):
+        return sum(item.total_price() for item in self.basket_items.all())
+
+class BasketItem(models.Model):  # Переименовали CartItem в BasketItem
+    basket = models.ForeignKey(Basket, related_name='basket_items', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    def total_price(self):
+        return self.product.price * self.quantity
+
+    def __str__(self):
+        return f"{self.quantity} x {self.product.name}"
