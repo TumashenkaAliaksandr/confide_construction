@@ -46,7 +46,8 @@ urlpatterns = [
     path('order_exists/', order_exists, name='order_exists'),
     path('order_error/', order_error, name='order_error'),
     path('send-invoice/', send_invoice, name='send_invoice'),
-    path('basket/', basket, name='basket'),
+    path('basket/', basket_detail, name='basket_detail'),
+    path('add_to_basket/<int:product_id>/', add_to_basket, name='add_to_basket'),
     ]
 
 

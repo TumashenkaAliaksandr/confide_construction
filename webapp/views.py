@@ -874,7 +874,22 @@ def send_invoice(request):
     return render(request, 'webapp/invoices/invoice.html', {'form': form})
 
 
-def basket(request):
-    """Basket view"""
-    return render(request, 'webapp/shop/basket.html')
+@login_required
+def basket_detail(request):  # Переименовали cart_detail в basket_detail
+    basket, created = Basket.objects.get_or_create(user=request.user)
+    basket_items = basket.basket_items.all()
+    total_price = basket.total_price()
+    return render(request, 'webapp/shop/basket_detail.html', {'basket_items': basket_items, 'total_price': total_price})
+
+@login_required
+def add_to_basket(request, product_id):  # Переименовали add_to_cart в add_to_basket
+    product = Product.objects.get(id=product_id)
+    basket, created = Basket.objects.get_or_create(user=request.user)
+
+    basket_item, created = BasketItem.objects.get_or_create(basket=basket, product=product)
+    if not created:
+        basket_item.quantity += 1
+        basket_item.save()
+
+    return redirect('basket_detail')
 
