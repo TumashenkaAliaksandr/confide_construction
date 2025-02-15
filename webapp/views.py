@@ -10,7 +10,7 @@ from django.core.mail import send_mail, EmailMultiAlternatives
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm, ContactForm, InvoiceForm
@@ -39,6 +39,8 @@ def index(request):
     product = Product.objects.all()
     products_with_flag_1 = Product.objects.filter(flag_1=True)
     categories = Category.objects.all()
+    basket, created = Basket.objects.get_or_create(user=request.user)
+    total_quantity = sum(item.quantity for item in basket.basket_items.all())
 
     context = locals()
     return render(request, 'webapp/index-2.html', context)
@@ -54,6 +56,8 @@ def services(request):
     news = BlogNews.objects.all()
     product = Product.objects.all()
     categories = Category.objects.all()
+    basket, created = Basket.objects.get_or_create(user=request.user)
+    total_quantity = sum(item.quantity for item in basket.basket_items.all())
 
     context = locals()
     return render(request, 'webapp/services/services.html', context)
@@ -65,6 +69,8 @@ def shop(request):
     news = BlogNews.objects.all()
     partner = Recommended.objects.all()
     categories = Category.objects.all()
+    basket, created = Basket.objects.get_or_create(user=request.user)
+    total_quantity = sum(item.quantity for item in basket.basket_items.all())
 
     context = locals()
     return render(request, 'webapp/shop/shop.html', context=context)
@@ -73,15 +79,27 @@ def shop(request):
 class CategoryDetailView(DetailView):
     model = Category
     template_name = 'webapp/shop/single_category.html'
-    context_object_name = 'category'  # Optional: Use 'category' instead of 'object'
+    context_object_name = 'category'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        category = self.get_object()  # Get the category object
-        context['products'] = Product.objects.filter(categories=category)  # Filter products by category
-        context['categories'] = Category.objects.all() #get the category
+        category = self.get_object()
+
+        # Получаем корзину пользователя
+        if self.request.user.is_authenticated:
+            basket, created = Basket.objects.get_or_create(user=self.request.user)
+            total_quantity = sum(item.quantity for item in basket.basket_items.all())
+        else:
+            basket = None
+            total_quantity = 0
+
+        context['products'] = Product.objects.filter(categories=category)
+        context['categories'] = Category.objects.all()
+        context['basket'] = basket
+        context['total_quantity'] = total_quantity  # Передаем количество товаров в корзине
 
         return context
+
 
 
 def lost_password(request):
@@ -100,6 +118,8 @@ def about(request):
     servis_sliders = Product.objects.all()
     news = BlogNews.objects.all()
     categories = Category.objects.all()
+    basket, created = Basket.objects.get_or_create(user=request.user)
+    total_quantity = sum(item.quantity for item in basket.basket_items.all())
 
     context = {
         'assessment': assessment,
@@ -107,12 +127,15 @@ def about(request):
         'servis_sliders': servis_sliders,
         'news': news,
         'categories': categories,
+        'total_quantity': total_quantity,
     }
     return render(request, 'webapp/about-us.html', context=context)
 
 
 def contacts(request):
     news = BlogNews.objects.all()
+    basket, created = Basket.objects.get_or_create(user=request.user)
+    total_quantity = sum(item.quantity for item in basket.basket_items.all())
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
@@ -152,6 +175,7 @@ def contacts(request):
 
     context = {
         'news': news,
+        'total_quantity': total_quantity,
     }
     return render(request, 'webapp/contact-us-1.html', context=context)  # Шаблон с формой обратной связи
 
@@ -393,7 +417,11 @@ class ShowFormsProfilePageView(DetailView):
 def my_view(request):
     profile = request.user.profile  # Получение профиля пользователя
     advertisement = Advertisement.objects.all()
-    return render(request, 'webapp/register/my_account.html', {'profile': profile, 'advertisement': advertisement})
+    basket, created = Basket.objects.get_or_create(user=request.user)
+    total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    return render(request, 'webapp/register/my_account.html', {
+        'profile': profile, 'advertisement': advertisement, 'total_quantity': total_quantity
+    })
 
 
 class UpdateProfilePageView(UpdateView):
@@ -417,12 +445,15 @@ def my_account(request):
     profile = Profile.objects.get_or_create(user=user)[0]
     photos = User_Photo.objects.filter(user_profile=profile)  # Используйте поле user_profile
     checkout_details = CheckoutDetails.objects.last()
+    basket, created = Basket.objects.get_or_create(user=request.user)
+    total_quantity = sum(item.quantity for item in basket.basket_items.all())
 
     context = {
         'news': news,
         'photos': photos,
         'profile': profile,
         'checkout_details': checkout_details,
+        'total_quantity': total_quantity,
     }
 
     return render(request, 'webapp/register/my_account.html', context=context)
@@ -470,6 +501,8 @@ def checkout(request):
     main_serv = Services.objects.all()
     partner = Recommended.objects.all()
     slider_product = Product.objects.all()
+    basket, created = Basket.objects.get_or_create(user=request.user)
+    total_quantity = sum(item.quantity for item in basket.basket_items.all())
 
     # Получаем ID продукта из GET-запроса
     product_id = request.GET.get('product_id')
@@ -499,6 +532,7 @@ def checkout(request):
         'discount_check': product.discount,
         'price': product.price,
         'partner': partner,
+        'total_quantity': total_quantity,
     }
 
     # Рендерим страницу чекаута
@@ -688,10 +722,12 @@ def order_error(request):
 def base(request, slug):
     """Base page Constract """
     # news = BlogNews.objects.filter(pk=pk)
+    basket, created = Basket.objects.get_or_create(user=request.user)
     news_blog_main = BlogNews.objects.all()
     products = Product.objects.all()
     product = get_object_or_404(Product, slug=slug)
     categories = Category.objects.all()
+    total_quantity = sum(item.quantity for item in basket.basket_items.all())
 
     context = {
         # 'news': news,
@@ -699,6 +735,7 @@ def base(request, slug):
         'products': products,
         'product': product,
         'categories': categories,
+        'total_quantity': total_quantity,
     }
 
     return render(request, 'main/base.html', context=context)
@@ -706,9 +743,12 @@ def base(request, slug):
 
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug)  # Получаем продукт по ID
+    basket, created = Basket.objects.get_or_create(user=request.user)
+    total_quantity = sum(item.quantity for item in basket.basket_items.all())
 
     context = {
         'product': product,
+        'total_quantity': total_quantity,
     }
 
     return render(request, 'webapp/services/product_detail.html', context)
@@ -835,12 +875,15 @@ def single_product(request, slug):
     product = get_object_or_404(Product, slug=slug)
     product_name = Product.objects.all()
     checkout_session = checkout(request)  # Предположим, что функция checkout возвращает сессию
+    basket, created = Basket.objects.get_or_create(user=request.user)
+    total_quantity = sum(item.quantity for item in basket.basket_items.all())
 
     context = {
         'product': product,
         'product_name': product_name,
         'checkout_session': checkout_session,
         'current_name': request.user.first_name if request.user.is_authenticated else '',  # Пример получения имени
+        'total_quantity': total_quantity,
     }
     return render(request, 'webapp/shop/single_product.html', context=context)
 
@@ -879,17 +922,53 @@ def basket_detail(request):  # Переименовали cart_detail в basket_
     basket, created = Basket.objects.get_or_create(user=request.user)
     basket_items = basket.basket_items.all()
     total_price = basket.total_price()
-    return render(request, 'webapp/shop/basket_detail.html', {'basket_items': basket_items, 'total_price': total_price})
+    categories = Category.objects.all()
+    total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    return render(request, 'webapp/shop/basket_detail.html', {'basket_items': basket_items, 'total_price': total_price, 'total_quantity': total_quantity, 'categories': categories})
+
 
 @login_required
-def add_to_basket(request, product_id):  # Переименовали add_to_cart в add_to_basket
-    product = Product.objects.get(id=product_id)
-    basket, created = Basket.objects.get_or_create(user=request.user)
+def add_to_basket(request, product_id):
+    try:
+        product = get_object_or_404(Product, id=product_id)
+        basket, created = Basket.objects.get_or_create(user=request.user)
+        basket_item, created = BasketItem.objects.get_or_create(basket=basket, product=product)
 
-    basket_item, created = BasketItem.objects.get_or_create(basket=basket, product=product)
-    if not created:
-        basket_item.quantity += 1
-        basket_item.save()
+        if not created:
+            basket_item.quantity += 1
+            basket_item.save()
 
-    return redirect('basket_detail')
+        # Общее количество всех товаров в корзине
+        total_quantity = sum(item.quantity for item in basket.basket_items.all())
 
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({"success": True, "total_quantity": total_quantity})
+
+        return redirect('webapp:basket_detail')
+
+    except Http404:
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({"success": False, "error": "Product not found"})
+        return redirect('webapp:product_not_found')
+
+    except Exception as e:
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({"success": False, "error": str(e)})
+        return redirect('webapp:error_page')
+
+
+def remove_from_basket(request, item_id):
+    item = get_object_or_404(BasketItem, id=item_id)
+    item.delete()
+    return redirect('webapp:basket_detail')
+
+def update_basket(request, item_id):
+    if request.method == 'POST':
+        item = get_object_or_404(BasketItem, id=item_id)
+        new_quantity = int(request.POST.get('quantity', 1))
+        if new_quantity > 0:
+            item.quantity = new_quantity
+            item.save()
+        else:
+            item.delete()
+        return redirect('webapp:basket_detail')

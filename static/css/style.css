@@ -1051,6 +1051,12 @@ section#choose_us.about_choose_us {
     object-fit: cover; /* Этот свойство сохраняет соотношение сторон и обрезает изображение по нужным размерам */
 }
 
+.img-fixed-size-basket {
+    width: 80px; /* Установите желаемую ширину */
+    height: 70px; /* Установите желаемую высоту */
+    object-fit: cover; /* Этот свойство сохраняет соотношение сторон и обрезает изображение по нужным размерам */
+}
+
 .text_products h3 {
   font-size: 13px;
 }
@@ -4738,10 +4744,10 @@ h3.product_title{margin: 10px 0; font-size: 18px; }
 }
 
 span.quantity-buttons input {
-    width: 40%;
+    width: 35%;
     text-align: left;
-    margin: 0;
-    height: 42px;
+    margin: 5px;
+    height: 40px;
 }
 
 input.quantity-input {
@@ -4857,8 +4863,8 @@ input.quantity-input {
 .shopping-cart-dropdown {
     position: absolute;
     top: 75px;
-    right:0px;
-    width: 260px;
+    right: 10px;
+    width: 280px;
     background-color: #fff;
     text-align: left;
     z-index: 1000;
@@ -4869,6 +4875,7 @@ input.quantity-input {
     -moz-transition: all .35s cubic-bezier(.53,.01,.18,1);
     transition: all .35s cubic-bezier(.53,.01,.18,1);
     box-shadow: 0 5px 5px 0 rgba(0,0,0,.03);
+    border-radius: 5px;
 }
 
 .shopping-cart-holder:hover .shopping-cart-dropdown {
@@ -4879,6 +4886,7 @@ input.quantity-input {
 .shopping-cart-dropdown ul {
     margin: 22px 20px;
     padding: 0;
+    margin-right: 50px;
 }
 
 
@@ -4909,8 +4917,8 @@ input.quantity-input {
 
 .shopping-cart-dropdown .item-image-holder img {
     display: block;
-    width: 75px;
-    height: 75px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
 }
 
@@ -5034,7 +5042,7 @@ table.shop_table.rt-checkout-review-order-table{width: 100%;}
 table.shop_table.rt-checkout-review-order-table tr{border: 1px solid #f1f1f1;}
 
 table.shop_table.rt-checkout-review-order-table tr th,
-table.shop_table.rt-checkout-review-order-table tr td{padding:10px 15px; font-size: 15px; border: 1px solid #f1f1f1;}
+table.shop_table.rt-checkout-review-order-table tr td{padding:10px 10px; font-size: 15px; border: 1px solid #f1f1f1;}
 
 table.shop_table.rt-checkout-review-order-table thead, table.shop_table.rt-checkout-review-order-table tr.order-total{
   background: #fbfbfb;
@@ -6263,4 +6271,49 @@ p.lt-pswrd{margin-bottom: 20px;}
     margin-bottom: 10px;
     margin-right: 0;
   }
+}
+
+.basket-button {
+    background: #ffd888;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 21px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.basket-button:hover {
+    transform: scale(1.1);
+}
+
+.basket-icon {
+    width: 32px;  /* Размер иконки */
+    height: 32px;
+}
+
+
+.basket-button-main {
+    background: #ffd888;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 0px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease-in-out;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.basket-button-main:hover {
+    transform: scale(1.1);
+}
+
+.basket-icon-main {
+    width: 32px;  /* Размер иконки */
+    height: 32px;
 }
