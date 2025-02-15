@@ -9,7 +9,6 @@ function addToBasket(productId) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert("Product has been added to your shopping cart!");
             document.getElementById("cart-count").innerText = data.total_quantity; // Обновляем кружок
             updateBasketTotal();
         } else {

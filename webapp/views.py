@@ -942,7 +942,16 @@ def add_to_basket(request, product_id):
         total_quantity = sum(item.quantity for item in basket.basket_items.all())
 
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            return JsonResponse({"success": True, "total_quantity": total_quantity})
+            return JsonResponse({
+                "success": True,
+                "total_quantity": total_quantity,
+                "product": {
+                    "id": product.id,
+                    "name": product.name,
+                    "price": product.price,
+                    "image_url": product.image.url if product.image else None
+                }
+            })
 
         return redirect('webapp:basket_detail')
 
