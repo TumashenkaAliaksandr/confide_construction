@@ -39,11 +39,19 @@ def index(request):
     product = Product.objects.all()
     products_with_flag_1 = Product.objects.filter(flag_1=True)
     categories = Category.objects.all()
-    basket, created = Basket.objects.get_or_create(user=request.user)
-    total_quantity = sum(item.quantity for item in basket.basket_items.all())
+
+    # Проверяем, аутентифицирован ли пользователь
+    if request.user.is_authenticated:
+        basket, created = Basket.objects.get_or_create(user=request.user)
+        total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    else:
+        # Если пользователь не аутентифицирован, устанавливаем переменные в None или 0
+        basket = None
+        total_quantity = 0
 
     context = locals()
     return render(request, 'webapp/index-2.html', context)
+
 
 
 def services(request):
@@ -56,8 +64,14 @@ def services(request):
     news = BlogNews.objects.all()
     product = Product.objects.all()
     categories = Category.objects.all()
-    basket, created = Basket.objects.get_or_create(user=request.user)
-    total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    # Проверяем, аутентифицирован ли пользователь
+    if request.user.is_authenticated:
+        basket, created = Basket.objects.get_or_create(user=request.user)
+        total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    else:
+        # Если пользователь не аутентифицирован, устанавливаем переменные в None или 0
+        basket = None
+        total_quantity = 0
 
     context = locals()
     return render(request, 'webapp/services/services.html', context)
@@ -69,8 +83,14 @@ def shop(request):
     news = BlogNews.objects.all()
     partner = Recommended.objects.all()
     categories = Category.objects.all()
-    basket, created = Basket.objects.get_or_create(user=request.user)
-    total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    # Проверяем, аутентифицирован ли пользователь
+    if request.user.is_authenticated:
+        basket, created = Basket.objects.get_or_create(user=request.user)
+        total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    else:
+        # Если пользователь не аутентифицирован, устанавливаем переменные в None или 0
+        basket = None
+        total_quantity = 0
 
     context = locals()
     return render(request, 'webapp/shop/shop.html', context=context)
@@ -118,8 +138,14 @@ def about(request):
     servis_sliders = Product.objects.all()
     news = BlogNews.objects.all()
     categories = Category.objects.all()
-    basket, created = Basket.objects.get_or_create(user=request.user)
-    total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    # Проверяем, аутентифицирован ли пользователь
+    if request.user.is_authenticated:
+        basket, created = Basket.objects.get_or_create(user=request.user)
+        total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    else:
+        # Если пользователь не аутентифицирован, устанавливаем переменные в None или 0
+        basket = None
+        total_quantity = 0
 
     context = {
         'assessment': assessment,
@@ -128,14 +154,21 @@ def about(request):
         'news': news,
         'categories': categories,
         'total_quantity': total_quantity,
+        'basket': basket,
     }
     return render(request, 'webapp/about-us.html', context=context)
 
 
 def contacts(request):
     news = BlogNews.objects.all()
-    basket, created = Basket.objects.get_or_create(user=request.user)
-    total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    # Проверяем, аутентифицирован ли пользователь
+    if request.user.is_authenticated:
+        basket, created = Basket.objects.get_or_create(user=request.user)
+        total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    else:
+        # Если пользователь не аутентифицирован, устанавливаем переменные в None или 0
+        basket = None
+        total_quantity = 0
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
@@ -176,6 +209,7 @@ def contacts(request):
     context = {
         'news': news,
         'total_quantity': total_quantity,
+        'basket': basket,
     }
     return render(request, 'webapp/contact-us-1.html', context=context)  # Шаблон с формой обратной связи
 
@@ -447,6 +481,7 @@ def my_account(request):
     checkout_details = CheckoutDetails.objects.last()
     basket, created = Basket.objects.get_or_create(user=request.user)
     total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    categories = Category.objects.all()
 
     context = {
         'news': news,
@@ -454,6 +489,7 @@ def my_account(request):
         'profile': profile,
         'checkout_details': checkout_details,
         'total_quantity': total_quantity,
+        'categories': categories,
     }
 
     return render(request, 'webapp/register/my_account.html', context=context)
@@ -501,8 +537,14 @@ def checkout(request):
     main_serv = Services.objects.all()
     partner = Recommended.objects.all()
     slider_product = Product.objects.all()
-    basket, created = Basket.objects.get_or_create(user=request.user)
-    total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    # Проверяем, аутентифицирован ли пользователь
+    if request.user.is_authenticated:
+        basket, created = Basket.objects.get_or_create(user=request.user)
+        total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    else:
+        # Если пользователь не аутентифицирован, устанавливаем переменные в None или 0
+        basket = None
+        total_quantity = 0
 
     # Получаем ID продукта из GET-запроса
     product_id = request.GET.get('product_id')
@@ -533,6 +575,7 @@ def checkout(request):
         'price': product.price,
         'partner': partner,
         'total_quantity': total_quantity,
+        'basket': basket,
     }
 
     # Рендерим страницу чекаута
@@ -722,12 +765,18 @@ def order_error(request):
 def base(request, slug):
     """Base page Constract """
     # news = BlogNews.objects.filter(pk=pk)
-    basket, created = Basket.objects.get_or_create(user=request.user)
     news_blog_main = BlogNews.objects.all()
     products = Product.objects.all()
     product = get_object_or_404(Product, slug=slug)
     categories = Category.objects.all()
-    total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    # Проверяем, аутентифицирован ли пользователь
+    if request.user.is_authenticated:
+        basket, created = Basket.objects.get_or_create(user=request.user)
+        total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    else:
+        # Если пользователь не аутентифицирован, устанавливаем переменные в None или 0
+        basket = None
+        total_quantity = 0
 
     context = {
         # 'news': news,
@@ -736,6 +785,7 @@ def base(request, slug):
         'product': product,
         'categories': categories,
         'total_quantity': total_quantity,
+        'basket': basket,
     }
 
     return render(request, 'main/base.html', context=context)
@@ -743,12 +793,19 @@ def base(request, slug):
 
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug)  # Получаем продукт по ID
-    basket, created = Basket.objects.get_or_create(user=request.user)
-    total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    # Проверяем, аутентифицирован ли пользователь
+    if request.user.is_authenticated:
+        basket, created = Basket.objects.get_or_create(user=request.user)
+        total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    else:
+        # Если пользователь не аутентифицирован, устанавливаем переменные в None или 0
+        basket = None
+        total_quantity = 0
 
     context = {
         'product': product,
         'total_quantity': total_quantity,
+        'basket': basket,
     }
 
     return render(request, 'webapp/services/product_detail.html', context)
@@ -875,8 +932,14 @@ def single_product(request, slug):
     product = get_object_or_404(Product, slug=slug)
     product_name = Product.objects.all()
     checkout_session = checkout(request)  # Предположим, что функция checkout возвращает сессию
-    basket, created = Basket.objects.get_or_create(user=request.user)
-    total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    # Проверяем, аутентифицирован ли пользователь
+    if request.user.is_authenticated:
+        basket, created = Basket.objects.get_or_create(user=request.user)
+        total_quantity = sum(item.quantity for item in basket.basket_items.all())
+    else:
+        # Если пользователь не аутентифицирован, устанавливаем переменные в None или 0
+        basket = None
+        total_quantity = 0
 
     context = {
         'product': product,
@@ -884,6 +947,7 @@ def single_product(request, slug):
         'checkout_session': checkout_session,
         'current_name': request.user.first_name if request.user.is_authenticated else '',  # Пример получения имени
         'total_quantity': total_quantity,
+        'basket': basket,
     }
     return render(request, 'webapp/shop/single_product.html', context=context)
 
