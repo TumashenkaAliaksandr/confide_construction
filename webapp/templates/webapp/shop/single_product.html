@@ -248,6 +248,10 @@
                                             <input type="hidden" name="discount_check" value="{{ product.discount }}">
                                             <input type="hidden" name="total_price" id="total-price-input">
                                             <input type="hidden" name="quantity" id="quantity-input-hidden">
+                                            <!-- Кнопка корзины -->
+                                            <button type="button" class="basket-button" onclick="addToBasket({{ product.id }})">
+                                                <p>Add to basket</p><img src="{% static 'images/basket-nbg.png' %}" alt="Корзина" class="basket-icon">
+                                            </button>
                                             <!-- Скрытое поле для общей цены -->
                                             <button class="mt_btn_yellow mt_btn_yellow_position" id="goToCheckoutBtn" type="submit">Proceed to Checkout
                                             </button>

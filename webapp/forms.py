@@ -298,3 +298,13 @@ class InvoiceForm(forms.ModelForm):
             'invoice_link': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Enter invoice link'}),
         }
 
+
+class BasketItemForm(forms.ModelForm):
+    class Meta:
+        model = BasketItem
+        fields = ['product', 'quantity']
+
+class BasketForm(forms.ModelForm):
+    class Meta:
+        model = Basket
+        fields = ['user']  # В корзине может быть только один пользователь

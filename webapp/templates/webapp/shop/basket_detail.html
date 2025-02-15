@@ -4,9 +4,9 @@
 
 {% block content %}
     <!-- pagebanner -->
-    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'images/cart_cc.png' %}{% endif %}');">
+    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'images/cc_basket.png' %}{% endif %}');">
         <div class="page-title">
-            <h2 class="white text-center">Specialist search..</h2>
+            <h2 class="white text-center">BASKET 🗑️</h2>
         </div>
     </section>
     <!-- End Pagebanner -->
@@ -42,13 +42,13 @@
                             {% for item in basket_items %}
                                 <tr>
                                     <td>
-                                        <a href="{% url 'remove_from_basket' item.id %}" class="remove-item"><i
+                                        <a href="{% url 'webapp:remove_from_basket' item.id %}" class="remove-item"><i
                                                 class="fa fa-times"></i></a>
                                     </td>
 
                                     <td class="basket_item">
                                         <span class="product-thumbnail">
-                                            <img src="{% static 'images/cc_prodict_brcr.png' %}" alt="">
+                                            <img src="{{ item.product.image.url }}" class="img-fixed-size-basket" alt="">
                                         </span>
                                         <span class="product-name">{{ item.product.name }}</span>
                                     </td>
@@ -59,7 +59,7 @@
 
                                     <td>
                                         <span class="quantity-buttons">
-                                            <form method="POST" action="{% url 'update_basket' item.id %}">
+                                            <form method="POST" action="{% url 'webapp:update_basket' item.id %}">
                                                 {% csrf_token %}
                                                 <input type="number" class="quantity-input" name="quantity" min="1"
                                                        max="50" value="{{ item.quantity }}">
@@ -143,7 +143,7 @@
                 <div class="checkout-place-order">
                     <p>Your personal data will be used to process your order, support your experience throughout this
                         website, and for other purposes described in our <a href="#">privacy policy</a>.</p>
-                    <button type="submit" class="btn mt_btn_yellow">Proceed to Checkout</button>
+                    <button class="mt_btn_yellow mt_btn_yellow_position" id="goToCheckoutBtn" type="submit">Proceed to Checkout</button>
                 </div>
             </div>
         </div>

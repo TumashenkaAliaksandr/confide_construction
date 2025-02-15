@@ -1,4 +1,6 @@
 from django.contrib import admin
+
+from .forms import BasketItemForm, BasketForm
 from .models import *
 from .models import Advertisement
 
@@ -80,3 +82,23 @@ class InvoiceAdmin(admin.ModelAdmin):
 
 # Регистрация модели Invoice с настройками админки
 admin.site.register(Invoice, InvoiceAdmin)
+
+
+class BasketItemInline(admin.TabularInline):
+    model = BasketItem
+    form = BasketItemForm
+    extra = 1  # Дополнительные строки в админке, по умолчанию 1
+
+class BasketAdmin(admin.ModelAdmin):
+    form = BasketForm
+    inlines = [BasketItemInline]  # Вставляем inline для BasketItem
+    list_display = ['user', 'created_at']
+    search_fields = ['user__username']
+
+class BasketItemAdmin(admin.ModelAdmin):
+    form = BasketItemForm
+    list_display = ['product', 'basket', 'quantity']
+    search_fields = ['product__name', 'basket__user__username']
+
+admin.site.register(Basket, BasketAdmin)
+admin.site.register(BasketItem, BasketItemAdmin)

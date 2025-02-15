@@ -48,7 +48,10 @@ urlpatterns = [
     path('send-invoice/', send_invoice, name='send_invoice'),
     path('basket/', basket_detail, name='basket_detail'),
     path('add_to_basket/<int:product_id>/', add_to_basket, name='add_to_basket'),
-    ]
+    path('basket/update/<int:item_id>/', update_basket, name='update_basket'),
+    path('basket/remove/<int:item_id>/', remove_from_basket, name='remove_from_basket'),
+
+]
 
 
 if settings.DEBUG:
