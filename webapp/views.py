@@ -932,6 +932,7 @@ def single_product(request, slug):
     product = get_object_or_404(Product, slug=slug)
     product_name = Product.objects.all()
     checkout_session = checkout(request)  # Предположим, что функция checkout возвращает сессию
+    categories = Category.objects.all()
     # Проверяем, аутентифицирован ли пользователь
     if request.user.is_authenticated:
         basket, created = Basket.objects.get_or_create(user=request.user)
@@ -948,6 +949,7 @@ def single_product(request, slug):
         'current_name': request.user.first_name if request.user.is_authenticated else '',  # Пример получения имени
         'total_quantity': total_quantity,
         'basket': basket,
+        'categories': categories,
     }
     return render(request, 'webapp/shop/single_product.html', context=context)
 
