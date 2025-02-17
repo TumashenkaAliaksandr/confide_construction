@@ -1,0 +1,157 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+    <!-- pagebanner -->
+    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'images/cc_invoices.jpg' %}{% endif %}');">
+        <div class="page-title">
+            {% if product in product_name %}
+                <li class="active"><h2 class="white text-center">{{ product.name }}</h2></li>
+                {% else %}
+                    <li>No product selected.</li>
+                {% endif %}
+        </div>
+    </section>
+    <!-- End Pagebanner -->
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb-main">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="{% url 'webapp:home' %}"><i class="fa fa-home"></i></a></li>
+                <li><a href="{% url 'webapp:services' %}">Services</a></li>
+                {% if product in product_name %}
+                    <li class="active">{{ product.name }}</li>
+                {% else %}
+                    <li>No product selected.</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <!-- End breadcrumb -->
+
+    <!--* Mail Order Services *-->
+    <section id="mt_services">
+        <div class="container">
+            <div class="row forms-wrapper">
+            <div class="col-sm-12">
+                        <div class="single-product-summary service-pro-search">
+                            <div class="entry-summary">
+                                <h2 class="single-product-title">{{ product.name }}</h2>
+                                 <span class="price">
+                                 <p>All Price:</p>
+                                      <ins>
+                                          <span class="rt-price-amount">
+                                              <span>$</span><span id="total-price">{{ product.discount }}</span>
+                                          </span>
+                                      </ins>
+                                </span>
+
+                                <div class="product-details_short-description mar-top-25">
+                                    <h4>Description & Address:</h4>
+                                    <p>{{ product.description }}</p>
+                                </div>
+
+                                {% if product.additional_description %}
+                                    <div class="product-details_short-description mar-top-25">
+                                        <h6>Additional Information:</h6>
+                                        <p>{{ product.additional_description }}</p>
+                                    </div>
+                                {% endif %}
+
+                                {% if product.show_quantity %}
+                                <div class="quantity-buttons">
+                                    <label class="screen-reader-text">Quantity</label>
+                                    <input type="number" class="quantity-input" name="quantity" min="1" max="100"
+                                           placeholder="No." value="1" id="quantity-input">
+                                </div>
+                                {% endif %}
+
+                                <div class="product_meta mar-top-25">
+                                    {% if product.brand %}
+                                    <span class="sku_wrapper">Brand: <span class="sku">{{ product.brand }}</span></span>
+                                    {% endif %}
+                                    {% if product.material_up %}
+                                    <span class="sku_wrapper">Material: <span class="sku">{{ product.material_up }}</span></span>
+                                    {% endif %}
+                                    {% if product.color %}
+                                        <span class="tagged_as">Color: <a href="#"
+                                                                          rel="tag">{{ product.color }}</a></span>
+                                    {% endif %}
+                                    {% if product.power_source %}
+                                        <span class="tagged_as">Power Source: {{ product.power_source }}</span>
+                                    {% endif %}
+
+                                    {% if checkout_session %}
+                                        <form action="{% url 'webapp:checkout' %}?product_id={{ product.id }}"
+                                              method="POST" id="checkout-form">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="session_id"
+                                                   value="{{ checkout_session.sessionId }}">
+                                            <input type="hidden" name="discount_check" value="{{ product.discount }}">
+                                            <input type="hidden" name="total_price" id="total-price-input">
+                                            <input type="hidden" name="quantity" id="quantity-input-hidden">
+                                            <!-- Скрытое поле для общей цены -->
+                                            <button class="mt_btn_yellow mt_btn_yellow_position" id="goToCheckoutBtn" type="submit">Proceed to Checkout
+                                            </button>
+                                            <!-- Кнопка для перехода на страницу оформления заказа -->
+{#                                            <button type="button" id="goToCheckoutBtn">Go to Checkout</button>#}
+                                        </form>
+                                    {% else %}
+                                        <p>Error creating checkout session</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </section>
+    <!--* End Mail Order Services *-->
+
+
+    <script>
+        // Получаем элементы
+        const quantityInput = document.getElementById('quantity-input');
+        const totalPriceElement = document.getElementById('total-price');
+        const totalPriceInput = document.getElementById('total-price-input');
+        const quantityInputHidden = document.getElementById('quantity-input-hidden'); // Скрытое поле для количества
+
+        // Получаем цену продукта
+        const productDiscount = parseFloat("{{ product.discount }}"); // Убедитесь, что эта переменная доступна
+
+        // Функция для обновления цены
+        function updatePrice() {
+            const quantity = parseInt(quantityInput.value) || 0; // Получаем количество или 0, если не указано
+            let totalPrice;
+
+            // Проверяем, введено ли количество
+            if (quantity > 0) {
+                totalPrice = (productDiscount * quantity).toFixed(2); // Рассчитываем общую цену
+            } else {
+                totalPrice = productDiscount.toFixed(2); // Если количество не указано, используем цену со скидкой
+            }
+
+            // Обновляем отображаемую цену
+            totalPriceElement.textContent = `${totalPrice}`; // Добавляем знак доллара для отображения
+            totalPriceInput.value = totalPrice; // Устанавливаем значение скрытого поля
+            quantityInputHidden.value = quantity; // Устанавливаем значение скрытого поля для количества
+        }
+
+        // Проверяем, существует ли поле ввода количества
+        if (quantityInput) {
+            // Добавляем обработчик события на изменение поля ввода
+            quantityInput.addEventListener('input', updatePrice);
+
+            // Инициализируем цену при загрузке страницы
+            updatePrice(); // Вызываем функцию для установки начального значения цены
+        } else {
+            console.warn("Quantity input not found.");
+        }
+    </script>
+
+
+
+{% endblock %}

@@ -957,8 +957,71 @@ def single_product(request, slug):
     }
     return render(request, 'webapp/shop/single_product.html', context=context)
 
+def invoices(request):
+    """Services Constract"""
+    serv_serv = Services.objects.all()
+    qual = Quality.objects.all()
+    servis_slider = ServicesSlider.objects.all()
+    main_ser = Services.objects.filter(is_main=True).first()
+    sl_serv = Services.objects.all()
+    news = BlogNews.objects.all()
+
+    # Получаем только продукты, у которых invoices=True
+    products_with_invoices = Product.objects.filter(invoices=True)
+
+    categories = Category.objects.all()
+
+    # Если пользователь не аутентифицирован, устанавливаем переменные в None или 0
+    basket = None
+    total_quantity = 0
+
+    context = {
+        'serv_serv': serv_serv,
+        'qual': qual,
+        'servis_slider': servis_slider,
+        'main_ser': main_ser,
+        'sl_serv': sl_serv,
+        'news': news,
+        'products_with_invoices': products_with_invoices,  # Передаем отфильтрованные продукты
+        'categories': categories,
+        'total_quantity': total_quantity,
+        'basket': basket,
+        'hide_basket_icon': True,  # Передаем флаг для скрытия корзины в шаблоне
+    }
+
+    return render(request, 'webapp/invoices/invoices.html', context)
+
+
+def single_invoices(request, slug):
+    """Single product invoices page Construct"""
+    # Получаем продукт с проверкой на slug и invoices=True
+    product = get_object_or_404(Product, slug=slug, invoices=True)
+    product_name = Product.objects.all()
+    checkout_session = checkout(request)  # Предположим, что функция checkout возвращает сессию
+    categories = Category.objects.all()
+
+    # Устанавливаем корзину и количество товаров в None/0 для страницы инвойсов
+    basket = None
+    total_quantity = 0
+
+    context = {
+        'product': product,
+        'product_name': product_name,
+        'checkout_session': checkout_session,
+        'current_name': request.user.first_name if request.user.is_authenticated else '',  # Пример получения имени
+        'total_quantity': total_quantity,
+        'basket': basket,
+        'categories': categories,
+        'hide_basket_icon': True,  # Передаем флаг для скрытия корзины в шаблоне
+    }
+    return render(request, 'webapp/invoices/single_invoices.html', context=context)
+
 
 def send_invoice(request):
+    # Устанавливаем корзину и количество товаров в None/0 для страницы инвойсов
+    basket = None
+    total_quantity = 0
+    categories = Category.objects.all()
     if request.method == 'POST':
         form = InvoiceForm(request.POST)
         if form.is_valid():
@@ -984,8 +1047,15 @@ def send_invoice(request):
     else:
         form = InvoiceForm()
 
-    return render(request, 'webapp/invoices/invoice.html', {'form': form})
+    context = {
+        'form': form,
+        'basket': basket,
+        'total_quantity': total_quantity,
+        'categories': categories,
+        'hide_basket_icon': True,  # Добавляем переменную для скрытия иконки корзины
+    }
 
+    return render(request, 'webapp/invoices/send_invoice.html', context)
 
 @login_required
 def basket_detail(request):  # Переименовали cart_detail в basket_detail
