@@ -28,6 +28,7 @@ from django.http import JsonResponse
 from payments.views import create_checkout_session
 import logging
 
+
 def index(request):
     """Main, index constr"""
     serv = Services.objects.all()
@@ -36,8 +37,10 @@ def index(request):
     project_constract = Project.objects.all()
     main_serv = Services.objects.filter(is_main=True).first()
     news = BlogNews.objects.all()
-    product = Product.objects.all()
-    products_with_flag_1 = Product.objects.filter(flag_1=True)
+
+    # Получаем все продукты, исключая те, у которых invoices=True
+    product = Product.objects.filter(invoices=False)  # Здесь мы фильтруем по invoices=False
+    products_with_invoices = Product.objects.filter(invoices=True)  # Здесь мы фильтруем по invoices=True
     categories = Category.objects.all()
 
     # Проверяем, аутентифицирован ли пользователь
@@ -53,7 +56,6 @@ def index(request):
     return render(request, 'webapp/index-2.html', context)
 
 
-
 def services(request):
     """Services Constract"""
     serv_serv = Services.objects.all()
@@ -62,7 +64,9 @@ def services(request):
     main_ser = Services.objects.filter(is_main=True).first()
     sl_serv = Services.objects.all()
     news = BlogNews.objects.all()
-    product = Product.objects.all()
+    # Получаем все продукты, исключая те, у которых invoices=True
+    product = Product.objects.filter(invoices=False)  # Здесь мы фильтруем по invoices=False
+    products_with_invoices = Product.objects.filter(invoices=True)  # Здесь мы фильтруем по invoices=True
     categories = Category.objects.all()
     # Проверяем, аутентифицирован ли пользователь
     if request.user.is_authenticated:
@@ -113,13 +117,13 @@ class CategoryDetailView(DetailView):
             basket = None
             total_quantity = 0
 
-        context['products'] = Product.objects.filter(categories=category)
+        # Получаем продукты, относящиеся к категории и у которых invoices=False
+        context['products'] = Product.objects.filter(categories=category, invoices=False)
         context['categories'] = Category.objects.all()
         context['basket'] = basket
         context['total_quantity'] = total_quantity  # Передаем количество товаров в корзине
 
         return context
-
 
 
 def lost_password(request):
