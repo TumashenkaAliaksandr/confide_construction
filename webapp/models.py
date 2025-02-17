@@ -129,7 +129,7 @@ class Product(models.Model):
     categories = models.ManyToManyField(Category, related_name='products')
 
     # Новые поля для флагов
-    flag_1 = models.BooleanField(default=False)
+    invoices = models.BooleanField(default=False)
     flag_2 = models.BooleanField(default=False)
     flag_3 = models.BooleanField(default=False)
 
@@ -317,7 +317,7 @@ class Basket(models.Model):  # Переименовали Cart в Basket
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Корзина для {self.user.username}"
+        return f"Basket for {self.user.username}"
 
     def total_price(self):
         return sum(item.total_price() for item in self.basket_items.all())
