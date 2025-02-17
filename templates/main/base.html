@@ -154,6 +154,7 @@
                                         </span>
                                        <span class="cart-number" id="cart-count">{{ total_quantity }}</span>
                                     </a>
+                                    {% if not hide_basket_icon %}
                                     <div class="shopping-cart-dropdown">
                                         <ul>
                                             {% for item in basket_items %}
@@ -200,6 +201,7 @@
                                             </li>
                                         </ul>
                                     </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

@@ -126,7 +126,7 @@ class Product(models.Model):
     material = models.CharField(max_length=100, blank=True)  # Материал
 
     # Связь с категориями (несколько категорий для одного продукта)
-    categories = models.ManyToManyField(Category, related_name='products')
+    categories = models.ManyToManyField(Category, related_name='products', blank=True)
 
     # Новые поля для флагов
     invoices = models.BooleanField(default=False)
