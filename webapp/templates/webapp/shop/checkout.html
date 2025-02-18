@@ -204,59 +204,6 @@
 {#    </script>#}
 
 
-
-    <!-- store -->
-    <section id="our_store" class="our_store related_store">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
-                    <!-- section title -->
-                    <div class="section_heading">
-                        <h2 class="section_title">
-                            <span>Our Services</span>
-                        </h2>
-                        <p class="heading_txt">We offer a range of services in the field of repair and construction.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row slider-shop">
-                {% for main_sl_cart_prod in slider_product %}
-                    <div class="col-md-3 col-xs-12">
-                        <div class="rt-product-wrapper">
-                            <div class="product-thumbnail-wrapper">
-                                <div class="product-image">
-                                    <img src="{{ main_sl_cart_prod.image.url }}" class="img-fixed-size"
-                                         alt="product-list">
-                                </div>
-                                <div class="product-label"><span class="onsale">Sale</span></div>
-                            </div>
-                            <div class="rt-product-meta-wrapper">
-                                <h3 class="product_title">
-                                    <a href="{% url 'webapp:services_with_slug' main_sl_cart_prod.slug %}">{{ main_sl_cart_prod.name }}</a>
-                                </h3>
-                                <div class="rt-cartprice-wrapper">
-                                <span class="price mar-bottom-20">
-                                    <ins>
-                                        <span class="rrt-price-amount">
-                                            <span>$</span>{{ main_sl_cart_prod.discount }}
-                                        </span>
-                                    </ins>
-                                </span>
-                                    <div class="button">
-                                        <a href="{% url 'webapp:services_with_slug' main_sl_cart_prod.slug %}" class="mt_btn_yellow">Go to service</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-    <!-- End store -->
-
-
     <!--* Partner*-->
     <section id="const-team" class="const-team">
         <div class="container wow slideInRight">
