@@ -202,7 +202,7 @@ background-color: #FFFFFF !important;
  .header-search .search-box-wrap {
     display: none;
     position: absolute;
-    right: 0px;
+    right: 0;
     z-index: 2;
     top: 61px;
     background: rgba(255, 255, 255, 0.05);
@@ -1046,9 +1046,17 @@ section#choose_us.about_choose_us {
 
 /* CSS стили для фиксированного размера изображений */
 .img-fixed-size {
-    width: 263px; /* Установите желаемую ширину */
-    height: 140px; /* Установите желаемую высоту */
+    width: 220px;
+    height: 130px;
+    object-fit: cover;
+    margin-top: 10px;
+}
+
+.icon-fixed-size {
+    width: 70px; /* Установите желаемую ширину */
+    height: 70px; /* Установите желаемую высоту */
     object-fit: cover; /* Этот свойство сохраняет соотношение сторон и обрезает изображение по нужным размерам */
+    margin-top: 10px;
 }
 
 .img-fixed-size-basket {
@@ -1063,7 +1071,7 @@ section#choose_us.about_choose_us {
 
 @media screen and (max-width: 767px) {
     .img-fixed-size {
-        width: 100%; /* Установите желаемую ширину */
+        width: 90%; /* Установите желаемую ширину */
         height: 100px; /* Установите желаемую высоту */
         object-fit: cover; /* Этот свойство сохраняет соотношение сторон и обрезает изображение по нужным размерам */
     }
@@ -1299,9 +1307,10 @@ section#mt_services_five {
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     -ms-transition: all 0.5s ease;
-    box-shadow: 0px 0px 25px 0px rgba(122, 122, 122, 0.1);
+    box-shadow: 0 0 25px 0 rgba(122, 122, 122, 0.1);
     border: 1px solid #f1f1f1;
     margin: 10px;
+    border-radius: 10px;
 }
 
 .box-categories {

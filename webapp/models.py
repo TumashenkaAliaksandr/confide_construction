@@ -116,6 +116,7 @@ class Product(models.Model):
     additional_description = models.TextField(blank=True)  # Дополнительное описание продукта
     price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     discount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, null=True)  # Поле для скидки
+    invoice_description = models.TextField(blank=True, default='small job description')
 
     # Новые поля
     brand = models.CharField(max_length=100, blank=True)  # Бренд продукта
