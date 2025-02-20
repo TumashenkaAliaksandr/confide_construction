@@ -28,11 +28,12 @@ class CheckoutDetailsAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'discount')  # Поля, отображаемые в списке
+    list_display = ('name', 'price', 'discount', 'data_created_at')  # Поля, отображаемые в списке
     prepopulated_fields = {'slug': ('name',)}  # Автоматическое заполнение slug на основе имени
     search_fields = ('name', 'description')  # Поля для поиска
     ordering = ('name',)  # Порядок сортировки
     list_filter = ('discount',)  # Фильтры для боковой панели
+    date_hierarchy = 'data_created_at'
 
     def save_model(self, request, obj, form, change):
         """Метод для обработки сохранения модели"""

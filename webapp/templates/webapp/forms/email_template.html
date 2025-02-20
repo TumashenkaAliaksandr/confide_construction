@@ -15,6 +15,13 @@
             <p><strong>📧 Email:</strong> {{ email }}</p>
             <p><strong>☎️ Phone Number:</strong> {{ phone }}</p>
             <p>────⋆⋅☆⋅⋆──</p>
+
+            {% if photos %}
+                <p><strong>Uploaded Photos:</strong></p>
+                {% for photo in photos %}
+                    <img src="cid:{{ photo.name }}" alt="Uploaded Photo" style="max-width: 100%; height: auto;">
+                {% endfor %}
+            {% endif %}
             <p><br>ᵗᑋᵃᐢᵏ ᵞᵒᵘ*</p>
             <i>This mail send from website https://dchomefix.co ®</i>
         </div>

@@ -15,6 +15,7 @@ urlpatterns = [
     path('product/<slug:slug>/', product_detail, name='product_detail'),
     path('invoices/', invoices, name='invoices'),
     path('invoices/<slug:slug>/', single_invoices, name='invoices_with_slug'),
+    path('stata', stata, name='stata'),
     path('send-invoice/', send_invoice, name='send_invoice'),
     path('category/<slug:slug>/', CategoryDetailView.as_view(), name='category_detail'),
     path('backsplash/', backsplash, name='backsplash'),

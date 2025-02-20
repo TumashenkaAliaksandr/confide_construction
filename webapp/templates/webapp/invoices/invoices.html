@@ -55,6 +55,7 @@
                             <div class="box-content">
                                 <h3><a href="{% url 'webapp:invoices_with_slug' main_product.slug %}">{{ main_product.name }}</a></h3>
                                 <p><a href="{% url 'webapp:invoices_with_slug' main_product.slug %}">{{ main_product.invoice_description|wordwrap:21|linebreaks }}</a></p>
+                                <span><p>{{ main_product.data_created_at }}</p></span>
                                 <span class="price">${{ main_product.discount }}</span>
                             </div>
                         </div>

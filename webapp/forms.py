@@ -1,10 +1,11 @@
 from django import forms
 from .models import *
 from django.contrib.auth.password_validation import validate_password
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.core.validators import RegexValidator
+from django.core.files.storage import FileSystemStorage
 
 
 class CallbackForm(forms.Form):
@@ -141,6 +142,24 @@ class RegistrationForm(forms.ModelForm):
 #             attrs={'placeholder': 'Message', 'cols': 30, 'rows': 5}
 #         )
 #     )
+
+class MultipleFileInput(forms.ClearableFileInput):
+    allow_multiple_selected = True
+
+
+class MultipleImageField(forms.FileField):
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault("widget", MultipleFileInput())
+        super().__init__(*args, **kwargs)
+
+    def clean(self, data, initial=None):
+        single_file_clean = super().clean
+        if isinstance(data, (list, tuple)):
+            return [single_file_clean(d, initial) for d in data]
+        return [single_file_clean(data, initial)]
+
+
+
 class ContactForm(forms.Form):
     first_name = forms.CharField(
         min_length=2,
@@ -209,51 +228,19 @@ class ContactForm(forms.Form):
             attrs={'placeholder': 'Phone Number (e.g. 123-456-7890)', 'class': 'mailpoet_text'}
         ),
         label="Phone Number"
+
+    )
+
+    # Поле для загрузки нескольких фото
+    photos = MultipleImageField(
+        required=False,
+        label="Upload Photos"
     )
 
 
-def contact(request):
-    if request.method == 'POST':
-        # Создание формы с данными из POST-запроса
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            # Обработка отправки формы
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']
-            zip_code = form.cleaned_data['zip_code']
-            description = form.cleaned_data['description']
-            hours = form.cleaned_data['hours']
-            date = form.cleaned_data['date']
-            time = form.cleaned_data['time']
-            email = form.cleaned_data['email']
-            phone = form.cleaned_data['phone']
 
-            # Формирование сообщения
-            message = (
-                f'Имя: {first_name} {last_name}\n'
-                f'ZIP Код: {zip_code}\n'
-                f'Описание работы: {description}\n'
-                f'Количество часов: {hours}\n'
-                f'Дата визита: {date}\n'
-                f'Время визита: {time}\n'
-                f'Email: {email}\n'
-                f'Телефон: {phone}'
-            )
 
-            # Отправка письма
-            send_mail(
-                'Request for consultation from the website',
-                message,
-                'confideconstruction@gmail.com',  # Укажите свой адрес электронной почты
-                ['sreda01@gmail.com'],  # Получатель
-                fail_silently=False,
-            )
 
-            return redirect('success_page')  # Перенаправление на страницу "Спасибо"
-    else:
-        form = ContactForm()
-
-    return render(request, 'webapp/contact-us-1.html', {'form': form})
 
 
 # def contact(request):

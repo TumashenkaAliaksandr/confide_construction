@@ -27,6 +27,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from payments.views import create_checkout_session
 import logging
+from django.core.mail import send_mail, EmailMessage
+
+from .templates.webapp.statistics.parser import fetch_invoices
 
 
 def index(request):
@@ -1121,3 +1124,87 @@ def update_basket(request, item_id):
         else:
             item.delete()
         return redirect('webapp:basket_detail')
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Получение данных формы
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            zip_code = form.cleaned_data['zip_code']
+            description = form.cleaned_data['description']
+            hours = form.cleaned_data['hours']
+            date = form.cleaned_data['date']
+            time = form.cleaned_data['time']
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+
+            # Получение загруженных файлов
+            photos = request.FILES.getlist('photos')  # Измените на getlist для получения списка файлов
+
+            # Формирование сообщения
+            message = (
+                f'Имя: {first_name} {last_name}\n'
+                f'ZIP Код: {zip_code}\n'
+                f'Описание работы: {description}\n'
+                f'Количество часов: {hours}\n'
+                f'Дата визита: {date}\n'
+                f'Время визита: {time}\n'
+                f'Email: {email}\n'
+                f'Телефон: {phone}\n'
+                f'Фото: {photos}\n'
+                f'Загруженные фото: (см. вложение)'
+            )
+
+            # Создание объекта EmailMessage
+            email_message = EmailMessage(
+                subject='Request for consultation from the website',
+                body=message,
+                from_email='Badminton500@inbox.lv',
+                to=['tumashenkaaliaksand@gmail.com'],
+            )
+
+            # Добавление фотографий как вложений
+            for photo in photos:
+                email_message.attach(photo.name, photo.read(), photo.content_type)
+
+            # Отправка письма
+            email_message.send(fail_silently=False)
+
+            return redirect('success_page')
+
+    else:
+        form = ContactForm()
+
+    return render(request, 'webapp/contact-us-1.html', {'form': form})
+
+
+def stata(request):
+    """Single product invoices page Construct"""
+    invoices, total_price, ceiling_count, painting_count, plaster_count = fetch_invoices()
+    checkout_session = checkout(request)  # Предположим, что функция checkout возвращает сессию
+    categories = Category.objects.all()
+
+    # Устанавливаем корзину и количество товаров в None/0 для страницы инвойсов
+    basket = None
+    total_quantity = 0
+
+    # Добавляем обработку даты с использованием .get()
+    invoice_dates = [invoice.get('data_created_at', 'Unknown') for invoice in invoices]  # Безопасно извлекаем даты
+
+    context = {
+        'invoices': invoices,
+        'total_price': total_price,
+        'ceiling_count': ceiling_count,
+        'painting_count': painting_count,
+        'plaster_count': plaster_count,
+        'checkout_session': checkout_session,
+        'current_name': request.user.first_name if request.user.is_authenticated else '',  # Пример получения имени
+        'total_quantity': total_quantity,
+        'basket': basket,
+        'categories': categories,
+        'hide_basket_icon': True,  # Передаем флаг для скрытия корзины в шаблоне
+        'invoice_dates': invoice_dates,  # Передаем список дат в контекст
+    }
+    return render(request, 'webapp/statistics/stata.html', context=context)
