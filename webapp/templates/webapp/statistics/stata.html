@@ -1,0 +1,103 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+    <!-- pagebanner -->
+    <section id="pagebanner" style="background-image: url('{% if contact_banner_image %}{{ contact_banner_image.url }}{% else %}{% static 'images/cc_invoices.jpg' %}{% endif %}');">
+        <div class="page-title">
+           <h2 class="white text-center">Stata</h2>
+        </div>
+    </section>
+    <!-- End Pagebanner -->
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb-main">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="{% url 'webapp:home' %}"><i class="fa fa-home"></i></a></li>
+                <li><a href="{% url 'webapp:services' %}">Services</a></li>
+                <li class="active">Stata</li>
+            </ul>
+        </div>
+    </div>
+    <!-- End breadcrumb -->
+    <!--* Mail Order Services *-->
+    <section id="mt_services">
+        <div class="container">
+            <div class="row forms-wrapper">
+                <div class="col-sm-12">
+                    {% for invoice in invoices %}
+                        <div class="single-product-summary service-pro-search">
+                            <div class="entry-summary">
+                                <h2 class="single-product-title">{{ invoice.title }}</h2>
+                                <span class="price">
+                                <p>Price:</p>
+                                <ins>
+                                    <span class="rt-price-amount">
+                                        <span id="total-price">{{ invoice.price }}</span>
+                                    </span>
+                                </ins>
+                            </span>
+
+                                <div class="product-details_short-description mar-top-25">
+                                    <h4>Description & Address:</h4>
+                                    <p>{{ invoice.description }}</p>
+                                </div>
+
+                                <!-- Отображение даты -->
+                                <div class="invoice-date mar-top-25">
+                                    <h4>Date Created:</h4>
+                                    <time datetime="{{ invoice.date|date:'Y-m-d' }}">{{ invoice.date }}</time>
+                                    <!-- Здесь будет отображаться только дата -->
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <!-- Отображение количества работ в виде таблицы -->
+                    <div class="work-counts mar-top-25">
+                        <h4>Work Counts:</h4>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Type of Work</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Count</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Ceiling Works</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">{{ ceiling_count }}</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Painting Works</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">{{ painting_count }}</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Plaster Works</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">{{ plaster_count }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Отображение общей суммы -->
+                    <div class="rt-price-amount mar-top-25">
+                        <h3>Total Price:</h3>
+                        <span id="total-price">${{ total_price|floatformat:2 }}</span>
+                    </div>
+
+                </div> <!-- col-sm-12 -->
+            </div> <!-- row forms-wrapper -->
+        </div> <!-- container -->
+    </section>
+    <!--* End Mail Order Services *-->
+
+
+
+
+
+
+{% endblock %}

@@ -803,10 +803,24 @@ div#home-banner:before {
 }
 
 #mt_about .about-img{
-    background: #fff;
+    /*background: #fff;*/
     padding: 10px;
-    box-shadow: 0 0px 30px #cccccc6e;
+    box-shadow: 0 0 30px #cccccc6e;
     position: relative;
+}
+
+.about-img-ceiling-fan {
+    position: relative;
+    width: 450px;
+    margin-top: 40px;
+    /*margin-right: 30px;*/
+}
+
+.about-img-tv-mount {
+    position: relative;
+    width: 330px;
+    padding-left: 50px;
+    margin-left: 15%;
 }
 
 #mt_about .about-img:after{
@@ -2602,7 +2616,7 @@ section#mt_faq-testi .section_heading{padding: 0;}
     padding: 16px 25px;
     border-radius: 8px;
     background: #fafafa;
-    height: 50px;
+    height: auto;
     width: 100%;
     transition: box-shadow 0.3s ease;
     /*margin-top: 8px;*/
@@ -6153,6 +6167,18 @@ p.lt-pswrd{margin-bottom: 20px;}
     .img-fixed-size-for-disposal-main {
         width: auto;
         height: auto;
+    }
+
+    .about-img-tv-mount {
+        position: relative;
+        width: 315px;
+        margin-left: 0;
+    }
+
+    .about-img-ceiling-fan {
+        position: relative;
+        margin-top: 40px;
+        width: auto;
     }
 
 }
