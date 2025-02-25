@@ -334,3 +334,11 @@ class BasketItem(models.Model):  # Переименовали CartItem в Basket
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name}"
+
+
+class OrderConsultations(models.Model):
+    file = models.FileField(upload_to='uploads/')
+    uploaded_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+
+    def __str__(self):
+        return f"File: {self.file.name}"
