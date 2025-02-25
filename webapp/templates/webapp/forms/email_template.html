@@ -1,4 +1,3 @@
-<!-- email_template.html -->
 <html>
     <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
         <div style="max-width: 650px; margin: auto; background: beige; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
@@ -16,14 +15,19 @@
             <p><strong>☎️ Phone Number:</strong> {{ phone }}</p>
             <p>────⋆⋅☆⋅⋆──</p>
 
-            {% if photos %}
-                <p><strong>Uploaded Photos:</strong></p>
-                {% for photo in photos %}
-                    <img src="cid:{{ photo.name }}" alt="Uploaded Photo" style="max-width: 100%; height: auto;">
-                {% endfor %}
+            {% if saved_files %}
+                <p><strong>📎 Attached Files:</strong></p>
+                <ul>
+                    {% for photo in saved_files %}
+                        <li>{{ photo.file.url }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p><strong>📎 No files attached</strong></p>
             {% endif %}
+
             <p><br>ᵗᑋᵃᐢᵏ ᵞᵒᵘ*</p>
-            <i>This mail send from website https://dchomefix.co ®</i>
+            <i>This mail is sent from website <a href="https://dchomefix.co">https://dchomefix.co</a> ®</i>
         </div>
     </body>
 </html>

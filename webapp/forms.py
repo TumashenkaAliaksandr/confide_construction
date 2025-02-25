@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.core.validators import RegexValidator
 from django.core.files.storage import FileSystemStorage
-
+from multiupload.fields import MultiFileField
 
 class CallbackForm(forms.Form):
     name = forms.CharField(max_length=100)
@@ -146,8 +146,7 @@ class RegistrationForm(forms.ModelForm):
 class MultipleFileInput(forms.ClearableFileInput):
     allow_multiple_selected = True
 
-
-class MultipleImageField(forms.FileField):
+class MultipleFileField(forms.FileField):
     def __init__(self, *args, **kwargs):
         kwargs.setdefault("widget", MultipleFileInput())
         super().__init__(*args, **kwargs)
@@ -155,43 +154,36 @@ class MultipleImageField(forms.FileField):
     def clean(self, data, initial=None):
         single_file_clean = super().clean
         if isinstance(data, (list, tuple)):
-            return [single_file_clean(d, initial) for d in data]
-        return [single_file_clean(data, initial)]
-
+            result = [single_file_clean(d, initial) for d in data]
+        else:
+            result = [single_file_clean(data, initial)]
+        return result
 
 
 class ContactForm(forms.Form):
     first_name = forms.CharField(
         min_length=2,
-        max_length=30,  # Установим максимальную длину
-        widget=forms.TextInput(
-            attrs={'placeholder': 'First Name', 'class': 'mailpoet_text'}
-        ),
+        max_length=30,
+        widget=forms.TextInput(attrs={'placeholder': 'First Name', 'class': 'mailpoet_text'}),
         label="First Name"
     )
 
     last_name = forms.CharField(
         min_length=2,
-        max_length=30,  # Установим максимальную длину
-        widget=forms.TextInput(
-            attrs={'placeholder': 'Last Name', 'class': 'mailpoet_text'}
-        ),
+        max_length=30,
+        widget=forms.TextInput(attrs={'placeholder': 'Last Name', 'class': 'mailpoet_text'}),
         label="Last Name"
     )
 
     zip_code = forms.CharField(
         max_length=10,
-        widget=forms.TextInput(
-            attrs={'placeholder': 'ZIP Code', 'class': 'mailpoet_text'}
-        ),
+        widget=forms.TextInput(attrs={'placeholder': 'ZIP Code', 'class': 'mailpoet_text'}),
         label="ZIP Code"
     )
 
     description = forms.CharField(
         min_length=10,
-        widget=forms.TextInput(
-            attrs={'placeholder': 'Please describe the job in detail.', 'class': 'mailpoet_text'}
-        ),
+        widget=forms.Textarea(attrs={'placeholder': 'Please describe the job in detail.', 'class': 'mailpoet_text'}),
         label="Job Description"
     )
 
@@ -216,29 +208,21 @@ class ContactForm(forms.Form):
     )
 
     email = forms.EmailField(
-        widget=forms.EmailInput(
-            attrs={'placeholder': 'Your email', 'class': 'mailpoet_text'}
-        ),
+        widget=forms.EmailInput(attrs={'placeholder': 'Your email', 'class': 'mailpoet_text'}),
         label="Email Address"
     )
 
     phone = forms.CharField(
         max_length=15,
-        widget=forms.TextInput(
-            attrs={'placeholder': 'Phone Number (e.g. 123-456-7890)', 'class': 'mailpoet_text'}
-        ),
+        widget=forms.TextInput(attrs={'placeholder': 'Phone Number (e.g. 123-456-7890)', 'class': 'mailpoet_text'}),
         label="Phone Number"
-
     )
 
-    # Поле для загрузки нескольких фото
-    photos = MultipleImageField(
+    # Используем кастомное поле для загрузки нескольких фото
+    photos = MultipleFileField(
         required=False,
-        label="Upload Photos"
+        widget=MultipleFileInput(attrs={'class': 'mailpoet_text'})
     )
-
-
-
 
 
 

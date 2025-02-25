@@ -1125,25 +1125,51 @@ def update_basket(request, item_id):
             item.delete()
         return redirect('webapp:basket_detail')
 
-def contact(request):
+
+def get_contact(request):
+    saved_files = []  # Список загруженных файлов
+    photo_count = 0  # Счетчик фото
+
     if request.method == 'POST':
+        logger.info("Получен POST-запрос")
+
         form = ContactForm(request.POST, request.FILES)
         if form.is_valid():
-            # Получение данных формы
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']
-            zip_code = form.cleaned_data['zip_code']
-            description = form.cleaned_data['description']
-            hours = form.cleaned_data['hours']
-            date = form.cleaned_data['date']
-            time = form.cleaned_data['time']
-            email = form.cleaned_data['email']
-            phone = form.cleaned_data['phone']
+            logger.info("Форма валидна")
 
-            # Получение загруженных файлов
-            photos = request.FILES.getlist('photos')  # Измените на getlist для получения списка файлов
+            # Получаем загруженные файлы
+            photos = request.FILES.getlist('photos')  # Исправленный способ получения файлов
+            logger.info(f"Найдено фото: {len(photos)}")
 
-            # Формирование сообщения
+            # Проверка на максимальное количество загружаемых фото
+            if len(photos) > 10:
+                messages.error(request, "You can upload up to 10 photos only.")
+                logger.warning("Попытка загрузки более 10 фото")
+                return redirect('contact_page')
+
+            # Сохраняем файлы в БД и добавляем в список для email
+            for photo in photos:
+                try:
+                    logger.info(f"Загружаем файл: {photo.name}")
+                    file_instance = OrderConsultations(file=photo)
+                    file_instance.save()
+                    saved_files.append(file_instance)
+                    photo_count += 1
+                    logger.info(f"Файл {photo.name} сохранен в {file_instance.file.url}")
+                except Exception as e:
+                    logger.error(f"Ошибка при загрузке файла {photo.name}: {e}")
+
+            # Формируем текст письма
+            first_name = form.cleaned_data.get('first_name', 'Не указано')
+            last_name = form.cleaned_data.get('last_name', 'Не указано')
+            zip_code = form.cleaned_data.get('zip_code', 'Не указано')
+            description = form.cleaned_data.get('description', 'Не указано')
+            hours = form.cleaned_data.get('hours', 'Не указано')
+            date = form.cleaned_data.get('date', 'Не указано')
+            time = form.cleaned_data.get('time', 'Не указано')
+            email = form.cleaned_data.get('email', 'Не указано')
+            phone = form.cleaned_data.get('phone', 'Не указано')
+
             message = (
                 f'Имя: {first_name} {last_name}\n'
                 f'ZIP Код: {zip_code}\n'
@@ -1153,11 +1179,10 @@ def contact(request):
                 f'Время визита: {time}\n'
                 f'Email: {email}\n'
                 f'Телефон: {phone}\n'
-                f'Фото: {photos}\n'
-                f'Загруженные фото: (см. вложение)'
+                f'Загруженные фото: {photo_count}\n'
             )
 
-            # Создание объекта EmailMessage
+            # Создаем Email
             email_message = EmailMessage(
                 subject='Request for consultation from the website',
                 body=message,
@@ -1165,19 +1190,39 @@ def contact(request):
                 to=['tumashenkaaliaksand@gmail.com'],
             )
 
-            # Добавление фотографий как вложений
-            for photo in photos:
-                email_message.attach(photo.name, photo.read(), photo.content_type)
+            # Добавляем файлы как вложения
+            for file_instance in saved_files:
+                try:
+                    with open(file_instance.file.path, 'rb') as f:
+                        email_message.attach(file_instance.file.name, f.read(), file_instance.file.content_type)
+                    logger.info(f"Добавлен в email файл {file_instance.file.name}")
+                except Exception as e:
+                    logger.error(f"Ошибка при добавлении вложения {file_instance.file.name}: {e}")
 
-            # Отправка письма
-            email_message.send(fail_silently=False)
+            # Отправляем письмо
+            try:
+                email_message.send(fail_silently=False)
+                logger.info("Email успешно отправлен")
+            except Exception as e:
+                logger.error(f"Ошибка при отправке email: {e}")
+                messages.error(request, "Ошибка при отправке email. Попробуйте позже.")
 
             return redirect('success_page')
 
-    else:
-        form = ContactForm()
+        else:
+            logger.warning(f"Форма не валидна: {form.errors}")
 
-    return render(request, 'webapp/contact-us-1.html', {'form': form})
+    else:
+        logger.info("Загружена GET-страница с формой")
+
+    form = ContactForm()
+    return render(request, 'webapp/forms/email_template.html', {
+        'form': form,
+        'saved_files': saved_files,
+        'photo_count': photo_count
+    })
+
+
 
 
 def stata(request):
