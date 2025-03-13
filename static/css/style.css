@@ -4087,6 +4087,29 @@ a.checkout-link {
   right: 0;
 }
 
+#pagebanner_order {
+    background: url(../images/pagebanner.jpg) no-repeat center center; /* Центрирование изображения */
+    background-size: cover; /* Изображение будет покрывать весь элемент */
+    background-attachment: inherit; /* Фиксированное положение при прокрутке */
+    height: 200px; /* Высота элемента */
+    width: 100%; /* Ширина элемента */
+    position: relative; /* Для абсолютного позиционирования псевдоэлемента */
+    overflow: hidden; /* Скрытие лишнего содержимого */
+}
+
+#pagebanner_order:before {
+    content: '';
+    background: rgba(0, 0, 0, 0.4); /* Полупрозрачный черный фон для затемнения */
+    height: 100%; /* Высота псевдоэлемента равна высоте родителя */
+    width: 100%; /* Ширина псевдоэлемента равна ширине родителя */
+    position: absolute; /* Абсолютное позиционирование для наложения */
+    top: 0; /* Положение сверху */
+    left: 0; /* Положение слева */
+    right: 0; /* Положение справа */
+}
+
+
+
 #pagebanner:before{
   content: '';
   background: #00000068;
@@ -6358,3 +6381,213 @@ p.lt-pswrd{margin-bottom: 20px;}
     width: 32px;  /* Размер иконки */
     height: 32px;
 }
+
+
+/* Основные стили */
+
+.form-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: auto;
+    /*max-width: 500px;*/
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-bottom: 10%;
+}
+
+/* Стили шагов */
+.step {
+    display: none;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.3s ease-in-out;
+}
+
+.step.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Стили полей и кнопок */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+}
+
+input, textarea, select {
+    /*width: auto;*/
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #ffdd00;
+}
+input[type="radio"] {
+    margin: 0; /* Убираем стандартные отступы радиокнопок */
+    width: 10%;
+}
+
+/* Стили кнопок */
+.button-group {
+    margin-top: 30px;
+    display: flex; /* Flexbox для кнопок */
+    gap: 10px; /* Отступ между кнопками */
+}
+
+
+button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn-next {
+    background: #ffac00;
+    color: white;
+    padding-right: 50px;
+    padding-left: 50px;
+    font-size: 17px; /* Размер шрифта */
+    font-weight: bold; /* Жирный текст */
+}
+
+.btn-next:hover {
+    background: #ff6d00;
+}
+.btn-next-zip {
+    background: #ffac00;
+    color: white;
+    padding-right: 50px;
+    padding-left: 50px;
+    font-size: 17px; /* Размер шрифта */
+    font-weight: bold; /* Жирный текст */
+    width: 80%;
+}
+
+.btn-next-zip:hover {
+    background: #ff6d00;
+}
+
+.btn-prev {
+    background: transparent; /* Прозрачный фон */
+    color: #838080; /* Цвет текста */
+    margin-right: 16.8%; /* Отступ справа */
+    border: 2px solid bisque; /* Обводка с цветом bisque */
+    border-radius: 8px; /* Скругление углов */
+    font-size: 17px; /* Размер шрифта */
+    font-weight: bold; /* Жирный текст */
+}
+
+/* Добавим эффект при наведении на кнопку */
+.btn-prev:hover {
+    background: rgba(108, 117, 125, 0.2); /* Легкое затемнение фона при наведении */
+}
+
+.btn-submit {
+    background: #28a745;
+    color: white;
+}
+
+.btn-submit:hover {
+    background: #218838;
+}
+
+.location-icon {
+    position: absolute; /* Абсолютное позиционирование */
+    right: 0; /* Отступ справа */
+    top: 35%; /* Центрирование по вертикали */
+    transform: translateY(-50%); /* Центрирование по вертикали */
+    width: 50px; /* Ширина иконки */
+    height: 50px; /* Высота иконки */
+    background-image: url('../images/svg/map-svgrepo-com.svg'); /* Путь к вашему SVG-файлу */
+    background-size: contain; /* Масштабирование изображения */
+    background-repeat: no-repeat; /* Без повторения изображения */
+    cursor: pointer; /* Курсор при наведении */
+}
+
+/* Стили для поля ввода ZIP-кода */
+input[type="text"] {
+    width: 80%; /* 80% ширины контейнера */
+    padding: 10px; /* Внутренние отступы */
+    border: 1px solid #ddd; /* Цвет рамки */
+    border-radius: 4px; /* Скругление углов */
+    box-sizing: border-box; /* Учитывать padding и border в ширине */
+    font-size: 16px; /* Размер шрифта */
+    transition: border-color 0.3s; /* Плавный переход цвета рамки */
+}
+
+input[type="text"]:focus {
+    outline: none; /* Убираем стандартное выделение */
+    border-color: #ffdd00; /* Цвет рамки при фокусе */
+}
+
+.subcategory-table {
+    border: 1px solid #ddd; /* Рамка вокруг таблицы */
+    border-radius: 4px; /* Скругление углов */
+    padding: 10px; /* Внутренние отступы */
+    width: 95%;
+}
+
+.subcategory-row {
+    padding: 8px; /* Отступы для строк */
+    transition: background-color 0.3s; /* Плавный переход цвета фона */
+    border-bottom: 1px solid #ddd; /* Подчеркивание для строки */
+}
+
+.subcategory-row:last-child {
+    border-bottom: none; /* Убираем подчеркивание у последней строки */
+}
+
+.subcategory-row:hover {
+    background-color: #f0f0f0; /* Цвет фона при наведении */
+}
+
+
+.subcategory-row:hover {
+    background-color: #f0f0f0; /* Цвет фона при наведении */
+}
+
+.location-options {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 15px;
+    /*height: 145px;*/
+}
+
+.location-options .form-group {
+    padding: 10px 0; /* Отступы между строками */
+    border-bottom: 1px solid #ddd; /* Подчеркивание строки */
+}
+
+.location-options .form-group:last-child {
+    border-bottom: none; /* Убираем подчеркивание у последней строки */
+}
+
+.location-options .form-group:hover {
+    background-color: #f0f0f0; /* Цвет фона при наведении */
+}
+
+.location-options label {
+    display: flex; /* Делаем строку гибкой для радиокнопки и текста */
+    align-items: center; /* Выравниваем элементы по центру */
+    cursor: pointer; /* Указатель при наведении */
+}
+

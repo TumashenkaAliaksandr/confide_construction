@@ -182,7 +182,7 @@ class ContactForm(forms.Form):
     )
 
     description = forms.CharField(
-        min_length=10,
+        min_length=5,
         widget=forms.Textarea(attrs={'placeholder': 'Please describe the job in detail.', 'class': 'mailpoet_text'}),
         label="Job Description"
     )
@@ -221,11 +221,24 @@ class ContactForm(forms.Form):
     # Используем кастомное поле для загрузки нескольких фото
     photos = MultipleFileField(
         required=False,
-        widget=MultipleFileInput(attrs={'class': 'mailpoet_text'})
+        widget=MultipleFileInput(attrs={'class': 'mailpoet_text'}),
+        label="Photo"
     )
 
 
-
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = [
+            'first_name', 'last_name', 'zip_code',
+            'job_description', 'hours_needed',
+            'appointment_date', 'appointment_time',
+            'email', 'phone_number', 'photo'
+        ]
+        widgets = {
+            'appointment_date': forms.DateInput(attrs={'type': 'date'}),
+            'appointment_time': forms.TimeInput(attrs={'type': 'time'}),
+        }
 
 # def contact(request):
 #     context = {}

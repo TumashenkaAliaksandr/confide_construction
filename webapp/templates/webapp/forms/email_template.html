@@ -15,11 +15,11 @@
             <p><strong>☎️ Phone Number:</strong> {{ phone }}</p>
             <p>────⋆⋅☆⋅⋆──</p>
 
-            {% if saved_files %}
+            {% if attached_files %}
                 <p><strong>📎 Attached Files:</strong></p>
                 <ul>
-                    {% for photo in saved_files %}
-                        <li>{{ photo.file.url }}</li>
+                    {% for file in attached_files %}
+                        <li>{{ file }}</li>
                     {% endfor %}
                 </ul>
             {% else %}
