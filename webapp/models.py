@@ -107,6 +107,24 @@ class Category(models.Model):
         return reverse('category_detail', kwargs={'slug': self.slug})
 
 
+class Subcategory(models.Model):
+    """Подкатегории продуктов"""
+    name = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True, null=True)
+    category = models.ForeignKey(Category, related_name='subcategories', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='subcategories/', blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Подкатегория'
+        verbose_name_plural = 'Подкатегории'
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('subcategory_detail', kwargs={'slug': self.slug})
+
+
 class Product(models.Model):
     """Продукты в каталоге"""
     name = models.CharField(max_length=200, db_index=True)
@@ -342,3 +360,19 @@ class OrderConsultations(models.Model):
 
     def __str__(self):
         return f"File: {self.file.name}"
+
+
+class Order(models.Model):
+    first_name = models.CharField("Имя", max_length=30)
+    last_name = models.CharField("Фамилия", max_length=30)
+    zip_code = models.CharField("Почтовый индекс", max_length=10)
+    job_description = models.TextField("Описание работы")
+    hours_needed = models.IntegerField("Количество часов")
+    appointment_date = models.DateField("Дата визита")
+    appointment_time = models.TimeField("Время визита")
+    email = models.EmailField("Электронная почта")
+    phone_number = models.CharField("Телефон", max_length=15)
+    photo = models.ImageField("Фото", upload_to='photos/')
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} - {self.zip_code}"
