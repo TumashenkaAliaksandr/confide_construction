@@ -113,7 +113,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function error() {
         alert('Не удалось определить ваше местоположение.');
     }
-});
+})
+
 let currentStep = 1;
 
 function nextStep(next) {
@@ -142,12 +143,16 @@ function nextStep(next) {
 
             if (singleProject && !document.querySelector('input[name="subcategory"]:checked')) {
                 alert('Please select a subcategory.');
-                document.querySelector('input[name="subcategory"]').focus();
+                if (document.querySelector('input[name="subcategory"]')) {
+                    document.querySelector('input[name="subcategory"]').focus();
+                }
                 return;
             }
             if (varietyProject && document.querySelectorAll('input[name="subcategories"]:checked').length === 0) {
                 alert('Please select at least one subcategory.');
-                document.querySelector('input[name="subcategories"]').focus();
+                if (document.querySelector('input[name="subcategories"]')) {
+                    document.querySelector('input[name="subcategories"]').focus();
+                }
                 return;
             }
             break;
@@ -183,9 +188,20 @@ function nextStep(next) {
 
             if (!name || !phone || !email) {
                 alert('Please fill all contact fields.');
-                if (!name) document.getElementById('name').focus();
-                else if (!phone) document.getElementById('phone').focus();
-                else document.getElementById('email').focus();
+
+                if (!name) {
+                    if (document.getElementById('name')) {
+                        document.getElementById('name').focus();
+                    }
+                } else if (!phone) {
+                    if (document.getElementById('phone')) {
+                        document.getElementById('phone').focus();
+                    }
+                } else {
+                    if (document.getElementById('email')) {
+                        document.getElementById('email').focus();
+                    }
+                }
                 return;
             }
 
@@ -250,27 +266,37 @@ $(document).ready(function() {
 
         const formData = new FormData(this);
 
-        // Дополнительная валидация файлов
-        const files = document.getElementById('photos').files;
-        if (files.length > 5) {
-            alert('Maximum 5 photos allowed.');
-            return;
-        }
+        // Обработка отправки формы
+$('#orderForm').submit(function(e) {
+    e.preventDefault();
 
-        $.ajax({
-            url: "{% url 'webapp:order_view' %}",
-            method: "POST",
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(response) {
-                alert('Request submitted successfully!');
-                window.location.reload();
-            },
-            error: function(xhr) {
-                alert('Error: ' + (xhr.responseJSON?.error || 'Server error'));
-            }
-        });
+    if (currentStep !== 8) return;
+
+    const formData = new FormData(this);
+
+    // Дополнительная валидация файлов
+    const files = document.getElementById('photos').files;
+    if (files.length > 5) {
+        alert('Maximum 5 photos allowed.');
+        return;
+    }
+
+    $.ajax({
+        url: "{% url 'webapp:order_view' %}",
+        method: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            alert('Request submitted successfully!');
+            window.location.reload();
+        },
+        error: function (xhr) {
+            alert('Error: ' + (xhr.responseJSON?.error || 'Server error'));
+        }
+    });
+});
+
     });
 
     // Автоматическое форматирование телефона
