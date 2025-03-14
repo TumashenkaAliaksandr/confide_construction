@@ -26,21 +26,22 @@
     <div class="form-container">
         <form id="orderForm" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-<h2 style="text-align: center; margin-bottom: 30px;">Order Handyman</h2>
+            <h2 style="text-align: center; margin-bottom: 30px;">Order Handyman</h2>
             <!-- Шаг 1 - Почтовый индекс -->
             <div class="step active" id="step1">
                 <div class="form-group" style="position: relative;">
                     <label>Enter the location of your project</label>
-                    <input type="text" name="zip_code" required
-                           pattern="\d{6}"
-                           title="Введите 6-значный почтовый индекс"
-                           placeholder="ZIP code *"> <!-- Добавлено поле placeholder -->
+                    <input type="text" id="zipCodeInput" name="zip_code" required pattern="\d{5}"
+                       title="Введите 5-значный почтовый индекс"
+                       placeholder="ZIP code *">
                 </div>
+                <span id="regionInfo"></span> <!-- Элемент для отображения региона -->
                 <span class="location-icon" title="Select region"></span> <!-- Иконка мишени -->
                 <div class="button-group">
                     <button type="button" class="btn-next-zip" onclick="nextStep(2)">Next →</button>
                 </div>
             </div>
+
 
             <!-- Шаг 2 - Основная информация -->
             <div class="step" id="step2">
@@ -134,25 +135,25 @@
                 <div class="location-options">
                     <div class="form-group">
                         <label>
-                            <input type="radio" name="date" value="home" required>
+                            <input type="radio" name="timeframe" value="home" required>
                             Urgent (1-2 days)
                         </label>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="radio" name="date" value="business" required>
+                            <input type="radio" name="timeframe" value="business" required>
                             Within 2 weeks
                         </label>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="radio" name="date" value="business" required>
+                            <input type="radio" name="timeframe" value="business" required>
                            More than 2 weeks
                         </label>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="radio" name="date" value="business" required>
+                            <input type="radio" name="timeframe" value="business" required>
                             Not sure - still planning/budgeting
                         </label>
                     </div>

@@ -1,6 +1,134 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const zipCodeInput = document.querySelector('input[name="zip_code"]');
+    const regionInfo = document.getElementById('regionInfo');
+    const locationIcon = document.querySelector('.location-icon');
+
+    // Функция для обновления информации о регионе
+    function updateRegionInfo(zipCode) {
+        if (zipCode.length === 5) {
+            fetch(`https://api.zippopotam.us/us/${zipCode}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data) {
+                        const place = data.places[0];
+                        regionInfo.innerText = `${place.state} - ${place["place name"]}`;
+                    } else {
+                        regionInfo.innerText = '';
+                    }
+                })
+                .catch(error => console.error('Ошибка:', error));
+        } else {
+            regionInfo.innerText = '';
+        }
+    }
+
+    // Слушаем изменения в поле зип-кода
+    zipCodeInput.addEventListener('input', function () {
+        const zipCode = this.value.trim();
+        updateRegionInfo(zipCode);
+    });
+
+    // Слушаем клик на иконке
+    locationIcon.addEventListener('click', function () {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(success, error);
+        } else {
+            alert('Ваш браузер не поддерживает геолокацию.');
+        }
+    });
+
+    function success(position) {
+        const { latitude, longitude } = position.coords;
+
+        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.address.postcode) {
+                    zipCodeInput.value = data.address.postcode;
+                    updateRegionInfo(data.address.postcode); // Обновляем информацию о регионе
+                } else {
+                    // Если Nominatim не вернул зип-код, используем Zippopotam для уточнения
+                    fetch(`https://api.zippopotam.us/us?lat=${latitude}&lon=${longitude}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data) {
+                                const place = data.places[0];
+                                zipCodeInput.value = place.postcode;
+                                updateRegionInfo(place.postcode); // Обновляем информацию о регионе
+                            } else {
+                                // Если Zippopotam не вернул данные, используем Nominatim для получения региона
+                                fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`)
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data.address.state && data.address.city) {
+                                            regionInfo.innerText = `${data.address.state} - ${data.address.city}`;
+                                        } else {
+                                            regionInfo.innerText = '';
+                                        }
+                                    })
+                                    .catch(error => console.error('Ошибка:', error));
+                            }
+                        })
+                        .catch(error => console.error('Ошибка:', error));
+                }
+            })
+            .catch(error => console.error('Ошибка:', error));
+    }
+
+    function error() {
+        alert('Не удалось определить ваше местоположение.');
+    }
+});
+document.addEventListener('DOMContentLoaded', function () {
+    const locationIcon = document.querySelector('.location-icon');
+
+    locationIcon.addEventListener('click', function () {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(success, error);
+        } else {
+            alert('Ваш браузер не поддерживает геолокацию.');
+        }
+    });
+
+    function success(position) {
+        const { latitude, longitude } = position.coords;
+
+        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.address.postcode) {
+                    const zipCodeInput = document.querySelector('input[name="zip_code"]');
+                    zipCodeInput.value = data.address.postcode;
+
+                    // Обновляем информацию о регионе
+                    const regionInfo = document.getElementById('regionInfo');
+                    regionInfo.innerText = `${data.address.state} - ${data.address.city}`;
+                } else {
+                    alert('Не удалось определить зип-код по вашему местоположению.');
+                }
+            })
+            .catch(error => console.error('Ошибка:', error));
+    }
+
+    function error() {
+        alert('Не удалось определить ваше местоположение.');
+    }
+});
+
+
 let currentStep = 1;
 
 function nextStep(next) {
+    // Проверяем, находимся ли мы на шаге 1
+    if (currentStep === 1) {
+        const zipCodeInput = document.querySelector('input[name="zip_code"]');
+        const zipCode = zipCodeInput.value.trim();
+        if (zipCode.length !== 5 || !/^\d{5}$/.test(zipCode)) {
+            alert('Please enter a valid 5-digit ZIP code.'); // Сообщение пользователю
+            return; // Прерываем выполнение функции, если зип-код невалидный
+        }
+    }
+
     // Проверяем, находимся ли мы на шаге 2
     if (currentStep === 2) {
         const selectedProjectType = document.querySelector('input[name="project_type"]:checked');
@@ -45,10 +173,10 @@ function nextStep(next) {
 
     // Проверяем, находимся ли мы на шаге 5
     if (currentStep === 5) {
-        const selectedDate = document.querySelector('input[name="date"]:checked');
-        if (!selectedDate) {
-            alert('Please select a date for your project.'); // Сообщение пользователю
-            return; // Прерываем выполнение функции, если дата не выбрана
+        const selectedTimeframe = document.querySelector('input[name="timeframe"]:checked');
+        if (!selectedTimeframe) {
+            alert('Please select a timeframe for your project.'); // Сообщение пользователю
+            return; // Прерываем выполнение функции, если сроки не выбраны
         }
     }
 
