@@ -542,6 +542,7 @@ def my_account(request):
     basket, created = Basket.objects.get_or_create(user=request.user)
     total_quantity = sum(item.quantity for item in basket.basket_items.all())
     categories = Category.objects.all()
+    orders = Order.objects.all()
 
     context = {
         'news': news,
@@ -550,6 +551,7 @@ def my_account(request):
         'checkout_details': checkout_details,
         'total_quantity': total_quantity,
         'categories': categories,
+        'orders': orders,
     }
 
     return render(request, 'webapp/register/my_account.html', context=context)
@@ -1306,33 +1308,49 @@ def stata(request):
 
 def order_view(request):
     if request.method == 'POST':
-        # Шаг 1:
+        print("\n=== НАЧАЛО ОБРАБОТКИ POST-ЗАПРОСА ===")
+
+        # Шаг 1: ZIP Code
         zip_code = request.POST.get('zip_code')
+        print(f"Шаг 1 - Получен ZIP-код: {zip_code}")
 
-        # Шаг 2:
+        # Шаг 2: Project Type
         project_type = request.POST.get('project_type')
+        print(f"Шаг 2 - Тип проекта: {project_type}")
 
-        # Шаг 3:
+        # Шаг 3: Subcategories
         subcategory = request.POST.get('subcategory')
         subcategories = request.POST.getlist('subcategories')
+        print(f"Шаг 3 - Выбранная подкатегория: {subcategory}")
+        print(f"Шаг 3 - Выбранные подкатегории: {subcategories}")
 
-        # Шаг 4:
+        # Шаг 4: Location Type
         location_type = request.POST.get('location_type')
+        print(f"Шаг 4 - Тип локации: {location_type}")
 
-        # Шаг 5:
+        # Шаг 5: Timeframe
         timeframe = request.POST.get('timeframe')
+        print(f"Шаг 5 - Сроки выполнения: {timeframe}")
 
-        # Шаг 6:
+        # Шаг 6: Time Selection
         time = request.POST.get('time')
         time_description = request.POST.get('time_description')
+        print(f"Шаг 6 - Выбранное время: {time}")
+        print(f"Шаг 6 - Описание времени: {time_description}")
 
-        # Шаг 7:
+        # Шаг 7: Contact Info
         first_name = request.POST.get('name')
         email = request.POST.get('email')
-        phone_number = request.POST.get('phone')
+        phone = request.POST.get('phone')
+        print(f"Шаг 7 - Имя: {first_name}")
+        print(f"Шаг 7 - Email: {email}")
+        print(f"Шаг 7 - Телефон: {phone}")
 
-        # Шаг 8:
+        # Шаг 8: Photos
         photos = request.FILES.getlist('photos')
+        print(f"Шаг 8 - Загружено фотографий: {len(photos)}")
+        for i, photo in enumerate(photos, 1):
+            print(f"  Фото {i}: {photo.name} ({photo.size} bytes)")
 
         # Собираем job_description
         job_description = (
@@ -1344,25 +1362,36 @@ def order_view(request):
             f"Subcategory: {subcategory if subcategory else 'N/A'}, "
             f"Subcategories: {', '.join(subcategories) if subcategories else 'N/A'}"
         )
+        print("\nСобранное описание работы:")
+        print(job_description)
 
-        # Логика сохранения фотографий
-        for photo in photos:
-            # Создание и сохранение экземпляра модели
+        # Сохранение в базу данных
+        print("\nСОХРАНЕНИЕ В БАЗУ ДАННЫХ:")
+        for i, photo in enumerate(photos, 1):
             order = Order(
                 first_name=first_name,
                 zip_code=zip_code,
                 job_description=job_description,
-                hours_needed=0,  # Значение по умолчанию
-                appointment_date=timezone.now().date(),  # Значение по умолчанию
-                appointment_time=timezone.now().time(),  # Значение по умолчанию
+                hours_needed=0,
+                appointment_date=timezone.now().date(),
+                appointment_time=timezone.now().time(),
                 email=email,
-                phone_number=phone_number,
+                phone=phone,
                 photo=photo,
             )
             order.save()
+            print(f"Создан заказ #{order.id} с фото: {photo.name}")
 
-        return redirect('success_page')
+        print("\n=== УСПЕШНО СОХРАНЕНО ===")
+        return redirect('webapp:my_account')
 
-    # Если это GET-запрос, отобразите форму
-    return render(request, 'webapp/forms/order_form.html', {'subcategories': Subcategory.objects.all()})
+    # GET-запрос
+    print("Обработка GET-запроса")
+    try:
+        return render(request, 'webapp/forms/order_form.html', {
+            'subcategories': Subcategory.objects.all()
+        })
+    except Exception as e:
+        print(f"Ошибка при отображении шаблона: {e}")
+
 

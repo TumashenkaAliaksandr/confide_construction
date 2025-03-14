@@ -370,8 +370,8 @@ class Order(models.Model):
     appointment_date = models.DateField("Дата визита")
     appointment_time = models.TimeField("Время визита")
     email = models.EmailField("Электронная почта")
-    phone_number = models.CharField("Телефон", max_length=15)
+    phone = models.CharField("Телефон", max_length=15)
     photo = models.ImageField("Фото", upload_to='photos/')
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name} - {self.zip_code}"
+        return f"{self.first_name} - {self.zip_code}"

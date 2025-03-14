@@ -233,7 +233,7 @@ class OrderForm(forms.ModelForm):
             'first_name', 'zip_code',
             'job_description', 'hours_needed',
             'appointment_date', 'appointment_time',
-            'email', 'phone_number', 'photo'
+            'email', 'phone', 'photo'
         ]
         widgets = {
             'appointment_date': forms.DateInput(attrs={'type': 'date'}),

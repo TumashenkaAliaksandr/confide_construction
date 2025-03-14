@@ -130,39 +130,16 @@
         </div>
     </section>
     <!-- End checkout -->
+    {% for order in orders %}
+        <p>Имя: {{ order.first_name }}</p>
+        <p>ZIP: {{ order.zip_code }}</p>
+        <p>Email: {{ order.email }}</p>
+        <p>Телефон: {{ order.phone }}</p>
+        <p>Описание работы: {{ order.job_description }}</p>
+        <p>Фото: {{ order.photo }}</p>
+        <hr>
+    {% endfor %}
 
-    <!--*Newsletter*-->
-    <div id="newsletter">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-xs-12">
-                    <div class="news-content">
-                        <img src="{% static 'images/cc_favicon8.png' %}" class="img-fixed-size-for-mailform"
-                             alt="Awesome Logo">
-                        <h3 id="consultation-title" class="slide-in">ORDER FREE CONSULTATION</h3>
-                        <!-- Добавлен класс slide-in -->
-                        <p class="beige"><b>WRITE US TODAY FOR A FREE CONSULTATION ON HOW WE CAN HELP YOU ACHIEVE YOUR
-                            LIFESTYLE DREAMS.</b></p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xs-12">
-                    <div class="mailpoet_form">
-                        <form target="_self" method="post" action="{% url 'webapp:contacts' %}" novalidate="">
-                            {% csrf_token %}
-                            <input type="text" name="name" placeholder="Your Name">
-                            <input type="email" class="mailpoet_text" name="email" title="Email"
-                                   placeholder="Please specify your email address.">
-                            <input type="text" name="description" placeholder="Description Service">
-                            <div class="button button-mail">
-                                <input type="submit" class="button mailpoet_submit" value="Free Quote">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--*End Newsletter*-->
 
 
 {% endblock %}
