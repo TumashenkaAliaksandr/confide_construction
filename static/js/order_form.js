@@ -114,138 +114,176 @@ document.addEventListener('DOMContentLoaded', function () {
         alert('Не удалось определить ваше местоположение.');
     }
 });
-
-
 let currentStep = 1;
 
 function nextStep(next) {
-    // Проверяем, находимся ли мы на шаге 1
-    if (currentStep === 1) {
-        const zipCodeInput = document.querySelector('input[name="zip_code"]');
-        const zipCode = zipCodeInput.value.trim();
-        if (zipCode.length !== 5 || !/^\d{5}$/.test(zipCode)) {
-            alert('Please enter a valid 5-digit ZIP code.'); // Сообщение пользователю
-            return; // Прерываем выполнение функции, если зип-код невалидный
-        }
-    }
-
-    // Проверяем, находимся ли мы на шаге 2
-    if (currentStep === 2) {
-        const selectedProjectType = document.querySelector('input[name="project_type"]:checked');
-        if (!selectedProjectType) {
-            alert('Please select a project type (A single project or A variety of projects).'); // Сообщение пользователю
-            return; // Прерываем выполнение функции, если тип проекта не выбран
-        }
-    }
-
-    // Проверяем, находимся ли мы на шаге 3
-    if (currentStep === 3) {
-        const singleProjectOptions = document.getElementById('single-project-options');
-        const varietyProjectOptions = document.getElementById('variety-project-options');
-
-        // Проверяем, если выбран тип проекта "A single project"
-        if (singleProjectOptions.style.display === 'block') {
-            const selectedRadio = document.querySelector('input[name="subcategory"]:checked');
-            if (!selectedRadio) {
-                alert('Please select a subcategory for a single project.'); // Сообщение пользователю
-                return; // Прерываем выполнение функции
+    // Проверки для всех шагов
+    switch(currentStep) {
+        case 1:
+            const zipCode = document.querySelector('input[name="zip_code"]').value.trim();
+            if (!/^\d{5}$/.test(zipCode)) {
+                alert('Please enter a valid 5-digit ZIP code.');
+                document.querySelector('input[name="zip_code"]').focus();
+                return;
             }
-        }
+            break;
 
-        // Проверяем, если выбран тип проекта "A variety of projects"
-        if (varietyProjectOptions.style.display === 'block') {
-            const selectedCheckboxes = document.querySelectorAll('input[name="subcategories"]:checked');
-            if (selectedCheckboxes.length === 0) {
-                alert('Please select at least one subcategory for a variety of projects.'); // Сообщение пользователю
-                return; // Прерываем выполнение функции
+        case 2:
+            if (!document.querySelector('input[name="project_type"]:checked')) {
+                alert('Please select a project type.');
+                document.querySelector('input[name="project_type"]').focus();
+                return;
             }
-        }
+            break;
+
+        case 3:
+            const singleProject = document.getElementById('single-project-options').style.display === 'block';
+            const varietyProject = document.getElementById('variety-project-options').style.display === 'block';
+
+            if (singleProject && !document.querySelector('input[name="subcategory"]:checked')) {
+                alert('Please select a subcategory.');
+                document.querySelector('input[name="subcategory"]').focus();
+                return;
+            }
+            if (varietyProject && document.querySelectorAll('input[name="subcategories"]:checked').length === 0) {
+                alert('Please select at least one subcategory.');
+                document.querySelector('input[name="subcategories"]').focus();
+                return;
+            }
+            break;
+
+        case 4:
+            if (!document.querySelector('input[name="location_type"]:checked')) {
+                alert('Please select a location type.');
+                document.querySelector('input[name="location_type"]').focus();
+                return;
+            }
+            break;
+
+        case 5:
+            if (!document.querySelector('input[name="timeframe"]:checked')) {
+                alert('Please select a timeframe.');
+                document.querySelector('input[name="timeframe"]').focus();
+                return;
+            }
+            break;
+
+        case 6:
+            if (!document.querySelector('input[name="time"]:checked')) {
+                alert('Please select a time.');
+                document.querySelector('input[name="time"]').focus();
+                return;
+            }
+            break;
+
+        case 7:
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const name = document.getElementById('name').value;
+
+            if (!name || !phone || !email) {
+                alert('Please fill all contact fields.');
+                if (!name) document.getElementById('name').focus();
+                else if (!phone) document.getElementById('phone').focus();
+                else document.getElementById('email').focus();
+                return;
+            }
+
+            if (!/^(?:\+1[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/.test(phone)) {
+                alert('Please enter a valid phone number.');
+                document.getElementById('phone').focus();
+                return;
+            }
+
+            if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+                alert('Please enter a valid email.');
+                document.getElementById('email').focus();
+                return;
+            }
+            break;
+
+        case 8:
+            const files = document.getElementById('photos').files;
+            if (files.length === 0) {
+                alert('Please upload at least one photo.');
+                document.getElementById('photos').focus();
+                return;
+            }
+            if (files.length > 5) {
+                alert('Maximum 5 photos allowed.');
+                document.getElementById('photos').focus();
+                return;
+            }
+            break;
     }
 
-    // Проверяем, находимся ли мы на шаге 4
-    if (currentStep === 4) {
-        const selectedLocationType = document.querySelector('input[name="location_type"]:checked');
-        if (!selectedLocationType) {
-            alert('Please select a location type (Home or Business).'); // Сообщение пользователю
-            return; // Прерываем выполнение функции, если тип местоположения не выбран
-        }
-    }
-
-    // Проверяем, находимся ли мы на шаге 5
-    if (currentStep === 5) {
-        const selectedTimeframe = document.querySelector('input[name="timeframe"]:checked');
-        if (!selectedTimeframe) {
-            alert('Please select a timeframe for your project.'); // Сообщение пользователю
-            return; // Прерываем выполнение функции, если сроки не выбраны
-        }
-    }
-
-    // Проверяем, находимся ли мы на шаге 6
-    if (currentStep === 6) {
-        const selectedTime = document.querySelector('input[name="time"]:checked');
-        if (!selectedTime) {
-            alert('Please select a time for your project.'); // Сообщение пользователю
-            return; // Прерываем выполнение функции, если время не выбрано
-        }
-    }
-
-    // Убираем активный класс у всех шагов
-    $('.step').removeClass('active');
-    // Добавляем активный класс к следующему шагу
-    $(`#step${next}`).addClass('active');
-    // Обновляем текущий шаг
+    // Переход к следующему шагу
+    document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+    document.querySelector(`#step${next}`).classList.add('active');
     currentStep = next;
 }
 
 function prevStep(prev) {
-    $('.step').removeClass('active'); // Убираем активный класс у всех шагов
-    $(`#step${prev}`).addClass('active'); // Добавляем активный класс к предыдущему шагу
-    currentStep = prev; // Обновляем текущий шаг
+    document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+    document.querySelector(`#step${prev}`).classList.add('active');
+    currentStep = prev;
 }
 
-$(document).ready(function () {
-    $('#orderForm').submit(function (e) {
+$(document).ready(function() {
+    // Инициализация проекта
+    const projectTypeRadios = document.querySelectorAll('input[name="project_type"]');
+    const singleProjectOptions = document.getElementById('single-project-options');
+    const varietyProjectOptions = document.getElementById('variety-project-options');
+
+    projectTypeRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            singleProjectOptions.style.display = radio.value === 'single_project' ? 'block' : 'none';
+            varietyProjectOptions.style.display = radio.value === 'variety_of_projects' ? 'block' : 'none';
+        });
+    });
+
+    // Обработка отправки формы
+    $('#orderForm').submit(function(e) {
         e.preventDefault();
 
-        // Валидация последнего шага (Шаг 7)
-        if (currentStep !== 7) return;
+        if (currentStep !== 8) return;
+
+        const formData = new FormData(this);
+
+        // Дополнительная валидация файлов
+        const files = document.getElementById('photos').files;
+        if (files.length > 5) {
+            alert('Maximum 5 photos allowed.');
+            return;
+        }
 
         $.ajax({
             url: "{% url 'webapp:order_view' %}",
             method: "POST",
-            data: new FormData(this),
+            data: formData,
             processData: false,
             contentType: false,
-            success: function (response) {
-                alert('Заявка успешно отправлена!');
+            success: function(response) {
+                alert('Request submitted successfully!');
                 window.location.reload();
             },
-            error: function (xhr) {
-                alert('Ошибка: ' + xhr.responseJSON.error);
+            error: function(xhr) {
+                alert('Error: ' + (xhr.responseJSON?.error || 'Server error'));
             }
         });
     });
 
-    // Получаем элементы второго шага
-    const projectTypeRadios = document.querySelectorAll('input[name="project_type"]');
+    // Автоматическое форматирование телефона
+    document.getElementById('phone').addEventListener('input', function(e) {
+        let value = e.target.value;
 
-    // Получаем контейнеры третьего шага
-    const singleProjectOptions = document.getElementById('single-project-options');
-    const varietyProjectOptions = document.getElementById('variety-project-options');
+        // Удаляем все нецифровые символы, кроме '+'
+        value = value.replace(/[^0-9\+]/g, '');
 
-    // Слушаем изменения на втором шаге
-    projectTypeRadios.forEach(radio => {
-        radio.addEventListener('change', function () {
-            if (this.value === 'single_project') {
-                // Показываем радиокнопки и скрываем чекбоксы
-                singleProjectOptions.style.display = 'block';
-                varietyProjectOptions.style.display = 'none';
-            } else if (this.value === 'variety_of_projects') {
-                // Показываем чекбоксы и скрываем радиокнопки
-                singleProjectOptions.style.display = 'none';
-                varietyProjectOptions.style.display = 'block';
-            }
-        });
+        // Ограничиваем длину до 15 символов (учитывая '+')
+        if (value.length > 15) value = value.slice(0, 15);
+
+        e.target.value = value;
     });
 
     // Инициализация: проверяем выбранное значение при загрузке страницы

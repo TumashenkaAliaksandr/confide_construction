@@ -230,7 +230,7 @@ class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = [
-            'first_name', 'last_name', 'zip_code',
+            'first_name', 'zip_code',
             'job_description', 'hours_needed',
             'appointment_date', 'appointment_time',
             'email', 'phone_number', 'photo'

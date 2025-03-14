@@ -364,7 +364,6 @@ class OrderConsultations(models.Model):
 
 class Order(models.Model):
     first_name = models.CharField("Имя", max_length=30)
-    last_name = models.CharField("Фамилия", max_length=30)
     zip_code = models.CharField("Почтовый индекс", max_length=10)
     job_description = models.TextField("Описание работы")
     hours_needed = models.IntegerField("Количество часов")

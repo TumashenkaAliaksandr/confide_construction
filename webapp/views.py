@@ -1305,14 +1305,64 @@ def stata(request):
 
 
 def order_view(request):
-    subcategories = Subcategory.objects.all()
     if request.method == 'POST':
-        form = OrderForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return JsonResponse({'message': 'Заказ успешно отправлен!'})
-        else:
-            return JsonResponse({'error': form.errors}, status=400)
-    else:
-        form = OrderForm()
-    return render(request, 'webapp/forms/order_form.html', {'form': form, 'subcategories': subcategories})
+        # Шаг 1:
+        zip_code = request.POST.get('zip_code')
+
+        # Шаг 2:
+        project_type = request.POST.get('project_type')
+
+        # Шаг 3:
+        subcategory = request.POST.get('subcategory')
+        subcategories = request.POST.getlist('subcategories')
+
+        # Шаг 4:
+        location_type = request.POST.get('location_type')
+
+        # Шаг 5:
+        timeframe = request.POST.get('timeframe')
+
+        # Шаг 6:
+        time = request.POST.get('time')
+        time_description = request.POST.get('time_description')
+
+        # Шаг 7:
+        first_name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone_number = request.POST.get('phone')
+
+        # Шаг 8:
+        photos = request.FILES.getlist('photos')
+
+        # Собираем job_description
+        job_description = (
+            f"Project Type: {project_type}, "
+            f"Location Type: {location_type}, "
+            f"Timeframe: {timeframe}, "
+            f"Time: {time}, "
+            f"Time Description: {time_description}, "
+            f"Subcategory: {subcategory if subcategory else 'N/A'}, "
+            f"Subcategories: {', '.join(subcategories) if subcategories else 'N/A'}"
+        )
+
+        # Логика сохранения фотографий
+        for photo in photos:
+            # Создание и сохранение экземпляра модели
+            order = Order(
+                first_name=first_name,
+                zip_code=zip_code,
+                job_description=job_description,
+                hours_needed=0,  # Значение по умолчанию
+                appointment_date=timezone.now().date(),  # Значение по умолчанию
+                appointment_time=timezone.now().time(),  # Значение по умолчанию
+                email=email,
+                phone_number=phone_number,
+                photo=photo,
+            )
+            order.save()
+
+        return redirect('success_page')
+
+    # Если это GET-запрос, отобразите форму
+    return render(request, 'webapp/forms/order_form.html', {'subcategories': Subcategory.objects.all()})
+

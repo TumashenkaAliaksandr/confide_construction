@@ -77,6 +77,11 @@ class CategoryAdmin(admin.ModelAdmin):
 # Регистрация модели Category с настройками админки
 admin.site.register(Category, CategoryAdmin)
 
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'zip_code')
+
+
 
 class InvoiceAdmin(admin.ModelAdmin):
     list_display = ('client_name', 'client_email', 'amount', 'created_at', 'invoice_link')  # Поле ссылки добавлено

@@ -201,6 +201,36 @@
                 </div>
             </div>
 
+            <!-- Шаг 7 - Контактная информация -->
+            <div class="step" id="step7">
+                <h3>Contact Information</h3>
+                <div class="form-group">
+                    <input type="text" name="name" id="name" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" id="phone" placeholder="Phone Number" pattern="\d{10}" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" id="email" placeholder="Email Address" required>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="btn-prev" onclick="prevStep(6)">Previous</button>
+                    <button type="button" class="btn-next" onclick="nextStep(8)">Next</button>
+                </div>
+            </div>
+
+            <!-- Шаг 8 - Загрузка фото -->
+            <div class="step" id="step8">
+                <h3>Upload Photos (Max 5)</h3>
+                <div class="form-group">
+                    <input type="file" name="photos" id="photos" accept="image/*" multiple required>
+                    <div class="file-names" id="fileNames"></div>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="btn-prev" onclick="prevStep(7)">Previous</button>
+                    <button type="submit" class="btn-next">Next</button>
+                </div>
+            </div>
 
         </form>
     </div>
