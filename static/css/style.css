@@ -6334,7 +6334,62 @@ p.lt-pswrd{margin-bottom: 20px;}
     section#mt_services.services_one {
         padding: 15px 0 15px;
     }
+
+    .form-container {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        width: 90%;
+        /*max-width: 500px;*/
+        position: relative;
+        overflow: hidden;
+        margin-top: 10px;
+        margin-bottom: 10%;
+    }
 }
+/* Стили для мобильных устройств */
+@media (max-width: 767px) {
+    .form-container {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 90%!important;
+        position: relative;
+        overflow: hidden;
+        margin-top: 10px;
+        margin-bottom: 10%;
+    }
+
+    .btn-prev {
+        background: transparent;
+        color: #838080;
+        margin-right: 0.8%!important;
+        border: 2px solid rgba(6, 55, 2, 0.47);
+        border-radius: 8px;
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+    .btn-next {
+        background: #ffac00;
+        color: white;
+        padding-right: 45px!important;
+        padding-left: 45px!important;
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+    /* Дополнительные стили для более мелких экранов */
+    @media (max-width: 414px) {
+        .form-container {
+            padding: 15px;
+            margin-bottom: 15%;
+        }
+    }
+}
+
 
 .basket-button {
     background: #ffd888;
@@ -6414,6 +6469,7 @@ p.lt-pswrd{margin-bottom: 20px;}
 /* Стили полей и кнопок */
 .form-group {
     margin-bottom: 0;
+    margin-top: 3px;
 }
 
 label {
