@@ -114,17 +114,25 @@ document.addEventListener('DOMContentLoaded', function () {
         alert('Не удалось определить ваше местоположение.');
     }
 })
-
 let currentStep = 1;
 
+// Общая функция для безопасного фокуса
+function safeFocus(selector) {
+    setTimeout(() => {
+        const element = document.querySelector(selector);
+        if (element && element.offsetParent !== null && !element.disabled) {
+            element.focus();
+        }
+    }, 50);
+}
+
 function nextStep(next) {
-    // Проверки для всех шагов
     switch(currentStep) {
         case 1:
             const zipCode = document.querySelector('input[name="zip_code"]').value.trim();
             if (!/^\d{5}$/.test(zipCode)) {
                 alert('Please enter a valid 5-digit ZIP code.');
-                document.querySelector('input[name="zip_code"]').focus();
+                safeFocus('input[name="zip_code"]');
                 return;
             }
             break;
@@ -132,7 +140,7 @@ function nextStep(next) {
         case 2:
             if (!document.querySelector('input[name="project_type"]:checked')) {
                 alert('Please select a project type.');
-                document.querySelector('input[name="project_type"]').focus();
+                safeFocus('input[name="project_type"]');
                 return;
             }
             break;
@@ -143,16 +151,12 @@ function nextStep(next) {
 
             if (singleProject && !document.querySelector('input[name="subcategory"]:checked')) {
                 alert('Please select a subcategory.');
-                if (document.querySelector('input[name="subcategory"]')) {
-                    document.querySelector('input[name="subcategory"]').focus();
-                }
+                safeFocus('input[name="subcategory"]');
                 return;
             }
             if (varietyProject && document.querySelectorAll('input[name="subcategories"]:checked').length === 0) {
                 alert('Please select at least one subcategory.');
-                if (document.querySelector('input[name="subcategories"]')) {
-                    document.querySelector('input[name="subcategories"]').focus();
-                }
+                safeFocus('input[name="subcategories"]');
                 return;
             }
             break;
@@ -160,7 +164,7 @@ function nextStep(next) {
         case 4:
             if (!document.querySelector('input[name="location_type"]:checked')) {
                 alert('Please select a location type.');
-                document.querySelector('input[name="location_type"]').focus();
+                safeFocus('input[name="location_type"]');
                 return;
             }
             break;
@@ -168,7 +172,7 @@ function nextStep(next) {
         case 5:
             if (!document.querySelector('input[name="timeframe"]:checked')) {
                 alert('Please select a timeframe.');
-                document.querySelector('input[name="timeframe"]').focus();
+                safeFocus('input[name="timeframe"]');
                 return;
             }
             break;
@@ -176,44 +180,33 @@ function nextStep(next) {
         case 6:
             if (!document.querySelector('input[name="time"]:checked')) {
                 alert('Please select a time.');
-                document.querySelector('input[name="time"]').focus();
+                safeFocus('input[name="time"]');
                 return;
             }
             break;
 
         case 7:
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const name = document.getElementById('name').value;
+            const email = document.getElementById('email');
+            const phone = document.getElementById('phone');
+            const name = document.getElementById('name');
 
-            if (!name || !phone || !email) {
+            if (!name.value || !phone.value || !email.value) {
                 alert('Please fill all contact fields.');
-
-                if (!name) {
-                    if (document.getElementById('name')) {
-                        document.getElementById('name').focus();
-                    }
-                } else if (!phone) {
-                    if (document.getElementById('phone')) {
-                        document.getElementById('phone').focus();
-                    }
-                } else {
-                    if (document.getElementById('email')) {
-                        document.getElementById('email').focus();
-                    }
-                }
+                if (!name.value) safeFocus('#name');
+                else if (!phone.value) safeFocus('#phone');
+                else safeFocus('#email');
                 return;
             }
 
-            if (!/^(?:\+1[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/.test(phone)) {
+            if (!/^(?:\+1[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/.test(phone.value)) {
                 alert('Please enter a valid phone number.');
-                document.getElementById('phone').focus();
+                safeFocus('#phone');
                 return;
             }
 
-            if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+            if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.value)) {
                 alert('Please enter a valid email.');
-                document.getElementById('email').focus();
+                safeFocus('#email');
                 return;
             }
             break;
@@ -222,12 +215,12 @@ function nextStep(next) {
             const files = document.getElementById('photos').files;
             if (files.length === 0) {
                 alert('Please upload at least one photo.');
-                document.getElementById('photos').focus();
+                safeFocus('#photos');
                 return;
             }
             if (files.length > 5) {
                 alert('Maximum 5 photos allowed.');
-                document.getElementById('photos').focus();
+                safeFocus('#photos');
                 return;
             }
             break;
@@ -266,37 +259,27 @@ $(document).ready(function() {
 
         const formData = new FormData(this);
 
-        // Обработка отправки формы
-$('#orderForm').submit(function(e) {
-    e.preventDefault();
-
-    if (currentStep !== 8) return;
-
-    const formData = new FormData(this);
-
-    // Дополнительная валидация файлов
-    const files = document.getElementById('photos').files;
-    if (files.length > 5) {
-        alert('Maximum 5 photos allowed.');
-        return;
-    }
-
-    $.ajax({
-        url: "{% url 'webapp:order_view' %}",
-        method: "POST",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-            alert('Request submitted successfully!');
-            window.location.reload();
-        },
-        error: function (xhr) {
-            alert('Error: ' + (xhr.responseJSON?.error || 'Server error'));
+        // Дополнительная валидация файлов
+        const files = document.getElementById('photos').files;
+        if (files.length > 5) {
+            alert('Maximum 5 photos allowed.');
+            return;
         }
-    });
-});
 
+        $.ajax({
+            url: "{% url 'webapp:order_view' %}",
+            method: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                alert('Request submitted successfully!');
+                window.location.href = "{% url 'webapp:my_account' %}";
+            },
+            error: function(xhr) {
+                alert('Error: ' + (xhr.responseJSON?.error || 'Server error'));
+            }
+        });
     });
 
     // Автоматическое форматирование телефона

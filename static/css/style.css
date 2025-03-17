@@ -6418,7 +6418,7 @@ p.lt-pswrd{margin-bottom: 20px;}
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    padding: 5px 0px 5px;
+    padding: 5px 0 5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -6438,14 +6438,12 @@ p.lt-pswrd{margin-bottom: 20px;}
 
 
 /* Основные стили */
-
 .form-container {
     background: white;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 30px;
     width: auto;
-    /*max-width: 500px;*/
     position: relative;
     overflow: hidden;
     margin-top: 10px;
@@ -6458,17 +6456,22 @@ p.lt-pswrd{margin-bottom: 20px;}
     opacity: 0;
     transform: translateX(50px);
     transition: all 0.3s ease-in-out;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
 }
 
 .step.active {
     display: block;
     opacity: 1;
     transform: translateX(0);
+    position: relative;
 }
 
 /* Стили полей и кнопок */
 .form-group {
-    margin-bottom: 0;
+    margin-bottom: 15px;
     margin-top: 3px;
 }
 
@@ -6479,31 +6482,39 @@ label {
     font-weight: 500;
 }
 
-input, textarea, select {
-    /*width: auto;*/
+input,
+textarea,
+select {
+    width: 100%; /* Ensure full width */
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 16px;
     transition: border-color 0.3s;
+    box-sizing: border-box; /* Ensure padding is included in width */
+    margin-bottom: 5px; /* Add some spacing below */
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
     outline: none;
     border-color: #ffdd00;
 }
-input[type="radio"] {
-    margin: 0; /* Убираем стандартные отступы радиокнопок */
-    width: 10%;
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin: 0;
+    width: auto;
+    margin-right: 5px;
 }
 
 /* Стили кнопок */
 .button-group {
     margin-top: 21px;
-    display: flex; /* Flexbox для кнопок */
-    gap: 10px; /* Отступ между кнопками */
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end; /* Align buttons to the right */
 }
-
 
 button {
     padding: 10px 25px;
@@ -6514,27 +6525,141 @@ button {
     transition: all 0.3s;
 }
 
-.btn-next {
-    background: #ffac00;
-    color: white;
-    padding-right: 50px;
-    padding-left: 50px;
-    font-size: 17px; /* Размер шрифта */
-    font-weight: bold; /* Жирный текст */
-}
-
-.btn-next:hover {
-    background: #ff6d00;
-}
+.btn-next,
 .btn-next-zip {
     background: #ffac00;
     color: white;
-    padding-right: 50px;
-    padding-left: 50px;
-    font-size: 17px; /* Размер шрифта */
-    font-weight: bold; /* Жирный текст */
-    width: 80%;
+    font-size: 17px;
+    font-weight: bold;
 }
+
+.btn-next:hover,
+.btn-next-zip:hover {
+    background: #ff6d00;
+}
+
+.btn-next-zip {
+    width: auto; /* Adjust width */
+}
+
+.btn-prev {
+    background: transparent;
+    color: #838080;
+    border: 2px solid rgba(6, 55, 2, 0.47);
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.btn-prev:hover {
+    background: rgba(108, 117, 125, 0.2);
+}
+
+.btn-submit {
+    background: #28a745;
+    color: white;
+}
+
+.btn-submit:hover {
+    background: #218838;
+}
+
+.location-icon {
+    position: absolute;
+    right: 10px; /* Reduce from 0 to 10px */
+    top: 30%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-image: url('../images/svg/map-svgrepo-com.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+/* Стили для поля ввода ZIP-кода */
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #ffdd00;
+}
+
+.subcategory-table {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    width: 100%; /* Adjust width */
+}
+
+.subcategory-row {
+    padding: 8px;
+    transition: background-color 0.3s;
+    border-bottom: 1px solid #ddd;
+}
+
+.subcategory-row:last-child {
+    border-bottom: none;
+}
+
+.subcategory-row:hover {
+    background-color: #f0f0f0;
+}
+
+.location-options {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.location-options .form-group {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.location-options .form-group:last-child {
+    border-bottom: none;
+}
+
+.location-options .form-group:hover {
+    background-color: #f0f0f0;
+}
+
+.location-options label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#regionInfo {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+    font-weight: bold;
+    font-family: "Microsoft New Tai Lue", sans-serif;
+    margin-left: 3px;
+}
+
+/* Улучшение стилей для читаемости */
+label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 0.5em;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 0.5em;
+}
+
 
 .btn-next-zip:hover {
     background: #ff6d00;
@@ -6543,7 +6668,7 @@ button {
 .btn-prev {
     background: transparent; /* Прозрачный фон */
     color: #838080; /* Цвет текста */
-    margin-right: 16.8%; /* Отступ справа */
+    margin-right: 30.8%; /* Отступ справа */
     border: 2px solid rgba(6, 55, 2, 0.47); /* Обводка с цветом bisque */
     border-radius: 8px; /* Скругление углов */
     font-size: 17px; /* Размер шрифта */
@@ -6656,3 +6781,11 @@ input[type="text"]:focus {
     margin-left: 3px;
 }
 
+.hidden {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
