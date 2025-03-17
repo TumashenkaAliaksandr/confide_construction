@@ -233,12 +233,25 @@ class OrderForm(forms.ModelForm):
             'first_name', 'zip_code',
             'job_description', 'hours_needed',
             'appointment_date', 'appointment_time',
-            'email', 'phone', 'photo'
+            'email', 'phone'
         ]
         widgets = {
             'appointment_date': forms.DateInput(attrs={'type': 'date'}),
             'appointment_time': forms.TimeInput(attrs={'type': 'time'}),
         }
+
+class OrderPhotoForm(forms.ModelForm):
+    class Meta:
+        model = OrderPhoto
+        fields = ('image',)
+
+# Создаём формсет для работы с несколькими фотографиями
+OrderPhotoFormSet = forms.modelformset_factory(
+    OrderPhoto,
+    form=OrderPhotoForm,
+    extra=3  # Количество дополнительных пустых форм для загрузки фото
+)
+
 
 # def contact(request):
 #     context = {}

@@ -81,6 +81,7 @@ admin.site.register(Category, CategoryAdmin)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'zip_code')
 
+admin.site.register(OrderPhoto)
 
 
 class InvoiceAdmin(admin.ModelAdmin):

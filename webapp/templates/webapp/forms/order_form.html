@@ -23,217 +23,235 @@
         </div>
     </div><!-- End breadcrumb -->
     <section id="mt_services" class="services_one">
-    <div class="form-container">
-        <form id="orderForm" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <h2 style="text-align: center; margin-bottom: 30px;">Order Handyman</h2>
-            <!-- Шаг 1 - Почтовый индекс -->
-            <div class="step active" id="step1">
-                <div class="form-group" style="position: relative;">
-                    <label>Enter the location of your project</label>
-                    <input type="text" id="zipCodeInput" name="zip_code" required pattern="\d{5}"
-                       title="Введите 5-значный почтовый индекс"
-                       placeholder="ZIP code *">
+        <div class="form-container">
+            <form id="orderForm" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h2 style="text-align: center; margin-bottom: 30px;">Order Handyman</h2>
+
+                <!-- Шаг 1 - Почтовый индекс -->
+                <div class="step active" id="step1">
+                    <div class="form-group" style="position: relative;">
+                        <label for="zipCodeInput">Enter the location of your project</label>
+                        <input type="text" id="zipCodeInput" name="zip_code" required pattern="\d{5}"
+                               title="Введите 5-значный почтовый индекс"
+                               placeholder="ZIP code *">
+                    </div>
+                    <span id="regionInfo"></span> <!-- Элемент для отображения региона -->
+                    <span class="location-icon" title="Select region"></span> <!-- Иконка мишени -->
+                    <div class="button-group">
+                        <button type="button" class="btn-next-zip" onclick="nextStep(2)">Next →</button>
+                    </div>
                 </div>
-                <span id="regionInfo"></span> <!-- Элемент для отображения региона -->
-                <span class="location-icon" title="Select region"></span> <!-- Иконка мишени -->
-                <div class="button-group">
-                    <button type="button" class="btn-next-zip" onclick="nextStep(2)">Next →</button>
-                </div>
-            </div>
 
 
-            <!-- Шаг 2 - Основная информация -->
-            <div class="step" id="step2">
-                <div class="form-group">
-                    <label>
-                        <input type="radio" name="project_type" value="single_project" required>
-                        A single project
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label>
-                        <input type="radio" name="project_type" value="variety_of_projects" required>
-                        A variety of projects
-                    </label>
-                </div>
-                <div class="button-group">
-                    <button type="button" class="btn-prev" onclick="prevStep(1)">Previous</button>
-                    <button type="button" class="btn-next" onclick="nextStep(3)">Next</button>
-                </div>
-            </div>
-
-            <!-- Шаг 3 - Выбор подкатегории -->
-            <div class="step" id="step3">
-                <div style="overflow-y: auto; max-height: 300px;">
+                <!-- Шаг 2 - Основная информация -->
+                <div class="step" id="step2">
                     <div class="form-group">
-                        <label>Select the task that best describes your project:</label>
-                        <div class="subcategory-table">
-                            <!-- Радиокнопки для "A single project" -->
-                            <div id="single-project-options" style="display: none;">
-                                {% for subcategory in subcategories %}
-                                    <div class="subcategory-row">
-                                        <label>
-                                            <input type="radio" name="subcategory" value="{{ subcategory.slug }}"
-                                                   required>
-                                            {{ subcategory.name }}
-                                        </label>
-                                    </div>
-                                {% endfor %}
-                            </div>
+                        <label for="project_type_single">
+                            <input type="radio" name="project_type" id="project_type_single" value="single_project"
+                                   required>
+                            A single project
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="project_type_variety">
+                            <input type="radio" name="project_type" id="project_type_variety"
+                                   value="variety_of_projects"
+                                   required>
+                            A variety of projects
+                        </label>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="btn-prev" onclick="prevStep(1)">Previous</button>
+                        <button type="button" class="btn-next" onclick="nextStep(3)">Next</button>
+                    </div>
+                </div>
 
-                            <!-- Чекбоксы для "A variety of projects" -->
-                            <div id="variety-project-options" style="display: none;">
-                                {% for subcategory in subcategories %}
-                                    <div class="subcategory-row">
-                                        <label>
-                                            <input type="checkbox" name="subcategories" value="{{ subcategory.slug }}">
-                                            {{ subcategory.name }}
-                                        </label>
-                                    </div>
-                                {% endfor %}
+                <!-- Шаг 3 - Выбор подкатегории -->
+                <div class="step" id="step3">
+                    <div style="overflow-y: auto; max-height: 300px;">
+                        <div class="form-group">
+                            <label>Select the task that best describes your project:</label>
+                            <div class="subcategory-table">
+                                <!-- Радиокнопки для "A single project" -->
+                                <div id="single-project-options" style="display: none;">
+                                    {% for subcategory in subcategories %}
+                                        <div class="subcategory-row">
+                                            <label for="subcategory_{{ subcategory.slug }}">
+                                                <input type="radio" name="subcategory"
+                                                       id="subcategory_{{ subcategory.slug }}"
+                                                       value="{{ subcategory.slug }}" required>
+                                                {{ subcategory.name }}
+                                            </label>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+
+                                <!-- Чекбоксы для "A variety of projects" -->
+                                <div id="variety-project-options" style="display: none;">
+                                    {% for subcategory in subcategories %}
+                                        <div class="subcategory-row">
+                                            <label for="subcategories_{{ subcategory.slug }}">
+                                                <input type="checkbox" name="subcategories"
+                                                       id="subcategories_{{ subcategory.slug }}"
+                                                       value="{{ subcategory.slug }}">
+                                                {{ subcategory.name }}
+                                            </label>
+                                        </div>
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Кнопки навигации -->
-                <div class="button-group">
-                    <button type="button" class="btn-prev" onclick="prevStep(2)">Previous</button>
-                    <button type="button" class="btn-next" id="next-button" onclick="nextStep(4)">Next</button>
-                </div>
-            </div>
-
-
-            <!-- Шаг 4 - Home Business -->
-            <div class="step" id="step4">
-                <label>What kind of location is this?</label>
-                <div class="location-options">
-                    <div class="form-group">
-                        <label>
-                            <input type="radio" name="location_type" value="home" required>
-                            Home
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            <input type="radio" name="location_type" value="business" required>
-                            Business
-                        </label>
-                    </div>
-                </div>
-                <div class="button-group">
-                    <button type="button" class="btn-prev" onclick="prevStep(3)">Previous</button>
-                    <button type="button" class="btn-next" onclick="nextStep(5)">Next</button>
-                </div>
-            </div>
-
-
-            <!-- Шаг 5 - When do you need this work done -->
-            <div class="step" id="step5">
-                <label>When do you need this work done?</label>
-                <div class="location-options">
-                    <div class="form-group">
-                        <label>
-                            <input type="radio" name="timeframe" value="home" required>
-                            Urgent (1-2 days)
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            <input type="radio" name="timeframe" value="business" required>
-                            Within 2 weeks
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            <input type="radio" name="timeframe" value="business" required>
-                           More than 2 weeks
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            <input type="radio" name="timeframe" value="business" required>
-                            Not sure - still planning/budgeting
-                        </label>
-                    </div>
-                </div>
-                <div class="button-group">
-                    <button type="button" class="btn-prev" onclick="prevStep(4)">Previous</button>
-                    <button type="button" class="btn-next" onclick="nextStep(6)">Next</button>
-                </div>
-            </div>
-
-            <!-- Шаг 6 - Выбор времени -->
-            <div class="step" id="step6">
-                <label>Please select a time for your project:</label>
-                <div class="time-options">
-                    <div class="form-group">
-                        <label>
-                            <input type="radio" name="time" value="morning" required>
-                            Morning (8 AM - 12 PM)
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            <input type="radio" name="time" value="afternoon" required>
-                            Afternoon (12 PM - 5 PM)
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            <input type="radio" name="time" value="evening" required>
-                            Evening (5 PM - 9 PM)
-                        </label>
+                    <!-- Кнопки навигации -->
+                    <div class="button-group">
+                        <button type="button" class="btn-prev" onclick="prevStep(2)">Previous</button>
+                        <button type="button" class="btn-next" onclick="nextStep(4)">Next</button>
                     </div>
                 </div>
 
-                <!-- Поле для описания -->
-                <div class="form-group">
-                    <label for="time-description">Additional details about the time:</label>
-                    <textarea id="time-description" name="time_description" rows="4"
-                              placeholder="Please provide any additional details..."></textarea>
+
+                <!-- Шаг 4 - Home Business -->
+                <div class="step" id="step4">
+                    <label>What kind of location is this?</label>
+                    <div class="location-options">
+                        <div class="form-group">
+                            <label for="location_home">
+                                <input type="radio" name="location_type" id="location_home" value="home" required>
+                                Home
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="location_business">
+                                <input type="radio" name="location_type" id="location_business" value="business"
+                                       required>
+                                Business
+                            </label>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="btn-prev" onclick="prevStep(3)">Previous</button>
+                        <button type="button" class="btn-next" onclick="nextStep(5)">Next</button>
+                    </div>
                 </div>
 
-                <div class="button-group">
-                    <button type="button" class="btn-prev" onclick="prevStep(5)">Previous</button>
-                    <button type="button" class="btn-next" onclick="nextStep(7)">Next</button>
-                </div>
-            </div>
 
-            <!-- Шаг 7 - Контактная информация -->
-            <div class="step" id="step7">
-                <h3>Contact Information</h3>
-                <div class="form-group">
-                    <input type="text" name="name" id="name" placeholder="Full Name" required>
+                <!-- Шаг 5 - When do you need this work done -->
+                <div class="step" id="step5">
+                    <label>When do you need this work done?</label>
+                    <div class="location-options">
+                        <div class="form-group">
+                            <label for="timeframe_urgent">
+                                <input type="radio" name="timeframe" id="timeframe_urgent" value="urgent" required>
+                                Urgent (1-2 days)
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="timeframe_2weeks">
+                                <input type="radio" name="timeframe" id="timeframe_2weeks" value="2weeks" required>
+                                Within 2 weeks
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="timeframe_more2weeks">
+                                <input type="radio" name="timeframe" id="timeframe_more2weeks" value="more2weeks"
+                                       required>
+                                More than 2 weeks
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="timeframe_notsure">
+                                <input type="radio" name="timeframe" id="timeframe_notsure" value="notsure" required>
+                                Not sure - still planning/budgeting
+                            </label>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="btn-prev" onclick="prevStep(4)">Previous</button>
+                        <button type="button" class="btn-next" onclick="nextStep(6)">Next</button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input type="tel" name="phone" id="phone" placeholder="Phone Number" pattern="\d{10}" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" id="email" placeholder="Email Address" required>
-                </div>
-                <div class="button-group">
-                    <button type="button" class="btn-prev" onclick="prevStep(6)">Previous</button>
-                    <button type="button" class="btn-next" onclick="nextStep(8)">Next</button>
-                </div>
-            </div>
 
-            <!-- Шаг 8 - Загрузка фото -->
-            <div class="step" id="step8">
-                <h3>Upload Photos (Max 5)</h3>
-                <div class="form-group">
-                    <input type="file" name="photos" id="photos" accept="image/*" multiple required>
-                    <div class="file-names" id="fileNames"></div>
-                </div>
-                <div class="button-group">
-                    <button type="button" class="btn-prev" onclick="prevStep(7)">Previous</button>
-                    <button type="submit" class="btn-next">Next</button>
-                </div>
-            </div>
+                <!-- Шаг 6 - Выбор времени -->
+                <div class="step" id="step6">
+                    <label>Please select a time for your project:</label>
+                    <div class="time-options">
+                        <div class="form-group">
+                            <label for="time_morning">
+                                <input type="radio" name="time" id="time_morning" value="morning" required>
+                                Morning (8 AM - 12 PM)
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="time_afternoon">
+                                <input type="radio" name="time" id="time_afternoon" value="afternoon" required>
+                                Afternoon (12 PM - 5 PM)
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="time_evening">
+                                <input type="radio" name="time" id="time_evening" value="evening" required>
+                                Evening (5 PM - 9 PM)
+                            </label>
+                        </div>
+                    </div>
 
-        </form>
-    </div>
+                    <!-- Поле для описания -->
+                    <div class="form-group">
+                        <label for="time_description">Additional details about the time:</label>
+                        <textarea id="time_description" name="time_description" rows="4"
+                                  placeholder="Please provide any additional details..."></textarea>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn-prev" onclick="prevStep(5)">Previous</button>
+                        <button type="button" class="btn-next" onclick="nextStep(7)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Шаг 7 - Контактная информация -->
+                <div class="step" id="step7">
+                    <h3>Contact Information</h3>
+                    <div class="form-group">
+                        <label for="name">Full Name:</label>
+                        <input type="text" name="name" id="name" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" name="phone" id="phone" placeholder="Phone Number" pattern="\d{10}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address:</label>
+                        <input type="email" name="email" id="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="btn-prev" onclick="prevStep(6)">Previous</button>
+                        <button type="button" class="btn-next" onclick="nextStep(8)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Шаг 8 - Загрузка фото -->
+                <div class="step" id="step8">
+                    <h3>Upload Photos (Max 5)</h3>
+                    <!-- Вставляем management_form для работы с формсетом -->
+                    {{ photo_formset.management_form }}
+                    <div id="photo-upload-section">
+                        <!-- Отображаем каждую форму из формсета -->
+                        {% for form in photo_formset %}
+                            <div class="form-group">
+                                {{ form.image.label_tag }}
+                                {{ form.image }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="btn-prev" onclick="prevStep(7)">Previous</button>
+                        <button type="submit" class="btn-next">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </section>
 
 

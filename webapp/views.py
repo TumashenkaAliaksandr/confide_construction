@@ -1,4 +1,5 @@
 from django.contrib.auth.views import LoginView
+from django.core.files.storage import default_storage
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 # from stripe.api_resources.product import Product
@@ -13,7 +14,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, Http404
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
-from .forms import RegistrationForm, ContactForm, InvoiceForm, OrderForm
+from .forms import RegistrationForm, ContactForm, InvoiceForm, OrderForm, OrderPhotoFormSet
 from .forms import CheckoutForm
 from django.views.generic.detail import DetailView
 from django.views.generic import UpdateView
@@ -1310,88 +1311,64 @@ def order_view(request):
     if request.method == 'POST':
         print("\n=== НАЧАЛО ОБРАБОТКИ POST-ЗАПРОСА ===")
 
-        # Шаг 1: ZIP Code
-        zip_code = request.POST.get('zip_code')
-        print(f"Шаг 1 - Получен ZIP-код: {zip_code}")
+        # Инициализируем основную форму и формсет
+        order_form = OrderForm(request.POST)
+        photo_formset = OrderPhotoFormSet(request.POST, request.FILES, queryset=OrderPhoto.objects.none())
 
-        # Шаг 2: Project Type
-        project_type = request.POST.get('project_type')
-        print(f"Шаг 2 - Тип проекта: {project_type}")
+        # Валидация данных
+        if order_form.is_valid() and photo_formset.is_valid():
+            # Сохраняем основной заказ
+            order = order_form.save(commit=False)
 
-        # Шаг 3: Subcategories
-        subcategory = request.POST.get('subcategory')
-        subcategories = request.POST.getlist('subcategories')
-        print(f"Шаг 3 - Выбранная подкатегория: {subcategory}")
-        print(f"Шаг 3 - Выбранные подкатегории: {subcategories}")
-
-        # Шаг 4: Location Type
-        location_type = request.POST.get('location_type')
-        print(f"Шаг 4 - Тип локации: {location_type}")
-
-        # Шаг 5: Timeframe
-        timeframe = request.POST.get('timeframe')
-        print(f"Шаг 5 - Сроки выполнения: {timeframe}")
-
-        # Шаг 6: Time Selection
-        time = request.POST.get('time')
-        time_description = request.POST.get('time_description')
-        print(f"Шаг 6 - Выбранное время: {time}")
-        print(f"Шаг 6 - Описание времени: {time_description}")
-
-        # Шаг 7: Contact Info
-        first_name = request.POST.get('name')
-        email = request.POST.get('email')
-        phone = request.POST.get('phone')
-        print(f"Шаг 7 - Имя: {first_name}")
-        print(f"Шаг 7 - Email: {email}")
-        print(f"Шаг 7 - Телефон: {phone}")
-
-        # Шаг 8: Photos
-        photos = request.FILES.getlist('photos')
-        print(f"Шаг 8 - Загружено фотографий: {len(photos)}")
-        for i, photo in enumerate(photos, 1):
-            print(f"  Фото {i}: {photo.name} ({photo.size} bytes)")
-
-        # Собираем job_description
-        job_description = (
-            f"Project Type: {project_type}, "
-            f"Location Type: {location_type}, "
-            f"Timeframe: {timeframe}, "
-            f"Time: {time}, "
-            f"Time Description: {time_description}, "
-            f"Subcategory: {subcategory if subcategory else 'N/A'}, "
-            f"Subcategories: {', '.join(subcategories) if subcategories else 'N/A'}"
-        )
-        print("\nСобранное описание работы:")
-        print(job_description)
-
-        # Сохранение в базу данных
-        print("\nСОХРАНЕНИЕ В БАЗУ ДАННЫХ:")
-        for i, photo in enumerate(photos, 1):
-            order = Order(
-                first_name=first_name,
-                zip_code=zip_code,
-                job_description=job_description,
-                hours_needed=0,
-                appointment_date=timezone.now().date(),
-                appointment_time=timezone.now().time(),
-                email=email,
-                phone=phone,
-                photo=photo,
+            # Собираем дополнительные данные из POST
+            order.job_description = (
+                f"Project Type: {request.POST.get('project_type', '')}, "
+                f"Location Type: {request.POST.get('location_type', '')}, "
+                f"Timeframe: {request.POST.get('timeframe', '')}, "
+                f"Time: {request.POST.get('time', '')}, "
+                f"Time Description: {request.POST.get('time_description', '')}, "
+                f"Subcategory: {request.POST.get('subcategory', 'N/A')}, "
+                f"Subcategories: {', '.join(request.POST.getlist('subcategories')) or 'N/A'}"
             )
-            order.save()
-            print(f"Создан заказ #{order.id} с фото: {photo.name}")
 
-        print("\n=== УСПЕШНО СОХРАНЕНО ===")
-        return redirect('webapp:my_account')
+            # Обязательные проверки
+            if not request.POST.get('phone'):
+                print("Ошибка: поле 'phone' не заполнено!")
+                return render(request, 'webapp/forms/order_form.html', {
+                    'subcategories': Subcategory.objects.all(),
+                    'order_form': order_form,
+                    'photo_formset': photo_formset,
+                    'error_message': "Пожалуйста, укажите номер телефона."
+                })
+
+            order.save()
+
+            # Сохраняем фотографии
+            for photo_form in photo_formset:
+                if photo_form.cleaned_data.get('image'):
+                    photo = photo_form.save(commit=False)
+                    photo.order = order
+                    photo.save()
+                    print(f"Фото {photo.id} сохранено")
+
+            print(f"\n=== УСПЕШНО СОХРАНЕНО: Заказ #{order.id} ===")
+            return redirect('webapp:my_account')
+
+        # Если данные невалидны
+        print("Ошибки в форме:", order_form.errors)
+        print("Ошибки в формсете:", photo_formset.errors)
+        return render(request, 'webapp/forms/order_form.html', {
+            'subcategories': Subcategory.objects.all(),
+            'order_form': order_form,
+            'photo_formset': photo_formset,
+            'error_message': "Пожалуйста, исправьте ошибки в форме."
+        })
 
     # GET-запрос
     print("Обработка GET-запроса")
-    try:
-        return render(request, 'webapp/forms/order_form.html', {
-            'subcategories': Subcategory.objects.all()
-        })
-    except Exception as e:
-        print(f"Ошибка при отображении шаблона: {e}")
-
+    return render(request, 'webapp/forms/order_form.html', {
+        'subcategories': Subcategory.objects.all(),
+        'order_form': OrderForm(),
+        'photo_formset': OrderPhotoFormSet(queryset=OrderPhoto.objects.none())
+    })
 

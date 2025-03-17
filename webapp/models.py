@@ -371,7 +371,13 @@ class Order(models.Model):
     appointment_time = models.TimeField("Время визита")
     email = models.EmailField("Электронная почта")
     phone = models.CharField("Телефон", max_length=15)
-    photo = models.ImageField("Фото", upload_to='photos/')
 
     def __str__(self):
         return f"{self.first_name} - {self.zip_code}"
+
+class OrderPhoto(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="photos")
+    image = models.ImageField("Фото", upload_to='photos/')
+
+    def __str__(self):
+        return f"Фото для заказа {self.order.id}"
