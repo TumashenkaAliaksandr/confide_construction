@@ -1,4 +1,6 @@
 from django.urls import path
+
+from . import views
 from webapp.views import *
 from django.conf import settings
 from django.conf.urls.static import static
@@ -53,7 +55,7 @@ urlpatterns = [
     path('add_to_basket/<int:product_id>/', add_to_basket, name='add_to_basket'),
     path('basket/update/<int:item_id>/', update_basket, name='update_basket'),
     path('basket/remove/<int:item_id>/', remove_from_basket, name='remove_from_basket'),
-    path('order/', order_view, name='order_view'),
+    path('order/', views.order_view, name='order_view'),
 
 ]
 

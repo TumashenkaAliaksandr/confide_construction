@@ -1,7 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Получаем элементы DOM
     const zipCodeInput = document.querySelector('input[name="zip_code"]');
     const regionInfo = document.getElementById('regionInfo');
     const locationIcon = document.querySelector('.location-icon');
+
+    // Проверяем наличие элементов
+    if (!zipCodeInput || !regionInfo || !locationIcon) {
+        console.warn('Не найдены необходимые элементы на странице.');
+        return;
+    }
 
     // Функция для обновления информации о регионе
     function updateRegionInfo(zipCode) {
@@ -9,14 +16,17 @@ document.addEventListener('DOMContentLoaded', function () {
             fetch(`https://api.zippopotam.us/us/${zipCode}`)
                 .then(response => response.json())
                 .then(data => {
-                    if (data) {
+                    if (data && data.places && data.places.length > 0) {
                         const place = data.places[0];
                         regionInfo.innerText = `${place.state} - ${place["place name"]}`;
                     } else {
                         regionInfo.innerText = '';
                     }
                 })
-                .catch(error => console.error('Ошибка:', error));
+                .catch(error => {
+                    console.error('Ошибка при получении информации о регионе:', error);
+                    regionInfo.innerText = '';
+                });
         } else {
             regionInfo.innerText = '';
         }
@@ -28,217 +38,194 @@ document.addEventListener('DOMContentLoaded', function () {
         updateRegionInfo(zipCode);
     });
 
+    // Функция для обработки геолокации
+    function handleGeolocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(success, error);
+        } else {
+            alert('Ваш браузер не поддерживает геолокацию.');
+        }
+    }
+
     // Слушаем клик на иконке
-    locationIcon.addEventListener('click', function () {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(success, error);
-        } else {
-            alert('Ваш браузер не поддерживает геолокацию.');
-        }
-    });
+    locationIcon.addEventListener('click', handleGeolocation);
 
     function success(position) {
         const { latitude, longitude } = position.coords;
 
+        // Функция для обработки данных геолокации
+        function handleGeolocationData(data) {
+            if (data.address && data.address.postcode) {
+                zipCodeInput.value = data.address.postcode;
+                updateRegionInfo(data.address.postcode);
+            } else {
+                alert('Не удалось определить зип-код по вашему местоположению.');
+            }
+        }
+
+        // Функция для обработки ошибок геолокации
+        function handleGeolocationError(error) {
+            console.error('Ошибка при получении данных геолокации:', error);
+            alert('Не удалось определить ваше местоположение.');
+        }
+
+        // Получаем данные геолокации
         fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`)
             .then(response => response.json())
-            .then(data => {
-                if (data.address.postcode) {
-                    zipCodeInput.value = data.address.postcode;
-                    updateRegionInfo(data.address.postcode); // Обновляем информацию о регионе
-                } else {
-                    // Если Nominatim не вернул зип-код, используем Zippopotam для уточнения
-                    fetch(`https://api.zippopotam.us/us?lat=${latitude}&lon=${longitude}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data) {
-                                const place = data.places[0];
-                                zipCodeInput.value = place.postcode;
-                                updateRegionInfo(place.postcode); // Обновляем информацию о регионе
-                            } else {
-                                // Если Zippopotam не вернул данные, используем Nominatim для получения региона
-                                fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`)
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        if (data.address.state && data.address.city) {
-                                            regionInfo.innerText = `${data.address.state} - ${data.address.city}`;
-                                        } else {
-                                            regionInfo.innerText = '';
-                                        }
-                                    })
-                                    .catch(error => console.error('Ошибка:', error));
-                            }
-                        })
-                        .catch(error => console.error('Ошибка:', error));
-                }
-            })
-            .catch(error => console.error('Ошибка:', error));
+            .then(handleGeolocationData)
+            .catch(handleGeolocationError);
     }
 
     function error() {
         alert('Не удалось определить ваше местоположение.');
     }
-});
-document.addEventListener('DOMContentLoaded', function () {
-    const locationIcon = document.querySelector('.location-icon');
 
-    locationIcon.addEventListener('click', function () {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(success, error);
-        } else {
-            alert('Ваш браузер не поддерживает геолокацию.');
+    // Валидация формы, переходы между шагами и отправка формы
+    let currentStep = 1;
+
+    // Функция для проверки всех шагов перед отправкой формы
+    function validateAllSteps() {
+        for (let step = 1; step <= currentStep; step++) {
+            if (!validateStep(step)) {
+                alert(`Please complete step ${step} before proceeding.`);
+                return false;
+            }
         }
-    });
+        return true;
+    }
 
-    function success(position) {
-        const { latitude, longitude } = position.coords;
-
-        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.address.postcode) {
-                    const zipCodeInput = document.querySelector('input[name="zip_code"]');
-                    zipCodeInput.value = data.address.postcode;
-
-                    // Обновляем информацию о регионе
-                    const regionInfo = document.getElementById('regionInfo');
-                    regionInfo.innerText = `${data.address.state} - ${data.address.city}`;
-                } else {
-                    alert('Не удалось определить зип-код по вашему местоположению.');
+    // Валидация текущего шага
+    function validateStep(step) {
+        switch (step) {
+            case 1:
+                if (!zipCodeInput || !/^\d{5}$/.test(zipCodeInput.value.trim())) {
+                    alert('Please enter a valid 5-digit ZIP code.');
+                    return false;
                 }
-            })
-            .catch(error => console.error('Ошибка:', error));
-    }
+                break;
 
-    function error() {
-        alert('Не удалось определить ваше местоположение.');
-    }
-})
-let currentStep = 1;
+            case 2:
+                if (!document.querySelector('input[name="project_type"]:checked')) {
+                    alert('Please select a project type.');
+                    return false;
+                }
+                break;
 
-// Общая функция для безопасного фокуса
-function safeFocus(selector) {
-    setTimeout(() => {
-        const element = document.querySelector(selector);
-        if (element && element.offsetParent !== null && !element.disabled) {
-            element.focus();
-        }
-    }, 50);
-}
+            case 3:
+            const singleProject = document.getElementById('single-project-options');
+            const varietyProject = document.getElementById('variety-project-options');
 
-function nextStep(next) {
-    switch(currentStep) {
-        case 1:
-            const zipCode = document.querySelector('input[name="zip_code"]').value.trim();
-            if (!/^\d{5}$/.test(zipCode)) {
-                alert('Please enter a valid 5-digit ZIP code.');
-                safeFocus('input[name="zip_code"]');
-                return;
-            }
-            break;
-
-        case 2:
-            if (!document.querySelector('input[name="project_type"]:checked')) {
-                alert('Please select a project type.');
-                safeFocus('input[name="project_type"]');
-                return;
-            }
-            break;
-
-        case 3:
-            const singleProject = document.getElementById('single-project-options').style.display === 'block';
-            const varietyProject = document.getElementById('variety-project-options').style.display === 'block';
-
-            if (singleProject && !document.querySelector('input[name="subcategory"]:checked')) {
+            if (singleProject && singleProject.style.display === 'block' && !document.querySelector('input[name="subcategory"]:checked')) {
                 alert('Please select a subcategory.');
-                safeFocus('input[name="subcategory"]');
-                return;
+                return false;
             }
-            if (varietyProject && document.querySelectorAll('input[name="subcategories"]:checked').length === 0) {
+            if (varietyProject && varietyProject.style.display === 'block' && document.querySelectorAll('input[name="subcategories"]:checked').length === 0) {
                 alert('Please select at least one subcategory.');
-                safeFocus('input[name="subcategories"]');
-                return;
+                return false;
             }
             break;
 
-        case 4:
-            if (!document.querySelector('input[name="location_type"]:checked')) {
-                alert('Please select a location type.');
-                safeFocus('input[name="location_type"]');
-                return;
-            }
-            break;
+            case 4:
+                if (!document.querySelector('input[name="location_type"]:checked')) {
+                    alert('Please select a location type.');
+                    return false;
+                }
+                break;
 
-        case 5:
-            if (!document.querySelector('input[name="timeframe"]:checked')) {
-                alert('Please select a timeframe.');
-                safeFocus('input[name="timeframe"]');
-                return;
-            }
-            break;
+            case 5:
+                if (!document.querySelector('input[name="timeframe"]:checked')) {
+                    alert('Please select a timeframe.');
+                    return false;
+                }
+                break;
 
-        case 6:
-            if (!document.querySelector('input[name="time"]:checked')) {
-                alert('Please select a time.');
-                safeFocus('input[name="time"]');
-                return;
-            }
-            break;
+            case 6:
+                if (!document.querySelector('input[name="time"]:checked')) {
+                    alert('Please select a time.');
+                    return false;
+                }
+                break;
 
-        case 7:
-            const email = document.getElementById('email');
-            const phone = document.getElementById('phone');
-            const name = document.getElementById('name');
+            case 7:
+                const email = document.getElementById('email');
+                const phone = document.getElementById('phone');
+                const name = document.getElementById('name');
 
-            if (!name.value || !phone.value || !email.value) {
-                alert('Please fill all contact fields.');
-                if (!name.value) safeFocus('#name');
-                else if (!phone.value) safeFocus('#phone');
-                else safeFocus('#email');
-                return;
-            }
+                if (!email || !phone || !name) {
+                    alert('Please fill all contact fields.');
+                    return false;
+                }
 
-            if (!/^(?:\+1[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/.test(phone.value)) {
-                alert('Please enter a valid phone number.');
-                safeFocus('#phone');
-                return;
-            }
+                if (!name.value || !phone.value || !email.value) {
+                    alert('Please fill all contact fields.');
+                    return false;
+                }
 
-            if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.value)) {
-                alert('Please enter a valid email.');
-                safeFocus('#email');
-                return;
-            }
-            break;
+                if (!/^\+1\d{10}$/.test(phone.value.replace(/[^0-9\+]/g, ''))) {
+                    alert('Please enter a valid U.S. phone number starting with +1.');
+                    return false;
+                }
 
-        case 8:
-            const files = document.getElementById('photos').files;
-            if (files.length === 0) {
-                alert('Please upload at least one photo.');
-                safeFocus('#photos');
-                return;
-            }
-            if (files.length > 5) {
-                alert('Maximum 5 photos allowed.');
-                safeFocus('#photos');
-                return;
-            }
-            break;
+                if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.value)) {
+                    alert('Please enter a valid email.');
+                    return false;
+                }
+                break;
+
+            case 8:
+                const photoInputs = document.querySelectorAll('#photo-upload-section input[type="file"]');
+                let hasFiles = false;
+
+                photoInputs.forEach(input => {
+                    if (input.files.length > 0) {
+                        hasFiles = true;
+                    }
+                });
+
+                if (!hasFiles) {
+                    alert('Please upload at least one photo.');
+                    return false;
+                }
+
+                if (photoInputs.length > 5) {
+                    alert('Maximum 5 photos allowed.');
+                    return false;
+                }
+                break;
+
+            default:
+                return true;
+        }
+        return true;
     }
 
     // Переход к следующему шагу
-    document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
-    document.querySelector(`#step${next}`).classList.add('active');
-    currentStep = next;
-}
+    window.nextStep = function (next) {
+        if (!validateStep(currentStep)) return;
 
-function prevStep(prev) {
-    document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
-    document.querySelector(`#step${prev}`).classList.add('active');
-    currentStep = prev;
-}
+        document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+        document.querySelector(`#step${next}`).classList.add('active');
 
-$(document).ready(function() {
+        currentStep = next;
+        updateStepIndicator();
+    }
+
+    // Переход к предыдущему шагу
+    window.prevStep = function (prev) {
+        document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+        document.querySelector(`#step${prev}`).classList.add('active');
+
+        currentStep = prev;
+        updateStepIndicator();
+    }
+
+    // Обновление индикатора текущего шага
+    function updateStepIndicator() {
+        document.querySelectorAll('.step-indicator').forEach((indicator, index) => {
+            indicator.classList.toggle('active', index + 1 === currentStep);
+        });
+    }
+
     // Инициализация проекта
     const projectTypeRadios = document.querySelectorAll('input[name="project_type"]');
     const singleProjectOptions = document.getElementById('single-project-options');
@@ -246,62 +233,53 @@ $(document).ready(function() {
 
     projectTypeRadios.forEach(radio => {
         radio.addEventListener('change', () => {
-            singleProjectOptions.style.display = radio.value === 'single_project' ? 'block' : 'none';
-            varietyProjectOptions.style.display = radio.value === 'variety_of_projects' ? 'block' : 'none';
+            const isSingleProject = radio.value === 'single_project';
+
+            singleProjectOptions.style.display = isSingleProject ? 'block' : 'none';
+            varietyProjectOptions.style.display = !isSingleProject ? 'block' : 'none';
+
+            // Удаляем атрибут required у скрытых элементов
+            document.querySelectorAll('input[name="subcategory"]').forEach(input => input.required = isSingleProject);
+            document.querySelectorAll('input[name="subcategories"]').forEach(input => input.required = !isSingleProject);
         });
     });
 
     // Обработка отправки формы
-    $('#orderForm').submit(function(e) {
+    $('#orderForm').submit(function (e) {
         e.preventDefault();
 
-        if (currentStep !== 8) return;
+        if (!validateAllSteps()) return;
+
+        // Выводим URL в скрытый input для использования в JavaScript
+        const orderUrl = document.getElementById('orderUrl').value;
+        const myAccountUrl = document.getElementById('myAccountUrl').value;
 
         const formData = new FormData(this);
 
-        // Дополнительная валидация файлов
-        const files = document.getElementById('photos').files;
-        if (files.length > 5) {
-            alert('Maximum 5 photos allowed.');
-            return;
-        }
-
         $.ajax({
-            url: "{% url 'webapp:order_view' %}",
+            url: orderUrl,
             method: "POST",
             data: formData,
             processData: false,
             contentType: false,
-            success: function(response) {
-                alert('Request submitted successfully!');
-                window.location.href = "{% url 'webapp:my_account' %}";
+            success: function (response) {
+                alert("Request submitted successfully!");
+                window.location.href = myAccountUrl;
             },
-            error: function(xhr) {
-                alert('Error: ' + (xhr.responseJSON?.error || 'Server error'));
+            error: function (xhr) {
+                alert("Error: " + (xhr.responseJSON?.error || "Server error"));
+                prevStep(currentStep); // Возвращаем пользователя на последний шаг
             }
         });
     });
 
     // Автоматическое форматирование телефона
-    document.getElementById('phone').addEventListener('input', function(e) {
-        let value = e.target.value;
-
-        // Удаляем все нецифровые символы, кроме '+'
-        value = value.replace(/[^0-9\+]/g, '');
-
-        // Ограничиваем длину до 15 символов (учитывая '+')
-        if (value.length > 15) value = value.slice(0, 15);
-
-        e.target.value = value;
+    $('#phone').on("input", function () {
+        let value = $(this).val().replace(/[^0-9\+]/g, '');
+        $(this).val(value.slice(0, 12)); // Ограничиваем длину до 12 символов (+1 и 10 цифр)
     });
 
-    // Инициализация: проверяем выбранное значение при загрузке страницы
+    // Инициализация выбранного типа проекта при загрузке страницы
     const selectedType = document.querySelector('input[name="project_type"]:checked');
-    if (selectedType) {
-        if (selectedType.value === 'single_project') {
-            singleProjectOptions.style.display = 'block';
-        } else if (selectedType.value === 'variety_of_projects') {
-            varietyProjectOptions.style.display = 'block';
-        }
-    }
+    if (selectedType && selectedType.value === "single_project") singleProjectOptions.style.display = "block";
 });
