@@ -11,7 +11,7 @@ from django.core.mail import send_mail, EmailMultiAlternatives
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, Http404, HttpResponseNotAllowed
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm, ContactForm, InvoiceForm, OrderForm, OrderPhotoFormSet
@@ -1308,32 +1308,60 @@ def stata(request):
 
 
 def order_view(request):
-    if request.method == 'POST':
-        print("\n=== НАЧАЛО ОБРАБОТКИ POST-ЗАПРОСА ===")
+    print("Запрос получен:", request.method)
 
-        # Инициализируем основную форму и формсет
+    if request.method == 'POST':
+        print("Обработка POST-запроса")
         order_form = OrderForm(request.POST)
         photo_formset = OrderPhotoFormSet(request.POST, request.FILES, queryset=OrderPhoto.objects.none())
 
-        # Валидация данных
+        print("Валидация формы:", order_form.is_valid())
+        print("Валидация формсета:", photo_formset.is_valid())
+
         if order_form.is_valid() and photo_formset.is_valid():
-            # Сохраняем основной заказ
+            print("Форма и формсет валидны")
             order = order_form.save(commit=False)
 
-            # Собираем дополнительные данные из POST
+            # Сохраняем дополнительные данные из POST
+            order.project_type = request.POST.get('project_type', '')
+            print("Тип проекта:", order.project_type)
+
+            order.location_type = request.POST.get('location_type', '')
+            order.timeframe = request.POST.get('timeframe', '')
+            order.time = request.POST.get('time', '')
+            order.time_description = request.POST.get('time_description', '')
+
+            # Сохраняем подкатегории в зависимости от типа проекта
+            if order.project_type == 'single_project':
+                order.subcategory = request.POST.get('subcategory', 'N/A')
+                print("Подкатегория для одного проекта:", order.subcategory)
+                order.subcategories = 'N/A'
+            elif order.project_type == 'variety_of_projects':
+                subcategories = request.POST.getlist('subcategories')
+                print("Подкатегории для нескольких проектов:", subcategories)
+                order.subcategories = ', '.join(subcategories) if subcategories else 'N/A'
+                order.subcategory = 'N/A'
+
             order.job_description = (
-                f"Project Type: {request.POST.get('project_type', '')}, "
-                f"Location Type: {request.POST.get('location_type', '')}, "
-                f"Timeframe: {request.POST.get('timeframe', '')}, "
-                f"Time: {request.POST.get('time', '')}, "
-                f"Time Description: {request.POST.get('time_description', '')}, "
-                f"Subcategory: {request.POST.get('subcategory', 'N/A')}, "
-                f"Subcategories: {', '.join(request.POST.getlist('subcategories')) or 'N/A'}"
+                f"Project Type: {order.project_type}, "
+                f"Location Type: {order.location_type}, "
+                f"Timeframe: {order.timeframe}, "
+                f"Time: {order.time}, "
+                f"Time Description: {order.time_description}, "
+                f"Subcategory: {order.subcategory}, "
+                f"Subcategories: {order.subcategories}"
             )
 
+            order.first_name = order_form.cleaned_data['first_name']
+            order.zip_code = order_form.cleaned_data['zip_code']
+            order.email = order_form.cleaned_data['email']
+            order.phone = request.POST.get('phone')
+
+            print("Данные заказа:", order.__dict__)
+
             # Обязательные проверки
-            if not request.POST.get('phone'):
-                print("Ошибка: поле 'phone' не заполнено!")
+            if not order.phone:
+                print("Ошибка: номер телефона не указан")
                 return render(request, 'webapp/forms/order_form.html', {
                     'subcategories': Subcategory.objects.all(),
                     'order_form': order_form,
@@ -1341,34 +1369,56 @@ def order_view(request):
                     'error_message': "Пожалуйста, укажите номер телефона."
                 })
 
-            order.save()
+            # Сохраняем заказ
+            try:
+                order.save()
+                print("Заказ сохранён успешно")
+            except Exception as e:
+                print(f"Ошибка при сохранении заказа: {e}")
+                return render(request, 'webapp/forms/order_form.html', {
+                    'subcategories': Subcategory.objects.all(),
+                    'order_form': order_form,
+                    'photo_formset': photo_formset,
+                    'error_message': "Ошибка при сохранении заказа."
+                })
 
             # Сохраняем фотографии
             for photo_form in photo_formset:
                 if photo_form.cleaned_data.get('image'):
-                    photo = photo_form.save(commit=False)
-                    photo.order = order
-                    photo.save()
-                    print(f"Фото {photo.id} сохранено")
+                    try:
+                        photo = photo_form.save(commit=False)
+                        photo.order = order
+                        photo.save()
+                        print("Фотография сохранена успешно")
+                    except Exception as e:
+                        print(f"Ошибка при сохранении фотографии: {e}")
 
-            print(f"\n=== УСПЕШНО СОХРАНЕНО: Заказ #{order.id} ===")
             return redirect('webapp:my_account')
+        else:
+            print("Форма или формсет невалидны")
+            print("Ошибки формы:", order_form.errors)
+            return render(request, 'webapp/forms/order_form.html', {
+                'subcategories': Subcategory.objects.all(),
+                'order_form': order_form,
+                'photo_formset': photo_formset,
+                'error_message': "Пожалуйста, исправьте ошибки в форме.",
+                'form_errors': order_form.errors  # Вывод ошибок формы
+            })
 
-        # Если данные невалидны
-        print("Ошибки в форме:", order_form.errors)
-        print("Ошибки в формсете:", photo_formset.errors)
+    elif request.method == 'GET':
+        print("Обработка GET-запроса")
+        # Обработка GET-запроса (например, отображение формы)
+        order_form = OrderForm()
+        photo_formset = OrderPhotoFormSet(queryset=OrderPhoto.objects.none())
+
         return render(request, 'webapp/forms/order_form.html', {
             'subcategories': Subcategory.objects.all(),
             'order_form': order_form,
-            'photo_formset': photo_formset,
-            'error_message': "Пожалуйста, исправьте ошибки в форме."
+            'photo_formset': photo_formset
         })
 
-    # GET-запрос
-    print("Обработка GET-запроса")
-    return render(request, 'webapp/forms/order_form.html', {
-        'subcategories': Subcategory.objects.all(),
-        'order_form': OrderForm(),
-        'photo_formset': OrderPhotoFormSet(queryset=OrderPhoto.objects.none())
-    })
+    else:
+        print("Неподдерживаемый метод запроса")
+        # Если метод запроса не поддерживается
+        return HttpResponseNotAllowed(['GET', 'POST'])
 

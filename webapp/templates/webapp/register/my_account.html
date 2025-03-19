@@ -130,15 +130,27 @@
         </div>
     </section>
     <!-- End checkout -->
-    {% for order in orders %}
-        <p>Имя: {{ order.first_name }}</p>
-        <p>ZIP: {{ order.zip_code }}</p>
-        <p>Email: {{ order.email }}</p>
-        <p>Телефон: {{ order.phone }}</p>
-        <p>Описание работы: {{ order.job_description }}</p>
-        <p>Фото: {{ order.photo }}</p>
-        <hr>
-    {% endfor %}
+{% for order in orders %}
+    <p>Имя: {{ order.first_name }}</p>
+    <p>ZIP: {{ order.zip_code }}</p>
+    <p>Email: {{ order.email }}</p>
+    <p>Телефон: {{ order.phone }}</p>
+    <p>Описание работы: {{ order.job_description }}</p>
+
+    <!-- Отображение фотографий -->
+    <p>Фотографии:</p>
+    {% if order.photos.all %}
+        <ul>
+            {% for photo in order.photos.all %}
+                <li><img src="{{ photo.image.url }}" alt="Фотография для заказа {{ order.id }}"></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Нет фотографий.</p>
+    {% endif %}
+
+{% endfor %}
+
 
 
 

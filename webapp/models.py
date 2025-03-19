@@ -365,10 +365,20 @@ class OrderConsultations(models.Model):
 class Order(models.Model):
     first_name = models.CharField("Имя", max_length=30)
     zip_code = models.CharField("Почтовый индекс", max_length=10)
+
+    # Добавляем новые поля
+    project_type = models.CharField("Тип проекта", max_length=20, blank=True, null=True)
+    subcategory = models.CharField("Подкатегория", max_length=100, blank=True, null=True)
+    subcategories = models.CharField("Подкатегории", max_length=255, blank=True, null=True)
+    location_type = models.CharField("Тип локации", max_length=20, blank=True, null=True)
+    timeframe = models.CharField("Сроки выполнения", max_length=50, blank=True, null=True)
+    time = models.CharField("Время выполнения", max_length=50, blank=True, null=True)
+    time_description = models.TextField("Дополнительные детали о времени", blank=True, null=True)
+
     job_description = models.TextField("Описание работы")
-    hours_needed = models.IntegerField("Количество часов")
-    appointment_date = models.DateField("Дата визита")
-    appointment_time = models.TimeField("Время визита")
+    hours_needed = models.IntegerField("Количество часов", blank=True, null=True)
+    appointment_date = models.DateField("Дата визита", blank=True, null=True)
+    appointment_time = models.TimeField("Время визита", blank=True, null=True)
     email = models.EmailField("Электронная почта")
     phone = models.CharField("Телефон", max_length=15)
 
@@ -381,3 +391,4 @@ class OrderPhoto(models.Model):
 
     def __str__(self):
         return f"Фото для заказа {self.order.id}"
+

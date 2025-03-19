@@ -6452,9 +6452,8 @@ p.lt-pswrd{margin-bottom: 20px;}
 
 /* Стили шагов */
 .step {
-    display: none;
     opacity: 0;
-    transform: translateX(50px);
+    transform: translateX(100vw); /* Перемещаем шаг за пределы экрана */
     transition: all 0.3s ease-in-out;
     position: absolute;
     width: 100%;
@@ -6463,9 +6462,8 @@ p.lt-pswrd{margin-bottom: 20px;}
 }
 
 .step.active {
-    display: block;
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(0); /* Возвращаем шаг на место */
     position: relative;
 }
 
@@ -6788,4 +6786,7 @@ input[type="text"]:focus {
     width: 1px;
     height: 1px;
     overflow: hidden;
+}
+.input-error {
+    border-color: red;
 }

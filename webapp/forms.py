@@ -1,4 +1,8 @@
+import re
+
 from django import forms
+from django.core.exceptions import ValidationError
+
 from .models import *
 from django.contrib.auth.password_validation import validate_password
 from django.core.mail import send_mail, EmailMessage
@@ -229,27 +233,30 @@ class ContactForm(forms.Form):
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = [
-            'first_name', 'zip_code',
-            'job_description', 'hours_needed',
-            'appointment_date', 'appointment_time',
-            'email', 'phone'
-        ]
+        fields = ['first_name', 'zip_code', 'email', 'phone']  # Добавили phone
         widgets = {
-            'appointment_date': forms.DateInput(attrs={'type': 'date'}),
-            'appointment_time': forms.TimeInput(attrs={'type': 'time'}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'Full Name'}),
+            'zip_code': forms.TextInput(attrs={'placeholder': 'ZIP Code'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'Email Address'}),
+            'phone': forms.TextInput(attrs={'placeholder': 'Phone Number'}),  # Добавили
         }
+
+    def clean_zip_code(self):
+        zip_code = self.cleaned_data['zip_code']
+        if not re.match(r'^\d{5}$', zip_code):
+            raise ValidationError('Invalid ZIP code. Please enter a 5-digit ZIP code.')
+        return zip_code
 
 class OrderPhotoForm(forms.ModelForm):
     class Meta:
         model = OrderPhoto
-        fields = ('image',)
+        fields = ['image']
 
-# Создаём формсет для работы с несколькими фотографиями
 OrderPhotoFormSet = forms.modelformset_factory(
     OrderPhoto,
     form=OrderPhotoForm,
-    extra=3  # Количество дополнительных пустых форм для загрузки фото
+    extra=5,
+    can_delete=False
 )
 
 
