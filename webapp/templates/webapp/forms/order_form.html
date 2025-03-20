@@ -245,9 +245,55 @@
                 </div>
                 <div class="button-group">
                     <button type="button" class="btn-prev" onclick="prevStep(7)">Previous</button>
+                    <button type="button" class="btn-next" onclick="nextStep(9)">Next</button>
+                </div>
+            </div>
+            <!-- Шаг 9 - Описание работы -->
+            <div class="step" id="step9">
+                <h3>Describe the work you need done</h3>
+                <div class="form-group">
+                    <label for="job_description">Job Description:</label>
+                    <textarea id="job_description" name="job_description" rows="4"
+                              placeholder="Provide a detailed description of the work" required></textarea>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="btn-prev" onclick="prevStep(8)">Previous</button>
+                    <button type="button" class="btn-next" onclick="nextStep(10)">Next</button>
+                </div>
+            </div>
+
+            <!-- Шаг 10 - Количество часов -->
+            <div class="step" id="step10">
+                <h3>How many hours do you estimate for this work?</h3>
+                <div class="form-group">
+                    <label for="hours_needed">Estimated Hours:</label>
+                    <input type="number" id="hours_needed" name="hours_needed" min="1"
+                           placeholder="Enter the estimated hours" required>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="btn-prev" onclick="prevStep(9)">Previous</button>
+                    <button type="button" class="btn-next" onclick="nextStep(11)">Next</button>
+                </div>
+            </div>
+
+            <!-- Шаг 11 - Дата и время визита -->
+            <div class="step" id="step11">
+                <h3>Schedule an appointment</h3>
+                <div class="form-group">
+                    <label for="appointment_date">Appointment Date:</label>
+                    <input type="date" id="appointment_date" name="appointment_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="appointment_time">Appointment Time:</label>
+                    <input type="time" id="appointment_time" name="appointment_time" required>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="btn-prev" onclick="prevStep(10)">Previous</button>
                     <button type="submit" class="btn-next">Submit</button>
                 </div>
             </div>
+
+
             {% if form_errors %}
                 <div class="alert alert-danger">
                     <strong>Ошибки в форме:</strong>
