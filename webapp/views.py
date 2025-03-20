@@ -1331,6 +1331,19 @@ def order_view(request):
             order.time = request.POST.get('time', '')
             order.time_description = request.POST.get('time_description', '')
 
+            # Сохраняем дополнительные данные из POST
+            order.project_type = request.POST.get('project_type', '')
+            print("Тип проекта:", order.project_type)
+
+            order.location_type = request.POST.get('location_type', '')
+            order.timeframe = request.POST.get('timeframe', '')
+            order.time = request.POST.get('time', '')
+            order.time_description = request.POST.get('time_description', '')
+            order.job_description = request.POST.get('job_description', '')
+            order.hours_needed = request.POST.get('hours_needed', '')
+            order.appointment_date = request.POST.get('appointment_date', None)
+            order.appointment_time = request.POST.get('appointment_time', None)
+
             # Сохраняем подкатегории в зависимости от типа проекта
             if order.project_type == 'single_project':
                 order.subcategory = request.POST.get('subcategory', 'N/A')
@@ -1341,16 +1354,6 @@ def order_view(request):
                 print("Подкатегории для нескольких проектов:", subcategories)
                 order.subcategories = ', '.join(subcategories) if subcategories else 'N/A'
                 order.subcategory = 'N/A'
-
-            order.job_description = (
-                f"Project Type: {order.project_type}, "
-                f"Location Type: {order.location_type}, "
-                f"Timeframe: {order.timeframe}, "
-                f"Time: {order.time}, "
-                f"Time Description: {order.time_description}, "
-                f"Subcategory: {order.subcategory}, "
-                f"Subcategories: {order.subcategories}"
-            )
 
             order.first_name = order_form.cleaned_data['first_name']
             order.zip_code = order_form.cleaned_data['zip_code']

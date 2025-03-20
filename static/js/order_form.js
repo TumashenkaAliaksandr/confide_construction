@@ -193,6 +193,55 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
                 break;
 
+
+            case 9: // Шаг 9 - Описание работы
+                const jobDescription = document.getElementById('job_description');
+
+                if (!jobDescription || !jobDescription.value.trim()) {
+                    alert('Please provide a description of the work.');
+                    return false;
+                }
+                break;
+
+            case 10: // Шаг 10 - Количество часов
+                const hoursNeeded = document.getElementById('hours_needed');
+
+                if (!hoursNeeded || !hoursNeeded.value.trim()) {
+                    alert('Please specify the estimated number of hours.');
+                    return false;
+                }
+
+                if (isNaN(hoursNeeded.value) || Number(hoursNeeded.value) <= 0) {
+                    alert('Please enter a valid number of hours greater than 0.');
+                    return false;
+                }
+                break;
+
+            case 11: // Шаг 11 - Дата и время визита
+                const appointmentDate = document.getElementById('appointment_date');
+                const appointmentTime = document.getElementById('appointment_time');
+
+                if (!appointmentDate || !appointmentDate.value.trim()) {
+                    alert('Please select an appointment date.');
+                    return false;
+                }
+
+                if (!appointmentTime || !appointmentTime.value.trim()) {
+                    alert('Please select an appointment time.');
+                    return false;
+                }
+
+                // Проверяем, чтобы дата не была в прошлом
+                const selectedDate = new Date(appointmentDate.value);
+                const currentDate = new Date();
+                currentDate.setHours(0, 0, 0, 0); // Убираем время для сравнения только по дате
+
+                if (selectedDate < currentDate) {
+                    alert('The appointment date cannot be in the past.');
+                    return false;
+                }
+                break;
+
             default:
                 return true;
         }
