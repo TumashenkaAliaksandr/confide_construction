@@ -6790,3 +6790,31 @@ input[type="text"]:focus {
 .input-error {
     border-color: red;
 }
+
+
+/* Photos Order styles */
+.photo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.photo-list li {
+    display: inline-block;
+    width: 45%;
+    margin-right: 1%;
+    margin-bottom: 10px;
+}
+
+.photo-list li img {
+    width: 100%;
+    height: auto;
+}
+
+/* Для последнего элемента в строке убрать правый отступ */
+.photo-list li:nth-child(2n) {
+    margin-right: 0;
+}
+.heading_txt {
+    margin-bottom: 5px;
+}

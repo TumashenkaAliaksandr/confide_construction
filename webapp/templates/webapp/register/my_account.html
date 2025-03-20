@@ -130,28 +130,150 @@
         </div>
     </section>
     <!-- End checkout -->
-{% for order in orders %}
-    <p>Имя: {{ order.first_name }}</p>
-    <p>ZIP: {{ order.zip_code }}</p>
-    <p>Email: {{ order.email }}</p>
-    <p>Телефон: {{ order.phone }}</p>
-    <p>Описание работы: {{ order.job_description }}</p>
 
-    <!-- Отображение фотографий -->
-    <p>Фотографии:</p>
-    {% if order.photos.all %}
-        <ul>
-            {% for photo in order.photos.all %}
-                <li><img src="{{ photo.image.url }}" alt="Фотография для заказа {{ order.id }}"></li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>Нет фотографий.</p>
-    {% endif %}
+    <!-- checkout -->
+    <section id="checkout-main" class="checkout-main section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-12">
+                    <div class="checkout-inner">
+                        <div class="checkout-info">
+                            <h3 class="mar-bottom-20">Your Orders</h3>
+                            <div class="row">
+                                <div class="col-sm-11 col-xs-12">
+                                    <div class="row">
+                                        {% for order in orders %}
+                                            <div class="order-list">
+                                                <table class="shop_table rt-checkout-review-order-table">
+                                                    <tr class="order-total">
+                                                        <th>Name:</th>
+                                                        <td><strong><span
+                                                                class="rt-Price-amount">{{ order.first_name }}</span></strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="order-total">
+                                                        <th>ZIP:</th>
+                                                        <td><strong><span
+                                                                class="rt-Price-amount">{{ order.zip_code }}</span></strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="order-total">
+                                                        <th>Locations Type:</th>
+                                                        <td><strong><span
+                                                                class="rt-Price-amount">{{ order.location_type }}</span></strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="order-total">
+                                                        <th>Time Frame:</th>
+                                                        <td><strong><span
+                                                                class="rt-Price-amount">{{ order.timeframe }}</span></strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="order-total">
+                                                        <th>Time Jobs:</th>
+                                                        <td><strong><span
+                                                                class="rt-Price-amount">{{ order.time }}</span></strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="order-total">
+                                                        <th>Time Descriptions:</th>
+                                                        <td><strong><span
+                                                                class="rt-Price-amount">{{ order.time_description }}</span></strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="order-total">
+                                                        <th>Hours Needed:</th>
+                                                        <td><strong><span
+                                                                class="rt-Price-amount">{{ order.hours_needed }}</span></strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="order-total">
+                                                        <th>Appointment Date:</th>
+                                                        <td><strong><span
+                                                                class="rt-Price-amount">{{ order.appointment_date }}</span></strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="order-total">
+                                                        <th>Appointment Time:</th>
+                                                        <td><strong><span
+                                                                class="rt-Price-amount">{{ order.appointment_time }}</span></strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="order-total">
+                                                        <th>Project Type:</th>
+                                                        <td><strong><span
+                                                                class="rt-Price-amount">{{ order.project_type }}</span></strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="order-total">
+                                                        <th>Subcategories:</th>
+                                                        <td><strong><span class="rt-Price-amount">
+                                                        {% if order.subcategory %}
+                                                            {{ order.subcategory }}
+                                                        {% elif order.subcategories %}
+                                                            {{ order.subcategories }}
+                                                        {% else %}
+                                                            No subcategories.
+                                                        {% endif %}
+                                                    </span></strong></td>
+                                                    </tr>
 
-{% endfor %}
-
-
+                                                    <tr class="order-total">
+                                                        <th>Email:</th>
+                                                        <td><strong><span
+                                                                class="rt-Price-amount">{{ order.email }}</span></strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="order-total">
+                                                        <th>Phone Number:</th>
+                                                        <td><strong><span
+                                                                class="rt-Price-amount">{{ order.phone }}</span></strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="order-total">
+                                                        <th>Order Notes:</th>
+                                                        <td><strong><span
+                                                                class="rt-Price-amount">{{ order.job_description }}</span></strong>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            </div>
+                                        {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="checkout-inner">
+                        <div class="checkout-info">
+                            <h3 class="mar-bottom-20">Your Order Photos:</h3>
+                        </div>
+                    </div>
+                    <div class="sidebar-main">
+                        <div class="col-xs-12">
+                            {% for order in orders %}
+                                <div class="form-group">
+                                    {% if order.photos.all %}
+                                        <ul class="photo-list">
+                                            {% for photo in order.photos.all %}
+                                                <li><img src="{{ photo.image.url }}"
+                                                         alt="Фотография для заказа {{ order.id }}"></li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% else %}
+                                        <p>No photos.</p>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End checkout -->
 
 
 {% endblock %}
