@@ -1182,10 +1182,12 @@ section#choose_us.about_choose_us {
         background-color: #f9f9f9;
         /* Чтобы панель была сверху страницы */
         position: relative;
-        top: 0px;
+        top: 0;
         /* Чтобы весь контент помещался */
         flex: 1;
         overflow-y: auto; /* Добавить прокрутку, если контент не вмещается */
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
 
 .sidebar-main-two {
@@ -5083,7 +5085,7 @@ input.quantity-input {
 
 .checkout-info textarea.form-control{min-height: 174px;}
 
-table.shop_table.rt-checkout-review-order-table{width: 100%;}
+table.shop_table.rt-checkout-review-order-table{width: 100%; background: ivory;}
 
 table.shop_table.rt-checkout-review-order-table tr{border: 1px solid #f1f1f1;}
 
@@ -5570,6 +5572,38 @@ p.lt-pswrd{margin-bottom: 20px;}
         overflow: hidden;
         /*max-height: 179px;*/
         position: relative;
+    }
+
+    .checkout-inner h3::before, .cart-inner h3::before, .account-inner h3::before {
+        content: '';
+        height: 100%;
+        width: 3px;
+        background: #ffac00;
+        position: absolute;
+        top: 0;
+        left: 10px;
+    }
+
+    input, textarea, select {
+        width: 92%!important;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px!important;
+        font-family: "Microsoft New Tai Lue", sans-serif;
+        transition: border-color 0.3s;
+        box-sizing: border-box;
+        margin-bottom: 5px;
+        margin-left: 15px;
+        margin-right: 10px;
+    }
+
+    .heading_txt {
+        margin-bottom: 5px;
+        margin-left: 13px;
+    }
+    .payment-data {
+        font-size: 13px;
     }
 }
 
@@ -6491,6 +6525,7 @@ select {
     transition: border-color 0.3s;
     box-sizing: border-box; /* Ensure padding is included in width */
     margin-bottom: 5px; /* Add some spacing below */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 input:focus,
