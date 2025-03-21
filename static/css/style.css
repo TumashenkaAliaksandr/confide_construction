@@ -3769,7 +3769,7 @@ a.checkout-link {
 
 
 .caption_slide1 > h1{
-  font-size: 45px;
+  font-size: 40px;
   letter-spacing: 1px;
   margin-bottom: 0;
 }
@@ -5088,7 +5088,7 @@ table.shop_table.rt-checkout-review-order-table{width: 100%;}
 table.shop_table.rt-checkout-review-order-table tr{border: 1px solid #f1f1f1;}
 
 table.shop_table.rt-checkout-review-order-table tr th,
-table.shop_table.rt-checkout-review-order-table tr td{padding:10px 10px; font-size: 15px; border: 1px solid #f1f1f1;}
+table.shop_table.rt-checkout-review-order-table tr td{padding:10px 10px; font-size: 15px; border: 1px solid #f1f1f1; font-family: "Microsoft New Tai Lue", sans-serif;}
 
 table.shop_table.rt-checkout-review-order-table thead, table.shop_table.rt-checkout-review-order-table tr.order-total{
   background: #fbfbfb;
@@ -6817,4 +6817,44 @@ input[type="text"]:focus {
 }
 .heading_txt {
     margin-bottom: 5px;
+}
+
+.order-detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.order-detail-table th,
+.order-detail-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-size: 15px;
+    font-family: "Microsoft New Tai Lue", sans-serif;
+}
+
+.order-detail-table th {
+    background-color: #f2f2f2;
+    font-size: 16px;
+}
+
+.photo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.photo-list li {
+    margin: 5px;
+}
+
+.photo-list img {
+    max-width: 100px;
+    height: auto;
+    border: 1px solid #ddd;
+    padding: 2px;
+    border-radius: 4px;
 }
