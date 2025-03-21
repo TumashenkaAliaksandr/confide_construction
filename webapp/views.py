@@ -1425,3 +1425,29 @@ def order_view(request):
         # Если метод запроса не поддерживается
         return HttpResponseNotAllowed(['GET', 'POST'])
 
+def orders_view(request):
+    orders = []  # Список ваших заказов
+    for order in orders:
+        order_data = {
+            'id': order.id,
+            'firstName': order.first_name,
+            'zipCode': order.zip_code,
+            'locationType': order.location_type,
+            'timeframe': order.timeframe,
+            'time': order.time,
+            'timeDescription': order.time_description,
+            'hoursNeeded': order.hours_needed,
+            'appointmentDate': order.appointment_date,
+            'appointmentTime': order.appointment_time,
+            'projectType': order.project_type,
+            'subcategory': order.subcategory,
+            'email': order.email,
+            'phone': order.phone,
+            'jobDescription': order.job_description,
+            'photos': [photo.image.url for photo in order.photos.all]
+        }
+        orders.append(order_data)
+
+    orders_json = json.dumps(orders)
+    return render(request, 'orders.html', {'ordersJson': orders_json})
+

@@ -83,6 +83,100 @@
                                             </table>
                                         </div>
                                     </div>
+                                <div class="mar-top-50">
+                                    <div class="row">
+                                    <h3 class="mar-bottom-20">Your Orders</h3>
+                                        <select id="order-dropdown" onchange="showOrderDetails(this.value)">
+                                            <option value="">Select Order</option>
+                                            {% for order in orders %}
+                                                <option value="{{ order.id }}">
+                                                    Order ID: {{ order.id }} - {{ order.first_name }}
+                                                    - {{ order.project_type }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+
+                                        <div id="order-details">
+                                            <!-- Order details will be displayed here -->
+                                        </div>
+
+                                        <script>
+                                            function showOrderDetails(orderId) {
+                                                if (!orderId) {
+                                                    document.getElementById('order-details').innerHTML = '';
+                                                    return;
+                                                }
+
+                                                var orders = [
+                                                    {% for order in orders %}
+                                                        {
+                                                            id: "{{ order.id }}",
+                                                            firstName: "{{ order.first_name }}",
+                                                            zipCode: "{{ order.zip_code }}",
+                                                            locationType: "{{ order.location_type }}",
+                                                            timeframe: "{{ order.timeframe }}",
+                                                            time: "{{ order.time }}",
+                                                            timeDescription: "{{ order.time_description }}",
+                                                            hoursNeeded: "{{ order.hours_needed }}",
+                                                            appointmentDate: "{{ order.appointment_date }}",
+                                                            appointmentTime: "{{ order.appointment_time }}",
+                                                            projectType: "{{ order.project_type }}",
+                                                            subcategory: "{% if order.subcategory %}{{ order.subcategory }}{% elif order.subcategories %}{{ order.subcategories }}{% else %}No subcategories.{% endif %}",
+                                                            email: "{{ order.email }}",
+                                                            phone: "{{ order.phone }}",
+                                                            jobDescription: "{{ order.job_description }}",
+                                                            photos: [
+                                                                {% for photo in order.photos.all %}
+                                                                    "{{ photo.image.url }}",
+                                                                {% endfor %}
+                                                            ]
+                                                        },
+                                                    {% endfor %}
+                                                ];
+
+                                                var selectedOrder = orders.find(order => order.id == orderId);
+
+                                                if (selectedOrder) {
+                                                    var tableHTML = `
+                                                    <table class="order-detail-table">
+                                                        <tr><th>Name</th><td>${selectedOrder.firstName}</td></tr>
+                                                        <tr><th>ZIP</th><td>${selectedOrder.zipCode}</td></tr>
+                                                        <tr><th>Location Type</th><td>${selectedOrder.locationType}</td></tr>
+                                                        <tr><th>Time Frame</th><td>${selectedOrder.timeframe}</td></tr>
+                                                        <tr><th>Time Jobs</th><td>${selectedOrder.time}</td></tr>
+                                                        <tr><th>Time Description</th><td>${selectedOrder.timeDescription}</td></tr>
+                                                        <tr><th>Hours Needed</th><td>${selectedOrder.hoursNeeded}</td></tr>
+                                                        <tr><th>Appointment Date</th><td>${selectedOrder.appointmentDate}</td></tr>
+                                                        <tr><th>Appointment Time</th><td>${selectedOrder.appointmentTime}</td></tr>
+                                                        <tr><th>Project Type</th><td>${selectedOrder.projectType}</td></tr>
+                                                        <tr><th>Subcategories</th><td>${selectedOrder.subcategory}</td></tr>
+                                                        <tr><th>Email</th><td>${selectedOrder.email}</td></tr>
+                                                        <tr><th>Phone Number</th><td>${selectedOrder.phone}</td></tr>
+                                                        <tr><th>Order Notes</th><td>${selectedOrder.jobDescription}</td></tr>
+                                                    </table>
+                                                `;
+
+                                                    // Add photos to the details
+                                                    let photoHTML = '<h4 style="margin-top: 20px;">Order Photos:</h4>';
+                                                    if (selectedOrder.photos && selectedOrder.photos.length > 0) {
+                                                        photoHTML += '<ul class="photo-list">';
+                                                        selectedOrder.photos.forEach(photoUrl => {
+                                                            photoHTML += `<li><img src="${photoUrl}" alt="Order Photo"></li>`;
+                                                        });
+                                                        photoHTML += '</ul>';
+                                                    } else {
+                                                        photoHTML += '<p>No photos available for this order.</p>';
+                                                    }
+
+                                                    document.getElementById('order-details').innerHTML = tableHTML + photoHTML;
+
+                                                } else {
+                                                    document.getElementById('order-details').innerHTML = '<p>Order details not found.</p>';
+                                                }
+                                            }
+                                        </script>
+                                    </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -103,23 +197,23 @@
                                     <br><img src="{% static 'images/cc_hacker.jpg' %}" class="img-fixed-size-two" alt="Default Profile Picture"><br><br>
                                 {% endif %}
 
-                                <br><label style="font-family: 'Poppins', sans-serif; font-size: 18px;">User
+                                <br><label style="font-family: 'Microsoft New Tai Lue', sans-serif; font-size: 18px;">User
                                     Name:</label>
-                                <label style="font-family: 'Poppins', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.user }}</label><br>
+                                <label style="font-family: 'Microsoft New Tai Lue', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.user }}</label><br>
 
-                                <label style="font-family: 'Poppins', sans-serif; font-size: 18px;">First
+                                <label style="font-family: 'Microsoft New Tai Lue', sans-serif; font-size: 18px;">First
                                     Name: </label>
-                                <label style="font-family: 'Poppins', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.first_name }}</label><br>
+                                <label style="font-family: 'Microsoft New Tai Lue', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.first_name }}</label><br>
 
-                                <label for="username" style="font-family: 'Poppins', sans-serif; font-size: 17px;">Last Name:</label>
-                                <label style="font-family: 'Poppins', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.last_name }}</label><br>
+                                <label for="username" style="font-family: 'Microsoft New Tai Lue', sans-serif; font-size: 17px;">Last Name:</label>
+                                <label style="font-family: 'Microsoft New Tai Lue', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.last_name }}</label><br>
 
-                                <label for="username" style="font-family: 'Poppins', sans-serif; font-size: 17px;">Phone:</label>
-                                <label style="font-family: 'Poppins', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.phone }}</label><br><br>
+                                <label for="username" style="font-family: 'Microsoft New Tai Lue', sans-serif; font-size: 17px;">Phone:</label>
+                                <label style="font-family: 'Microsoft New Tai Lue', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.phone }}</label><br><br>
 
-                                <label style="font-family: 'Poppins', sans-serif; font-size: 18px;">Email
+                                <label style="font-family: 'Microsoft New Tai Lue', sans-serif; font-size: 18px;">Email
                                     Address:</label><br>
-                                <label style="font-family: 'Poppins', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.email }}</label><br><br>
+                                <label style="font-family: 'Microsoft New Tai Lue', sans-serif; font-size: 15px; color: dimgray; font-weight: bold;">{{ profile.email }}</label><br><br>
 
                                 <a href="{% url 'webapp:update_profile' pk=profile.pk %}" class="btn mt_btn_yellow">Edit Account</a>
                             </div>
@@ -131,149 +225,6 @@
     </section>
     <!-- End checkout -->
 
-    <!-- checkout -->
-    <section id="checkout-main" class="checkout-main section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-sm-12">
-                    <div class="checkout-inner">
-                        <div class="checkout-info">
-                            <h3 class="mar-bottom-20">Your Orders</h3>
-                            <div class="row">
-                                <div class="col-sm-10 col-xs-12">
-                                    <div class="row">
-                                        {% for order in orders %}
-                                            <div class="order-list">
-                                                <table class="shop_table rt-checkout-review-order-table">
-                                                    <tr class="order-total">
-                                                        <th>Name:</th>
-                                                        <td><strong><span
-                                                                class="rt-Price-amount">{{ order.first_name }}</span></strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="order-total">
-                                                        <th>ZIP:</th>
-                                                        <td><strong><span
-                                                                class="rt-Price-amount">{{ order.zip_code }}</span></strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="order-total">
-                                                        <th>Locations Type:</th>
-                                                        <td><strong><span
-                                                                class="rt-Price-amount">{{ order.location_type }}</span></strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="order-total">
-                                                        <th>Time Frame:</th>
-                                                        <td><strong><span
-                                                                class="rt-Price-amount">{{ order.timeframe }}</span></strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="order-total">
-                                                        <th>Time Jobs:</th>
-                                                        <td><strong><span
-                                                                class="rt-Price-amount">{{ order.time }}</span></strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="order-total">
-                                                        <th>Time Descriptions:</th>
-                                                        <td><strong><span
-                                                                class="rt-Price-amount">{{ order.time_description }}</span></strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="order-total">
-                                                        <th>Hours Needed:</th>
-                                                        <td><strong><span
-                                                                class="rt-Price-amount">{{ order.hours_needed }}</span></strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="order-total">
-                                                        <th>Appointment Date:</th>
-                                                        <td><strong><span
-                                                                class="rt-Price-amount">{{ order.appointment_date }}</span></strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="order-total">
-                                                        <th>Appointment Time:</th>
-                                                        <td><strong><span
-                                                                class="rt-Price-amount">{{ order.appointment_time }}</span></strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="order-total">
-                                                        <th>Project Type:</th>
-                                                        <td><strong><span
-                                                                class="rt-Price-amount">{{ order.project_type }}</span></strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="order-total">
-                                                        <th>Subcategories:</th>
-                                                        <td><strong><span class="rt-Price-amount">
-                                                        {% if order.subcategory %}
-                                                            {{ order.subcategory }}
-                                                        {% elif order.subcategories %}
-                                                            {{ order.subcategories }}
-                                                        {% else %}
-                                                            No subcategories.
-                                                        {% endif %}
-                                                    </span></strong></td>
-                                                    </tr>
-
-                                                    <tr class="order-total">
-                                                        <th>Email:</th>
-                                                        <td><strong><span
-                                                                class="rt-Price-amount">{{ order.email }}</span></strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="order-total">
-                                                        <th>Phone Number:</th>
-                                                        <td><strong><span
-                                                                class="rt-Price-amount">{{ order.phone }}</span></strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="order-total">
-                                                        <th>Order Notes:</th>
-                                                        <td><strong><span
-                                                                class="rt-Price-amount">{{ order.job_description }}</span></strong>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                            </div>
-                                        {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <div class="checkout-inner">
-                        <div class="checkout-info">
-                            <h3 class="mar-bottom-20">Your Order Photos:</h3>
-                        </div>
-                    </div>
-                    <div class="sidebar-main">
-                        <div class="col-xs-12">
-                            {% for order in orders %}
-                                <div class="form-group">
-                                    {% if order.photos.all %}
-                                        <ul class="photo-list">
-                                            {% for photo in order.photos.all %}
-                                                <li><img src="{{ photo.image.url }}"
-                                                         alt="Фотография для заказа {{ order.id }}"></li>
-                                            {% endfor %}
-                                        </ul>
-                                    {% else %}
-                                        <p>No photos.</p>
-                                    {% endif %}
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End checkout -->
 
 
 {% endblock %}
