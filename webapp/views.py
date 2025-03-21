@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.views import LoginView
 from django.core.files.storage import default_storage
 from django.urls import reverse_lazy
@@ -539,11 +541,21 @@ def my_account(request):
     user = request.user
     profile = Profile.objects.get_or_create(user=user)[0]
     photos = User_Photo.objects.filter(user_profile=profile)  # Используйте поле user_profile
-    checkout_details = CheckoutDetails.objects.last()
     basket, created = Basket.objects.get_or_create(user=request.user)
     total_quantity = sum(item.quantity for item in basket.basket_items.all())
     categories = Category.objects.all()
     orders = Order.objects.all()
+    checkout_details = CheckoutDetails.objects.filter(user=request.user)
+    payments_json = json.dumps([{
+        'id': payment.id,
+        'date': str(payment.date),
+        'name_check': payment.name_check,
+        'last_name_check': payment.last_name_check,
+        'town_city': payment.town_city,
+        'street_address': payment.street_address,
+        'price_check': str(payment.price_check),
+        'phone_number': payment.phone_number,
+    } for payment in checkout_details])
 
     context = {
         'news': news,
@@ -553,6 +565,7 @@ def my_account(request):
         'total_quantity': total_quantity,
         'categories': categories,
         'orders': orders,
+        'paymentsJson': payments_json,
     }
 
     return render(request, 'webapp/register/my_account.html', context=context)

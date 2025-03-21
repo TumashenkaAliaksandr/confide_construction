@@ -168,6 +168,7 @@ class Product(models.Model):
 
 
 class CheckoutDetails(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, )
     last_name_check = models.CharField(max_length=100, default='')
     street_address = models.CharField(max_length=255, default='')
     town_city = models.CharField(max_length=100, default='')
