@@ -1343,41 +1343,81 @@ def order_view(request):
             order.timeframe = request.POST.get('timeframe', '')
             order.time = request.POST.get('time', '')
             order.time_description = request.POST.get('time_description', '')
-
-            # Сохраняем дополнительные данные из POST
-            order.project_type = request.POST.get('project_type', '')
-            print("Тип проекта:", order.project_type)
-
-            order.location_type = request.POST.get('location_type', '')
-            order.timeframe = request.POST.get('timeframe', '')
-            order.time = request.POST.get('time', '')
-            order.time_description = request.POST.get('time_description', '')
             order.job_description = request.POST.get('job_description', '')
             order.hours_needed = request.POST.get('hours_needed', '')
             order.appointment_date = request.POST.get('appointment_date', None)
             order.appointment_time = request.POST.get('appointment_time', None)
 
-            # Сохраняем подкатегории в зависимости от типа проекта
-            if order.project_type == 'single_project':
-                order.subcategory = request.POST.get('subcategory', 'N/A')
-                print("Подкатегория для одного проекта:", order.subcategory)
-                order.subcategories = 'N/A'
-            elif order.project_type == 'variety_of_projects':
-                subcategories = request.POST.getlist('subcategories')
-                print("Подкатегории для нескольких проектов:", subcategories)
-                order.subcategories = ', '.join(subcategories) if subcategories else 'N/A'
-                order.subcategory = 'N/A'
+            # Проверяем обязательность выбора типа проекта
+            order.project_type = request.POST.get('project_type', '')
+            if not order.project_type:
+                return render(request, 'webapp/forms/order_form.html', {
+                    'subcategories': Subcategory.objects.all(),
+                    'order_form': order_form,
+                    'photo_formset': photo_formset,
+                    'error_message': "Пожалуйста, выберите тип проекта."
+                })
 
+            # Убедимся, что значение project_type корректное
+            if order.project_type not in ['single_project', 'variety_of_projects']:
+                return render(request, 'webapp/forms/order_form.html', {
+                    'subcategories': Subcategory.objects.all(),
+                    'order_form': order_form,
+                    'photo_formset': photo_formset,
+                    'error_message': "Недопустимый тип проекта."
+                })
+
+            # ЛОГИКА ВЫБОРА ПОДКАТЕГОРИЙ
+            if order.project_type == 'single_project':
+                # Для одиночного проекта: ОБЯЗАТЕЛЬНЫЙ ВЫБОР ОДНОЙ ПОДКАТЕГОРИИ
+                subcategory_id = request.POST.get('subcategory', None)
+                if not subcategory_id:
+                    return render(request, 'webapp/forms/order_form.html', {
+                        'subcategories': Subcategory.objects.all(),
+                        'order_form': order_form,
+                        'photo_formset': photo_formset,
+                        'error_message': "Для одиночного проекта выберите одну подкатегорию."
+                    })
+                try:
+                    subcategory = Subcategory.objects.get(id=subcategory_id)
+                    order.selected_subcategories.set([subcategory])  # Устанавливаем одну подкатегорию
+                except Subcategory.DoesNotExist:
+                    return render(request, 'webapp/forms/order_form.html', {
+                        'subcategories': Subcategory.objects.all(),
+                        'order_form': order_form,
+                        'photo_formset': photo_formset,
+                        'error_message': "Указанная подкатегория не существует."
+                    })
+
+            elif order.project_type == 'variety_of_projects':
+                # Для множественных проектов: ОБЯЗАТЕЛЬНЫЙ ВЫБОР НЕСКОЛЬКИХ ПОДКАТЕГОРИЙ
+                subcategories_ids = request.POST.getlist('subcategories')
+                if not subcategories_ids:
+                    return render(request, 'webapp/forms/order_form.html', {
+                        'subcategories': Subcategory.objects.all(),
+                        'order_form': order_form,
+                        'photo_formset': photo_formset,
+                        'error_message': "Для набора проектов выберите хотя бы одну подкатегорию."
+                    })
+                try:
+                    subcategories = Subcategory.objects.filter(id__in=subcategories_ids)
+                    order.selected_subcategories.set(subcategories)  # Устанавливаем несколько подкатегорий
+                except Exception as e:
+                    return render(request, 'webapp/forms/order_form.html', {
+                        'subcategories': Subcategory.objects.all(),
+                        'order_form': order_form,
+                        'photo_formset': photo_formset,
+                        'error_message': "Ошибка при обработке подкатегорий."
+                    })
+
+            # Сохраняем остальные данные заказа
             order.first_name = order_form.cleaned_data['first_name']
             order.zip_code = order_form.cleaned_data['zip_code']
             order.email = order_form.cleaned_data['email']
             order.phone = request.POST.get('phone')
 
-            print("Данные заказа:", order.__dict__)
-
             # Обязательные проверки
             if not order.phone:
-                print("Ошибка: номер телефона не указан")
                 return render(request, 'webapp/forms/order_form.html', {
                     'subcategories': Subcategory.objects.all(),
                     'order_form': order_form,
@@ -1390,7 +1430,6 @@ def order_view(request):
                 order.save()
                 print("Заказ сохранён успешно")
             except Exception as e:
-                print(f"Ошибка при сохранении заказа: {e}")
                 return render(request, 'webapp/forms/order_form.html', {
                     'subcategories': Subcategory.objects.all(),
                     'order_form': order_form,
@@ -1405,28 +1444,23 @@ def order_view(request):
                         photo = photo_form.save(commit=False)
                         photo.order = order
                         photo.save()
-                        print("Фотография сохранена успешно")
                     except Exception as e:
                         print(f"Ошибка при сохранении фотографии: {e}")
 
             return redirect('webapp:my_account')
+
         else:
-            print("Форма или формсет невалидны")
-            print("Ошибки формы:", order_form.errors)
             return render(request, 'webapp/forms/order_form.html', {
                 'subcategories': Subcategory.objects.all(),
                 'order_form': order_form,
                 'photo_formset': photo_formset,
                 'error_message': "Пожалуйста, исправьте ошибки в форме.",
-                'form_errors': order_form.errors  # Вывод ошибок формы
+                'form_errors': order_form.errors
             })
 
     elif request.method == 'GET':
-        print("Обработка GET-запроса")
-        # Обработка GET-запроса (например, отображение формы)
         order_form = OrderForm()
         photo_formset = OrderPhotoFormSet(queryset=OrderPhoto.objects.none())
-
         return render(request, 'webapp/forms/order_form.html', {
             'subcategories': Subcategory.objects.all(),
             'order_form': order_form,
@@ -1434,33 +1468,33 @@ def order_view(request):
         })
 
     else:
-        print("Неподдерживаемый метод запроса")
-        # Если метод запроса не поддерживается
         return HttpResponseNotAllowed(['GET', 'POST'])
 
-def orders_view(request):
-    orders = []  # Список ваших заказов
-    for order in orders:
-        order_data = {
-            'id': order.id,
-            'firstName': order.first_name,
-            'zipCode': order.zip_code,
-            'locationType': order.location_type,
-            'timeframe': order.timeframe,
-            'time': order.time,
-            'timeDescription': order.time_description,
-            'hoursNeeded': order.hours_needed,
-            'appointmentDate': order.appointment_date,
-            'appointmentTime': order.appointment_time,
-            'projectType': order.project_type,
-            'subcategory': order.subcategory,
-            'email': order.email,
-            'phone': order.phone,
-            'jobDescription': order.job_description,
-            'photos': [photo.image.url for photo in order.photos.all]
-        }
-        orders.append(order_data)
 
-    orders_json = json.dumps(orders)
-    return render(request, 'orders.html', {'ordersJson': orders_json})
+
+# def orders_view(request):
+#     orders = []  # Список ваших заказов
+#     for order in orders:
+#         order_data = {
+#             'id': order.id,
+#             'firstName': order.first_name,
+#             'zipCode': order.zip_code,
+#             'locationType': order.location_type,
+#             'timeframe': order.timeframe,
+#             'time': order.time,
+#             'timeDescription': order.time_description,
+#             'hoursNeeded': order.hours_needed,
+#             'appointmentDate': order.appointment_date,
+#             'appointmentTime': order.appointment_time,
+#             'projectType': order.project_type,
+#             'subcategory': order.subcategory,
+#             'email': order.email,
+#             'phone': order.phone,
+#             'jobDescription': order.job_description,
+#             'photos': [photo.image.url for photo in order.photos.all]
+#         }
+#         orders.append(order_data)
+#
+#     orders_json = json.dumps(orders)
+#     return render(request, 'orders.html', {'ordersJson': orders_json})
 

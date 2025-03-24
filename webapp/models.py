@@ -370,7 +370,11 @@ class Order(models.Model):
     # Добавляем новые поля
     project_type = models.CharField("Тип проекта", max_length=20, blank=True, null=True)
     subcategory = models.CharField("Подкатегория", max_length=100, blank=True, null=True)
-    subcategories = models.CharField("Подкатегории", max_length=255, blank=True, null=True)
+    subcategories = models.ManyToManyField(
+        Subcategory,
+        verbose_name="Выбранные подкатегории",
+        blank=True
+    )
     location_type = models.CharField("Тип локации", max_length=20, blank=True, null=True)
     timeframe = models.CharField("Сроки выполнения", max_length=50, blank=True, null=True)
     time = models.CharField("Время выполнения", max_length=50, blank=True, null=True)
